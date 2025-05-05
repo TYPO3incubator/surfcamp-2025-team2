@@ -76,5 +76,13 @@ return [
                 'eval' => 'trim'
             ],
         ],
+        'order' => [
+            'exclude' => 0,
+            'label' => $ll . 'tx_wavecart_domain_model_orderitem.amoorderunt',
+            'config' => [
+                'type' => 'number',
+                'eval' => 'trim'
+            ],
+        ],
     ],
 ];

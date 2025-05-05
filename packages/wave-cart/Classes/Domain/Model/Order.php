@@ -2,6 +2,7 @@
 namespace TYPO3Incubator\WaveCart\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Order extends AbstractEntity
 {
@@ -15,6 +16,8 @@ class Order extends AbstractEntity
     protected int $paymentMethod;
     protected int $assignee;
     protected float $totalPrice;
+
+    protected ?ObjectStorage $orderItems = null;
 
     public function getCustomerLastname(): string
     {
@@ -114,5 +117,36 @@ class Order extends AbstractEntity
     public function setTotalPrice(float $totalPrice): void
     {
         $this->totalPrice = $totalPrice;
+    }
+
+    public function addOrderItem(OrderItem $orderItem): void
+    {
+        $this->orderItems?->attach($orderItem);
+    }
+
+    /**
+     * Remove a post from this blog
+     */
+    public function removeOrderItem(OrderItem $orderItemToRemove): void
+    {
+        $this->orderItems?->detach($orderItemToRemove);
+    }
+
+    /**
+     * Returns all posts in this blog
+     *
+     * @return ObjectStorage<OrderItem>
+     */
+    public function getOrderItems(): ObjectStorage
+    {
+        return $this->orderItems;
+    }
+
+    /**
+     * @param ObjectStorage<OrderItem> $orderItems
+     */
+    public function setOrderItems(ObjectStorage $orderItems): void
+    {
+        $this->orderItems = $orderItems;
     }
 }

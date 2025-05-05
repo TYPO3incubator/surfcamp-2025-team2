@@ -36,6 +36,34 @@
 			<trans-unit id="tx_wavecart_domain_model_order.total_price">
 				<source>Total price</source>
 			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.order_items">
+				<source>Order items</source>
+			</trans-unit>
+
+			<trans-unit id="tx_wavecart_domain_model_orderitem">
+            	<source>Order Item</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_orderitem.name">
+            	<source>Product name</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_orderitem.typ">
+            	<source>Type</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_orderitem.price">
+            	<source>Prize</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_orderitem.tax_rate">
+            	<source>Tax rate</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_orderitem.size">
+            	<source>Size</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_orderitem.amount">
+            	<source>Amount</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_orderitem.order">
+            	<source>Order</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -2,6 +2,7 @@
 namespace TYPO3Incubator\WaveCart\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class OrderItem extends AbstractEntity
 {
@@ -11,6 +12,7 @@ class OrderItem extends AbstractEntity
     protected int $taxRate;
     protected string $size;
     protected int $amount;
+    protected Order $order;
 
     public function getName(): string
     {
@@ -72,4 +74,13 @@ class OrderItem extends AbstractEntity
         $this->amount = $amount;
     }
 
+    public function getOrder(): Order
+    {
+        return $this->order;
+    }
+
+    public function setOrder(Order $order): void
+    {
+        $this->order = $order;
+    }
 }
