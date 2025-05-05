@@ -6,7 +6,7 @@ namespace TYPO3Incubator\WaveCart\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
-class ProductRepository extends Repository
+class ProductVariantRepository extends Repository
 {
 
 }
