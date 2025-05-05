@@ -18,7 +18,7 @@
 			<trans-unit id="orderStatusEnum.returned">
 				<source>Returned</source>
 			</trans-unit>
-            <trans-unit id="paymentMethodEnum.prepayment">
+			<trans-unit id="paymentMethodEnum.prepayment">
 				<source>Prepayment</source>
 			</trans-unit>
 
@@ -31,8 +31,18 @@
 			<trans-unit id="productTypeEnum.sweater">
 				<source>Sweater</source>
 			</trans-unit>
-            <trans-unit id="productTypeEnum.stuffedAnimal">
+			<trans-unit id="productTypeEnum.stuffedAnimal">
 				<source>Stuffed Animal</source>
+			</trans-unit>
+
+			<trans-unit id="taxRateEnum.none">
+				<source>None</source>
+			</trans-unit>
+			<trans-unit id="taxRateEnum.reduced">
+				<source>Reduced</source>
+			</trans-unit>
+			<trans-unit id="taxRateEnum.standard">
+				<source>Standard</source>
 			</trans-unit>
 		</body>
 	</file>
