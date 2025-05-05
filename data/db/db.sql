@@ -254,7 +254,7 @@ CREATE TABLE `cache_rootline` (
   `content` longblob DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(180),`expires`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +271,7 @@ CREATE TABLE `cache_rootline_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(191)),
   KEY `cache_tag` (`tag`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -903,7 +903,7 @@ CREATE TABLE `sys_file_processedfile` (
   PRIMARY KEY (`uid`),
   KEY `combined_1` (`original`,`task_type`(100),`configurationsha1`),
   KEY `identifier` (`storage`,`identifier`(180))
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1024,7 +1024,7 @@ CREATE TABLE `sys_history` (
   PRIMARY KEY (`uid`),
   KEY `recordident_1` (`tablename`(100),`recuid`),
   KEY `recordident_2` (`tablename`(100),`tstamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=1109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1073,7 +1073,7 @@ CREATE TABLE `sys_lockedrecords` (
   `feuserid` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `event` (`userid`,`tstamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1115,7 +1115,7 @@ CREATE TABLE `sys_log` (
   KEY `errorcount` (`tstamp`,`error`),
   KEY `index_channel` (`channel`),
   KEY `index_level` (`level`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1859,7 +1859,7 @@ CREATE TABLE `tx_wavecart_domain_model_order` (
   `order_items` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1878,13 +1878,13 @@ CREATE TABLE `tx_wavecart_domain_model_orderitem` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `type` int(10) unsigned NOT NULL DEFAULT 0,
   `price` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `tax_rate` int(11) NOT NULL DEFAULT 0,
+  `tax_rate` int(10) unsigned NOT NULL DEFAULT 0,
   `size` varchar(255) NOT NULL DEFAULT '',
   `amount` int(11) NOT NULL DEFAULT 0,
-  `order` int(10) unsigned NOT NULL DEFAULT 0,
+  `order` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1896,7 +1896,7 @@ CREATE TABLE `tx_wavecart_domain_model_orderitem` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-05 12:19:51
+-- Dump completed on 2025-05-05 11:44:53
 /*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19  Distrib 10.11.11-MariaDB, for debian-linux-gnu (aarch64)
 --
@@ -1954,7 +1954,7 @@ UNLOCK TABLES;
 LOCK TABLES `be_users` WRITE;
 /*!40000 ALTER TABLE `be_users` DISABLE KEYS */;
 INSERT INTO `be_users` VALUES
-(1,0,1744013612,1744013612,0,0,0,0,NULL,'default','a:8:{s:10:\"moduleData\";a:5:{s:28:\"dashboard/current_dashboard/\";s:40:\"faacf8dc927e44b8c4a076ea597850984919bb89\";s:10:\"FormEngine\";a:2:{i:0;a:0:{}i:1;s:32:\"d239561aea4da8ff9f1d6d726446377a\";}s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";a:0:{}s:16:\"opendocs::recent\";a:5:{s:32:\"d239561aea4da8ff9f1d6d726446377a\";a:5:{i:0;s:7:\"Müller\";i:1;a:5:{s:4:\"edit\";a:1:{s:30:\"tx_wavecart_domain_model_order\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:53:\"&edit%5Btx_wavecart_domain_model_order%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:30:\"tx_wavecart_domain_model_order\";s:3:\"uid\";i:1;s:3:\"pid\";i:102;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=db8258caa857f9ef89a74afd69e13512f27f3f3e&id=102&table=&pointer=1\";}s:32:\"696addfecc296b326ff6e9f04c7ff3e1\";a:5:{i:0;s:10:\"FC Bigfoot\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:28:\"&edit%5Bpages%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:91:\"/typo3/module/web/list?token=c92df26e54d0681cbeb3783a000f1f57768b4298&id=1&table=&pointer=1\";}s:32:\"68197a95f76df8c66af1dac9d60b8449\";a:5:{i:0;s:4:\"Home\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:101;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";a:1:{s:5:\"pages\";a:1:{s:16:\"sys_language_uid\";s:1:\"0\";}}s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:78:\"&edit%5Bpages%5D%5B101%5D=edit&overrideVals%5Bpages%5D%5Bsys_language_uid%5D=0\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:101;s:3:\"pid\";i:98;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=70433a391d5ab8a27a58e30616cf53b1ece1322c&id=101\";}s:32:\"d13352a464fa7d409f6769874ef8efe6\";a:5:{i:0;s:17:\"Bootstrap Package\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:15;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:29:\"&edit%5Bpages%5D%5B15%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:15;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=70433a391d5ab8a27a58e30616cf53b1ece1322c&id=15&\";}s:32:\"e2fe31fc6353286fd05ca174ce654c03\";a:5:{i:0;s:12:\"My dashboard\";i:1;a:5:{s:4:\"edit\";a:1:{s:13:\"be_dashboards\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:36:\"&edit%5Bbe_dashboards%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:13:\"be_dashboards\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:91:\"/typo3/module/web/list?token=c92df26e54d0681cbeb3783a000f1f57768b4298&id=0&table=&pointer=1\";}}s:16:\"browse_links.php\";a:1:{s:10:\"expandPage\";s:2:\"98\";}}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";s:15:\"moduleSessionID\";a:5:{s:28:\"dashboard/current_dashboard/\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:10:\"FormEngine\";s:40:\"936500bf191c3efe76526a0c97257c91cdab9a6b\";s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";s:40:\"936500bf191c3efe76526a0c97257c91cdab9a6b\";s:16:\"opendocs::recent\";s:40:\"936500bf191c3efe76526a0c97257c91cdab9a6b\";s:16:\"browse_links.php\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";}s:10:\"modulemenu\";s:13:\"{\"file\":true}\";s:17:\"BackendComponents\";a:1:{s:6:\"States\";a:1:{s:17:\"typo3-module-menu\";a:1:{s:9:\"collapsed\";s:5:\"false\";}}}s:10:\"inlineView\";s:156:\"{\"tx_wavecart_domain_model_order\":{\"NEW68188cc8ef7ef008565185\":{\"tx_wavecart_domain_model_orderitem\":[1]},\"1\":{\"tx_wavecart_domain_model_orderitem\":[\"1\"]}}}\";}',0,NULL,'','admin','$argon2id$v=19$m=65536,t=16,p=1$UW05T093U1JQS2liR1lLRA$z0I5XCRD58aCJ/ftNFV/FTe7FppNaYrYuuLpJhfoz5Q','',0,NULL,'','info@typo3.com','',1,3,NULL,1,NULL,'',NULL,1746437807,NULL),
+(1,0,1744013612,1744013612,0,0,0,0,NULL,'default','a:7:{s:10:\"moduleData\";a:5:{s:28:\"dashboard/current_dashboard/\";s:40:\"faacf8dc927e44b8c4a076ea597850984919bb89\";s:10:\"FormEngine\";a:2:{i:0;a:1:{s:32:\"696addfecc296b326ff6e9f04c7ff3e1\";a:5:{i:0;s:10:\"FC Bigfoot\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:28:\"&edit%5Bpages%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:76:\"/typo3/module/web/layout?token=5b29830027cc8e0d5d9f25496668d5d1a403ad4a&id=1\";}}i:1;s:32:\"696addfecc296b326ff6e9f04c7ff3e1\";}s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";a:0:{}s:16:\"opendocs::recent\";a:4:{s:32:\"696addfecc296b326ff6e9f04c7ff3e1\";a:5:{i:0;s:10:\"FC Bigfoot\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:28:\"&edit%5Bpages%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:91:\"/typo3/module/web/list?token=c92df26e54d0681cbeb3783a000f1f57768b4298&id=1&table=&pointer=1\";}s:32:\"68197a95f76df8c66af1dac9d60b8449\";a:5:{i:0;s:4:\"Home\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:101;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";a:1:{s:5:\"pages\";a:1:{s:16:\"sys_language_uid\";s:1:\"0\";}}s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:78:\"&edit%5Bpages%5D%5B101%5D=edit&overrideVals%5Bpages%5D%5Bsys_language_uid%5D=0\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:101;s:3:\"pid\";i:98;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=70433a391d5ab8a27a58e30616cf53b1ece1322c&id=101\";}s:32:\"d13352a464fa7d409f6769874ef8efe6\";a:5:{i:0;s:17:\"Bootstrap Package\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:15;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:29:\"&edit%5Bpages%5D%5B15%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:15;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=70433a391d5ab8a27a58e30616cf53b1ece1322c&id=15&\";}s:32:\"e2fe31fc6353286fd05ca174ce654c03\";a:5:{i:0;s:12:\"My dashboard\";i:1;a:5:{s:4:\"edit\";a:1:{s:13:\"be_dashboards\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:36:\"&edit%5Bbe_dashboards%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:13:\"be_dashboards\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:91:\"/typo3/module/web/list?token=c92df26e54d0681cbeb3783a000f1f57768b4298&id=0&table=&pointer=1\";}}s:16:\"browse_links.php\";a:1:{s:10:\"expandPage\";s:2:\"98\";}}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";s:15:\"moduleSessionID\";a:5:{s:28:\"dashboard/current_dashboard/\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:10:\"FormEngine\";s:40:\"ac8b28bbdbe93107e6a17c77794ad0cdddd131ef\";s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";s:40:\"9a4db24f96e829863c7131f122b7759ab62e0f8e\";s:16:\"opendocs::recent\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:16:\"browse_links.php\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";}s:10:\"modulemenu\";s:13:\"{\"file\":true}\";s:17:\"BackendComponents\";a:1:{s:6:\"States\";a:1:{s:17:\"typo3-module-menu\";a:1:{s:9:\"collapsed\";s:5:\"false\";}}}}',0,NULL,'','admin','$argon2id$v=19$m=65536,t=16,p=1$UW05T093U1JQS2liR1lLRA$z0I5XCRD58aCJ/ftNFV/FTe7FppNaYrYuuLpJhfoz5Q','',0,NULL,'','info@typo3.com','',1,3,NULL,1,NULL,'',NULL,1746435215,NULL),
 (2,0,1744014582,1744014582,0,0,0,0,NULL,'default','a:4:{s:10:\"moduleData\";a:0:{}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";}',0,NULL,'','_cli_','$argon2id$v=19$m=65536,t=16,p=1$Qk41RG10QTUxUGQzclc3dA$9bxBcygWFXt9U5WuxRJLFP3866mFPYZjpkdwMrS98sg','',0,NULL,'','','',1,3,NULL,1,NULL,'',NULL,0,NULL);
 /*!40000 ALTER TABLE `be_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2036,10 +2036,10 @@ LOCK TABLES `index_phash` WRITE;
 /*!40000 ALTER TABLE `index_phash` DISABLE KEYS */;
 INSERT INTO `index_phash` VALUES
 ('230f8464c03ab1dc4fbd4bc332b6b776','ad5c9ca91e077da8aa1ce2dff42a55f1','[]','',99,0,'','0,-1','0','Page A','Page A Page B',1744022126,1746351089,1599,'ecc6dd1a44b97d6794d65dc91f851d7a',1744022132,8,0,1744022114,0,0,0,0),
-('3d798c3f120fdabe32985de46a5fc2fd','dc91fa3918f3fab9a43a16f82bb27086','[]','',1,0,'','0,-1','0','FC Bigfoot','Events News Club History Membership Contact Team Sponsors Contact Us FC Bigfoot Fuerteventura 23 years of passion and dedication Join today Our latest Game Results 3 : 0 SurfCamp League @ Super Feet S',1744014936,1746351059,30339,'cef657c85f8d56d9f23fab9b6aaf2f30',1744021289,45,0,1744014582,0,0,0,0),
+('3d798c3f120fdabe32985de46a5fc2fd','dc91fa3918f3fab9a43a16f82bb27086','[]','',1,0,'','0,-1','0','FC Bigfoot','Events News Club History Membership Contact Team Sponsors Contact Us FC Bigfoot Fuerteventura 23 years of passion and dedication Join today Our latest Game Results 3 : 0 SurfCamp League @ Super Feet S',1744014936,1746439688,30339,'cef657c85f8d56d9f23fab9b6aaf2f30',1744021289,45,0,1744014582,0,0,0,0),
 ('4512611c26346c41692fc2d2c861ba25','927f5bd190a4c729d55536dd6a64fc5a','[]','',95,0,'','0,-1','0','Features','A single TYPO3 CMS installation can easily power hundreds of websites in many dozens of languages. Need more functionality? No problem! More than 1,500 open source extensions are available via Packagi',1744015096,1744021608,103420,'5df7163565766c5b56f715dfddea577a',1744021608,109,0,1744015096,0,0,0,0),
 ('55a01547a20d7d965193fcd3e277624c','49bd411e140968a8cdc3180e2441bfe7','[]','',100,0,'','0,-1','0','Page B','Page A Page B',1744022124,1746351091,1599,'3e413a5660735903caa5cd997bfbcf2f',1744022133,8,0,1744022118,0,0,0,0),
-('68d237c4097d4cfacaa1850865ef957e','7274c0580dea745ce5f7f1790b2f97bd','[]','',98,0,'','0,-1','0','Base','Home Page A Page B Bootstrap Package - FC Bigfoot',1744021558,1746437843,2327,'93eedc75a07e6724f5094d5965104d17',1744268177,11,0,1744016344,0,0,0,0),
+('68d237c4097d4cfacaa1850865ef957e','7274c0580dea745ce5f7f1790b2f97bd','[]','',98,0,'','0,-1','0','Base','Home Page A Page B Bootstrap Package - FC Bigfoot',1744021558,1746351042,2327,'93eedc75a07e6724f5094d5965104d17',1744268177,11,0,1744016344,0,0,0,0),
 ('9bd8393860e6e9cf4c907a0919ca687d','f5bad68bc9b081e512151ece334fae4f','[]','',12,0,'','0,-1','0','Events','Our Game Results Stay updated with the latest scores and outcomes of FC Bigfoot\'s matches. Here, you will find a comprehensive list of our recent game results. Keep checking back for the most current ',1744014582,1744014836,21136,'d4ee89affc87c8081e823b172dcfc30c',1744014836,21,0,1744014582,0,0,0,0),
 ('a6c5259923c1fbda006d875ebb439c1b','e4b6e82cb94e1cb4a3071d6edb7ce3da','[]','',15,0,'','0,-1','0','Bootstrap Package','Possibilities With a rich core feature set out-of-the-box, TYPO3 is an ideal choice for building ambitious digital experiences. Features Customizing Examples Don\'t hesitate and discover the large sele',1744015237,1746351047,97512,'30fea055663fadbc0825c8625ed6b6ca',1744016598,14,0,1744015096,0,0,0,0),
 ('ab566ef524f8cda9b66737a0a146a674','1cca31a174e81d35de9a86c5e3717299','[]','',91,0,'','0,-1','0','2 Columns 25/75','Content Before colPos = 8 Main colPos = 0 Left colPos = 1 Content After colPos = 9',1744015096,1744016607,78727,'2d04ecd280a80e9d9c915272e9985684',1744016607,6,0,1744015096,0,0,0,0),
@@ -5387,9 +5387,7 @@ INSERT INTO `sys_history` VALUES
 (1103,1744022151,2,'BE',1,0,101,'pages','{\"oldRecord\":{\"doktype\":1,\"fe_group\":\"0\",\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"},\"newRecord\":{\"doktype\":\"4\",\"fe_group\":\"\",\"l10n_diffsource\":\"{\\\"doktype\\\":\\\"\\\",\\\"title\\\":\\\"\\\",\\\"slug\\\":\\\"\\\",\\\"nav_title\\\":\\\"\\\",\\\"subtitle\\\":\\\"\\\",\\\"nav_icon_set\\\":\\\"\\\",\\\"nav_icon\\\":\\\"\\\",\\\"seo_title\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"no_index\\\":\\\"\\\",\\\"no_follow\\\":\\\"\\\",\\\"canonical_link\\\":\\\"\\\",\\\"sitemap_changefreq\\\":\\\"\\\",\\\"sitemap_priority\\\":\\\"\\\",\\\"og_title\\\":\\\"\\\",\\\"og_description\\\":\\\"\\\",\\\"og_image\\\":\\\"\\\",\\\"twitter_title\\\":\\\"\\\",\\\"twitter_description\\\":\\\"\\\",\\\"twitter_image\\\":\\\"\\\",\\\"twitter_card\\\":\\\"\\\",\\\"abstract\\\":\\\"\\\",\\\"keywords\\\":\\\"\\\",\\\"author\\\":\\\"\\\",\\\"author_email\\\":\\\"\\\",\\\"lastUpdated\\\":\\\"\\\",\\\"layout\\\":\\\"\\\",\\\"newUntil\\\":\\\"\\\",\\\"backend_layout\\\":\\\"\\\",\\\"backend_layout_next_level\\\":\\\"\\\",\\\"thumbnail\\\":\\\"\\\",\\\"content_from_pid\\\":\\\"\\\",\\\"target\\\":\\\"\\\",\\\"cache_timeout\\\":\\\"\\\",\\\"cache_tags\\\":\\\"\\\",\\\"is_siteroot\\\":\\\"\\\",\\\"no_search\\\":\\\"\\\",\\\"php_tree_stop\\\":\\\"\\\",\\\"module\\\":\\\"\\\",\\\"media\\\":\\\"\\\",\\\"tsconfig_includes\\\":\\\"\\\",\\\"TSconfig\\\":\\\"\\\",\\\"l18n_cfg\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\",\\\"nav_hide\\\":\\\"\\\",\\\"starttime\\\":\\\"\\\",\\\"endtime\\\":\\\"\\\",\\\"extendToSubpages\\\":\\\"\\\",\\\"fe_group\\\":\\\"\\\",\\\"editlock\\\":\\\"\\\",\\\"categories\\\":\\\"\\\",\\\"rowDescription\\\":\\\"\\\"}\"}}',0,'0400$d725fe9af9b72e51470a08e56ce939c6:eca93d8ae5fb22a4c97a7375d1c26ff9'),
 (1104,1744022161,2,'BE',1,0,101,'pages','{\"oldRecord\":{\"shortcut\":0,\"l10n_diffsource\":\"{\\\"doktype\\\":\\\"\\\",\\\"title\\\":\\\"\\\",\\\"slug\\\":\\\"\\\",\\\"nav_title\\\":\\\"\\\",\\\"subtitle\\\":\\\"\\\",\\\"nav_icon_set\\\":\\\"\\\",\\\"nav_icon\\\":\\\"\\\",\\\"seo_title\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"no_index\\\":\\\"\\\",\\\"no_follow\\\":\\\"\\\",\\\"canonical_link\\\":\\\"\\\",\\\"sitemap_changefreq\\\":\\\"\\\",\\\"sitemap_priority\\\":\\\"\\\",\\\"og_title\\\":\\\"\\\",\\\"og_description\\\":\\\"\\\",\\\"og_image\\\":\\\"\\\",\\\"twitter_title\\\":\\\"\\\",\\\"twitter_description\\\":\\\"\\\",\\\"twitter_image\\\":\\\"\\\",\\\"twitter_card\\\":\\\"\\\",\\\"abstract\\\":\\\"\\\",\\\"keywords\\\":\\\"\\\",\\\"author\\\":\\\"\\\",\\\"author_email\\\":\\\"\\\",\\\"lastUpdated\\\":\\\"\\\",\\\"layout\\\":\\\"\\\",\\\"newUntil\\\":\\\"\\\",\\\"backend_layout\\\":\\\"\\\",\\\"backend_layout_next_level\\\":\\\"\\\",\\\"thumbnail\\\":\\\"\\\",\\\"content_from_pid\\\":\\\"\\\",\\\"target\\\":\\\"\\\",\\\"cache_timeout\\\":\\\"\\\",\\\"cache_tags\\\":\\\"\\\",\\\"is_siteroot\\\":\\\"\\\",\\\"no_search\\\":\\\"\\\",\\\"php_tree_stop\\\":\\\"\\\",\\\"module\\\":\\\"\\\",\\\"media\\\":\\\"\\\",\\\"tsconfig_includes\\\":\\\"\\\",\\\"TSconfig\\\":\\\"\\\",\\\"l18n_cfg\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\",\\\"nav_hide\\\":\\\"\\\",\\\"starttime\\\":\\\"\\\",\\\"endtime\\\":\\\"\\\",\\\"extendToSubpages\\\":\\\"\\\",\\\"fe_group\\\":\\\"\\\",\\\"editlock\\\":\\\"\\\",\\\"categories\\\":\\\"\\\",\\\"rowDescription\\\":\\\"\\\"}\"},\"newRecord\":{\"shortcut\":\"98\",\"l10n_diffsource\":\"{\\\"doktype\\\":\\\"\\\",\\\"title\\\":\\\"\\\",\\\"slug\\\":\\\"\\\",\\\"nav_title\\\":\\\"\\\",\\\"subtitle\\\":\\\"\\\",\\\"nav_icon_set\\\":\\\"\\\",\\\"nav_icon\\\":\\\"\\\",\\\"shortcut_mode\\\":\\\"\\\",\\\"shortcut\\\":\\\"\\\",\\\"abstract\\\":\\\"\\\",\\\"author\\\":\\\"\\\",\\\"author_email\\\":\\\"\\\",\\\"lastUpdated\\\":\\\"\\\",\\\"layout\\\":\\\"\\\",\\\"newUntil\\\":\\\"\\\",\\\"backend_layout\\\":\\\"\\\",\\\"backend_layout_next_level\\\":\\\"\\\",\\\"thumbnail\\\":\\\"\\\",\\\"target\\\":\\\"\\\",\\\"is_siteroot\\\":\\\"\\\",\\\"no_search\\\":\\\"\\\",\\\"php_tree_stop\\\":\\\"\\\",\\\"media\\\":\\\"\\\",\\\"tsconfig_includes\\\":\\\"\\\",\\\"TSconfig\\\":\\\"\\\",\\\"l18n_cfg\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\",\\\"nav_hide\\\":\\\"\\\",\\\"starttime\\\":\\\"\\\",\\\"endtime\\\":\\\"\\\",\\\"extendToSubpages\\\":\\\"\\\",\\\"fe_group\\\":\\\"\\\",\\\"editlock\\\":\\\"\\\",\\\"categories\\\":\\\"\\\",\\\"rowDescription\\\":\\\"\\\"}\"}}',0,'0400$5db0a41d69b4ee22f9372111d161e144:eca93d8ae5fb22a4c97a7375d1c26ff9'),
 (1105,1746436310,1,'BE',1,0,102,'pages','{\"doktype\":\"254\",\"slug\":\"\\/orders\",\"categories\":\"0\",\"layout\":\"0\",\"lastUpdated\":0,\"newUntil\":0,\"cache_timeout\":\"0\",\"shortcut\":0,\"shortcut_mode\":\"0\",\"content_from_pid\":0,\"mount_pid\":0,\"module\":\"\",\"hidden\":1,\"starttime\":0,\"endtime\":0,\"l10n_parent\":0,\"l10n_diffsource\":\"\",\"sitemap_priority\":\"0.5\",\"twitter_card\":\"\",\"pid\":1,\"sorting\":512,\"perms_userid\":1,\"perms_groupid\":0,\"perms_user\":31,\"perms_group\":27,\"perms_everybody\":0,\"title\":\"Orders\",\"sys_language_uid\":0,\"crdate\":1746436310,\"t3ver_stage\":0,\"tstamp\":1746436310,\"uid\":102}',0,'0400$fe74c42f251c1c7ce488b17e55b28d61:4db0f97632f88eb17ef9d21a3b297e72'),
-(1106,1746436313,2,'BE',1,0,102,'pages','{\"oldRecord\":{\"hidden\":1,\"l10n_diffsource\":\"\"},\"newRecord\":{\"hidden\":\"0\",\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$d0126f6d4f64ca6cabaa80192a17fb4c:4db0f97632f88eb17ef9d21a3b297e72'),
-(1107,1746439451,1,'BE',1,0,1,'tx_wavecart_domain_model_order','{\"pid\":102,\"customer_lastname\":\"M\\u00fcller\",\"customer_firstname\":\"Max\",\"customer_address\":\"Musterstr. 42\",\"customer_zip\":\"12345\",\"customer_city\":\"Musterstadt\",\"customer_email\":\"max@mustermann.de\",\"status\":\"0\",\"payment_method\":\"0\",\"assignee\":0,\"total_price\":\"100.00\",\"crdate\":1746439451,\"tstamp\":1746439451,\"uid\":1}',0,'0400$77cc42b094416d4c12e9b9bf5fe744b8:ac3aa5de0606331a7f15ef3c63a3561d'),
-(1108,1746439451,1,'BE',1,0,1,'tx_wavecart_domain_model_orderitem','{\"pid\":102,\"name\":\"Surfcamp T-Shirt\",\"price\":\"27.95\",\"size\":\"S\",\"amount\":1,\"crdate\":1746439451,\"tstamp\":1746439451,\"uid\":1}',0,'0400$77cc42b094416d4c12e9b9bf5fe744b8:30726a05d2fef4e6a9c11a1d9eb7a472');
+(1106,1746436313,2,'BE',1,0,102,'pages','{\"oldRecord\":{\"hidden\":1,\"l10n_diffsource\":\"\"},\"newRecord\":{\"hidden\":\"0\",\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$d0126f6d4f64ca6cabaa80192a17fb4c:4db0f97632f88eb17ef9d21a3b297e72');
 /*!40000 ALTER TABLE `sys_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5504,13 +5502,28 @@ INSERT INTO `sys_log` VALUES
 (76,1746436310,1,1,102,'pages',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.19.0.6','{\"table\":\"pages\",\"uid\":102,\"pid\":1}',1,0,'',0,'','info',NULL,NULL),
 (77,1746436313,1,2,102,'pages',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"pages\",\"uid\":102,\"history\":\"1106\"}',1,0,'',0,'','info',NULL,NULL),
 (78,1746436316,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1166546734: Package \"wavecart\" is not available. Please check if the package exists and that the package key is correct (package keys are case sensitive). | TYPO3\\CMS\\Core\\Package\\Exception\\UnknownPackageException thrown in file /var/www/html/vendor/typo3/cms-core/Classes/Package/PackageManager.php in line 475. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/typo3/record/new?token=--AnonymizedToken--&id=102&returnUrl=/typo3/module/web/list?token%%3D--AnonymizedToken--%%26id%%3D102%%26table%%3D%%26pointer%%3D1',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
-(79,1746437807,1,1,0,'',0,0,'User %s logged in from ###IP###',255,'user',0,'172.18.0.6','[\"admin\"]',-1,-99,'',0,'','info',NULL,NULL),
-(80,1746437808,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1146: An exception occurred while executing a query: Table \'db.tx_wavecart_domain_model_orderitem\' doesn\'t exist | Doctrine\\DBAL\\Exception\\TableNotFoundException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 40. Requested URL: https://surfcamp-base-2025.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=1',5,'php',0,'172.18.0.6','',-1,0,'',0,'','error',NULL,NULL),
-(81,1746437814,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1146: An exception occurred while executing a query: Table \'db.tx_wavecart_domain_model_orderitem\' doesn\'t exist | Doctrine\\DBAL\\Exception\\TableNotFoundException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 40. Requested URL: https://surfcamp-base-2025.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=102&',5,'php',0,'172.18.0.6','',-1,0,'',0,'','error',NULL,NULL),
-(82,1746438897,1,1,0,'',0,0,'User {username} has cleared the cache (cacheCmd={command})',3,'default',0,'172.18.0.6','{\"username\":\"admin\",\"command\":\"all\"}',-1,0,'',0,'','info',NULL,NULL),
-(83,1746439451,1,1,1,'tx_wavecart_domain_model_order',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_order\",\"uid\":1,\"pid\":102}',102,0,'',0,'','info',NULL,NULL),
-(84,1746439451,1,1,1,'tx_wavecart_domain_model_orderitem',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_orderitem\",\"uid\":1,\"pid\":102}',102,0,'',0,'','info',NULL,NULL),
-(85,1746439451,1,2,1,'tx_wavecart_domain_model_order',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_order\",\"uid\":1,\"history\":0}',102,0,'',0,'','info',NULL,NULL);
+(79,1746439676,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1146: An exception occurred while executing a query: Table \'db.tx_wavecart_domain_model_orderitem\' doesn\'t exist | Doctrine\\DBAL\\Exception\\TableNotFoundException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 40. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=102&',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(80,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(81,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(82,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(83,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(84,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(85,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(86,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(87,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(88,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(89,1746439690,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(90,1746439697,1,1,0,'',0,0,'User {username} has cleared the cache (cacheCmd={command})',3,'default',0,'172.19.0.6','{\"username\":\"admin\",\"command\":\"all\"}',-1,0,'',0,'','info',NULL,NULL),
+(91,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(92,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(93,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(94,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(95,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(96,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(97,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(98,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(99,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(100,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL);
 /*!40000 ALTER TABLE `sys_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5695,7 +5708,6 @@ INSERT INTO `sys_refindex` VALUES
 ('2d47ec0c03a90aa644d7638ee90f269b','sys_file_reference',24,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',105,'',0,0,2147483647,0,0,''),
 ('2dcf80cc5c40c3879f3594dad38d6ccc','sys_file_reference',35,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',94,'',0,0,2147483647,0,0,''),
 ('2de167faff4cf679d7e30a098146f0e9','tx_bootstrappackage_timeline_item',13,'tt_content',0,0,2147483647,0,'','','',0,0,'tt_content',168,'',0,0,2147483647,0,0,''),
-('2e10344d69719c9f9c0f5efa7800a908','tx_wavecart_domain_model_order',1,'customer_email',0,0,2147483647,0,'','email','2',0,0,'_STRING',0,'',0,0,2147483647,0,0,'max@mustermann.de'),
 ('2e3c31e19e0081a8fc2d5ed1a13f09e0','pages',13,'thumbnail',0,0,2147483647,0,'','','',0,0,'sys_file_reference',184,'',0,0,2147483647,0,0,''),
 ('2e76fd8c9718117235b2853b49512e1b','tx_fcbigfoot_domain_model_person',7,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',7,'',0,0,2147483647,0,0,''),
 ('2e86db6d090756e9b24f6f3139c94ca9','sys_file_metadata',75,'file',0,0,2147483647,0,'','','',0,0,'sys_file',75,'',0,0,2147483647,0,0,''),
@@ -6154,7 +6166,6 @@ INSERT INTO `sys_refindex` VALUES
 ('aea62e3876f8f567439e2958c8a3e4d1','sys_file_reference',81,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',37,'',0,0,2147483647,0,0,''),
 ('af1167631d7bf08a0680ad8e3864a002','sys_file_reference',124,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',52,'',0,0,2147483647,0,0,''),
 ('af28f540bcf15f8bc7bb7a5327f657e0','be_groups',3,'db_mountpoints',0,0,2147483647,0,'','','',0,0,'pages',15,'',0,0,2147483647,0,0,''),
-('af557ab6d37b981baf927e05b68b2185','tx_wavecart_domain_model_order',1,'order_items',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_orderitem',1,'',0,0,2147483647,0,0,''),
 ('afd1e1fc54253c7109ace13c95f77d75','pages',84,'thumbnail',0,0,2147483647,0,'','','',0,0,'sys_file_reference',39,'',0,0,2147483647,0,0,''),
 ('b06503cae858cc8b3a0721c7124fd150','sys_file',43,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
 ('b0954663350bb6b88c556f862e42bf47','sys_file_metadata',54,'file',0,0,2147483647,0,'','','',0,0,'sys_file',54,'',0,0,2147483647,0,0,''),
@@ -6401,7 +6412,7 @@ INSERT INTO `sys_registry` VALUES
 (10,'installUpdate','TYPO3\\CMS\\Install\\Updates\\SysTemplateNoWorkspaceMigration','i:1;'),
 (11,'installUpdate','TYPO3\\CMS\\Extensionmanager\\Updates\\FeLoginModeExtractionUpdate','i:1;'),
 (12,'installUpdateRows','rowUpdatersDone','a:1:{i:0;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\SysRedirectRootPageMoveMigration\";}'),
-(13,'core','formProtectionSessionToken:1','s:64:\"5d9f6525736c15077c1c08c21418f2bbbe77f29940b717f1f360229fa2d6be06\";'),
+(13,'core','formProtectionSessionToken:1','s:64:\"23a64b7b8eb101124bad19dae89fe438b4d71587035d735d04a941923091ebc4\";'),
 (14,'extensionDataImport','typo3/cms-core/ext_tables_static+adt.sql','s:0:\"\";'),
 (15,'extensionDataImport','typo3/cms-scheduler/ext_tables_static+adt.sql','s:0:\"\";'),
 (16,'extensionDataImport','typo3/cms-extbase/ext_tables_static+adt.sql','s:0:\"\";'),
@@ -6936,8 +6947,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `tx_wavecart_domain_model_order` WRITE;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_order` DISABLE KEYS */;
-INSERT INTO `tx_wavecart_domain_model_order` VALUES
-(1,102,1746439451,1746439451,0,'Müller','Max','Musterstr. 42','12345','Musterstadt','max@mustermann.de',0,0,0,100.00,1);
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6947,8 +6956,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `tx_wavecart_domain_model_orderitem` WRITE;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_orderitem` DISABLE KEYS */;
-INSERT INTO `tx_wavecart_domain_model_orderitem` VALUES
-(1,102,1746439451,1746439451,0,'Surfcamp T-Shirt',0,27.95,0,'S',1,1);
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_orderitem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -6960,4 +6967,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-05 12:19:51
+-- Dump completed on 2025-05-05 11:44:53
