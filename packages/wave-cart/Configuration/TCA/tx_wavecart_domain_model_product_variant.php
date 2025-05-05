@@ -42,7 +42,8 @@ return [
                 'renderType' => 'selectSingle',
                 'minitems' => 1,
                 'maxitems' => 1,
-                'items' => ProductSizeEnum::getTcaOptions(),
+                'items' => ProductSizeEnum::getGroupedTCAOptions(),
+                'itemGroups' => ProductSizeEnum::getGroups(),
             ],
         ],
         'amount' => [
