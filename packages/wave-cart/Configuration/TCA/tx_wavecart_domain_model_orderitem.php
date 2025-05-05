@@ -17,7 +17,7 @@ return [
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
-        'iconfile' => 'EXT:fuxma_site/Resources/Public/Icons/Fux/fux-fux.svg',
+        'iconfile' => 'EXT:wave_cart/Resources/Public/Icons/order.svg',
     ],
     'types' => [
         '1' => ['showitem' => 'name, type, price, tax_rate, size, amount'],

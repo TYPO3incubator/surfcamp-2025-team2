@@ -24,6 +24,7 @@ return [
         'transOrigDiffSourceField' => 'l18n_diffsource',
         'languageField' => 'sys_language_uid',
         'translationSource' => 'l10n_source',
+        'iconfile' => 'EXT:wave_cart/Resources/Public/Icons/product.svg',
     ],
     'columns' => [
         'name' => [
