@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="messages" date="2025-02-05T10:18:12Z" product-name="wave_cart">
+		<header/>
+		<body>
+			<!-- Order -->
+			<trans-unit id="tx_wavecart_domain_model_order">
+				<source>Order</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.customer_lastname">
+				<source>Customer lastname</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.customer_firstname">
+				<source>Customer firstname</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.customer_address">
+				<source>Customer address</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.customer_zip">
+				<source>Customer zip</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.customer_city">
+				<source>Customer city</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.customer_email">
+				<source>Customer Email</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.status">
+				<source>Status</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.payment_method">
+				<source>Payment method</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.assignee">
+				<source>Assignee</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.total_price">
+				<source>Total price</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.order_items">
+				<source>Order items</source>
+			</trans-unit>
+
+			<!-- Order item-->
+			<trans-unit id="tx_wavecart_domain_model_orderitem">
+				<source>Order Item</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.name">
+				<source>Product name</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.type">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.price">
+				<source>Prize</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.tax_rate">
+				<source>Tax rate</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.size">
+				<source>Size</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.amount">
+				<source>Amount</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.order">
+				<source>Order</source>
+			</trans-unit>
+
+			<!-- Product -->
+			<trans-unit id="tx_wavecart_domain_model_product">
+				<source>Product</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product.type">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product.price">
+				<source>Price</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product.tax_rate">
+				<source>Tax Rate</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product.variants">
+				<source>Variants</source>
+			</trans-unit>
+
+			<!-- Product variant-->
+			<trans-unit id="tx_wavecart_domain_model_product_variant">
+				<source>Product Variant</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product_variant.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product_variant.size">
+				<source>Size</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product_variant.amount">
+				<source>Amount</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_product_variant.product">
+				<source>Product</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
