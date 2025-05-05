@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="messages" date="2025-02-05T10:18:12Z" product-name="wave_cart">
+		<header/>
+		<body>
+			<trans-unit id="orderStatusEnum.new">
+				<source>New</source>
+			</trans-unit>
+			<trans-unit id="orderStatusEnum.paid">
+				<source>Paid</source>
+			</trans-unit>
+			<trans-unit id="orderStatusEnum.inProgress">
+				<source>In progress</source>
+			</trans-unit>
+			<trans-unit id="orderStatusEnum.shipped">
+				<source>Shipped</source>
+			</trans-unit>
+			<trans-unit id="orderStatusEnum.returned">
+				<source>Returned</source>
+			</trans-unit>
+            <trans-unit id="paymentMethodEnum.prepayment">
+				<source>Prepayment</source>
+			</trans-unit>
+
+			<trans-unit id="productTypeEnum.tShirt">
+				<source>T-Shirt</source>
+			</trans-unit>
+			<trans-unit id="productTypeEnum.cap">
+				<source>Cap</source>
+			</trans-unit>
+			<trans-unit id="productTypeEnum.sweater">
+				<source>Sweater</source>
+			</trans-unit>
+            <trans-unit id="productTypeEnum.stuffedAnimal">
+				<source>Stuffed Animal</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.tShirt">
+				<source>T-Shirt</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.tShirt_s">
+				<source>S</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.tShirt_m">
+				<source>M</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.tShirt_l">
+				<source>L</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.tShirt_xl">
+				<source>XL</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.tShirt_xxl">
+				<source>XXL</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.general">
+				<source>General</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.general_unisize">
+				<source>Unisize</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.sweater">
+				<source>Sweater</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.sweater_s">
+				<source>S</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.sweater_m">
+				<source>M</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.sweater_l">
+				<source>L</source>
+			</trans-unit>
+            <trans-unit id="sizeEnum.sweater_xl">
+				<source>XL</source>
+			</trans-unit>
+            <trans-unit id="taxRateEnum.germany_zero">
+				<source>0%</source>
+			</trans-unit>
+            <trans-unit id="taxRateEnum.germany_reduced">
+				<source>7%</source>
+			</trans-unit>
+            <trans-unit id="taxRateEnum.germany_full">
+				<source>19%</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
