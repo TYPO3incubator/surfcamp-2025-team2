@@ -1,6 +1,7 @@
 <?php
 
 use TYPO3Incubator\WaveCart\Enum\ProductTypeEnum;
+use TYPO3Incubator\WaveCart\Enum\TaxRateEnum;
 
 $ll = 'LLL:EXT:wave_cart/Resources/Private/Language/locallang_db.xlf:';
 

@@ -1,6 +1,7 @@
 <?php
 
 use TYPO3Incubator\WaveCart\Enum\PaymentMethodEnum;
+use TYPO3Incubator\WaveCart\Enum\ProductSizeEnum;
 
 $ll = 'LLL:EXT:wave_cart/Resources/Private/Language/locallang_db.xlf:';
 
@@ -41,7 +42,7 @@ return [
                 'renderType' => 'selectSingle',
                 'minitems' => 1,
                 'maxitems' => 1,
-                'items' => SizeEnum::getTcaOptions(),
+                'items' => ProductSizeEnum::getTcaOptions(),
             ],
         ],
         'amount' => [

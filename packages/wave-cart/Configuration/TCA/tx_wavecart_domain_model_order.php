@@ -19,7 +19,7 @@ return [
         'iconfile' => 'EXT:fuxma_site/Resources/Public/Icons/Fux/fux-fux.svg',
     ],
     'types' => [
-        '1' => ['showitem' => 'customer_lastname, customer_firstname, customer_address, customer_zip, customer_city, customer_email, status, payment_method, assignee, total_price'],
+        '1' => ['showitem' => 'customer_lastname, customer_firstname, customer_address, customer_zip, customer_city, customer_email, status, payment_method, assignee, total_price, order_items'],
     ],
     'palettes' => [
         '1' => ['showitem' => ''],
@@ -112,5 +112,15 @@ return [
                 'format' => 'decimal'
             ],
         ],
+        'order_items' => [
+            'exclude' => 0,
+            'label' => $ll . 'tx_wavecart_domain_model_order.order_items',
+            'config' => [
+                'type' => 'inline',
+                'minitems' => 1,
+                'foreign_table' => 'tx_wavecart_domain_model_orderitem',
+                'foreign_field' => 'order',
+            ],
+        ]
     ],
 ];

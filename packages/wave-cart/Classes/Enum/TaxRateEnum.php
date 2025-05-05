@@ -7,9 +7,10 @@ enum TaxRateEnum: int
 {
     use Base;
 
-    case none = 0;
-    case reduced = 7;
-    case standard = 19;
+    case germany_zero = 0;
+    case germany_reduced = 9;
+    case germany_full = 17;
+
 
     protected static function getLanguageFilePath(): string
     {

@@ -37,6 +37,35 @@
 			<trans-unit id="tx_wavecart_domain_model_order.total_price">
 				<source>Total price</source>
 			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.order_items">
+				<source>Order items</source>
+			</trans-unit>
+
+			<!-- Order item-->
+			<trans-unit id="tx_wavecart_domain_model_orderitem">
+				<source>Order Item</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.name">
+				<source>Product name</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.type">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.price">
+				<source>Prize</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.tax_rate">
+				<source>Tax rate</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.size">
+				<source>Size</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.amount">
+				<source>Amount</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.order">
+				<source>Order</source>
+			</trans-unit>
 
 			<!-- Product -->
 			<trans-unit id="tx_wavecart_domain_model_product">
@@ -64,7 +93,7 @@
 				<source>Variants</source>
 			</trans-unit>
 
-			<!-- Product Variant-->
+			<!-- Product variant-->
 			<trans-unit id="tx_wavecart_domain_model_product_variant">
 				<source>Product Variant</source>
 			</trans-unit>

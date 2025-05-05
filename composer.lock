@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07dc477bcedf3664d7b4ef3bfcf41841",
+    "content-hash": "bcf875b2258777a2a936b3e46bf492e7",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -5446,9 +5446,10 @@
             "dist": {
                 "type": "path",
                 "url": "packages/wave-cart",
-                "reference": "f552521d05809268882e5db303a208883c96ead9"
+                "reference": "f76f1ef9968fd8ae7a2e4a44830895502de73955"
             },
             "require": {
+                "brosua/enums": "^1.0",
                 "typo3/cms-core": "^13.4"
             },
             "type": "typo3-cms-extension",
