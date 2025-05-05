@@ -1,6 +1,8 @@
 <?php
 
 use TYPO3Incubator\WaveCart\Enum\ProductTypeEnum;
+use TYPO3Incubator\WaveCart\Enum\ProductSizeEnum;
+use TYPO3Incubator\WaveCart\Enum\TaxRateEnum;
 
 $ll = 'LLL:EXT:wave_cart/Resources/Private/Language/locallang_db.xlf:';
 
@@ -18,7 +20,7 @@ return [
         'iconfile' => 'EXT:fuxma_site/Resources/Public/Icons/Fux/fux-fux.svg',
     ],
     'types' => [
-        '1' => ['showitem' => 'name, typ, price, tax_tate, size, amount'],
+        '1' => ['showitem' => 'name, type, price, tax_rate, size, amount'],
     ],
     'palettes' => [
         '1' => ['showitem' => ''],
@@ -56,16 +58,23 @@ return [
             'exclude' => 0,
             'label' => $ll . 'tx_wavecart_domain_model_orderitem.tax_rate',
             'config' => [
-                'type' => 'number',
-                'eval' => 'trim'
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'minitems' => 1,
+                'maxitems' => 1,
+                'items' => TaxRateEnum::getTcaOptions(),
             ],
         ],
         'size' => [
             'exclude' => 0,
             'label' => $ll . 'tx_wavecart_domain_model_orderitem.size',
             'config' => [
-                'type' => 'input',
-                'eval' => 'trim'
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'minitems' => 1,
+                'maxitems' => 1,
+                'items' => ProductSizeEnum::getGroupedTCAOptions(),
+                'itemGroups' => ProductSizeEnum::getGroups(),
             ],
         ],
         'amount' => [

@@ -10,9 +10,7 @@ enum OrderStatusEnum: int
     case new = 0;
     case paid = 1;
     case inProgress = 2;
-
     case shipped = 3;
-
     case returned = 4;
 
     protected static function getLanguageFilePath(): string

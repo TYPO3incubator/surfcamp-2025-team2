@@ -46,7 +46,7 @@
             <trans-unit id="tx_wavecart_domain_model_orderitem.name">
             	<source>Product name</source>
             </trans-unit>
-            <trans-unit id="tx_wavecart_domain_model_orderitem.typ">
+            <trans-unit id="tx_wavecart_domain_model_orderitem.type">
             	<source>Type</source>
             </trans-unit>
             <trans-unit id="tx_wavecart_domain_model_orderitem.price">
