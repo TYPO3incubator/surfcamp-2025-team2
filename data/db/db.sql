@@ -220,7 +220,7 @@ CREATE TABLE `cache_pages` (
   `content` longblob DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(180),`expires`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,7 +237,7 @@ CREATE TABLE `cache_pages_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(191)),
   KEY `cache_tag` (`tag`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +254,7 @@ CREATE TABLE `cache_rootline` (
   `content` longblob DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(180),`expires`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +271,7 @@ CREATE TABLE `cache_rootline_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(191)),
   KEY `cache_tag` (`tag`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -645,7 +645,7 @@ CREATE TABLE `pages` (
   KEY `parent` (`pid`,`deleted`,`hidden`),
   KEY `translation_source` (`l10n_source`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -777,7 +777,7 @@ CREATE TABLE `sys_file` (
   KEY `lastindex` (`last_indexed`),
   KEY `sha1` (`sha1`),
   KEY `parent` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -874,7 +874,7 @@ CREATE TABLE `sys_file_metadata` (
   KEY `fal_filelist` (`l10n_parent`,`sys_language_uid`),
   KEY `parent` (`pid`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -903,7 +903,7 @@ CREATE TABLE `sys_file_processedfile` (
   PRIMARY KEY (`uid`),
   KEY `combined_1` (`original`,`task_type`(100),`configurationsha1`),
   KEY `identifier` (`storage`,`identifier`(180))
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -947,7 +947,7 @@ CREATE TABLE `sys_file_reference` (
   KEY `combined_1` (`l10n_parent`,`t3ver_oid`,`t3ver_wsid`,`t3ver_state`,`deleted`),
   KEY `parent` (`pid`,`deleted`,`hidden`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`)
-) ENGINE=InnoDB AUTO_INCREMENT=187 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1024,7 +1024,7 @@ CREATE TABLE `sys_history` (
   PRIMARY KEY (`uid`),
   KEY `recordident_1` (`tablename`(100),`recuid`),
   KEY `recordident_2` (`tablename`(100),`tstamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=1107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1138 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1073,7 +1073,7 @@ CREATE TABLE `sys_lockedrecords` (
   `feuserid` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `event` (`userid`,`tstamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1115,7 +1115,7 @@ CREATE TABLE `sys_log` (
   KEY `errorcount` (`tstamp`,`error`),
   KEY `index_channel` (`channel`),
   KEY `index_level` (`level`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1171,7 +1171,7 @@ DROP TABLE IF EXISTS `sys_refindex`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_refindex` (
-  `hash` varchar(32) NOT NULL DEFAULT '',
+  `hash` varchar(32) CHARACTER SET ascii COLLATE ascii_bin NOT NULL DEFAULT '',
   `tablename` varchar(64) NOT NULL DEFAULT '',
   `recuid` int(10) unsigned NOT NULL DEFAULT 0,
   `field` varchar(64) NOT NULL DEFAULT '',
@@ -1886,6 +1886,73 @@ CREATE TABLE `tx_wavecart_domain_model_orderitem` (
   KEY `parent` (`pid`,`deleted`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tx_wavecart_domain_model_product`
+--
+
+DROP TABLE IF EXISTS `tx_wavecart_domain_model_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_wavecart_domain_model_product` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `hidden` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `starttime` int(10) unsigned NOT NULL DEFAULT 0,
+  `endtime` int(10) unsigned NOT NULL DEFAULT 0,
+  `fe_group` varchar(255) NOT NULL DEFAULT '0',
+  `sys_language_uid` int(11) NOT NULL DEFAULT 0,
+  `l18n_parent` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_source` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_state` text DEFAULT NULL,
+  `l18n_diffsource` mediumblob DEFAULT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `description` longtext DEFAULT NULL,
+  `image` int(10) unsigned NOT NULL DEFAULT 0,
+  `type` int(10) unsigned NOT NULL DEFAULT 0,
+  `price` varchar(255) NOT NULL DEFAULT '',
+  `tax_rate` int(10) unsigned NOT NULL DEFAULT 0,
+  `variants` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`,`hidden`),
+  KEY `translation_source` (`l10n_source`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tx_wavecart_domain_model_product_variant`
+--
+
+DROP TABLE IF EXISTS `tx_wavecart_domain_model_product_variant`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_wavecart_domain_model_product_variant` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `hidden` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `starttime` int(10) unsigned NOT NULL DEFAULT 0,
+  `endtime` int(10) unsigned NOT NULL DEFAULT 0,
+  `fe_group` varchar(255) NOT NULL DEFAULT '0',
+  `sys_language_uid` int(11) NOT NULL DEFAULT 0,
+  `l18n_parent` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_source` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_state` text DEFAULT NULL,
+  `l18n_diffsource` mediumblob DEFAULT NULL,
+  `product` int(10) unsigned NOT NULL DEFAULT 0,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `size` varchar(255) NOT NULL DEFAULT '',
+  `amount` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`,`hidden`),
+  KEY `translation_source` (`l10n_source`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1896,7 +1963,7 @@ CREATE TABLE `tx_wavecart_domain_model_orderitem` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-05 11:44:53
+-- Dump completed on 2025-05-05 12:39:50
 /*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19  Distrib 10.11.11-MariaDB, for debian-linux-gnu (aarch64)
 --
@@ -1954,7 +2021,7 @@ UNLOCK TABLES;
 LOCK TABLES `be_users` WRITE;
 /*!40000 ALTER TABLE `be_users` DISABLE KEYS */;
 INSERT INTO `be_users` VALUES
-(1,0,1744013612,1744013612,0,0,0,0,NULL,'default','a:7:{s:10:\"moduleData\";a:5:{s:28:\"dashboard/current_dashboard/\";s:40:\"faacf8dc927e44b8c4a076ea597850984919bb89\";s:10:\"FormEngine\";a:2:{i:0;a:1:{s:32:\"696addfecc296b326ff6e9f04c7ff3e1\";a:5:{i:0;s:10:\"FC Bigfoot\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:28:\"&edit%5Bpages%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:76:\"/typo3/module/web/layout?token=5b29830027cc8e0d5d9f25496668d5d1a403ad4a&id=1\";}}i:1;s:32:\"696addfecc296b326ff6e9f04c7ff3e1\";}s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";a:0:{}s:16:\"opendocs::recent\";a:4:{s:32:\"696addfecc296b326ff6e9f04c7ff3e1\";a:5:{i:0;s:10:\"FC Bigfoot\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:28:\"&edit%5Bpages%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:91:\"/typo3/module/web/list?token=c92df26e54d0681cbeb3783a000f1f57768b4298&id=1&table=&pointer=1\";}s:32:\"68197a95f76df8c66af1dac9d60b8449\";a:5:{i:0;s:4:\"Home\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:101;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";a:1:{s:5:\"pages\";a:1:{s:16:\"sys_language_uid\";s:1:\"0\";}}s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:78:\"&edit%5Bpages%5D%5B101%5D=edit&overrideVals%5Bpages%5D%5Bsys_language_uid%5D=0\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:101;s:3:\"pid\";i:98;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=70433a391d5ab8a27a58e30616cf53b1ece1322c&id=101\";}s:32:\"d13352a464fa7d409f6769874ef8efe6\";a:5:{i:0;s:17:\"Bootstrap Package\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:15;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:29:\"&edit%5Bpages%5D%5B15%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:15;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=70433a391d5ab8a27a58e30616cf53b1ece1322c&id=15&\";}s:32:\"e2fe31fc6353286fd05ca174ce654c03\";a:5:{i:0;s:12:\"My dashboard\";i:1;a:5:{s:4:\"edit\";a:1:{s:13:\"be_dashboards\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:36:\"&edit%5Bbe_dashboards%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:13:\"be_dashboards\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:91:\"/typo3/module/web/list?token=c92df26e54d0681cbeb3783a000f1f57768b4298&id=0&table=&pointer=1\";}}s:16:\"browse_links.php\";a:1:{s:10:\"expandPage\";s:2:\"98\";}}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";s:15:\"moduleSessionID\";a:5:{s:28:\"dashboard/current_dashboard/\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:10:\"FormEngine\";s:40:\"ac8b28bbdbe93107e6a17c77794ad0cdddd131ef\";s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";s:40:\"9a4db24f96e829863c7131f122b7759ab62e0f8e\";s:16:\"opendocs::recent\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:16:\"browse_links.php\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";}s:10:\"modulemenu\";s:13:\"{\"file\":true}\";s:17:\"BackendComponents\";a:1:{s:6:\"States\";a:1:{s:17:\"typo3-module-menu\";a:1:{s:9:\"collapsed\";s:5:\"false\";}}}}',0,NULL,'','admin','$argon2id$v=19$m=65536,t=16,p=1$UW05T093U1JQS2liR1lLRA$z0I5XCRD58aCJ/ftNFV/FTe7FppNaYrYuuLpJhfoz5Q','',0,NULL,'','info@typo3.com','',1,3,NULL,1,NULL,'',NULL,1746435215,NULL),
+(1,0,1744013612,1744013612,0,0,0,0,NULL,'default','a:8:{s:10:\"moduleData\";a:5:{s:28:\"dashboard/current_dashboard/\";s:40:\"faacf8dc927e44b8c4a076ea597850984919bb89\";s:10:\"FormEngine\";a:2:{i:0;a:0:{}i:1;s:32:\"804ac867bdf1f5d3ad69dcb359be5538\";}s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";a:0:{}s:16:\"opendocs::recent\";a:8:{s:32:\"804ac867bdf1f5d3ad69dcb359be5538\";a:5:{i:0;s:5:\"Teddy\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:1;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=2234aa7cb549dc86b904e17c73670ad35e8d2143&id=103&table=&pointer=1\";}s:32:\"a9d2368de6d8c481501ccf3fa498d7af\";a:5:{i:0;s:17:\"T-shirt with Logo\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:2;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B2%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:2;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=2234aa7cb549dc86b904e17c73670ad35e8d2143&id=103&table=&pointer=1\";}s:32:\"d2b96f02eb0191e8b16247eda6f03010\";a:5:{i:0;s:13:\"Sweater plain\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:4;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B4%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:4;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=2234aa7cb549dc86b904e17c73670ad35e8d2143&id=103&table=&pointer=1\";}s:32:\"a6019b1fdd1ff227c66b39f8d057784d\";a:5:{i:0;s:8:\"Cap Blue\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:3;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B3%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:3;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=2234aa7cb549dc86b904e17c73670ad35e8d2143&id=103&table=&pointer=1\";}s:32:\"696addfecc296b326ff6e9f04c7ff3e1\";a:5:{i:0;s:10:\"FC Bigfoot\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:28:\"&edit%5Bpages%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:91:\"/typo3/module/web/list?token=c92df26e54d0681cbeb3783a000f1f57768b4298&id=1&table=&pointer=1\";}s:32:\"68197a95f76df8c66af1dac9d60b8449\";a:5:{i:0;s:4:\"Home\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:101;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";a:1:{s:5:\"pages\";a:1:{s:16:\"sys_language_uid\";s:1:\"0\";}}s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:78:\"&edit%5Bpages%5D%5B101%5D=edit&overrideVals%5Bpages%5D%5Bsys_language_uid%5D=0\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:101;s:3:\"pid\";i:98;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=70433a391d5ab8a27a58e30616cf53b1ece1322c&id=101\";}s:32:\"d13352a464fa7d409f6769874ef8efe6\";a:5:{i:0;s:17:\"Bootstrap Package\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:15;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:29:\"&edit%5Bpages%5D%5B15%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:15;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=70433a391d5ab8a27a58e30616cf53b1ece1322c&id=15&\";}s:32:\"e2fe31fc6353286fd05ca174ce654c03\";a:5:{i:0;s:12:\"My dashboard\";i:1;a:5:{s:4:\"edit\";a:1:{s:13:\"be_dashboards\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:36:\"&edit%5Bbe_dashboards%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:13:\"be_dashboards\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:91:\"/typo3/module/web/list?token=c92df26e54d0681cbeb3783a000f1f57768b4298&id=0&table=&pointer=1\";}}s:16:\"browse_links.php\";a:1:{s:12:\"expandFolder\";s:13:\"1:/fcbigfoot/\";}}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";s:15:\"moduleSessionID\";a:5:{s:28:\"dashboard/current_dashboard/\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:10:\"FormEngine\";s:40:\"799e42a6ef5c8e5d94cd74d51901e59df191a93d\";s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";s:40:\"799e42a6ef5c8e5d94cd74d51901e59df191a93d\";s:16:\"opendocs::recent\";s:40:\"799e42a6ef5c8e5d94cd74d51901e59df191a93d\";s:16:\"browse_links.php\";s:40:\"799e42a6ef5c8e5d94cd74d51901e59df191a93d\";}s:10:\"modulemenu\";s:13:\"{\"file\":true}\";s:17:\"BackendComponents\";a:1:{s:6:\"States\";a:1:{s:17:\"typo3-module-menu\";a:1:{s:9:\"collapsed\";s:5:\"false\";}}}s:10:\"inlineView\";s:466:\"{\"tx_wavecart_domain_model_product\":{\"NEW6818a12982f36374999951\":{\"tx_wavecart_domain_model_product_variant\":[1]},\"1\":{\"tx_wavecart_domain_model_product_variant\":[2],\"sys_file_reference\":[190]},\"2\":{\"tx_wavecart_domain_model_product_variant\":{\"3\":\"\"},\"sys_file_reference\":[189]},\"NEW6818a25a7cef0911992860\":{\"tx_wavecart_domain_model_product_variant\":[6]},\"4\":{\"tx_wavecart_domain_model_product_variant\":[\"6\"],\"sys_file_reference\":[]},\"3\":{\"sys_file_reference\":[]}}}\";}',0,NULL,'','admin','$argon2id$v=19$m=65536,t=16,p=1$UW05T093U1JQS2liR1lLRA$z0I5XCRD58aCJ/ftNFV/FTe7FppNaYrYuuLpJhfoz5Q','',0,NULL,'','info@typo3.com','',1,3,NULL,1,NULL,'',NULL,1746443837,NULL),
 (2,0,1744014582,1744014582,0,0,0,0,NULL,'default','a:4:{s:10:\"moduleData\";a:0:{}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";}',0,NULL,'','_cli_','$argon2id$v=19$m=65536,t=16,p=1$Qk41RG10QTUxUGQzclc3dA$9bxBcygWFXt9U5WuxRJLFP3866mFPYZjpkdwMrS98sg','',0,NULL,'','','',1,3,NULL,1,NULL,'',NULL,0,NULL);
 /*!40000 ALTER TABLE `be_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2039,7 +2106,7 @@ INSERT INTO `index_phash` VALUES
 ('3d798c3f120fdabe32985de46a5fc2fd','dc91fa3918f3fab9a43a16f82bb27086','[]','',1,0,'','0,-1','0','FC Bigfoot','Events News Club History Membership Contact Team Sponsors Contact Us FC Bigfoot Fuerteventura 23 years of passion and dedication Join today Our latest Game Results 3 : 0 SurfCamp League @ Super Feet S',1744014936,1746439688,30339,'cef657c85f8d56d9f23fab9b6aaf2f30',1744021289,45,0,1744014582,0,0,0,0),
 ('4512611c26346c41692fc2d2c861ba25','927f5bd190a4c729d55536dd6a64fc5a','[]','',95,0,'','0,-1','0','Features','A single TYPO3 CMS installation can easily power hundreds of websites in many dozens of languages. Need more functionality? No problem! More than 1,500 open source extensions are available via Packagi',1744015096,1744021608,103420,'5df7163565766c5b56f715dfddea577a',1744021608,109,0,1744015096,0,0,0,0),
 ('55a01547a20d7d965193fcd3e277624c','49bd411e140968a8cdc3180e2441bfe7','[]','',100,0,'','0,-1','0','Page B','Page A Page B',1744022124,1746351091,1599,'3e413a5660735903caa5cd997bfbcf2f',1744022133,8,0,1744022118,0,0,0,0),
-('68d237c4097d4cfacaa1850865ef957e','7274c0580dea745ce5f7f1790b2f97bd','[]','',98,0,'','0,-1','0','Base','Home Page A Page B Bootstrap Package - FC Bigfoot',1744021558,1746351042,2327,'93eedc75a07e6724f5094d5965104d17',1744268177,11,0,1744016344,0,0,0,0),
+('68d237c4097d4cfacaa1850865ef957e','7274c0580dea745ce5f7f1790b2f97bd','[]','',98,0,'','0,-1','0','Base','Home Page A Page B Bootstrap Package - FC Bigfoot',1744021558,1746443838,2327,'93eedc75a07e6724f5094d5965104d17',1744268177,11,0,1744016344,0,0,0,0),
 ('9bd8393860e6e9cf4c907a0919ca687d','f5bad68bc9b081e512151ece334fae4f','[]','',12,0,'','0,-1','0','Events','Our Game Results Stay updated with the latest scores and outcomes of FC Bigfoot\'s matches. Here, you will find a comprehensive list of our recent game results. Keep checking back for the most current ',1744014582,1744014836,21136,'d4ee89affc87c8081e823b172dcfc30c',1744014836,21,0,1744014582,0,0,0,0),
 ('a6c5259923c1fbda006d875ebb439c1b','e4b6e82cb94e1cb4a3071d6edb7ce3da','[]','',15,0,'','0,-1','0','Bootstrap Package','Possibilities With a rich core feature set out-of-the-box, TYPO3 is an ideal choice for building ambitious digital experiences. Features Customizing Examples Don\'t hesitate and discover the large sele',1744015237,1746351047,97512,'30fea055663fadbc0825c8625ed6b6ca',1744016598,14,0,1744015096,0,0,0,0),
 ('ab566ef524f8cda9b66737a0a146a674','1cca31a174e81d35de9a86c5e3717299','[]','',91,0,'','0,-1','0','2 Columns 25/75','Content Before colPos = 8 Main colPos = 0 Left colPos = 1 Content After colPos = 9',1744015096,1744016607,78727,'2d04ecd280a80e9d9c915272e9985684',1744016607,6,0,1744015096,0,0,0,0),
@@ -3756,7 +3823,8 @@ INSERT INTO `pages` VALUES
 (99,98,1744022126,1744022114,0,0,0,0,'0',64,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,1744022126,0,0,0,0.5,'','',0,0,1,'Page A','/page-a',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
 (100,98,1744022124,1744022118,0,0,0,0,'0',128,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,1744022124,0,0,0,0.5,'','',0,0,1,'Page B','/page-b',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
 (101,98,1744022161,1744022138,0,0,0,0,'',32,NULL,0,0,0,0,NULL,'{\"doktype\":\"\",\"title\":\"\",\"slug\":\"\",\"nav_title\":\"\",\"subtitle\":\"\",\"nav_icon_set\":\"\",\"nav_icon\":\"\",\"shortcut_mode\":\"\",\"shortcut\":\"\",\"abstract\":\"\",\"author\":\"\",\"author_email\":\"\",\"lastUpdated\":\"\",\"layout\":\"\",\"newUntil\":\"\",\"backend_layout\":\"\",\"backend_layout_next_level\":\"\",\"thumbnail\":\"\",\"target\":\"\",\"is_siteroot\":\"\",\"no_search\":\"\",\"php_tree_stop\":\"\",\"media\":\"\",\"tsconfig_includes\":\"\",\"TSconfig\":\"\",\"l18n_cfg\":\"\",\"hidden\":\"\",\"nav_hide\":\"\",\"starttime\":\"\",\"endtime\":\"\",\"extendToSubpages\":\"\",\"fe_group\":\"\",\"editlock\":\"\",\"categories\":\"\",\"rowDescription\":\"\"}',0,0,0,0,1,0,31,27,0,0,98,0,0,0.5,'','',0,0,4,'Home','/home',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
-(102,1,1746436313,1746436310,0,0,0,0,'0',512,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,0,0,0,0,0.5,'','',0,0,254,'Orders','/orders',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0);
+(102,1,1746436313,1746436310,0,0,0,0,'0',512,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,0,0,0,0,0.5,'','',0,0,254,'Orders','/orders',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
+(103,1,1746444579,1746443877,0,0,0,0,'0',768,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,0,0,0,0,0.5,'','',0,0,254,'Products','/products',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0);
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3921,7 +3989,8 @@ INSERT INTO `sys_file` VALUES
 (109,0,1744016541,1744016541,'/_assets/9b80d86a98af3ecc38aabe297d2c3695/Images/Icons/Ionicons/android-book.svg','f2452bf6161921de8622587a0bda223c05818779','60eef950a51e4a266465f52970d95cf51783ea24','svg','android-book.svg','b5d68d5cb5fd7e4a4607dde4974eb5f675cd0300',1744013453,1744013453,0,2,'image/svg+xml',312,0,0),
 (110,0,1744016541,1744016541,'/_assets/9b80d86a98af3ecc38aabe297d2c3695/Images/Icons/Ionicons/beaker.svg','a8799dbe5cab1dc0da8749ae23b3cf8c383426c9','60eef950a51e4a266465f52970d95cf51783ea24','svg','beaker.svg','a6cd5970c2ae42c6abc236a92c8c0410e1805a26',1744013453,1744013453,0,2,'image/svg+xml',1598,0,0),
 (111,0,1744016599,1744016599,'/_assets/9b80d86a98af3ecc38aabe297d2c3695/Images/BootstrapPackage.svg','760d1af8a806b3df149ba4826a7f15c966215a7c','5e8c86041e2022a51f63bbaf56b3ae90109db902','svg','BootstrapPackage.svg','a6fb0cc7b50579d6255f16171147695a55b93c27',1744013453,1744013453,0,2,'image/svg+xml',3843,0,0),
-(112,0,1744016599,1744016599,'/_assets/9b80d86a98af3ecc38aabe297d2c3695/Images/BootstrapPackageInverted.svg','f4a6353e4d97d78f98f9d3ab740020169d2f33db','5e8c86041e2022a51f63bbaf56b3ae90109db902','svg','BootstrapPackageInverted.svg','493f5cd69ede03cf7d436e92481422145674b907',1744013453,1744013453,0,2,'image/svg+xml',3784,0,0);
+(112,0,1744016599,1744016599,'/_assets/9b80d86a98af3ecc38aabe297d2c3695/Images/BootstrapPackageInverted.svg','f4a6353e4d97d78f98f9d3ab740020169d2f33db','5e8c86041e2022a51f63bbaf56b3ae90109db902','svg','BootstrapPackageInverted.svg','493f5cd69ede03cf7d436e92481422145674b907',1744013453,1744013453,0,2,'image/svg+xml',3784,0,0),
+(113,0,1746445090,1746445090,'/fcbigfoot/logo.svg','4b76d1847eab8f164b008228e8eb7570c09466ec','e77ada7c6132917396ab58e41de5d4ffea0a2785','svg','logo.svg','9ddfce691445eb6e70475dc3727b328856a8386d',1746349937,1746349738,1,2,'image/svg+xml',79849,0,0);
 /*!40000 ALTER TABLE `sys_file` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4054,7 +4123,8 @@ INSERT INTO `sys_file_metadata` VALUES
 (109,0,1744016540,1744016540,0,0,NULL,'',0,0,0,0,NULL,NULL,'',0.00000000000000,0.00000000000000,0,0,109,NULL,32,32,1,NULL,NULL,'','','','','',NULL,'','','',0,0,0,NULL,'',0,'','',NULL),
 (110,0,1744016540,1744016540,0,0,NULL,'',0,0,0,0,NULL,NULL,'',0.00000000000000,0.00000000000000,0,0,110,NULL,32,32,1,NULL,NULL,'','','','','',NULL,'','','',0,0,0,NULL,'',0,'','',NULL),
 (111,0,1744016598,1744016598,0,0,NULL,'',0,0,0,0,NULL,NULL,'',0.00000000000000,0.00000000000000,0,0,111,NULL,244,68,1,NULL,NULL,'','','','','',NULL,'','','',0,0,0,NULL,'',0,'','',NULL),
-(112,0,1744016598,1744016598,0,0,NULL,'',0,0,0,0,NULL,NULL,'',0.00000000000000,0.00000000000000,0,0,112,NULL,244,68,1,NULL,NULL,'','','','','',NULL,'','','',0,0,0,NULL,'',0,'','',NULL);
+(112,0,1744016598,1744016598,0,0,NULL,'',0,0,0,0,NULL,NULL,'',0.00000000000000,0.00000000000000,0,0,112,NULL,244,68,1,NULL,NULL,'','','','','',NULL,'','','',0,0,0,NULL,'',0,'','',NULL),
+(113,0,1746445090,1746445090,0,0,NULL,'',0,0,0,0,NULL,NULL,'',0.00000000000000,0.00000000000000,0,0,113,NULL,500,500,1,NULL,NULL,'','','','','',NULL,'','','',0,0,0,NULL,'',0,'','',NULL);
 /*!40000 ALTER TABLE `sys_file_metadata` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4250,7 +4320,11 @@ INSERT INTO `sys_file_reference` VALUES
 (183,15,1744015096,1744015096,0,0,0,0,NULL,'{\"title\":null,\"alternative\":null,\"link\":null,\"description\":null,\"crop\":null,\"uid_local\":null,\"hidden\":null,\"sys_language_uid\":null}',0,0,0,0,26,NULL,NULL,249,'tt_content','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null},\"large\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null},\"medium\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null},\"small\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null},\"extrasmall\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
 (184,34,1744015096,1744015096,0,0,2,159,NULL,'{\"sys_language_uid\":\"\",\"l10n_parent\":\"\"}',0,0,0,0,31,NULL,NULL,13,'pages','thumbnail',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"large\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"medium\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"small\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null},\"extrasmall\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null}}',0),
 (185,34,1744015096,1744015096,0,0,1,159,NULL,'{\"sys_language_uid\":\"\",\"l10n_parent\":\"\"}',0,0,0,0,31,NULL,NULL,14,'pages','thumbnail',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"large\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"medium\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"small\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null},\"extrasmall\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null}}',0),
-(186,34,1744015096,1744015096,0,0,1,184,NULL,'{\"sys_language_uid\":\"\",\"l10n_parent\":\"\"}',0,0,0,0,31,NULL,NULL,14,'pages','thumbnail',2,'',NULL,'{\"default\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"large\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"medium\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"small\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null},\"extrasmall\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null}}',0);
+(186,34,1744015096,1744015096,0,0,1,184,NULL,'{\"sys_language_uid\":\"\",\"l10n_parent\":\"\"}',0,0,0,0,31,NULL,NULL,14,'pages','thumbnail',2,'',NULL,'{\"default\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"large\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"medium\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"small\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null},\"extrasmall\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null}}',0),
+(187,103,1746445095,1746445095,0,0,0,0,NULL,'',0,0,0,0,113,NULL,NULL,3,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
+(188,103,1746445135,1746445135,0,0,0,0,NULL,'',0,0,0,0,113,NULL,NULL,4,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
+(189,103,1746445156,1746445156,0,0,0,0,NULL,'',0,0,0,0,113,NULL,NULL,2,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
+(190,103,1746445162,1746445162,0,0,0,0,NULL,'',0,0,0,0,113,NULL,NULL,1,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0);
 /*!40000 ALTER TABLE `sys_file_reference` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5387,7 +5461,38 @@ INSERT INTO `sys_history` VALUES
 (1103,1744022151,2,'BE',1,0,101,'pages','{\"oldRecord\":{\"doktype\":1,\"fe_group\":\"0\",\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"},\"newRecord\":{\"doktype\":\"4\",\"fe_group\":\"\",\"l10n_diffsource\":\"{\\\"doktype\\\":\\\"\\\",\\\"title\\\":\\\"\\\",\\\"slug\\\":\\\"\\\",\\\"nav_title\\\":\\\"\\\",\\\"subtitle\\\":\\\"\\\",\\\"nav_icon_set\\\":\\\"\\\",\\\"nav_icon\\\":\\\"\\\",\\\"seo_title\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"no_index\\\":\\\"\\\",\\\"no_follow\\\":\\\"\\\",\\\"canonical_link\\\":\\\"\\\",\\\"sitemap_changefreq\\\":\\\"\\\",\\\"sitemap_priority\\\":\\\"\\\",\\\"og_title\\\":\\\"\\\",\\\"og_description\\\":\\\"\\\",\\\"og_image\\\":\\\"\\\",\\\"twitter_title\\\":\\\"\\\",\\\"twitter_description\\\":\\\"\\\",\\\"twitter_image\\\":\\\"\\\",\\\"twitter_card\\\":\\\"\\\",\\\"abstract\\\":\\\"\\\",\\\"keywords\\\":\\\"\\\",\\\"author\\\":\\\"\\\",\\\"author_email\\\":\\\"\\\",\\\"lastUpdated\\\":\\\"\\\",\\\"layout\\\":\\\"\\\",\\\"newUntil\\\":\\\"\\\",\\\"backend_layout\\\":\\\"\\\",\\\"backend_layout_next_level\\\":\\\"\\\",\\\"thumbnail\\\":\\\"\\\",\\\"content_from_pid\\\":\\\"\\\",\\\"target\\\":\\\"\\\",\\\"cache_timeout\\\":\\\"\\\",\\\"cache_tags\\\":\\\"\\\",\\\"is_siteroot\\\":\\\"\\\",\\\"no_search\\\":\\\"\\\",\\\"php_tree_stop\\\":\\\"\\\",\\\"module\\\":\\\"\\\",\\\"media\\\":\\\"\\\",\\\"tsconfig_includes\\\":\\\"\\\",\\\"TSconfig\\\":\\\"\\\",\\\"l18n_cfg\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\",\\\"nav_hide\\\":\\\"\\\",\\\"starttime\\\":\\\"\\\",\\\"endtime\\\":\\\"\\\",\\\"extendToSubpages\\\":\\\"\\\",\\\"fe_group\\\":\\\"\\\",\\\"editlock\\\":\\\"\\\",\\\"categories\\\":\\\"\\\",\\\"rowDescription\\\":\\\"\\\"}\"}}',0,'0400$d725fe9af9b72e51470a08e56ce939c6:eca93d8ae5fb22a4c97a7375d1c26ff9'),
 (1104,1744022161,2,'BE',1,0,101,'pages','{\"oldRecord\":{\"shortcut\":0,\"l10n_diffsource\":\"{\\\"doktype\\\":\\\"\\\",\\\"title\\\":\\\"\\\",\\\"slug\\\":\\\"\\\",\\\"nav_title\\\":\\\"\\\",\\\"subtitle\\\":\\\"\\\",\\\"nav_icon_set\\\":\\\"\\\",\\\"nav_icon\\\":\\\"\\\",\\\"seo_title\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"no_index\\\":\\\"\\\",\\\"no_follow\\\":\\\"\\\",\\\"canonical_link\\\":\\\"\\\",\\\"sitemap_changefreq\\\":\\\"\\\",\\\"sitemap_priority\\\":\\\"\\\",\\\"og_title\\\":\\\"\\\",\\\"og_description\\\":\\\"\\\",\\\"og_image\\\":\\\"\\\",\\\"twitter_title\\\":\\\"\\\",\\\"twitter_description\\\":\\\"\\\",\\\"twitter_image\\\":\\\"\\\",\\\"twitter_card\\\":\\\"\\\",\\\"abstract\\\":\\\"\\\",\\\"keywords\\\":\\\"\\\",\\\"author\\\":\\\"\\\",\\\"author_email\\\":\\\"\\\",\\\"lastUpdated\\\":\\\"\\\",\\\"layout\\\":\\\"\\\",\\\"newUntil\\\":\\\"\\\",\\\"backend_layout\\\":\\\"\\\",\\\"backend_layout_next_level\\\":\\\"\\\",\\\"thumbnail\\\":\\\"\\\",\\\"content_from_pid\\\":\\\"\\\",\\\"target\\\":\\\"\\\",\\\"cache_timeout\\\":\\\"\\\",\\\"cache_tags\\\":\\\"\\\",\\\"is_siteroot\\\":\\\"\\\",\\\"no_search\\\":\\\"\\\",\\\"php_tree_stop\\\":\\\"\\\",\\\"module\\\":\\\"\\\",\\\"media\\\":\\\"\\\",\\\"tsconfig_includes\\\":\\\"\\\",\\\"TSconfig\\\":\\\"\\\",\\\"l18n_cfg\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\",\\\"nav_hide\\\":\\\"\\\",\\\"starttime\\\":\\\"\\\",\\\"endtime\\\":\\\"\\\",\\\"extendToSubpages\\\":\\\"\\\",\\\"fe_group\\\":\\\"\\\",\\\"editlock\\\":\\\"\\\",\\\"categories\\\":\\\"\\\",\\\"rowDescription\\\":\\\"\\\"}\"},\"newRecord\":{\"shortcut\":\"98\",\"l10n_diffsource\":\"{\\\"doktype\\\":\\\"\\\",\\\"title\\\":\\\"\\\",\\\"slug\\\":\\\"\\\",\\\"nav_title\\\":\\\"\\\",\\\"subtitle\\\":\\\"\\\",\\\"nav_icon_set\\\":\\\"\\\",\\\"nav_icon\\\":\\\"\\\",\\\"shortcut_mode\\\":\\\"\\\",\\\"shortcut\\\":\\\"\\\",\\\"abstract\\\":\\\"\\\",\\\"author\\\":\\\"\\\",\\\"author_email\\\":\\\"\\\",\\\"lastUpdated\\\":\\\"\\\",\\\"layout\\\":\\\"\\\",\\\"newUntil\\\":\\\"\\\",\\\"backend_layout\\\":\\\"\\\",\\\"backend_layout_next_level\\\":\\\"\\\",\\\"thumbnail\\\":\\\"\\\",\\\"target\\\":\\\"\\\",\\\"is_siteroot\\\":\\\"\\\",\\\"no_search\\\":\\\"\\\",\\\"php_tree_stop\\\":\\\"\\\",\\\"media\\\":\\\"\\\",\\\"tsconfig_includes\\\":\\\"\\\",\\\"TSconfig\\\":\\\"\\\",\\\"l18n_cfg\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\",\\\"nav_hide\\\":\\\"\\\",\\\"starttime\\\":\\\"\\\",\\\"endtime\\\":\\\"\\\",\\\"extendToSubpages\\\":\\\"\\\",\\\"fe_group\\\":\\\"\\\",\\\"editlock\\\":\\\"\\\",\\\"categories\\\":\\\"\\\",\\\"rowDescription\\\":\\\"\\\"}\"}}',0,'0400$5db0a41d69b4ee22f9372111d161e144:eca93d8ae5fb22a4c97a7375d1c26ff9'),
 (1105,1746436310,1,'BE',1,0,102,'pages','{\"doktype\":\"254\",\"slug\":\"\\/orders\",\"categories\":\"0\",\"layout\":\"0\",\"lastUpdated\":0,\"newUntil\":0,\"cache_timeout\":\"0\",\"shortcut\":0,\"shortcut_mode\":\"0\",\"content_from_pid\":0,\"mount_pid\":0,\"module\":\"\",\"hidden\":1,\"starttime\":0,\"endtime\":0,\"l10n_parent\":0,\"l10n_diffsource\":\"\",\"sitemap_priority\":\"0.5\",\"twitter_card\":\"\",\"pid\":1,\"sorting\":512,\"perms_userid\":1,\"perms_groupid\":0,\"perms_user\":31,\"perms_group\":27,\"perms_everybody\":0,\"title\":\"Orders\",\"sys_language_uid\":0,\"crdate\":1746436310,\"t3ver_stage\":0,\"tstamp\":1746436310,\"uid\":102}',0,'0400$fe74c42f251c1c7ce488b17e55b28d61:4db0f97632f88eb17ef9d21a3b297e72'),
-(1106,1746436313,2,'BE',1,0,102,'pages','{\"oldRecord\":{\"hidden\":1,\"l10n_diffsource\":\"\"},\"newRecord\":{\"hidden\":\"0\",\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$d0126f6d4f64ca6cabaa80192a17fb4c:4db0f97632f88eb17ef9d21a3b297e72');
+(1106,1746436313,2,'BE',1,0,102,'pages','{\"oldRecord\":{\"hidden\":1,\"l10n_diffsource\":\"\"},\"newRecord\":{\"hidden\":\"0\",\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$d0126f6d4f64ca6cabaa80192a17fb4c:4db0f97632f88eb17ef9d21a3b297e72'),
+(1107,1746443877,1,'BE',1,0,103,'pages','{\"doktype\":\"254\",\"slug\":\"\\/products\",\"categories\":\"0\",\"layout\":\"0\",\"lastUpdated\":0,\"newUntil\":0,\"cache_timeout\":\"0\",\"shortcut\":0,\"shortcut_mode\":\"0\",\"content_from_pid\":0,\"mount_pid\":0,\"module\":\"\",\"hidden\":1,\"starttime\":0,\"endtime\":0,\"l10n_parent\":0,\"l10n_diffsource\":\"\",\"sitemap_priority\":\"0.5\",\"twitter_card\":\"\",\"pid\":1,\"sorting\":768,\"perms_userid\":1,\"perms_groupid\":0,\"perms_user\":31,\"perms_group\":27,\"perms_everybody\":0,\"title\":\"Products\",\"sys_language_uid\":0,\"crdate\":1746443877,\"t3ver_stage\":0,\"tstamp\":1746443877,\"uid\":103}',0,'0400$de596ce36dd377435e5cc34fa6633a10:c2c077d79a2195c1f1d093373d3bce2e'),
+(1108,1746444579,2,'BE',1,0,103,'pages','{\"oldRecord\":{\"hidden\":1,\"l10n_diffsource\":\"\"},\"newRecord\":{\"hidden\":\"0\",\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$6cd5e4120fac5bc9504bc0af76c93b99:c2c077d79a2195c1f1d093373d3bce2e'),
+(1109,1746444664,1,'BE',1,0,1,'tx_wavecart_domain_model_product','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"Teddy\",\"description\":\"Qui velit fugiat voluptate commodo in exercitation officia aliquip irure et cillum esse consequat. Esse occaecat do reprehenderit pariatur anim cupidatat. Nisi cupidatat laboris est in magna cupidatat sint. Id dolor mollit cupidatat in excepteur ex ut id aute laboris velit est excepteur duis. Enim enim officia aliqua deserunt tempor pariatur occaecat veniam sint esse eiusmod. Aliquip voluptate adipisicing officia mollit irure occaecat laborum sint in non. Est aliqua proident proident eiusmod et sunt sunt pariatur commodo amet deserunt fugiat.\",\"type\":\"3\",\"price\":\"20\",\"tax_rate\":\"17\",\"sys_language_uid\":0,\"crdate\":1746444664,\"tstamp\":1746444664,\"uid\":1}',0,'0400$e5038c244449e8fea15ce217af6cca6e:bf96bbf60e3f2200ddc6b10ce5c4d461'),
+(1110,1746444664,1,'BE',1,0,1,'tx_wavecart_domain_model_product_variant','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"Red Teddy\",\"size\":\"unisize\",\"amount\":10,\"sys_language_uid\":0,\"crdate\":1746444664,\"tstamp\":1746444664,\"uid\":1}',0,'0400$e5038c244449e8fea15ce217af6cca6e:95176b2b316685539afdcd3222c2be01'),
+(1111,1746444674,2,'BE',1,0,1,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"image\\\":\\\"\\\",\\\"type\\\":\\\"\\\",\\\"price\\\":\\\"\\\",\\\"tax_rate\\\":\\\"\\\",\\\"variants\\\":\\\"\\\"}\"}}',0,'0400$d6514ab8bc09f3e304fe7400c73b1ce5:bf96bbf60e3f2200ddc6b10ce5c4d461'),
+(1112,1746444674,2,'BE',1,0,1,'tx_wavecart_domain_model_product_variant','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$d6514ab8bc09f3e304fe7400c73b1ce5:95176b2b316685539afdcd3222c2be01'),
+(1113,1746444674,1,'BE',1,0,2,'tx_wavecart_domain_model_product_variant','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"Brown Teddy\",\"size\":\"unisize\",\"amount\":5,\"sys_language_uid\":0,\"crdate\":1746444674,\"tstamp\":1746444674,\"uid\":2}',0,'0400$d6514ab8bc09f3e304fe7400c73b1ce5:9cb0edbdb2146567045c371012f9f652'),
+(1114,1746444674,2,'BE',1,0,1,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"image\\\":\\\"\\\",\\\"type\\\":\\\"\\\",\\\"price\\\":\\\"\\\",\\\"tax_rate\\\":\\\"\\\",\\\"variants\\\":\\\"\\\"}\"}}',0,'0400$d6514ab8bc09f3e304fe7400c73b1ce5:bf96bbf60e3f2200ddc6b10ce5c4d461'),
+(1115,1746444714,1,'BE',1,0,2,'tx_wavecart_domain_model_product','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"T-shirt with Logo\",\"description\":\"Qui velit fugiat voluptate commodo in exercitation officia aliquip irure et cillum esse consequat. Esse occaecat do reprehenderit pariatur anim cupidatat. Nisi cupidatat laboris est in magna cupidatat sint. Id dolor mollit cupidatat in excepteur ex ut id aute laboris velit est excepteur duis. Enim enim officia aliqua deserunt tempor pariatur occaecat veniam sint esse eiusmod. Aliquip voluptate adipisicing officia mollit irure occaecat laborum sint in non. Est aliqua proident proident eiusmod et sunt sunt pariatur commodo amet deserunt fugiat.\",\"type\":\"0\",\"price\":\"50\",\"tax_rate\":\"17\",\"sys_language_uid\":0,\"crdate\":1746444714,\"tstamp\":1746444714,\"uid\":2}',0,'0400$8b52e2e5fe949219855a5cd56de23300:30a22092b0d54e730249ce65abccd31d'),
+(1116,1746444793,2,'BE',1,0,2,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"image\\\":\\\"\\\",\\\"type\\\":\\\"\\\",\\\"price\\\":\\\"\\\",\\\"tax_rate\\\":\\\"\\\",\\\"variants\\\":\\\"\\\"}\"}}',0,'0400$c11380282e2408eb2c6993088eaceced:30a22092b0d54e730249ce65abccd31d'),
+(1117,1746444793,1,'BE',1,0,3,'tx_wavecart_domain_model_product_variant','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"T-shirt with Logo M\",\"size\":\"M\",\"amount\":7,\"sys_language_uid\":0,\"crdate\":1746444793,\"tstamp\":1746444793,\"uid\":3}',0,'0400$c11380282e2408eb2c6993088eaceced:eb760038b0ffaaa47c005bf45fabe408'),
+(1118,1746444793,1,'BE',1,0,4,'tx_wavecart_domain_model_product_variant','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"T-shirt with Logo S\",\"size\":\"S\",\"amount\":2,\"sys_language_uid\":0,\"crdate\":1746444793,\"tstamp\":1746444793,\"uid\":4}',0,'0400$c11380282e2408eb2c6993088eaceced:53ab6bd8b3390388a73dac6f2248e11a'),
+(1119,1746444793,1,'BE',1,0,5,'tx_wavecart_domain_model_product_variant','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"T-shirt with Logo XL\",\"size\":\"XL\",\"amount\":0,\"sys_language_uid\":0,\"crdate\":1746444793,\"tstamp\":1746444793,\"uid\":5}',0,'0400$c11380282e2408eb2c6993088eaceced:2c02bfbaaafbbcc4f03e30a5c3207989'),
+(1120,1746444793,2,'BE',1,0,2,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"image\\\":\\\"\\\",\\\"type\\\":\\\"\\\",\\\"price\\\":\\\"\\\",\\\"tax_rate\\\":\\\"\\\",\\\"variants\\\":\\\"\\\"}\"}}',0,'0400$c11380282e2408eb2c6993088eaceced:30a22092b0d54e730249ce65abccd31d'),
+(1121,1746444887,1,'BE',1,0,3,'tx_wavecart_domain_model_product','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"Cap Blue\",\"description\":\"Ullamco Lorem nulla culpa incididunt do non ut excepteur consequat duis enim. Ex ullamco sit est dolor irure Lorem mollit sit commodo irure proident aliqua elit. Duis id nostrud cupidatat aliqua sunt incididunt non ea nostrud quis. Aute elit in do velit consectetur magna excepteur ad deserunt. Do in ex est occaecat tempor ea consequat velit voluptate culpa Lorem veniam laborum excepteur. Exercitation dolor et tempor deserunt consequat ea.\",\"type\":\"1\",\"price\":\"10\",\"tax_rate\":\"17\",\"sys_language_uid\":0,\"crdate\":1746444887,\"tstamp\":1746444887,\"uid\":3}',0,'0400$cecc629b9ae56359f8a4f1d296152702:8c4158a5bc515d299fb7b2051447f4e1'),
+(1122,1746444935,1,'BE',1,0,4,'tx_wavecart_domain_model_product','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"Sweater plain\",\"description\":\"Ullamco Lorem nulla culpa incididunt do non ut excepteur consequat duis enim. Ex ullamco sit est dolor irure Lorem mollit sit commodo irure proident aliqua elit. Duis id nostrud cupidatat aliqua sunt incididunt non ea nostrud quis. Aute elit in do velit consectetur magna excepteur ad deserunt. Do in ex est occaecat tempor ea consequat velit voluptate culpa Lorem veniam laborum excepteur. Exercitation dolor et tempor deserunt consequat ea.\",\"type\":\"2\",\"price\":\"60\",\"tax_rate\":\"17\",\"sys_language_uid\":0,\"crdate\":1746444935,\"tstamp\":1746444935,\"uid\":4}',0,'0400$10555462f84247c36dea02b51f7d6993:f5d1a2cc336741d8fa894fa1d2de6fe3'),
+(1123,1746444935,1,'BE',1,0,6,'tx_wavecart_domain_model_product_variant','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"Sweater plain S\",\"size\":\"S\",\"amount\":1,\"sys_language_uid\":0,\"crdate\":1746444935,\"tstamp\":1746444935,\"uid\":6}',0,'0400$10555462f84247c36dea02b51f7d6993:67a1096918eded2b2b9996991a757804'),
+(1124,1746444988,2,'BE',1,0,4,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"image\\\":\\\"\\\",\\\"type\\\":\\\"\\\",\\\"price\\\":\\\"\\\",\\\"tax_rate\\\":\\\"\\\",\\\"variants\\\":\\\"\\\"}\"}}',0,'0400$16fe8edb204cae8ac4084d2aad3fc509:f5d1a2cc336741d8fa894fa1d2de6fe3'),
+(1125,1746444988,2,'BE',1,0,6,'tx_wavecart_domain_model_product_variant','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$16fe8edb204cae8ac4084d2aad3fc509:67a1096918eded2b2b9996991a757804'),
+(1126,1746445023,2,'BE',1,0,3,'tx_wavecart_domain_model_product_variant','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$b81cb30b32a9c4b0277c31f33cd2913c:eb760038b0ffaaa47c005bf45fabe408'),
+(1127,1746445023,2,'BE',1,0,4,'tx_wavecart_domain_model_product_variant','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$b81cb30b32a9c4b0277c31f33cd2913c:53ab6bd8b3390388a73dac6f2248e11a'),
+(1128,1746445023,2,'BE',1,0,5,'tx_wavecart_domain_model_product_variant','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$b81cb30b32a9c4b0277c31f33cd2913c:2c02bfbaaafbbcc4f03e30a5c3207989'),
+(1129,1746445095,2,'BE',1,0,3,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"image\\\":\\\"\\\",\\\"type\\\":\\\"\\\",\\\"price\\\":\\\"\\\",\\\"tax_rate\\\":\\\"\\\",\\\"variants\\\":\\\"\\\"}\"}}',0,'0400$ad00c304f57a6ff334c8e9a62be590c1:8c4158a5bc515d299fb7b2051447f4e1'),
+(1130,1746445095,1,'BE',1,0,187,'sys_file_reference','{\"sorting_foreign\":0,\"autoplay\":0,\"hidden\":\"0\",\"l10n_parent\":0,\"l10n_diffsource\":\"\",\"pid\":103,\"alternative\":null,\"description\":null,\"link\":\"\",\"title\":null,\"crop\":\"{\\\"default\\\":{\\\"cropArea\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":1,\\\"height\\\":1},\\\"selectedRatio\\\":\\\"NaN\\\",\\\"focusArea\\\":null}}\",\"uid_local\":\"113\",\"sys_language_uid\":0,\"crdate\":1746445095,\"t3ver_stage\":0,\"tstamp\":1746445095,\"uid\":187}',0,'0400$ad00c304f57a6ff334c8e9a62be590c1:93f7c3e741b017fd6fd90691b6a180a3'),
+(1131,1746445095,2,'BE',1,0,3,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"description\\\":\\\"\\\",\\\"image\\\":\\\"\\\",\\\"type\\\":\\\"\\\",\\\"price\\\":\\\"\\\",\\\"tax_rate\\\":\\\"\\\",\\\"variants\\\":\\\"\\\"}\"}}',0,'0400$ad00c304f57a6ff334c8e9a62be590c1:8c4158a5bc515d299fb7b2051447f4e1'),
+(1132,1746445135,1,'BE',1,0,188,'sys_file_reference','{\"sorting_foreign\":0,\"autoplay\":0,\"hidden\":\"0\",\"l10n_parent\":0,\"l10n_diffsource\":\"\",\"pid\":103,\"alternative\":null,\"description\":null,\"link\":\"\",\"title\":null,\"crop\":\"{\\\"default\\\":{\\\"cropArea\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":1,\\\"height\\\":1},\\\"selectedRatio\\\":\\\"NaN\\\",\\\"focusArea\\\":null}}\",\"uid_local\":\"113\",\"sys_language_uid\":0,\"crdate\":1746445135,\"t3ver_stage\":0,\"tstamp\":1746445135,\"uid\":188}',0,'0400$c3ec9d0ff2c542e4b4448286cb9c347f:88d5b21560abed88cdedccf6be944087'),
+(1133,1746445156,1,'BE',1,0,189,'sys_file_reference','{\"sorting_foreign\":0,\"autoplay\":0,\"hidden\":\"0\",\"l10n_parent\":0,\"l10n_diffsource\":\"\",\"pid\":103,\"alternative\":null,\"description\":null,\"link\":\"\",\"title\":null,\"crop\":\"{\\\"default\\\":{\\\"cropArea\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":1,\\\"height\\\":1},\\\"selectedRatio\\\":\\\"NaN\\\",\\\"focusArea\\\":null}}\",\"uid_local\":\"113\",\"sys_language_uid\":0,\"crdate\":1746445156,\"t3ver_stage\":0,\"tstamp\":1746445156,\"uid\":189}',0,'0400$d0e8d32b3afada52ebe2920f2893978b:83503eafb54e8c2b15ecb4fc3d7bbf9e'),
+(1134,1746445156,2,'BE',1,0,4,'tx_wavecart_domain_model_product_variant','{\"oldRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$d0e8d32b3afada52ebe2920f2893978b:53ab6bd8b3390388a73dac6f2248e11a'),
+(1135,1746445156,2,'BE',1,0,5,'tx_wavecart_domain_model_product_variant','{\"oldRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$d0e8d32b3afada52ebe2920f2893978b:2c02bfbaaafbbcc4f03e30a5c3207989'),
+(1136,1746445162,1,'BE',1,0,190,'sys_file_reference','{\"sorting_foreign\":0,\"autoplay\":0,\"hidden\":\"0\",\"l10n_parent\":0,\"l10n_diffsource\":\"\",\"pid\":103,\"alternative\":null,\"description\":null,\"link\":\"\",\"title\":null,\"crop\":\"{\\\"default\\\":{\\\"cropArea\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":1,\\\"height\\\":1},\\\"selectedRatio\\\":\\\"NaN\\\",\\\"focusArea\\\":null}}\",\"uid_local\":\"113\",\"sys_language_uid\":0,\"crdate\":1746445162,\"t3ver_stage\":0,\"tstamp\":1746445162,\"uid\":190}',0,'0400$4648dc7e1f131223d66ddb7d77d967f0:a0c651908a4108935b792b5a938787ac'),
+(1137,1746445162,2,'BE',1,0,2,'tx_wavecart_domain_model_product_variant','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$4648dc7e1f131223d66ddb7d77d967f0:9cb0edbdb2146567045c371012f9f652');
 /*!40000 ALTER TABLE `sys_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5523,7 +5628,48 @@ INSERT INTO `sys_log` VALUES
 (97,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
 (98,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
 (99,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
-(100,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL);
+(100,1746439766,1,0,0,'',0,2,'Core: Error handler (BE): PHP Warning: Array to string conversion in /var/www/html/vendor/typo3/cms-core/Classes/Localization/LanguageService.php line 170',5,'php',0,'172.19.0.6','',-1,0,'',0,'','warning',NULL,NULL),
+(101,1746443837,1,1,0,'',0,0,'User %s logged in from ###IP###',255,'user',0,'172.18.0.6','[\"admin\"]',-1,-99,'',0,'','info',NULL,NULL),
+(102,1746443843,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1146: An exception occurred while executing a query: Table \'db.tx_wavecart_domain_model_product\' doesn\'t exist | Doctrine\\DBAL\\Exception\\TableNotFoundException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 40. Requested URL: https://surfcamp-base-2025.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=102&',5,'php',0,'172.18.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(103,1746443845,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1146: An exception occurred while executing a query: Table \'db.tx_wavecart_domain_model_product\' doesn\'t exist | Doctrine\\DBAL\\Exception\\TableNotFoundException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 40. Requested URL: https://surfcamp-base-2025.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=2',5,'php',0,'172.18.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(104,1746443846,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1146: An exception occurred while executing a query: Table \'db.tx_wavecart_domain_model_product\' doesn\'t exist | Doctrine\\DBAL\\Exception\\TableNotFoundException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 40. Requested URL: https://surfcamp-base-2025.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=102',5,'php',0,'172.18.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(105,1746443877,1,1,103,'pages',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"pages\",\"uid\":103,\"pid\":1}',1,0,'',0,'','info',NULL,NULL),
+(106,1746444579,1,2,103,'pages',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"pages\",\"uid\":103,\"history\":\"1108\"}',1,0,'',0,'','info',NULL,NULL),
+(107,1746444664,1,1,1,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":1,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(108,1746444664,1,1,1,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":1,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(109,1746444664,1,2,1,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":1,\"history\":0}',103,0,'',0,'','info',NULL,NULL),
+(110,1746444674,1,2,1,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":1,\"history\":\"1111\"}',103,0,'',0,'','info',NULL,NULL),
+(111,1746444674,1,2,1,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":1,\"history\":\"1112\"}',103,0,'',0,'','info',NULL,NULL),
+(112,1746444674,1,1,2,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":2,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(113,1746444674,1,2,1,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":1,\"history\":\"1114\"}',103,0,'',0,'','info',NULL,NULL),
+(114,1746444714,1,1,2,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":2,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(115,1746444793,1,2,2,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":2,\"history\":\"1116\"}',103,0,'',0,'','info',NULL,NULL),
+(116,1746444793,1,1,3,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":3,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(117,1746444793,1,1,4,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":4,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(118,1746444793,1,1,5,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":5,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(119,1746444793,1,2,2,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":2,\"history\":\"1120\"}',103,0,'',0,'','info',NULL,NULL),
+(120,1746444887,1,1,3,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":3,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(121,1746444935,1,1,4,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":4,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(122,1746444935,1,1,6,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":6,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(123,1746444935,1,2,4,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":4,\"history\":0}',103,0,'',0,'','info',NULL,NULL),
+(124,1746444976,1,1,0,'',0,0,'User {username} has cleared the cache (cacheCmd={command})',3,'default',0,'172.18.0.6','{\"username\":\"admin\",\"command\":\"all\"}',-1,0,'',0,'','info',NULL,NULL),
+(125,1746444988,1,2,4,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":4,\"history\":\"1124\"}',103,0,'',0,'','info',NULL,NULL),
+(126,1746444988,1,2,6,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":6,\"history\":\"1125\"}',103,0,'',0,'','info',NULL,NULL),
+(127,1746445023,1,2,3,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":3,\"history\":\"1126\"}',103,0,'',0,'','info',NULL,NULL),
+(128,1746445023,1,2,4,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":4,\"history\":\"1127\"}',103,0,'',0,'','info',NULL,NULL),
+(129,1746445023,1,2,5,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":5,\"history\":\"1128\"}',103,0,'',0,'','info',NULL,NULL),
+(130,1746445095,1,2,3,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":3,\"history\":\"1129\"}',103,0,'',0,'','info',NULL,NULL),
+(131,1746445095,1,1,187,'sys_file_reference',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"sys_file_reference\",\"uid\":187,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(132,1746445095,1,2,3,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":3,\"history\":\"1131\"}',103,0,'',0,'','info',NULL,NULL),
+(133,1746445135,1,1,188,'sys_file_reference',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"sys_file_reference\",\"uid\":188,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(134,1746445135,1,2,4,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":4,\"history\":0}',103,0,'',0,'','info',NULL,NULL),
+(135,1746445156,1,1,189,'sys_file_reference',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"sys_file_reference\",\"uid\":189,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(136,1746445156,1,2,4,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":4,\"history\":\"1134\"}',103,0,'',0,'','info',NULL,NULL),
+(137,1746445156,1,2,5,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":5,\"history\":\"1135\"}',103,0,'',0,'','info',NULL,NULL),
+(138,1746445156,1,2,2,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":2,\"history\":0}',103,0,'',0,'','info',NULL,NULL),
+(139,1746445162,1,1,190,'sys_file_reference',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"sys_file_reference\",\"uid\":190,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(140,1746445162,1,2,2,'tx_wavecart_domain_model_product_variant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product_variant\",\"uid\":2,\"history\":\"1137\"}',103,0,'',0,'','info',NULL,NULL),
+(141,1746445162,1,2,1,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":1,\"history\":0}',103,0,'',0,'','info',NULL,NULL);
 /*!40000 ALTER TABLE `sys_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5553,6 +5699,7 @@ LOCK TABLES `sys_refindex` WRITE;
 /*!40000 ALTER TABLE `sys_refindex` DISABLE KEYS */;
 INSERT INTO `sys_refindex` VALUES
 ('00ac39db008c55e5072f44f10aa3576b','sys_file_reference',101,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',32,'',0,0,2147483647,0,0,''),
+('00e087b4e24ddfe5d4fbbcd07c782175','sys_file_reference',188,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',113,'',0,0,2147483647,0,0,''),
 ('0157c3fc784638c036e41226d1f21682','sys_file',29,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
 ('016cde0d2370a4016a722749e12fafe3','sys_file_reference',161,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',32,'',0,0,2147483647,0,0,''),
 ('01b6e4eaef82067839ced4f5a4b15e72','sys_file_reference',18,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',3,'',0,0,2147483647,0,0,''),
@@ -5688,6 +5835,7 @@ INSERT INTO `sys_refindex` VALUES
 ('27ca938c6410bd0277cec9b91953cbf2','pages',42,'thumbnail',0,0,2147483647,0,'','','',0,0,'sys_file_reference',148,'',0,0,2147483647,0,0,''),
 ('2813e165eb662edadb0d501a4d19ae20','tt_content',5,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',16,'',0,0,2147483647,0,0,''),
 ('285a5901e263010bb9b1e378c8188f46','sys_file_reference',27,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',102,'',0,0,2147483647,0,0,''),
+('28729f68887d66185378e36c860fa5e8','tx_wavecart_domain_model_product',1,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',190,'',0,0,2147483647,0,0,''),
 ('2874e0ac2955df72fb9278cf9d2b4044','tt_content',153,'assets',0,0,2147483647,0,'','','',1,0,'sys_file_reference',110,'',0,0,2147483647,0,0,''),
 ('28e197f0971ff242c3999b762795cc2f','sys_file',81,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
 ('290de9be8ecb4ef964252c87029a892d','pages',40,'nav_icon',0,0,2147483647,0,'','','',0,0,'sys_file_reference',152,'',0,0,2147483647,0,0,''),
@@ -5993,9 +6141,12 @@ INSERT INTO `sys_refindex` VALUES
 ('7daf6802c31534e7e86219f29308916a','sys_file_metadata',99,'file',0,0,2147483647,0,'','','',0,0,'sys_file',99,'',0,0,2147483647,0,0,''),
 ('7dd037bc9017ac1e5a60c874732dc8ad','sys_file_metadata',86,'file',0,0,2147483647,0,'','','',0,0,'sys_file',86,'',0,0,2147483647,0,0,''),
 ('7dd111afee7b8cbbe90708d136403852','tt_content',159,'tx_bootstrappackage_accordion_item',0,0,2147483647,0,'','','',2,0,'tx_bootstrappackage_accordion_item',3,'',0,0,2147483647,0,0,''),
+('7e22bac9bc415f306153ad483d116340','sys_file_reference',190,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',113,'',0,0,2147483647,0,0,''),
 ('7e4ad67655fa759c50f1d33be2628f17','tt_content',13,'fcbigfoot_persons',0,0,2147483647,0,'','','',2,0,'tx_fcbigfoot_domain_model_person',6,'',0,0,2147483647,0,0,''),
 ('7eb162e320ea40ec5ecc94fc4ee7f0f7','sys_file_reference',140,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',42,'',0,0,2147483647,0,0,''),
+('7f5396f84150d78e6ab9d449fc208109','tx_wavecart_domain_model_product',2,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_product_variant',3,'',0,0,2147483647,0,0,''),
 ('7fe2d02f85d5f3b35ca2b8977ecfbde0','pages',44,'media',0,0,2147483647,0,'','','',0,0,'sys_file_reference',146,'',0,0,2147483647,0,0,''),
+('7fe32d2fe33b614303f26864269404c9','tx_wavecart_domain_model_product',4,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_product_variant',6,'',0,0,2147483647,0,0,''),
 ('803e974a1d41fb76cc33418f47d100fb','tt_content',19,'fcbigfoot_sponsors',0,0,2147483647,0,'','','',2,0,'tx_fcbigfoot_domain_model_sponsor',4,'',0,0,2147483647,0,0,''),
 ('80418b63276979c81ecece47ca574fe0','tx_bootstrappackage_card_group_item',13,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',60,'',0,0,2147483647,0,0,''),
 ('80a09f8113914cfc9ffbc8eebcdf63b0','tx_fcbigfoot_domain_model_sponsor',5,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',13,'',0,0,2147483647,0,0,''),
@@ -6163,6 +6314,7 @@ INSERT INTO `sys_refindex` VALUES
 ('adcff9f9768a5a812db3d93c915bb1e9','sys_file',41,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
 ('adf7926ec565a51e63069ca56af1e623','sys_file_reference',14,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',7,'',0,0,2147483647,0,0,''),
 ('ae21390b74c2b845097e86cb2af1f38d','sys_file_reference',167,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',36,'',0,0,2147483647,0,0,''),
+('ae690e09c892abb60d6a0570a75b149b','tx_wavecart_domain_model_product',2,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',189,'',0,0,2147483647,0,0,''),
 ('aea62e3876f8f567439e2958c8a3e4d1','sys_file_reference',81,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',37,'',0,0,2147483647,0,0,''),
 ('af1167631d7bf08a0680ad8e3864a002','sys_file_reference',124,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',52,'',0,0,2147483647,0,0,''),
 ('af28f540bcf15f8bc7bb7a5327f657e0','be_groups',3,'db_mountpoints',0,0,2147483647,0,'','','',0,0,'pages',15,'',0,0,2147483647,0,0,''),
@@ -6179,9 +6331,12 @@ INSERT INTO `sys_refindex` VALUES
 ('b2a9b1d59cc182a3f6d7a53ff074d351','tt_content',180,'pages',0,0,2147483647,0,'','','',0,0,'pages',40,'',0,0,2147483647,0,0,''),
 ('b2f19873585d81e10b7849d93ea52274','sys_file_metadata',38,'file',0,0,2147483647,0,'','','',0,0,'sys_file',38,'',0,0,2147483647,0,0,''),
 ('b2f5926158b927f6ca5629f449580bcd','sys_file_reference',85,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',32,'',0,0,2147483647,0,0,''),
+('b3be2fb97474cf98224e63dc46556854','sys_file_reference',189,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',113,'',0,0,2147483647,0,0,''),
 ('b44310b3bf103b3092413fb234c79318','sys_file_reference',62,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',72,'',0,0,2147483647,0,0,''),
 ('b516994d48da76fa72415019aff7d9cc','tx_bootstrappackage_icon_group_item',4,'tt_content',0,0,2147483647,0,'','','',0,0,'tt_content',129,'',0,0,2147483647,0,0,''),
 ('b51df6af7d3fceb4b30a2164e56c3097','sys_file_reference',102,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',31,'',0,0,2147483647,0,0,''),
+('b5648bcc66e17075f4a54126ce212646','tx_wavecart_domain_model_product',1,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_product_variant',2,'',0,0,2147483647,0,0,''),
+('b6137f844f81dc1098f47a852effaa6b','sys_file_reference',187,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',113,'',0,0,2147483647,0,0,''),
 ('b6160201ffbb403f29bac63721ebb1b2','sys_file_metadata',62,'file',0,0,2147483647,0,'','','',0,0,'sys_file',62,'',0,0,2147483647,0,0,''),
 ('b64f4a68429df9f5755dd4857466e461','sys_file_metadata',98,'file',0,0,2147483647,0,'','','',0,0,'sys_file',98,'',0,0,2147483647,0,0,''),
 ('b6960786bb0bcb010511a6440c1c4d90','sys_file',34,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
@@ -6191,6 +6346,7 @@ INSERT INTO `sys_refindex` VALUES
 ('b795fd9ddcf8a947e25547fd255a95be','tx_bootstrappackage_card_group_item',8,'tt_content',0,0,2147483647,0,'','','',0,0,'tt_content',121,'',0,0,2147483647,0,0,''),
 ('b7ecc2431bfc23133abe0b149b1d913c','sys_file_reference',28,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',101,'',0,0,2147483647,0,0,''),
 ('b81a7cbf8b4ce2d7596a87ddcb59637e','sys_file_reference',5,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',17,'',0,0,2147483647,0,0,''),
+('b83f37d5a958440afe9ec22456cd85b1','tx_wavecart_domain_model_product',2,'variants',0,0,2147483647,0,'','','',2,0,'tx_wavecart_domain_model_product_variant',5,'',0,0,2147483647,0,0,''),
 ('b8560e33ef13adf179f620ff35ae78fd','sys_file_metadata',102,'file',0,0,2147483647,0,'','','',0,0,'sys_file',102,'',0,0,2147483647,0,0,''),
 ('b865c43093849ec38a81b9906c3d8b85','tt_content',102,'records',0,0,2147483647,0,'','','',0,0,'tt_content',244,'',0,0,2147483647,0,0,''),
 ('b86fe2e3dc0bf333837e9279ef64800f','pages',87,'thumbnail',0,0,2147483647,0,'','','',0,0,'sys_file_reference',36,'',0,0,2147483647,0,0,''),
@@ -6227,6 +6383,7 @@ INSERT INTO `sys_refindex` VALUES
 ('c10c4eb6a9db677ebefe67dd391d46df','sys_file_reference',132,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',50,'',0,0,2147483647,0,0,''),
 ('c111f8c488eef0a5fe62d3828f26c3d0','tx_bootstrappackage_carousel_item',7,'background_image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',123,'',0,0,2147483647,0,0,''),
 ('c127eca62b98b5db3e002696a9713b64','sys_file_metadata',97,'file',0,0,2147483647,0,'','','',0,0,'sys_file',97,'',0,0,2147483647,0,0,''),
+('c1476dabe5d75d6a802ccc724f695554','tx_wavecart_domain_model_product',2,'variants',0,0,2147483647,0,'','','',1,0,'tx_wavecart_domain_model_product_variant',4,'',0,0,2147483647,0,0,''),
 ('c1bfde54d2c62a17bc1e067b14b8ad74','sys_file_reference',186,'l10n_parent',0,0,2147483647,0,'','','',0,0,'sys_file_reference',184,'',0,0,2147483647,0,0,''),
 ('c1f587832efc66c554989898a3eeeff7','tt_content',153,'assets',0,0,2147483647,0,'','','',2,0,'sys_file_reference',109,'',0,0,2147483647,0,0,''),
 ('c24d7621b0578bd27b5777961f2b19b9','tt_content',133,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',84,'',0,0,2147483647,0,0,''),
@@ -6239,6 +6396,7 @@ INSERT INTO `sys_refindex` VALUES
 ('c4864b633d01f53dd7f2ea871f067454','sys_file_reference',178,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',31,'',0,0,2147483647,0,0,''),
 ('c4ec2ee434bb38353a306ff846e58979','tt_content',9,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',15,'',0,0,2147483647,0,0,''),
 ('c4f9f6be574436d14f1922efcfc556b2','tx_fcbigfoot_domain_model_teaser',4,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',20,'',0,0,2147483647,0,0,''),
+('c540b24a11e4e3a1279820c6d1fd1756','sys_file',113,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
 ('c5a2e496515d1534a9c3129b2362ff34','tx_fcbigfoot_domain_model_person',3,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',3,'',0,0,2147483647,0,0,''),
 ('c667ebb11777a669bbd91ce6d53ff58f','sys_file_metadata',49,'file',0,0,2147483647,0,'','','',0,0,'sys_file',49,'',0,0,2147483647,0,0,''),
 ('c669572ef1c4b5de7c7578a7126774d0','pages',65,'nav_icon',0,0,2147483647,0,'','','',0,0,'sys_file_reference',82,'',0,0,2147483647,0,0,''),
@@ -6272,6 +6430,7 @@ INSERT INTO `sys_refindex` VALUES
 ('d01282f05d751a7651c6fe47873c2081','tt_content',165,'tx_bootstrappackage_tab_item',0,0,2147483647,0,'','','',0,0,'tx_bootstrappackage_tab_item',5,'',0,0,2147483647,0,0,''),
 ('d012da9245cfc73770a5dfbe8ea50c14','tt_content',168,'tx_bootstrappackage_timeline_item',0,0,2147483647,0,'','','',10,0,'tx_bootstrappackage_timeline_item',3,'',0,0,2147483647,0,0,''),
 ('d078a6e9bc3dc2a7a519d03e12cf281e','sys_file_metadata',16,'file',0,0,2147483647,0,'','','',0,0,'sys_file',16,'',0,0,2147483647,0,0,''),
+('d0bbd275b296585020b195afcf241104','tx_wavecart_domain_model_product',3,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',187,'',0,0,2147483647,0,0,''),
 ('d1df8b6543356d0e5bc6f98daec79610','sys_file_metadata',61,'file',0,0,2147483647,0,'','','',0,0,'sys_file',61,'',0,0,2147483647,0,0,''),
 ('d2bb482a92e9de09beb0e057f7c0e1ee','sys_file_reference',16,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',5,'',0,0,2147483647,0,0,''),
 ('d3432562d0905c544a45ceb3550a5278','tt_content',187,'pages',0,0,2147483647,0,'','','',1,0,'pages',67,'',0,0,2147483647,0,0,''),
@@ -6288,6 +6447,7 @@ INSERT INTO `sys_refindex` VALUES
 ('da3d88bce1f8d47ee5763aadfab6558a','sys_file_metadata',8,'file',0,0,2147483647,0,'','','',0,0,'sys_file',8,'',0,0,2147483647,0,0,''),
 ('dc18843bbab4383edfb9587086582a11','sys_file_reference',88,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',60,'',0,0,2147483647,0,0,''),
 ('dc55cca02c447704220ab80b9b8b65cb','sys_file_metadata',10,'file',0,0,2147483647,0,'','','',0,0,'sys_file',10,'',0,0,2147483647,0,0,''),
+('dc9c70f2ffc28d1c602bc2c201bab99e','tx_wavecart_domain_model_product',1,'variants',0,0,2147483647,0,'','','',1,0,'tx_wavecart_domain_model_product_variant',1,'',0,0,2147483647,0,0,''),
 ('dd7efc4e2fa8e58c01df7cd5326727f5','tt_content',13,'fcbigfoot_persons',0,0,2147483647,0,'','','',5,0,'tx_fcbigfoot_domain_model_person',3,'',0,0,2147483647,0,0,''),
 ('dd8694b3ac45e12bd0a62e5a92595772','pages',101,'shortcut',0,0,2147483647,0,'','','',0,0,'pages',98,'',0,0,2147483647,0,0,''),
 ('ddb0486620e0393165318a07cbbc4b8e','sys_file',21,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
@@ -6378,6 +6538,7 @@ INSERT INTO `sys_refindex` VALUES
 ('fa3eb3d9d06c63d7ee6fe8c0fbcb24e6','tt_content',19,'fcbigfoot_sponsors',0,0,2147483647,0,'','','',0,0,'tx_fcbigfoot_domain_model_sponsor',6,'',0,0,2147483647,0,0,''),
 ('fa7aa71bf77f58cd7106c40f91cbf885','sys_file_metadata',72,'file',0,0,2147483647,0,'','','',0,0,'sys_file',72,'',0,0,2147483647,0,0,''),
 ('faaedfec4685a761e3512866583fdda9','tt_content',21,'fcbigfoot_teaser',0,0,2147483647,0,'','','',3,0,'tx_fcbigfoot_domain_model_teaser',1,'',0,0,2147483647,0,0,''),
+('fac01043c27ddf0afc2ed10e3a44ba1f','tx_wavecart_domain_model_product',4,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',188,'',0,0,2147483647,0,0,''),
 ('fb21dbbcd381f9f6d21cccbdcd173cc6','sys_file_reference',33,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',96,'',0,0,2147483647,0,0,''),
 ('fba0e211f4fd2d94f1568c6efa1473e4','sys_file',102,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
 ('fc0bb36bd26a741c9e0092ebcdd45fca','tt_content',1,'fcbigfoot_file_link',0,0,2147483647,0,'','typolink','e61e55d8cf56dfe5a5f5cce2ea8add4b:0',0,0,'sys_file',13,'',0,0,2147483647,0,0,''),
@@ -6412,7 +6573,7 @@ INSERT INTO `sys_registry` VALUES
 (10,'installUpdate','TYPO3\\CMS\\Install\\Updates\\SysTemplateNoWorkspaceMigration','i:1;'),
 (11,'installUpdate','TYPO3\\CMS\\Extensionmanager\\Updates\\FeLoginModeExtractionUpdate','i:1;'),
 (12,'installUpdateRows','rowUpdatersDone','a:1:{i:0;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\SysRedirectRootPageMoveMigration\";}'),
-(13,'core','formProtectionSessionToken:1','s:64:\"23a64b7b8eb101124bad19dae89fe438b4d71587035d735d04a941923091ebc4\";'),
+(13,'core','formProtectionSessionToken:1','s:64:\"073fd5428e42d531c6acc67c6ce637504be03c610b9c79e602ae1972f82fdef5\";'),
 (14,'extensionDataImport','typo3/cms-core/ext_tables_static+adt.sql','s:0:\"\";'),
 (15,'extensionDataImport','typo3/cms-scheduler/ext_tables_static+adt.sql','s:0:\"\";'),
 (16,'extensionDataImport','typo3/cms-extbase/ext_tables_static+adt.sql','s:0:\"\";'),
@@ -6958,6 +7119,36 @@ LOCK TABLES `tx_wavecart_domain_model_orderitem` WRITE;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_orderitem` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_orderitem` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping data for table `tx_wavecart_domain_model_product`
+--
+
+LOCK TABLES `tx_wavecart_domain_model_product` WRITE;
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_product` DISABLE KEYS */;
+INSERT INTO `tx_wavecart_domain_model_product` VALUES
+(1,103,1746445162,1746444664,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','Teddy','Qui velit fugiat voluptate commodo in exercitation officia aliquip irure et cillum esse consequat. Esse occaecat do reprehenderit pariatur anim cupidatat. Nisi cupidatat laboris est in magna cupidatat sint. Id dolor mollit cupidatat in excepteur ex ut id aute laboris velit est excepteur duis. Enim enim officia aliqua deserunt tempor pariatur occaecat veniam sint esse eiusmod. Aliquip voluptate adipisicing officia mollit irure occaecat laborum sint in non. Est aliqua proident proident eiusmod et sunt sunt pariatur commodo amet deserunt fugiat.',1,3,'20',17,2),
+(2,103,1746445156,1746444714,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','T-shirt with Logo','Qui velit fugiat voluptate commodo in exercitation officia aliquip irure et cillum esse consequat. Esse occaecat do reprehenderit pariatur anim cupidatat. Nisi cupidatat laboris est in magna cupidatat sint. Id dolor mollit cupidatat in excepteur ex ut id aute laboris velit est excepteur duis. Enim enim officia aliqua deserunt tempor pariatur occaecat veniam sint esse eiusmod. Aliquip voluptate adipisicing officia mollit irure occaecat laborum sint in non. Est aliqua proident proident eiusmod et sunt sunt pariatur commodo amet deserunt fugiat.',1,0,'50',17,3),
+(3,103,1746445095,1746444887,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','Cap Blue','Ullamco Lorem nulla culpa incididunt do non ut excepteur consequat duis enim. Ex ullamco sit est dolor irure Lorem mollit sit commodo irure proident aliqua elit. Duis id nostrud cupidatat aliqua sunt incididunt non ea nostrud quis. Aute elit in do velit consectetur magna excepteur ad deserunt. Do in ex est occaecat tempor ea consequat velit voluptate culpa Lorem veniam laborum excepteur. Exercitation dolor et tempor deserunt consequat ea.',1,1,'10',17,0),
+(4,103,1746445135,1746444935,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','Sweater plain','Ullamco Lorem nulla culpa incididunt do non ut excepteur consequat duis enim. Ex ullamco sit est dolor irure Lorem mollit sit commodo irure proident aliqua elit. Duis id nostrud cupidatat aliqua sunt incididunt non ea nostrud quis. Aute elit in do velit consectetur magna excepteur ad deserunt. Do in ex est occaecat tempor ea consequat velit voluptate culpa Lorem veniam laborum excepteur. Exercitation dolor et tempor deserunt consequat ea.',1,2,'60',17,1);
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `tx_wavecart_domain_model_product_variant`
+--
+
+LOCK TABLES `tx_wavecart_domain_model_product_variant` WRITE;
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_product_variant` DISABLE KEYS */;
+INSERT INTO `tx_wavecart_domain_model_product_variant` VALUES
+(1,103,1746445162,1746444664,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',1,'Red Teddy','unisize',10),
+(2,103,1746445162,1746444674,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"size\":\"\",\"amount\":\"\",\"hidden\":\"\"}',1,'Brown Teddy','unisize',5),
+(3,103,1746445156,1746444793,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"size\":\"\",\"amount\":\"\",\"hidden\":\"\"}',2,'T-shirt with Logo M','M',7),
+(4,103,1746445156,1746444793,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',2,'T-shirt with Logo S','S',2),
+(5,103,1746445156,1746444793,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',2,'T-shirt with Logo XL','XL',0),
+(6,103,1746445135,1746444935,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"size\":\"\",\"amount\":\"\",\"hidden\":\"\"}',4,'Sweater plain S','S',1);
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_product_variant` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -6967,4 +7158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-05 11:44:53
+-- Dump completed on 2025-05-05 12:39:50
