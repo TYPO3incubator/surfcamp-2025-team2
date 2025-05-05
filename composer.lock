@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "83df314c488c49d2ff5c6e5717b15dea",
+    "content-hash": "07dc477bcedf3664d7b4ef3bfcf41841",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -168,6 +168,45 @@
                 }
             ],
             "time": "2025-04-10T06:27:31+00:00"
+        },
+        {
+            "name": "brosua/enums",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brosua/enums.git",
+                "reference": "1860820bb7884a76932d2fc89f7b79ba54d763ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brosua/enums/zipball/1860820bb7884a76932d2fc89f7b79ba54d763ff",
+                "reference": "1860820bb7884a76932d2fc89f7b79ba54d763ff",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "typo3/cms-core": "^12.4 || ^13.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Brosua\\Enums\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Helpers for PHP enums, especially for TYPO3 projects.",
+            "keywords": [
+                "enum",
+                "typo3"
+            ],
+            "support": {
+                "issues": "https://github.com/brosua/enums/issues",
+                "source": "https://github.com/brosua/enums/tree/1.0.0"
+            },
+            "time": "2025-03-21T13:23:53+00:00"
         },
         {
             "name": "christian-riesen/base32",
