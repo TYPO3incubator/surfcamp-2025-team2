@@ -16,7 +16,7 @@ return [
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
-        'iconfile' => 'EXT:fuxma_site/Resources/Public/Icons/Fux/fux-fux.svg',
+        'iconfile' => 'EXT:wave_cart/Resources/Public/Icons/order.svg',
     ],
     'types' => [
         '1' => ['showitem' => 'customer_lastname, customer_firstname, customer_address, customer_zip, customer_city, customer_email, status, payment_method, assignee, total_price, order_items'],
