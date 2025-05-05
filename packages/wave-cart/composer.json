@@ -1,0 +1,21 @@
+{
+    "name": "typo3-incubator/wave-cart",
+    "type": "typo3-cms-extension",
+    "description": "Surfcamp: Wave cart",
+    "homepage": "https://www.google.de",
+    "license": ["GPL-2.0-or-later"],
+    "keywords": ["TYPO3 CMS"],
+    "require": {
+        "typo3/cms-core": "^13.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "TYPO3Incubator\\WaveCart\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "wave_cart"
+        }
+    }
+}
