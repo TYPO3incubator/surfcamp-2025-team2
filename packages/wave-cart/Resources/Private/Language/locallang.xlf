@@ -21,6 +21,19 @@
             <trans-unit id="paymentMethodEnum.prepayment">
 				<source>Prepayment</source>
 			</trans-unit>
+
+			<trans-unit id="productTypeEnum.tShirt">
+				<source>T-Shirt</source>
+			</trans-unit>
+			<trans-unit id="productTypeEnum.cap">
+				<source>Cap</source>
+			</trans-unit>
+			<trans-unit id="productTypeEnum.sweater">
+				<source>Sweater</source>
+			</trans-unit>
+            <trans-unit id="productTypeEnum.stuffedAnimal">
+				<source>Stuffed Animal</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
