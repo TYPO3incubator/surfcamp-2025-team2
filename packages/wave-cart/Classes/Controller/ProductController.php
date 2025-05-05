@@ -26,7 +26,7 @@ class ProductController extends ActionController
         return $this->view->render();
     }
 
-    public function showAction(Product $product)
+    public function detailAction(Product $product)
     {
         $this->view->assign('product', $product);
     }
