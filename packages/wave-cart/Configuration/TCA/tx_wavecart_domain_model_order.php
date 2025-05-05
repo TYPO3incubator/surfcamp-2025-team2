@@ -1,5 +1,8 @@
 <?php
 
+use TYPO3Incubator\WaveCart\Enum\OrderStatusEnum;
+use TYPO3Incubator\WaveCart\Enum\PaymentMethodEnum;
+
 $ll = 'LLL:EXT:wave_cart/Resources/Private/Language/locallang_db.xlf:';
 
 return [
@@ -74,16 +77,22 @@ return [
             'exclude' => 0,
             'label' => $ll . 'tx_wavecart_domain_model_order.status',
             'config' => [
-                'type' => 'number',
-                'eval' => 'trim'
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'minitems' => 1,
+                'maxitems' => 1,
+                'items' => OrderStatusEnum::getTcaOptions(),
             ],
         ],
         'payment_method' => [
             'exclude' => 0,
             'label' => $ll . 'tx_wavecart_domain_model_order.payment_method',
             'config' => [
-                'type' => 'number',
-                'eval' => 'trim'
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'minitems' => 1,
+                'maxitems' => 1,
+                'items' => PaymentMethodEnum::getTcaOptions(),
             ],
         ],
         'assignee' => [

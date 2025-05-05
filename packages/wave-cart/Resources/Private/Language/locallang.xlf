@@ -9,6 +9,18 @@
 			<trans-unit id="orderStatusEnum.paid">
 				<source>Paid</source>
 			</trans-unit>
+			<trans-unit id="orderStatusEnum.inProgress">
+				<source>In progress</source>
+			</trans-unit>
+			<trans-unit id="orderStatusEnum.shipped">
+				<source>Shipped</source>
+			</trans-unit>
+			<trans-unit id="orderStatusEnum.returned">
+				<source>Returned</source>
+			</trans-unit>
+            <trans-unit id="paymentMethodEnum.prepayment">
+				<source>Prepayment</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
