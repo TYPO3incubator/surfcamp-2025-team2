@@ -13,7 +13,6 @@ class OrderDto
     protected string $customerEmail;
     protected int $paymentMethod;
     protected float $totalPrice;
-
     protected array $orderItems;
 
     public function getCustomerLastname(): string
