@@ -18,10 +18,10 @@
                                 value="{cartItem.name}"/>
                         </li>
                         <li>
-                            Lagerbestand:
+                            Menge:
                             <f:form.textfield
-                                property="orderItems.{iterator.index}.amount"
-                                value="{cartItem.amount}"/>
+                                property="orderItems.{iterator.index}selectedAmount"
+                                value="{cartItem.selectedAmount}"/>
                         </li>
                         <li>
                             Größe:

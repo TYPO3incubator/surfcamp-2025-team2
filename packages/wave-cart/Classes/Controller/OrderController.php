@@ -47,6 +47,8 @@ class OrderController extends ActionController
 
             $cartItems[] = [
                 'name' => $variant->getName(),
+                'availableAmount' => $variant->getAmount(),
+                'selectedAmount' => 1,
                 'amount' => $variant->getAmount(),
                 'size' => $variant->getSize(),
                 'price' => $product->getPrice(),
