@@ -1,0 +1,16 @@
+<f:link.action action="list">back to list</f:link.action> <br>
+
+{product.name} <br>
+{type} <br>
+
+product not available (if amount for selected variant == 0) <br>
+
+{product.price}€ <br>
+
+<f:for each="{product.variants}" as="variant">
+    {variant.size}
+</f:for>
+
+<button type="button">Add to shopping cart</button> <br>
+
+{product.description}
