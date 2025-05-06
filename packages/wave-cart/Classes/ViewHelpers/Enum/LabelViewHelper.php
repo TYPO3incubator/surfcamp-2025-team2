@@ -11,7 +11,7 @@ class LabelViewHelper extends AbstractViewHelper
         $this->registerArgument(
             'enumClassName',
             'string',
-            'The className of the enum class',
+            'The className of the enum class (you need to specific the full namespace with the class name, e.g. \Vendor\Package\ExampleEnum)',
             true
         );
         $this->registerArgument(
