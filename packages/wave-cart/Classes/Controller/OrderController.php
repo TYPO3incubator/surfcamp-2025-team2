@@ -32,7 +32,11 @@ class OrderController extends ActionController
     public function cartAction(): ResponseInterface
     {
         //TODO get the cart from somewhere
-        $cart = [];
+        $cart = [
+            'variant_id' => '1',
+            'variant_id' => '4',
+            'variant_id' => '6'
+        ];
         $cartItems = $this->prepareCartItems($cart);
 
         $this->view->assignMultiple([
