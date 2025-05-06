@@ -99,8 +99,15 @@ return [
             'exclude' => 0,
             'label' => $ll . 'tx_wavecart_domain_model_order.assignee',
             'config' => [
-                'type' => 'number',
-                'eval' => 'trim'
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        'label' => 'None',
+                        'value' => 0,
+                    ],
+                ],
+                'foreign_table' => 'be_users',
             ],
         ],
         'total_price' => [
