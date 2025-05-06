@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3Incubator\WaveCart\Domain\Model\Product;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductRepository;
+use TYPO3Incubator\WaveCart\Enum\ProductTypeEnum;
 
 class ProductController extends ActionController
 {
@@ -24,7 +25,10 @@ class ProductController extends ActionController
 
     public function detailAction(Product $product): ResponseInterface
     {
+        $type = ProductTypeEnum::from($product->getType())->getLabel();
+
         $this->view->assign('product', $product);
+        $this->view->assign('type', $type);
         return $this->htmlResponse();
     }
 }

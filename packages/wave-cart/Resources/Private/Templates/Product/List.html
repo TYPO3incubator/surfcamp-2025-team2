@@ -1,5 +1,5 @@
 <f:for each="{products}" as="product">
-    {product.name}, {product.price}€ <br>
+    <f:link.action action="detail" arguments="{product:product}">{product.name}</f:link.action>, {product.price}€ <br>
     --------------- <br>
 
 </f:for>
