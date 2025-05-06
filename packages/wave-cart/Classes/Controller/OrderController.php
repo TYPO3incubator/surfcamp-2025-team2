@@ -51,6 +51,7 @@ class OrderController extends ActionController
                 'selectedAmount' => 1,
                 'amount' => $variant->getAmount(),
                 'size' => $variant->getSize(),
+                'image' => $product->getImage(),
                 'price' => $product->getPrice(),
             ];
         }

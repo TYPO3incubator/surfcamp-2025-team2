@@ -36,6 +36,12 @@
                                 value="{cartItem.price}"/>
                             €
                         </li>
+                        <li>
+                            Bild:
+                            <f:form.textfield
+                                property="orderItems.{iterator.index}image"
+                                value="{cartItem.image}"/>
+                        </li>
                     </ul>
                 </li>
             </f:for>
