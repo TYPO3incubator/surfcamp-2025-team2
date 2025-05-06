@@ -1,0 +1,1 @@
+new Set(Array.from(document.querySelectorAll(".tile")).map((e=>e.dataset.type)));

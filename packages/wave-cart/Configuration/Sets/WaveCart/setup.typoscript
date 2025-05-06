@@ -1,0 +1,3 @@
+page.includeCSS.myExtensionCss = EXT:wave_cart/Resources/Public/Css/index.css
+
+page.includeJSFooter.myExtensionJs = EXT:wave_cart/Resources/Public/JavaScript/index.min.js
