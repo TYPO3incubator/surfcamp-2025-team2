@@ -8,6 +8,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductVariantRepository;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3Incubator\WaveCart\Dto\OrderDto;
 
 class OrderController extends ActionController
 {
@@ -43,6 +44,12 @@ class OrderController extends ActionController
             'cartItems' => $cartItems,
         ]);
 
+        return $this->htmlResponse();
+    }
+
+    public function addCustomerDataAction(OrderDto $order)
+    {
+        $this->view->assign('order', $order);
         return $this->htmlResponse();
     }
 
