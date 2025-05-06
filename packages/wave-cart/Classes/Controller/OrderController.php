@@ -31,7 +31,8 @@ class OrderController extends ActionController
      */
     public function cartAction(): ResponseInterface
     {
-        $cart = $GLOBALS['TSFE']->fe_user->getKey('ses', 'cart') ?? [];
+        //TODO get the cart from somewhere
+        $cart = [];
         $cartItems = $this->prepareCartItems($cart);
 
         $this->view->assignMultiple([
