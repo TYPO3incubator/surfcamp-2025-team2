@@ -21,11 +21,18 @@ class OrderController extends ActionController
 
     public function cartAction(): ResponseInterface
     {
-        $cartIds = ['1', '4', '6'];
+        $cartIds = ['1', '4', '2'];
         $orderDto = $this->createOrderDto($cartIds);
 
         $this->view->assign('order', $orderDto);
 
+        return $this->htmlResponse();
+    }
+
+
+    public function addCustomerDataAction(?OrderDto $order=null): ResponseInterface
+    {
+        $this->view->assign('order', $order);
         return $this->htmlResponse();
     }
 

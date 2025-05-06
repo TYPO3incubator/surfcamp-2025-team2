@@ -5,15 +5,15 @@ use TYPO3Incubator\WaveCart\Domain\Model\Product;
 
 class OrderDto
 {
-    protected string $customerLastname;
-    protected string $customerFirstname;
-    protected string $customerAddress;
-    protected string $customerZip;
-    protected string $customerCity;
-    protected string $customerEmail;
-    protected int $paymentMethod;
-    protected float $totalPrice;
-    protected array $orderItems;
+    protected string $customerLastname = '';
+    protected string $customerFirstname = '';
+    protected string $customerAddress = '';
+    protected string $customerZip = '';
+    protected string $customerCity = '';
+    protected string $customerEmail = '';
+    protected int $paymentMethod = 0;
+    protected float $totalPrice = 0;
+    protected array $orderItems = [];
 
     public function getCustomerLastname(): string
     {
