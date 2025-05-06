@@ -1,5 +1,6 @@
+{namespace wave=TYPO3Incubator\WaveCart\ViewHelpers}
 <f:for each="{products}" as="product">
     <f:link.action action="detail" arguments="{product:product}">{product.name}</f:link.action>, {product.price}€ <br>
+    <wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\ProductTypeEnum" value="{product.type}" />
     --------------- <br>
-
 </f:for>
