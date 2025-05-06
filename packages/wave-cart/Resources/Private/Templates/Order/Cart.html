@@ -1,0 +1,53 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+    <f:form action="addCustomerData"
+            controller="Order"
+            objectName="order"
+            object="{order}"
+            method="post">
+
+        <ul>
+            <f:for each="{order.orderItems}" as="cartItem" iteration="iterator">
+                <li>
+                    <ul>
+                        <li>
+                            Name:
+                            <f:form.textfield
+                                property="orderItems.{iterator.index}.name"
+                                value="{cartItem.name}"/>
+                        </li>
+                        <li>
+                            Menge:
+                            <f:form.textfield
+                                property="orderItems.{iterator.index}.selectedAmount"
+                                value="{cartItem.selectedAmount}"/>
+                        </li>
+                        <li>
+                            Größe:
+                            <f:form.textfield
+                                property="orderItems.{iterator.index}.size"
+                                value="{cartItem.size}"/>
+                        </li>
+                        <li>
+                            Preis:
+                            <f:form.textfield
+                                property="orderItems.{iterator.index}.price"
+                                value="{cartItem.price}"/>
+                            €
+                        </li>
+                        <li>
+                            Bild:
+                            <f:form.textfield
+                                property="orderItems.{iterator.index}image"
+                                value="{cartItem.image}"/>
+                        </li>
+                    </ul>
+                </li>
+            </f:for>
+        </ul>
+
+        <f:form.submit value="Weiter"/>
+    </f:form>
+
+</html>

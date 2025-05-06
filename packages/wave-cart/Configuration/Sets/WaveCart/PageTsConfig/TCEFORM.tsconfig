@@ -1,5 +1,5 @@
 TCEFORM {
     tt_content {
-        CType.keepItems := addToList(wavecart_product)
+        CType.keepItems := addToList(wavecart_product, wavecart_order)
     }
 }
