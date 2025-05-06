@@ -1,3 +1,11 @@
-<f:for each="{cartItems}" as="cartItem">
-    {cartItem.name}, {cartItem.price}€ <br>
-</f:for>
+<ul>
+    <f:for each="{cartItems}" as="cartItem">
+        <li>
+            <ul>
+                <li>Name: {cartItem.name}</li>
+                <li>Lagerbestand: {cartItem.amount}</li>
+                <li>Preis: {cartItem.price} €</li>
+            </ul>
+        </li>
+    </f:for>
+</ul>
