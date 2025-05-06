@@ -33,6 +33,7 @@
     <div class="tile-container">
         <f:for each="{products}" as="product">
             <div class="tile" data-type="{product.type}">
+                <wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\ProductTypeEnum" value="{product.type}" />
                 <f:link.action action="detail" arguments="{product:product}">
                     <div class="tile-container--image">
                         <img src="https://s7d2.scene7.com/is/image/FoxRacing/32874001_2?$dw_detn1$&fmt=webp-alpha" />
