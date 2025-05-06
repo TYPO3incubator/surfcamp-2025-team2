@@ -91,7 +91,7 @@ return [
             'label' => $ll . 'tx_wavecart_domain_model_product.variants',
             'config' => [
                 'type' => 'inline',
-                'foreign_table' => 'tx_wavecart_domain_model_product_variant',
+                'foreign_table' => 'tx_wavecart_domain_model_productvariant',
                 'foreign_field' => 'product',
                 'maxitems' => 9999,
             ],
