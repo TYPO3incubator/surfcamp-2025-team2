@@ -1,6 +1,8 @@
 <?php
 namespace TYPO3Incubator\WaveCart\Dto;
 
+use TYPO3Incubator\WaveCart\Domain\Model\Product;
+
 class OrderDto
 {
     protected string $customerLastname;

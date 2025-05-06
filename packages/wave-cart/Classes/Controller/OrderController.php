@@ -6,8 +6,8 @@ namespace TYPO3Incubator\WaveCart\Controller;
 
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductVariantRepository;
-use Psr\Http\Message\ResponseInterface;
 use TYPO3Incubator\WaveCart\Dto\OrderDto;
+use Psr\Http\Message\ResponseInterface;
 
 class OrderController extends ActionController
 {
@@ -21,29 +21,20 @@ class OrderController extends ActionController
 
     public function cartAction(): ResponseInterface
     {
-        //TODO get the cart from somewhere else
-        $cart = ['1', '4', '6'];
-        $cartItems = $this->prepareCartItems($cart);
+        $cartIds = ['1', '4', '6'];
+        $orderDto = $this->createOrderDto($cartIds);
 
-        $this->view->assignMultiple([
-            'cartItems' => $cartItems,
-        ]);
+        $this->view->assign('order', $orderDto);
 
         return $this->htmlResponse();
     }
 
-    public function addCustomerDataAction(OrderDto $order): ResponseInterface
+    private function createOrderDto(array $variantIds): OrderDto
     {
-        $this->view->assign('order', $order);
-
-        return $this->htmlResponse();
-    }
-
-    private function prepareCartItems(array $cart): array
-    {
+        $orderDto = new OrderDto();
         $cartItems = [];
 
-        foreach ($cart as $key => $variantUid) {
+        foreach ($variantIds as $variantUid) {
             $variant = $this->productVariantRepository->findByUid($variantUid);
             if (!$variant) {
                 continue;
@@ -55,8 +46,6 @@ class OrderController extends ActionController
             }
 
             $cartItems[] = [
-                'key' => $key,
-                'id' => $variant->getUid(),
                 'name' => $variant->getName(),
                 'amount' => $variant->getAmount(),
                 'size' => $variant->getSize(),
@@ -64,6 +53,8 @@ class OrderController extends ActionController
             ];
         }
 
-        return $cartItems;
+        $orderDto->setOrderItems($cartItems);
+
+        return $orderDto;
     }
 }
