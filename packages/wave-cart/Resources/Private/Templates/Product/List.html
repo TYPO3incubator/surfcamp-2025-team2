@@ -1,39 +1,34 @@
-
+{namespace wave=TYPO3Incubator\WaveCart\ViewHelpers}
 <div class="container">
     <h1 class="headline">Products</h1>
     <div class="filter-container">
         <label for="type-select">Choose type:</label>
         <select name="types" id="type-select">
-            <option value="">--Please choose an option--</option>
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            <option value="hamster">Hamster</option>
-            <option value="parrot">Parrot</option>
-            <option value="spider">Spider</option>
         </select>
         <label for="size-select">Choose size:</label>
         <select name="types" id="size-select">
-            <option value="">--Please choose an option--</option>
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            <option value="hamster">Hamster</option>
-            <option value="parrot">Parrot</option>
-            <option value="spider">Spider</option>
         </select>
         <label for="sort-select">Choose size:</label>
         <select name="types" id="sort-select">
-            <option value="">--Please choose an option--</option>
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            <option value="hamster">Hamster</option>
-            <option value="parrot">Parrot</option>
-            <option value="spider">Spider</option>
+            <option value="default">Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
         </select>
     </div>
-    <div class="tile-container">
+    <div class="tile-container" id="tile-container">
         <f:for each="{products}" as="product">
-            <div class="tile" data-type="{product.type}">
+            <f:variable name="typeLabel">
                 <wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\ProductTypeEnum" value="{product.type}" />
+            </f:variable>
+<!--            <f:debug>{product}</f:debug>-->
+            <f:variable name="sizeList">
+                [
+                <f:for each="{product.variants}" as="variant" iteration="i">
+                    "{variant.size}"<f:if condition="!{i.isLast}">,</f:if>
+                </f:for>
+                ]
+            </f:variable>
+            <div class="tile" data-type="{typeLabel}" data-variants='{sizeList}' data-price='{product.price}'>
                 <f:link.action action="detail" arguments="{product:product}">
                     <div class="tile-container--image">
                         <img src="https://s7d2.scene7.com/is/image/FoxRacing/32874001_2?$dw_detn1$&fmt=webp-alpha" />
