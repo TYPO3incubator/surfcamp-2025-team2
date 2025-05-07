@@ -1,7 +1,48 @@
 {namespace wave=TYPO3Incubator\WaveCart\ViewHelpers}
-<f:for each="{products}" as="product">
-    <f:link.action action="detail" arguments="{product:product}">{product.name}</f:link.action>, {product.price}€ <br>
-    <wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\ProductTypeEnum" value="{product.type}" />
-    <f:image image="{product.image}" /><br/>
-    --------------- <br>
-</f:for>
+<div class="container">
+    <h1 class="headline">Products</h1>
+    <div class="filter-container">
+        <label for="type-select">Choose type:</label>
+        <select name="types" id="type-select">
+        </select>
+        <label for="size-select">Choose size:</label>
+        <select name="types" id="size-select">
+        </select>
+        <label for="sort-select">Choose Sort:</label>
+        <select name="types" id="sort-select">
+            <option value="default">Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+        </select>
+    </div>
+    <div class="tile-container" id="tile-container">
+        <f:for each="{products}" as="product">
+            <f:variable name="typeLabel">
+                <wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\ProductTypeEnum" value="{product.type}" />
+            </f:variable>
+            <f:variable name="sizeList">
+                [
+                <f:for each="{product.variants}" as="variant" iteration="i">
+                    "{variant.size}"<f:if condition="!{i.isLast}">,</f:if>
+                </f:for>
+                ]
+            </f:variable>
+            <div class="tile" data-type="{typeLabel}" data-variants='{sizeList}' data-price='{product.price}'>
+                <f:link.action action="detail" arguments="{product:product}">
+                    <div class="tile-container--image">
+                        <f:image image="{product.image}" />
+                    </div>
+                    <div class="tile-container--headline">
+                        {product.name}
+                    </div>
+                    <div class="tile-container--price">
+                        {product.price}€
+                    </div>
+                </f:link.action>
+            </div>
+        </f:for>
+    </div>
+</div>
+
+
+
