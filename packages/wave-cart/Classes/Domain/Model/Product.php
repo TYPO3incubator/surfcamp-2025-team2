@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\WaveCart\Domain\Model;
 
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -17,7 +18,7 @@ class Product extends AbstractEntity
 {
     protected string $name = '';
     protected string $description = '';
-    protected string $image = '';
+    protected ?FileReference $image = null;
     protected string $type = '';
     protected float $price = 0.0;
     protected float $taxRate = 0.0;
@@ -52,12 +53,12 @@ class Product extends AbstractEntity
         $this->description = $description;
     }
 
-    public function getImage(): string
+    public function getImage(): ?FileReference
     {
         return $this->image;
     }
 
-    public function setImage(string $image): void
+    public function setImage(?FileReference $image): void
     {
         $this->image = $image;
     }
