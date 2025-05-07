@@ -1,10 +1,23 @@
 Address data <br>
 
-<f:form action="summaryAddPaymentMethod"
+<f:form action="submit"
         controller="Order"
         objectName="order"
         object="{order}"
         method="post">
+
+    <ul>
+        <f:for each="{order.orderItems}" as="cartItem" iteration="iterator">
+            <li>
+                {cartItem.image}
+                {cartItem.name}
+                {cartItem.size}
+                {cartItem.price}
+                {cartItem.selectedAmount}
+            </li>
+        </f:for>
+    </ul>
+
     <div>
         <f:form.textfield property="customerLastname" name="customerLastname"
                           value="{order.customerLastname}" id="tx-wavecart-lastname" placeholder="Lastname" />

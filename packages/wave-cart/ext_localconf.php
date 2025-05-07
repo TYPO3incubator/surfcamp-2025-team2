@@ -19,7 +19,7 @@ ExtensionUtility::configurePlugin(
 ExtensionUtility::configurePlugin(
     'WaveCart',
     'Order',
-    [OrderController::class => 'cart,addCustomerData'],
+    [OrderController::class => 'cart,addCustomerData,summaryAddPaymentMethod'],
     [],
     ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
 );

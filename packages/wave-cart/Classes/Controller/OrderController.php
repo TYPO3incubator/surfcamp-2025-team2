@@ -8,6 +8,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductVariantRepository;
 use TYPO3Incubator\WaveCart\Dto\OrderDto;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3Incubator\WaveCart\Dto\OrderItemDto;
 
 class OrderController extends ActionController
 {
@@ -36,6 +37,14 @@ class OrderController extends ActionController
         return $this->htmlResponse();
     }
 
+    public function summaryAddPaymentMethodAction(?OrderDto $order=null): ResponseInterface
+    {
+        $totalPrice = $order->calculateTotalPrice();
+
+        $this->view->assign('order', $order);
+        return $this->htmlResponse();
+    }
+
     private function createOrderDto(array $variantIds): OrderDto
     {
         $orderDto = new OrderDto();
@@ -52,15 +61,15 @@ class OrderController extends ActionController
                 continue;
             }
 
-            $cartItems[] = [
-                'name' => $variant->getName(),
-                'availableAmount' => $variant->getAmount(),
-                'selectedAmount' => 1,
-                'amount' => $variant->getAmount(),
-                'size' => $variant->getSize(),
-                'image' => $product->getImage(),
-                'price' => $product->getPrice(),
-            ];
+            $newCartItem = new OrderItemDto();
+            $newCartItem->setName($variant->getName());
+            $newCartItem->setAvailableAmount($variant->getAmount());
+            $newCartItem->setSelectedAmount(1);
+            $newCartItem->setSize($variant->getSize());
+            $newCartItem->setImage($product->getImage());
+            $newCartItem->setPrice($product->getPrice());
+
+            $cartItems[] = $newCartItem;
         }
 
         $orderDto->setOrderItems($cartItems);

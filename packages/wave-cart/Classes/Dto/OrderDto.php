@@ -104,4 +104,16 @@ class OrderDto
     {
         $this->orderItems = $orderItems;
     }
+
+    public function calculateTotalPrice(): float
+    {
+        $totalPrice = 0;
+        foreach ($this->orderItems as $orderItem) {
+            $totalPrice += $orderItem->getPrice() * $orderItem->getAvailableAmount();
+        }
+
+        $this->totalPrice = $totalPrice;
+
+        return $totalPrice;
+    }
 }
