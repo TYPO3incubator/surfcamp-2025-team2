@@ -7,3 +7,6 @@ services:
   TYPO3Incubator\WaveCart\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
+
+  TYPO3Incubator\WaveCart\Controller\ListOrderController:
+    public: true
