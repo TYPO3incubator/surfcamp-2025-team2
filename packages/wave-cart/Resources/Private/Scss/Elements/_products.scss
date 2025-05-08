@@ -58,7 +58,7 @@ $primary-text-color: black;
     padding: 5px;
     border-radius: 5px;
     border: solid silver 2px;
-    margin-right: 10%;
+    margin-right: 2rem;
 
     @media (max-width: 900px) {
       margin-bottom: 16px;
@@ -68,6 +68,10 @@ $primary-text-color: black;
     &:nth-child(3n) {
       margin-right: 0;
     }
+  }
+
+  label {
+    min-width: 10%;
   }
 }
 
