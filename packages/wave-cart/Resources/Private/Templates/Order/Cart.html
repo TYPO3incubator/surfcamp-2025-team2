@@ -17,7 +17,7 @@
 
         <ul id="cartList">
             <f:for each="{cart.cartItems}" as="cartItem" iteration="iterator">
-                <li class="cart-item">
+                <li class="cart-item" data-id="{cartItem.variantId}">
                     <f:image class="cart-item-image" image="{cartItem.image}" />
                     <div class="item-details">
                         <span class="item-name">{cartItem.name}</span>

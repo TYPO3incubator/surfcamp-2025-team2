@@ -219,7 +219,7 @@ document.querySelectorAll('.amount-control').forEach(control => {
         decreaseBtn.addEventListener('click', () => {
             let amount = parseInt(amountInput.value, 10) || 0;
             if (amount === 1) {
-                // Optionally remove item or trigger delete
+                removeId(parseInt(control.closest('.cart-item').dataset.id))
                 control.closest('.cart-item').remove();
             } else if (amount > 1) {
                 amount--;
