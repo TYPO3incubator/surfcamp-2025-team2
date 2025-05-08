@@ -80,7 +80,6 @@ class OrderController extends ActionController
         $this->updateStock($order);
         $this->sendOrderMails($order);
 
-        $this->view->assign('cart', $cart);
         return $this->htmlResponse();
     }
 
@@ -158,12 +157,12 @@ class OrderController extends ActionController
 
     private function updateStock(Order $order): void
     {
-        foreach ($order->getOrderItems() as $cartItem) {
-            $variantUid = $cartItem->getVariantId();
+        foreach ($order->getOrderItems() as $orderItem) {
+            $variantUid = $orderItem->getVariantId();
             $variant = $this->productVariantRepository->findByUid($variantUid);
 
             if ($variant) {
-                $newAmount = $variant->getAmount() - $cartItem->getAmount();
+                $newAmount = $variant->getAmount() - $orderItem->getAmount();
                 $variant->setAmount(max($newAmount, 0));
 
                 $this->productVariantRepository->update($variant);
