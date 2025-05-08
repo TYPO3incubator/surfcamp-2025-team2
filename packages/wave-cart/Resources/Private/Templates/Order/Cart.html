@@ -15,31 +15,35 @@
             objectName="cart"
             object="{cart}"
             method="post">
+        <f:if condition="{cart.cartItems}">
+            <ul id="cartList">
+                <f:for each="{cart.cartItems}" as="cartItem" iteration="iterator">
+                    <li class="cart-item" data-id="{cartItem.variantId}">
+                        <f:image class="cart-item-image" image="{cartItem.image}" />
+                        <div class="item-details">
+                            <span class="item-name">{cartItem.name}</span>
+                            <span class="item-size">Size: {cartItem.size}</span>
+                        </div>
 
-        <ul id="cartList">
-            <f:for each="{cart.cartItems}" as="cartItem" iteration="iterator">
-                <li class="cart-item" data-id="{cartItem.variantId}">
-                    <f:image class="cart-item-image" image="{cartItem.image}" />
-                    <div class="item-details">
-                        <span class="item-name">{cartItem.name}</span>
-                        <span class="item-size">Size: {cartItem.size}</span>
-                    </div>
-
-                    <div class="amount-control" data-index="{iterator.index}">
-                        <button type="button" class="decrease-btn">
-                            🗑
-                        </button>
-                        <f:form.textfield
-                            property="cartItems.{iterator.index}.amount"
-                            value="{cartItem.amount}" class="amount-number"/>
-                        <button type="button" class="increase-btn">+</button>
-                    </div>
-                    <span class="item-price" data-price="{cartItem.price}">
+                        <div class="amount-control" data-index="{iterator.index}">
+                            <button type="button" class="decrease-btn">
+                                🗑
+                            </button>
+                            <f:form.textfield
+                                property="cartItems.{iterator.index}.amount"
+                                value="{cartItem.amount}" class="amount-number"/>
+                            <button type="button" class="increase-btn">+</button>
+                        </div>
+                        <span class="item-price" data-price="{cartItem.price}">
                     {cartItem.price -> f:format.number(decimals: 2)}€
                 </span>
-                </li>
-            </f:for>
-        </ul>
+                    </li>
+                </f:for>
+            </ul>
+            <f:else>
+                <p>Your shopping cart is empty.</p>
+            </f:else>
+        </f:if>
         <div class="cart-discount-control">
             <span class="redeem-status"></span>
             <f:form.hidden class="hidden-discount-code" property="discountCode" value="{cart.discountCode}" />
