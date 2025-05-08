@@ -1,34 +1,40 @@
 Address data <br>
 
+<ul>
+    <f:for each="{order.orderItems}" as="cartItem" iteration="iterator">
+        <li>
+            {cartItem.image}<br>
+            {cartItem.name}<br>
+            {cartItem.size}<br>
+            {cartItem.price}<br>
+            {cartItem.selectedAmount}
+        </li>
+    </f:for>
+</ul>
+------------ <br>
+
+{order.totalPrice}€<br>
+------------ <br>
+{order.customerLastname}<br>
+{order.customerFirstname}<br>
+{order.customerEmail}<br>
+{order.customerAddress}, {order.customerZip} {order.customerCity}
+
+<br>
+------------ <br>
+
 <f:form action="submit"
         controller="Order"
         objectName="order"
         object="{order}"
         method="post">
-
-    <ul>
-        <f:for each="{order.orderItems}" as="cartItem" iteration="iterator">
-            <li>
-                {cartItem.image}<br>
-                {cartItem.name}<br>
-                {cartItem.size}<br>
-                {cartItem.price}<br>
-                {cartItem.selectedAmount}
-            </li>
-        </f:for>
-    </ul>
-    ------------ <br>
-
-    {order.totalPrice}<br>
-    ------------ <br>
-    {order.customerLastname}<br>
-    {order.customerFirstname}<br>
-    {order.email}<br>
-    {order.customerAddress}, {order.customerZip} {order.customerCity}
-
-
     <div>
-        <f:link.action action="cart">Back</f:link.action>
-        <f:form.submit value="Weiter" />
+        <f:form.radio property="paymentMethod" id="paymentMethod" value="0"/>
+        <label for="paymentMethod">Payment Method</label>
+    </div>
+    <div>
+        <f:link.action action="addCustomerData" arguments="{order:order}">Back</f:link.action>
+        <f:form.submit value="Submit"/>
     </div>
 </f:form>
+
