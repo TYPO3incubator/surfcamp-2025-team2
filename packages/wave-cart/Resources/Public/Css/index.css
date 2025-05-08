@@ -362,3 +362,9 @@ input {
   display: flex;
   margin-left: 20px;
 }
+
+.finishContainer {
+  margin: 100px;
+  text-align: center;
+  justify-content: center;
+}
