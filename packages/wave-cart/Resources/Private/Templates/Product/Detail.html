@@ -1,17 +1,34 @@
-<f:link.action action="list">back to list</f:link.action> <br>
+<div class="spacer"></div>
+<f:link.action action="list" class="backLink">&larr; back to list</f:link.action>
 
-{product.name} <br>
-{type} <br>
+<div class="product-detail">
+    <div class="product-image">
+        <f:image image="{product.image}" />
+    </div>
+    <div class="product-data">
+        <h1>
+            {product.name}
+        </h1>
+        {type} <br>
 
-product not available (if amount for selected variant == 0) <br>
-<f:image image="{product.image}" />
+        <f:if condition="{f:count(subject: product.variants)} > 0">
+            <p class="variant-label">Size:</p>
+        </f:if>
+        <div class="variants-container">
+            <f:for each="{product.variants}" as="variant">
+                <div class="variant-option {f:if(condition: '{variant.amount} == 0', then: 'sold-out')}" data-id="{variant.uid}">
+                    {variant.size}
+                </div>
+            </f:for>
+        </div>
+        <br>
+        <p class="variant-label">Price:</p>
+        {product.price}€ <br>
 
-{product.price}€ <br>
 
-<f:for each="{product.variants}" as="variant">
-    {variant.size}
-</f:for>
-
-<button type="button">Add to shopping cart</button> <br>
-
-{product.description}
+        <button id="addToCart" class="btn btn-primary" disabled>Add to shopping cart</button> <br>
+        <br>
+        <p class="variant-label">Description:</p>
+        {product.description}
+    </div>
+</div>
