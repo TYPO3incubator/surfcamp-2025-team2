@@ -3,9 +3,9 @@
 
 <h2>Customer Details:</h2>
 <p>
-    Name: {cart.customerFirstname} {cart.customerLastname}<br>
-    Email: {cart.customerEmail}<br>
-    Payment Method: {cart.paymentMethod}
+    Name: {order.customerFirstname} {order.customerLastname}<br>
+    Email: {order.customerEmail}<br>
+    Payment Method: {order.paymentMethod}
 </p>
 
 <h2>Order Summary:</h2>
@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <f:for each="{cart.cartItems}" as="item">
+        <f:for each="{order.orderItems}" as="item">
             <tr>
                 <td>{item.name}</td>
                 <td>{item.amount}</td>
@@ -28,5 +28,5 @@
     </tbody>
 </table>
 
-<p>Total Price: {cart.totalPrice} €</p>
+<p>Total Price: {order.totalPrice} €</p>
 <p>Please process this order as soon as possible.</p>

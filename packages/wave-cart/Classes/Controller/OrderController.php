@@ -19,6 +19,7 @@ use TYPO3Incubator\WaveCart\Domain\Repository\CartItemRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\CartRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\OrderRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductVariantRepository;
+use TYPO3Incubator\WaveCart\Enum\OrderStatusEnum;
 
 class OrderController extends ActionController
 {
@@ -75,15 +76,15 @@ class OrderController extends ActionController
 
     public function submitAction(?Cart $cart = null): ResponseInterface
     {
-        $this->persistOrder($cart);
-        $this->updateStock($cart);
-        $this->sendOrderMails($cart);
+        $order = $this->persistOrder($cart);
+        $this->updateStock($order);
+        $this->sendOrderMails($order);
 
         $this->view->assign('cart', $cart);
         return $this->htmlResponse();
     }
 
-    private function persistOrder(Cart $cart): void
+    private function persistOrder(Cart $cart): Order
     {
         $order = new Order();
         $order->setCustomerFirstname($cart->getCustomerFirstname());
@@ -95,6 +96,7 @@ class OrderController extends ActionController
         $order->setCustomerCity($cart->getCustomerCity());
         $order->setPaymentMethod($cart->getPaymentMethod());
         $order->setTotalPrice($cart->calculateTotalPrice());
+        $order->setStatus(OrderStatusEnum::new->value);
 
         foreach ($cart->getCartItems() as $cartItem) {
             $orderItem = new OrderItem();
@@ -114,9 +116,11 @@ class OrderController extends ActionController
         $this->orderRepository->add($order);
         $this->cartRepository->remove($cart);
         $this->persistenceManager->persistAll();
+
+        return $order;
     }
 
-    private function sendOrderMails(Cart $cart): void
+    private function sendOrderMails(Order $order): void
     {
         $mailer = new FluidEmail();
 
@@ -125,7 +129,7 @@ class OrderController extends ActionController
         $fromSubject = $settings->get('waveCart.mailFromSubject');
         $receiverAddress = $settings->get('waveCart.mailReceiverAddress');
         $receiverSubject = $settings->get('waveCart.mailReceiverSubject');
-        $senderEmail = $cart->getCustomerEmail();
+        $senderEmail = $order->getCustomerEmail();
 
         $emailToSender = $mailer
             ->to($senderEmail)
@@ -133,7 +137,7 @@ class OrderController extends ActionController
             ->subject($fromSubject)
             ->format('html')
             ->assignMultiple([
-                'cart' => $cart,
+                'order' => $order,
             ])
             ->setTemplate('Sender');
 
@@ -145,16 +149,16 @@ class OrderController extends ActionController
             ->subject($receiverSubject)
             ->format('html')
             ->assignMultiple([
-                'cart' => $cart,
+                'order' => $order,
             ])
             ->setTemplate('Receiver');
 
         GeneralUtility::makeInstance(MailerInterface::class)->send($receiverEmail);
     }
 
-    private function updateStock(Cart $cart): void
+    private function updateStock(Order $order): void
     {
-        foreach ($cart->getCartItems() as $cartItem) {
+        foreach ($order->getOrderItems() as $cartItem) {
             $variantUid = $cartItem->getVariantId();
             $variant = $this->productVariantRepository->findByUid($variantUid);
 

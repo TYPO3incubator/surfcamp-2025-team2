@@ -73,17 +73,6 @@ return [
                 'eval' => 'trim'
             ],
         ],
-        'status' => [
-            'exclude' => 0,
-            'label' => $ll . 'tx_wavecart_domain_model_cart.status',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'minitems' => 1,
-                'maxitems' => 1,
-                'items' => OrderStatusEnum::getTcaOptions(),
-            ],
-        ],
         'payment_method' => [
             'exclude' => 0,
             'label' => $ll . 'tx_wavecart_domain_model_cart.payment_method',
@@ -93,21 +82,6 @@ return [
                 'minitems' => 1,
                 'maxitems' => 1,
                 'items' => PaymentMethodEnum::getTcaOptions(),
-            ],
-        ],
-        'assignee' => [
-            'exclude' => 0,
-            'label' => $ll . 'tx_wavecart_domain_model_cart.assignee',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'items' => [
-                    [
-                        'label' => 'None',
-                        'value' => 0,
-                    ],
-                ],
-                'foreign_table' => 'be_users',
             ],
         ],
         'total_price' => [

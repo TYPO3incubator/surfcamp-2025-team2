@@ -1,5 +1,5 @@
 <h1>Thank you for your order!</h1>
-<p>Dear {cart.customerFirstname} {cart.customerLastname},</p>
+<p>Dear {order.customerFirstname} {order.customerLastname},</p>
 <p>We have received your order and are currently processing it:</p>
 
 <h2>Order Summary:</h2>
@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <f:for each="{cart.cartItems}" as="item">
+        <f:for each="{order.orderItems}" as="item">
             <tr>
                 <td>{item.name}</td>
                 <td>{item.amount}</td>
@@ -22,9 +22,9 @@
     </tbody>
 </table>
 
-<p>Total Price: {cart.totalPrice} €</p>
+<p>Total Price: {order.totalPrice} €</p>
 
-<f:if condition="{cart.paymentMethod} == 0">
+<f:if condition="{order.paymentMethod} == 0">
     <p>Please transfer the total amount to the following bank account:</p>
     <p>
         IBAN: DE12 3456 7890 1234 5678 90<br>

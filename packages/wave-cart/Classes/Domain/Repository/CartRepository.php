@@ -12,6 +12,5 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class CartRepository extends Repository
 {
-    const TABLE_NAME = 'tx_wavecart_domain_model_cart';
-
+    
 }

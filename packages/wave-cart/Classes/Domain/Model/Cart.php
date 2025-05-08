@@ -12,9 +12,7 @@ class Cart extends AbstractEntity
     protected string $customerZip = '';
     protected string $customerCity = '';
     protected string $customerEmail = '';
-    protected int $status = 0;
     protected int $paymentMethod = 0;
-    protected int $assignee = 0;
     protected float $totalPrice = 0;
 
     protected ?ObjectStorage $cartItems = null;
@@ -84,16 +82,6 @@ class Cart extends AbstractEntity
         $this->customerEmail = $customerEmail;
     }
 
-    public function getStatus(): int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): void
-    {
-        $this->status = $status;
-    }
-
     public function getPaymentMethod(): int
     {
         return $this->paymentMethod;
@@ -102,16 +90,6 @@ class Cart extends AbstractEntity
     public function setPaymentMethod(int $paymentMethod): void
     {
         $this->paymentMethod = $paymentMethod;
-    }
-
-    public function getAssignee(): int
-    {
-        return $this->assignee;
-    }
-
-    public function setAssignee(int $assignee): void
-    {
-        $this->assignee = $assignee;
     }
 
     public function getTotalPrice(): float
@@ -129,17 +107,12 @@ class Cart extends AbstractEntity
         $this->cartItems?->attach($cartItem);
     }
 
-    /**
-     * Remove a post from this blog
-     */
     public function removeCartItem(CartItem $cartItemToRemove): void
     {
         $this->cartItems?->detach($cartItemToRemove);
     }
 
     /**
-     * Returns all posts in this blog
-     *
      * @return ObjectStorage<CartItem>
      */
     public function getCartItems(): ObjectStorage
