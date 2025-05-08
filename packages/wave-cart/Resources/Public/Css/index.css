@@ -297,10 +297,12 @@ a:hover {
 }
 
 .amount-control .amount-number {
+  all: unset;
+  width: 30px;
   min-width: 30px;
   text-align: center;
   font-size: 14px;
-  padding: 4px;
+  padding: 4px 0;
 }
 
 .increase-btn {
