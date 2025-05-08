@@ -4,8 +4,18 @@ categories:
   WaveCart.mail:
     label: 'Mail'
     parent: 'WaveCart'
+  WaveCart.invoice:
+    label: 'Invoice'
+    parent: 'WaveCart'
 
 settings:
+  waveCart.invoice.company:
+    label: 'Company'
+    category: WaveCart.invoice
+    description: 'Name of the Company for invoice generation'
+    type: string
+    default: 'Wave Cart'
+
   waveCart.cartPageId:
     label: 'Cart Page Id'
     category: WaveCart
