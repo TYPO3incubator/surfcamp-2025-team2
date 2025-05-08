@@ -102,6 +102,8 @@ class OrderController extends ActionController
         $this->orderRepository->update($order);
         $this->persistenceManager->persistAll();
 
+        // reset cartCookie
+        setcookie("cartCookie", "", time() - 3600);
         $this->updateStock($order);
         $this->updateDiscountCodeStock($order);
         $this->sendSenderOrderMails($order);
