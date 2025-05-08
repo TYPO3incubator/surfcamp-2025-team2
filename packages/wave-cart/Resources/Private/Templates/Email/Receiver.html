@@ -1,3 +1,4 @@
+{namespace wave=TYPO3Incubator\WaveCart\ViewHelpers}
 <h1>New Order Received!</h1>
 <p>A new order has been placed in the online shop:</p>
 
@@ -5,7 +6,7 @@
 <p>
     Name: {order.customerFirstname} {order.customerLastname}<br>
     Email: {order.customerEmail}<br>
-    Payment Method: {order.paymentMethod}
+    Payment Method: <wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\PaymentMethodEnum" value="{order.paymentMethod}" />
 </p>
 
 <h2>Order Summary:</h2>
@@ -27,6 +28,6 @@
         </f:for>
     </tbody>
 </table>
-
+<p>Total discount: {order.discountValue} €</p>
 <p>Total Price: {order.totalPrice} €</p>
 <p>Please process this order as soon as possible.</p>

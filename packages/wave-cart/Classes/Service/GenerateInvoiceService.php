@@ -79,13 +79,15 @@ class GenerateInvoiceService
     protected function calculateTax(Order $order): array
     {
         $tax = 0;
+        $totalPrice = 0;
         foreach ($order->getOrderItems() as $orderItem) {
+            $totalPrice += $orderItem->getPrice();
             $tax += ($orderItem->getPrice() * 0.07);
         }
 
         return [
             'tax' => $tax,
-            'subtotal' => $order->getTotalPrice() - $tax,
+            'subtotal' => $totalPrice - $tax,
         ];
     }
 }

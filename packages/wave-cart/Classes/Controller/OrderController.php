@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\WaveCart\Controller;
 
+use Doctrine\DBAL\Exception;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Mail\FluidEmail;
@@ -11,15 +12,20 @@ use TYPO3\CMS\Core\Mail\MailerInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3Incubator\WaveCart\Domain\Model\Cart;
 use TYPO3Incubator\WaveCart\Domain\Model\CartItem;
+use TYPO3Incubator\WaveCart\Domain\Model\DiscountCode;
 use TYPO3Incubator\WaveCart\Domain\Model\Order;
 use TYPO3Incubator\WaveCart\Domain\Model\OrderItem;
 use TYPO3Incubator\WaveCart\Domain\Repository\CartItemRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\CartRepository;
+use TYPO3Incubator\WaveCart\Domain\Repository\DiscountCodeRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\OrderRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductVariantRepository;
+use TYPO3Incubator\WaveCart\Enum\DiscountTypeEnum;
 use TYPO3Incubator\WaveCart\Enum\OrderStatusEnum;
 use TYPO3Incubator\WaveCart\Service\GenerateInvoiceService;
 
@@ -31,14 +37,16 @@ class OrderController extends ActionController
         protected CartItemRepository $cartItemRepository,
         protected OrderRepository $orderRepository,
         protected PersistenceManager $persistenceManager,
-        protected GenerateInvoiceService $generateInvoiceService
-    ) {
+        protected GenerateInvoiceService $generateInvoiceService,
+        protected DiscountCodeRepository $discountCodeRepository
+    )
+    {
     }
 
     public function cartAction(): ResponseInterface
     {
-        $cartIds = ['1', '2', '3', '4'];
-        $cart = $this->createCart($cartIds);
+        $variantIds = json_decode(urldecode($_COOKIE['cartCookie'] ?? '[]'));
+        $cart = $this->createCart(is_array($variantIds) ? $variantIds : []);
         $this->cartRepository->add($cart);
         $this->persistenceManager->persistAll();
         $this->view->assign('cart', $cart);
@@ -55,6 +63,11 @@ class OrderController extends ActionController
         return $this->htmlResponse();
     }
 
+    /**
+     * @throws UnknownObjectException
+     * @throws IllegalObjectTypeException
+     * @throws Exception
+     */
     public function summaryAndPaymentMethodAction(?Cart $cart = null): ResponseInterface
     {
         if (!$this->isValidEmail($cart->getCustomerEmail())) {
@@ -69,7 +82,8 @@ class OrderController extends ActionController
                 ]);
         }
 
-        $totalPrice = $cart->calculateTotalPrice();
+        $discount = $this->checkDiscount($cart);
+        $totalPrice = $cart->calculateTotalPrice($discount);
         $cart->setTotalPrice($totalPrice);
         $this->cartRepository->update($cart);
         $this->persistenceManager->persistAll();
@@ -78,6 +92,9 @@ class OrderController extends ActionController
         return $this->htmlResponse();
     }
 
+    /**
+     * @throws Exception
+     */
     public function submitAction(?Cart $cart = null): ResponseInterface
     {
         $order = $this->persistOrder($cart);
@@ -86,6 +103,7 @@ class OrderController extends ActionController
         $this->persistenceManager->persistAll();
 
         $this->updateStock($order);
+        $this->updateDiscountCodeStock($order);
         $this->sendSenderOrderMails($order);
         $this->sendReceiverOrderMails($order);
 
@@ -113,7 +131,9 @@ class OrderController extends ActionController
         $order->setCustomerEmail($cart->getCustomerEmail());
         $order->setCustomerCity($cart->getCustomerCity());
         $order->setPaymentMethod($cart->getPaymentMethod());
-        $order->setTotalPrice($cart->calculateTotalPrice());
+        $order->setTotalPrice($cart->getTotalPrice());
+        $order->setDiscountCode($cart->getDiscountCode());
+        $order->setDiscountValue($cart->getDiscountValue());
         $order->setStatus(OrderStatusEnum::new->value);
 
         foreach ($cart->getCartItems() as $cartItem) {
@@ -204,6 +224,30 @@ class OrderController extends ActionController
         $this->persistenceManager->persistAll();
     }
 
+    /**
+     * @throws Exception
+     */
+    protected function updateDiscountCodeStock(Order $order): void
+    {
+        /** @var DiscountCode $discountCode */
+        $discountCode = $this->discountCodeRepository->findOneBy(['code' => $order->getDiscountCode()]);
+        if ($discountCode === null) {
+            return;
+        }
+
+        if ($discountCode->isHasRedeemMaximum()) {
+            $discountCode->setCurrentRedeemAmount($discountCode->getCurrentRedeemAmount() - 1);
+            if ($discountCode->getCurrentRedeemAmount() <= 0) {
+                $this->discountCodeRepository->remove($discountCode);
+            } else {
+                $this->discountCodeRepository->update($discountCode);
+            }
+
+            $this->persistenceManager->persistAll();
+        }
+
+    }
+
     private function createCart(array $variantIds): Cart
     {
         $settings = $this->request->getAttribute('site')->getSettings();
@@ -215,6 +259,10 @@ class OrderController extends ActionController
         $cartItems = [];
 
         foreach ($variantIds as $variantUid) {
+            if (!is_int($variantUid)) {
+                continue;
+            }
+
             $variant = $this->productVariantRepository->findByUid($variantUid);
             if (!$variant) {
                 continue;
@@ -239,5 +287,35 @@ class OrderController extends ActionController
         }
 
         return $cart;
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function checkDiscount(Cart $cart): float
+    {
+        if ($cart->getDiscountCode() !== '' && $cart->getDiscountValue() != 0) {
+            /** @var DiscountCode $discountCode */
+            $discountCode = $this->discountCodeRepository->findOneBy(['code' => $cart->getDiscountCode()]);
+
+            if ($discountCode === null) {
+                return 0;
+            }
+
+            if ($discountCode->getType() === DiscountTypeEnum::relative->value) {
+                $calculatedDiscount = - $cart->calculateTotalPrice() * ($discountCode->getDiscount() / 100);
+            } else {
+                $calculatedDiscount = - $discountCode->getDiscount();
+            }
+
+
+            if ($calculatedDiscount !== $cart->getDiscountValue()) {
+                return 0;
+            }
+
+            return $calculatedDiscount;
+        }
+
+        return 0;
     }
 }

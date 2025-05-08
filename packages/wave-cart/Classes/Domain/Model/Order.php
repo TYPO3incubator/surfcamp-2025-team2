@@ -21,6 +21,8 @@ class Order extends AbstractEntity
     protected float $totalPrice = 0;
     protected ?FileReference $invoice = null;
     protected ?ObjectStorage $orderItems = null;
+    protected string $discountCode = '';
+    protected float $discountValue = 0;
 
     public function __construct()
     {
@@ -168,15 +170,23 @@ class Order extends AbstractEntity
         $this->invoice = $invoice;
     }
 
-    public function calculateTotalPrice(): float
+    public function getDiscountCode(): string
     {
-        $totalPrice = 0;
-        foreach ($this->orderItems as $orderItem) {
-            $totalPrice += $orderItem->getPrice() * $orderItem->getAmount();
-        }
+        return $this->discountCode;
+    }
 
-        $this->totalPrice = $totalPrice;
+    public function setDiscountCode(string $discountCode): void
+    {
+        $this->discountCode = $discountCode;
+    }
 
-        return $totalPrice;
+    public function getDiscountValue(): float
+    {
+        return $this->discountValue;
+    }
+
+    public function setDiscountValue(float $discountValue): void
+    {
+        $this->discountValue = $discountValue;
     }
 }

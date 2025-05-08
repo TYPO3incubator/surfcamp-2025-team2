@@ -1,42 +1,61 @@
 {namespace wave=TYPO3Incubator\WaveCart\ViewHelpers}
-
-Address data <br>
-
-<ul>
+<div class="spacer"></div>
+<h1>Summary</h1>
+<div class="spacer"></div>
+<div class="cart-header">
+    <div class="cart-header-image"></div>
+    <div class="cart-header-details">Product</div>
+    <div class="cart-header-amount">Quantity</div>
+    <div class="cart-header-price">Price</div>
+</div>
+<ul id="cartList">
     <f:for each="{cart.cartItems}" as="cartItem" iteration="iterator">
-        <li>
-            {cartItem.image}<br>
-            {cartItem.name}<br>
-            {cartItem.size}<br>
-            {cartItem.price}<br>
-            {cartItem.selectedAmount}
+        <li class="cart-item">
+            <div class="item-details">
+                <span class="item-name">{cartItem.name}</span>
+                <span class="item-size">Size: {cartItem.size}</span>
+            </div>
+
+            <div class="amount-number" data-index="{iterator.index}" style="border: none; margin-right: 40px;">
+                {cartItem.amount}
+            </div>
+
+            <span class="item-price" data-price="{cartItem.price}">
+                    {cartItem.price}€
+                </span>
         </li>
     </f:for>
 </ul>
------------- <br>
+<div id="cartSummary">
+    <span>Discount: {cart.discountValue}€</span><br />
+    <span>Total (incl. tax): {cart.totalPrice}€</span>
+</div>
 
-{cart.totalPrice}€<br>
------------- <br>
-{cart.customerLastname}<br>
-{cart.customerFirstname}<br>
-{cart.customerEmail}<br>
-{cart.customerAddress}, {cart.customerZip} {cart.customerCity}
-
-<br>
------------- <br>
-
+<div class="spacer"></div>
+<p class="variant-label">Adress Data:</p>
+<div>
+    {cart.customerFirstname} {cart.customerLastname}<br>
+    {cart.customerEmail}<br>
+    {cart.customerAddress}<br>
+    {cart.customerZip} {cart.customerCity}
+</div>
+<div class="spacer"></div>
+<p class="variant-label">Payment Method:</p>
 <f:form action="submit"
         controller="Order"
         objectName="cart"
         object="{cart}"
-        method="post">
-    <div>
+        method="post"
+        class="formContainer"
+style="width: 100%;">
+    <div class="payment-radio">
         <f:form.radio property="paymentMethod" id="paymentMethod" value="0"/>
         <label for="paymentMethod"><wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\PaymentMethodEnum" value="0" /></label>
     </div>
+    <div class="spacer"></div>
     <div>
-        <f:link.action action="addCustomerData" arguments="{cart:cart}">Back</f:link.action>
-        <f:form.submit value="Submit"/>
+        <f:link.action action="addCustomerData" arguments="{cart:cart}" class="backLink">&larr; Back</f:link.action>
+        <f:form.submit value="Submit" class="nextBtn btn-primary"/>
     </div>
 </f:form>
 
