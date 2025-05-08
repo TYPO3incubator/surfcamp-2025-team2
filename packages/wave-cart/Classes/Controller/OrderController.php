@@ -81,12 +81,10 @@ class OrderController extends ActionController
     {
         $order = $this->persistOrder($cart);
         $order = $this->generateInvoiceService->generateInvoicePdfAndAddToOrder($order, $this->request);
-
         $this->orderRepository->update($order);
         $this->persistenceManager->persistAll();
 
         $this->updateStock($order);
-
         $this->sendSenderOrderMails($order);
         $this->sendReceiverOrderMails($order);
 
