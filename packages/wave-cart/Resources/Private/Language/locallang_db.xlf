@@ -70,6 +70,67 @@
 				<source>Variant ID</source>
 			</trans-unit>
 
+			<!-- Cart -->
+			<trans-unit id="tx_wavecart_domain_model_cart">
+				<source>Cart</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_lastname">
+				<source>Customer lastname</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_firstname">
+				<source>Customer firstname</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_address">
+				<source>Customer address</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_zip">
+				<source>Customer zip</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_city">
+				<source>Customer city</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_email">
+				<source>Customer Email</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.payment_method">
+				<source>Payment method</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.total_price">
+				<source>Total price</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.cart_items">
+				<source>Cart items</source>
+			</trans-unit>
+
+			<!-- Cart item-->
+			<trans-unit id="tx_wavecart_domain_model_cartitem">
+				<source>Cart Item</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.name">
+				<source>Product name</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.type">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.price">
+				<source>Prize</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.tax_rate">
+				<source>Tax rate</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.size">
+				<source>Size</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.amount">
+				<source>Amount</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.cart">
+				<source>Cart</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.variant_id">
+				<source>Variant ID</source>
+			</trans-unit>
+
 			<!-- Product -->
 			<trans-unit id="tx_wavecart_domain_model_product">
 				<source>Product</source>
