@@ -1,6 +1,8 @@
 <?php
+
 namespace TYPO3Incubator\WaveCart\Domain\Model;
 
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -12,7 +14,9 @@ class OrderItem extends AbstractEntity
     protected int $taxRate;
     protected string $size;
     protected int $amount;
-    protected Order $order;
+    protected ?FileReference $image = null;
+    protected bool $hidden = true;
+    protected int $variantId;
 
     public function getName(): string
     {
@@ -74,13 +78,33 @@ class OrderItem extends AbstractEntity
         $this->amount = $amount;
     }
 
-    public function getOrder(): Order
+    public function getImage(): ?FileReference
     {
-        return $this->order;
+        return $this->image;
     }
 
-    public function setOrder(Order $order): void
+    public function setImage(?FileReference $image): void
     {
-        $this->order = $order;
+        $this->image = $image;
+    }
+
+    public function isHidden(): bool
+    {
+        return $this->hidden;
+    }
+
+    public function setHidden(bool $hidden): void
+    {
+        $this->hidden = $hidden;
+    }
+
+    public function getVariantId(): int
+    {
+        return $this->variantId;
+    }
+
+    public function setVariantId(int $variantId): void
+    {
+        $this->variantId = $variantId;
     }
 }

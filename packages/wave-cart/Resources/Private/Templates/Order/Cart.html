@@ -10,39 +10,15 @@
         <ul>
             <f:for each="{order.orderItems}" as="cartItem" iteration="iterator">
                 <li>
-                    <ul>
-                        <li>
-                            Name:
-                            <f:form.textfield
-                                property="orderItems.{iterator.index}.name"
-                                value="{cartItem.name}"/>
-                        </li>
-                        <li>
-                            Menge:
-                            <f:form.textfield
-                                property="orderItems.{iterator.index}.selectedAmount"
-                                value="{cartItem.selectedAmount}"/>
-                        </li>
-                        <li>
-                            Größe:
-                            <f:form.textfield
-                                property="orderItems.{iterator.index}.size"
-                                value="{cartItem.size}"/>
-                        </li>
-                        <li>
-                            Preis:
-                            <f:form.textfield
-                                property="orderItems.{iterator.index}.price"
-                                value="{cartItem.price}"/>
-                            €
-                        </li>
-                        <li>
-                            Bild:
-                            <f:form.textfield
-                                property="orderItems.{iterator.index}image"
-                                value="{cartItem.image}"/>
-                        </li>
-                    </ul>
+                    {cartItem.image} <br>
+                    {cartItem.name} <br>
+                    {cartItem.size} <br>
+
+                    <f:form.textfield
+                        property="orderItems.{iterator.index}.amount"
+                        value="{cartItem.amount}"/>
+
+                    {cartItem.price}€
                 </li>
             </f:for>
         </ul>
