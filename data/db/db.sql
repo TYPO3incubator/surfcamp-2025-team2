@@ -254,7 +254,7 @@ CREATE TABLE `cache_rootline` (
   `content` longblob DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(180),`expires`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +271,7 @@ CREATE TABLE `cache_rootline_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(191)),
   KEY `cache_tag` (`tag`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -435,7 +435,7 @@ CREATE TABLE `index_grlist` (
   PRIMARY KEY (`uniqid`),
   KEY `joinkey` (`phash`,`hash_gr_list`),
   KEY `phash_grouping` (`phash_x`,`hash_gr_list`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -514,7 +514,7 @@ CREATE TABLE `index_section` (
   KEY `page_id` (`page_id`),
   KEY `rl0` (`rl0`,`rl1`,`phash`),
   KEY `rl0_2` (`rl0`,`phash`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -645,7 +645,7 @@ CREATE TABLE `pages` (
   KEY `parent` (`pid`,`deleted`,`hidden`),
   KEY `translation_source` (`l10n_source`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -903,7 +903,7 @@ CREATE TABLE `sys_file_processedfile` (
   PRIMARY KEY (`uid`),
   KEY `combined_1` (`original`,`task_type`(100),`configurationsha1`),
   KEY `identifier` (`storage`,`identifier`(180))
-) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=229 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1024,7 +1024,7 @@ CREATE TABLE `sys_history` (
   PRIMARY KEY (`uid`),
   KEY `recordident_1` (`tablename`(100),`recuid`),
   KEY `recordident_2` (`tablename`(100),`tstamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=1150 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1182 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1073,7 +1073,7 @@ CREATE TABLE `sys_lockedrecords` (
   `feuserid` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `event` (`userid`,`tstamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1115,7 +1115,7 @@ CREATE TABLE `sys_log` (
   KEY `errorcount` (`tstamp`,`error`),
   KEY `index_channel` (`channel`),
   KEY `index_level` (`level`)
-) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=236 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1834,6 +1834,85 @@ CREATE TABLE `tx_scheduler_task_group` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `tx_wavecart_domain_model_cart`
+--
+
+DROP TABLE IF EXISTS `tx_wavecart_domain_model_cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_wavecart_domain_model_cart` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `customer_lastname` varchar(255) NOT NULL DEFAULT '',
+  `customer_firstname` varchar(255) NOT NULL DEFAULT '',
+  `customer_address` varchar(255) NOT NULL DEFAULT '',
+  `customer_zip` varchar(255) NOT NULL DEFAULT '',
+  `customer_city` varchar(255) NOT NULL DEFAULT '',
+  `customer_email` varchar(255) NOT NULL DEFAULT '',
+  `payment_method` int(10) unsigned NOT NULL DEFAULT 0,
+  `total_price` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `cart_items` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tx_wavecart_domain_model_cartitem`
+--
+
+DROP TABLE IF EXISTS `tx_wavecart_domain_model_cartitem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_wavecart_domain_model_cartitem` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `cart` int(10) unsigned NOT NULL DEFAULT 0,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `type` int(10) unsigned NOT NULL DEFAULT 0,
+  `price` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `tax_rate` int(10) unsigned NOT NULL DEFAULT 0,
+  `size` varchar(255) NOT NULL DEFAULT '',
+  `amount` int(11) NOT NULL DEFAULT 0,
+  `order` int(11) NOT NULL DEFAULT 0,
+  `variant_id` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tx_wavecart_domain_model_discountcode`
+--
+
+DROP TABLE IF EXISTS `tx_wavecart_domain_model_discountcode`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_wavecart_domain_model_discountcode` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `code` varchar(255) NOT NULL DEFAULT '',
+  `type` int(10) unsigned NOT NULL DEFAULT 0,
+  `discount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `current_redeem_amount` int(11) NOT NULL DEFAULT 0,
+  `starttime` int(10) unsigned NOT NULL DEFAULT 0,
+  `endtime` int(10) unsigned NOT NULL DEFAULT 0,
+  `has_redeem_maximum` smallint(5) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `tx_wavecart_domain_model_order`
 --
 
@@ -1859,7 +1938,7 @@ CREATE TABLE `tx_wavecart_domain_model_order` (
   `order_items` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1882,9 +1961,10 @@ CREATE TABLE `tx_wavecart_domain_model_orderitem` (
   `size` varchar(255) NOT NULL DEFAULT '',
   `amount` int(11) NOT NULL DEFAULT 0,
   `order` int(11) NOT NULL DEFAULT 0,
+  `variant_id` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1945,13 +2025,12 @@ CREATE TABLE `tx_wavecart_domain_model_productvariant` (
   `l10n_state` text DEFAULT NULL,
   `l18n_diffsource` mediumblob DEFAULT NULL,
   `product` int(10) unsigned NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
   `size` varchar(255) NOT NULL DEFAULT '',
   `amount` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`,`hidden`),
   KEY `translation_source` (`l10n_source`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1963,7 +2042,7 @@ CREATE TABLE `tx_wavecart_domain_model_productvariant` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-08 11:44:39
+-- Dump completed on 2025-05-08 18:21:10
 /*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19  Distrib 10.11.11-MariaDB, for debian-linux-gnu (aarch64)
 --
@@ -2021,7 +2100,7 @@ UNLOCK TABLES;
 LOCK TABLES `be_users` WRITE;
 /*!40000 ALTER TABLE `be_users` DISABLE KEYS */;
 INSERT INTO `be_users` VALUES
-(1,0,1744013612,1744013612,0,0,0,0,NULL,'default','a:8:{s:10:\"moduleData\";a:6:{s:28:\"dashboard/current_dashboard/\";s:40:\"faacf8dc927e44b8c4a076ea597850984919bb89\";s:10:\"FormEngine\";a:2:{i:0;a:2:{s:32:\"99634d799fefd1846c03f82f3ae2b78e\";a:5:{i:0;s:0:\"\";i:1;a:5:{s:4:\"edit\";a:1:{s:10:\"tt_content\";a:1:{i:256;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:35:\"&edit%5Btt_content%5D%5B256%5D=edit\";i:3;a:5:{s:5:\"table\";s:10:\"tt_content\";s:3:\"uid\";i:256;s:3:\"pid\";i:105;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=920207e072730d7cfb590edbfc4f94f72633aeb5&id=105\";}s:32:\"8f0ad448a13c8e788b5c2e469566048b\";a:5:{i:0;s:9:\"Warenkorb\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:105;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:30:\"&edit%5Bpages%5D%5B105%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:105;s:3:\"pid\";i:1;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=920207e072730d7cfb590edbfc4f94f72633aeb5&id=105\";}}i:1;s:32:\"2becaf9273240a1a291cdad8244e5da8\";}s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";a:0:{}s:16:\"opendocs::recent\";a:8:{s:32:\"2becaf9273240a1a291cdad8244e5da8\";a:5:{i:0;s:0:\"\";i:1;a:5:{s:4:\"edit\";a:1:{s:10:\"tt_content\";a:1:{i:255;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:35:\"&edit%5Btt_content%5D%5B255%5D=edit\";i:3;a:5:{s:5:\"table\";s:10:\"tt_content\";s:3:\"uid\";i:255;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:79:\"/typo3/module/web/layout?token=920207e072730d7cfb590edbfc4f94f72633aeb5&id=103&\";}s:32:\"98937a229a3814435b678cc40c81a3ad\";a:5:{i:0;s:0:\"\";i:1;a:5:{s:4:\"edit\";a:1:{s:10:\"tt_content\";a:1:{i:257;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:35:\"&edit%5Btt_content%5D%5B257%5D=edit\";i:3;a:5:{s:5:\"table\";s:10:\"tt_content\";s:3:\"uid\";i:257;s:3:\"pid\";i:104;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=920207e072730d7cfb590edbfc4f94f72633aeb5&id=104\";}s:32:\"d239561aea4da8ff9f1d6d726446377a\";a:5:{i:0;s:4:\"Test\";i:1;a:5:{s:4:\"edit\";a:1:{s:30:\"tx_wavecart_domain_model_order\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:53:\"&edit%5Btx_wavecart_domain_model_order%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:30:\"tx_wavecart_domain_model_order\";s:3:\"uid\";i:1;s:3:\"pid\";i:102;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=15df02c50a0f9d46217a7ecef18c3a688acba117&id=102&table=&pointer=1\";}s:32:\"68c728b2d68cfa5e55ea7bf7fc5760fe\";a:5:{i:0;s:0:\"\";i:1;a:5:{s:4:\"edit\";a:1:{s:10:\"tt_content\";a:1:{i:254;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:35:\"&edit%5Btt_content%5D%5B254%5D=edit\";i:3;a:5:{s:5:\"table\";s:10:\"tt_content\";s:3:\"uid\";i:254;s:3:\"pid\";i:12;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=07f33fe82ad5948270e3555d99b3b839818d1e96&id=12&\";}s:32:\"696addfecc296b326ff6e9f04c7ff3e1\";a:5:{i:0;s:10:\"FC Bigfoot\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:28:\"&edit%5Bpages%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:1;s:3:\"pid\";i:0;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:91:\"/typo3/module/web/list?token=c92df26e54d0681cbeb3783a000f1f57768b4298&id=1&table=&pointer=1\";}s:32:\"804ac867bdf1f5d3ad69dcb359be5538\";a:5:{i:0;s:5:\"Teddy\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:1;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=2234aa7cb549dc86b904e17c73670ad35e8d2143&id=103&table=&pointer=1\";}s:32:\"a9d2368de6d8c481501ccf3fa498d7af\";a:5:{i:0;s:17:\"T-shirt with Logo\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:2;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B2%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:2;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=2234aa7cb549dc86b904e17c73670ad35e8d2143&id=103&table=&pointer=1\";}s:32:\"d2b96f02eb0191e8b16247eda6f03010\";a:5:{i:0;s:13:\"Sweater plain\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:4;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B4%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:4;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=2234aa7cb549dc86b904e17c73670ad35e8d2143&id=103&table=&pointer=1\";}}s:16:\"browse_links.php\";a:1:{s:12:\"expandFolder\";s:13:\"1:/fcbigfoot/\";}s:10:\"system_log\";a:1:{s:10:\"constraint\";s:334:\"O:39:\"TYPO3\\CMS\\Belog\\Domain\\Model\\Constraint\":11:{s:14:\"\0*\0userOrGroup\";s:1:\"0\";s:9:\"\0*\0number\";i:20;s:15:\"\0*\0workspaceUid\";i:-99;s:10:\"\0*\0channel\";s:0:\"\";s:8:\"\0*\0level\";s:5:\"debug\";s:17:\"\0*\0startTimestamp\";i:0;s:15:\"\0*\0endTimestamp\";i:0;s:18:\"\0*\0manualDateStart\";N;s:17:\"\0*\0manualDateStop\";N;s:9:\"\0*\0pageId\";i:0;s:8:\"\0*\0depth\";i:0;}\";}}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";s:15:\"moduleSessionID\";a:6:{s:28:\"dashboard/current_dashboard/\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:10:\"FormEngine\";s:40:\"66684e7a6662b071b45d5e519ba326488c5e9fdc\";s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";s:40:\"66684e7a6662b071b45d5e519ba326488c5e9fdc\";s:16:\"opendocs::recent\";s:40:\"66684e7a6662b071b45d5e519ba326488c5e9fdc\";s:16:\"browse_links.php\";s:40:\"799e42a6ef5c8e5d94cd74d51901e59df191a93d\";s:10:\"system_log\";s:40:\"3a83775f16ef9590805f5198995b29e3d7439dd1\";}s:10:\"modulemenu\";s:2:\"{}\";s:17:\"BackendComponents\";a:1:{s:6:\"States\";a:1:{s:17:\"typo3-module-menu\";a:1:{s:9:\"collapsed\";s:5:\"false\";}}}s:10:\"inlineView\";s:576:\"{\"tx_wavecart_domain_model_product\":{\"NEW6818a12982f36374999951\":{\"tx_wavecart_domain_model_product_variant\":[1]},\"1\":{\"tx_wavecart_domain_model_product_variant\":[2,\"1\"],\"sys_file_reference\":[190]},\"2\":{\"tx_wavecart_domain_model_product_variant\":{\"3\":\"\"},\"sys_file_reference\":[189]},\"NEW6818a25a7cef0911992860\":{\"tx_wavecart_domain_model_product_variant\":[6]},\"4\":{\"tx_wavecart_domain_model_product_variant\":[\"6\"],\"sys_file_reference\":[]},\"3\":{\"sys_file_reference\":[]}},\"tx_wavecart_domain_model_order\":{\"NEW6818a75edd1ef584971724\":{\"tx_wavecart_domain_model_orderitem\":[1]}}}\";}',0,NULL,'','admin','$argon2id$v=19$m=65536,t=16,p=1$UW05T093U1JQS2liR1lLRA$z0I5XCRD58aCJ/ftNFV/FTe7FppNaYrYuuLpJhfoz5Q','',0,NULL,'','info@typo3.com','',1,3,NULL,1,NULL,'',NULL,1746697008,NULL),
+(1,0,1744013612,1744013612,0,0,0,0,NULL,'default','a:8:{s:10:\"moduleData\";a:8:{s:28:\"dashboard/current_dashboard/\";s:40:\"faacf8dc927e44b8c4a076ea597850984919bb89\";s:10:\"FormEngine\";a:2:{i:0;a:1:{s:32:\"7ff9fba81093a01cdeba26f2ddd0348d\";a:5:{i:0;s:9:\"RABATT100\";i:1;a:5:{s:4:\"edit\";a:1:{s:37:\"tx_wavecart_domain_model_discountcode\";a:1:{i:3;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:60:\"&edit%5Btx_wavecart_domain_model_discountcode%5D%5B3%5D=edit\";i:3;a:5:{s:5:\"table\";s:37:\"tx_wavecart_domain_model_discountcode\";s:3:\"uid\";i:3;s:3:\"pid\";i:106;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=c160b6770613f42bf2d8867e2ff7428400d23cf7&id=106&table=&pointer=1\";}}i:1;s:32:\"a6019b1fdd1ff227c66b39f8d057784d\";}s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";a:0:{}s:16:\"opendocs::recent\";a:8:{s:32:\"a6019b1fdd1ff227c66b39f8d057784d\";a:5:{i:0;s:8:\"Cap Blue\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:3;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B3%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:3;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=c160b6770613f42bf2d8867e2ff7428400d23cf7&id=103&table=&pointer=1\";}s:32:\"804ac867bdf1f5d3ad69dcb359be5538\";a:5:{i:0;s:5:\"Teddy\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:1;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=c160b6770613f42bf2d8867e2ff7428400d23cf7&id=103&table=&pointer=1\";}s:32:\"a9d2368de6d8c481501ccf3fa498d7af\";a:5:{i:0;s:17:\"T-shirt with Logo\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:2;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B2%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:2;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=c160b6770613f42bf2d8867e2ff7428400d23cf7&id=103&table=&pointer=1\";}s:32:\"d2b96f02eb0191e8b16247eda6f03010\";a:5:{i:0;s:13:\"Sweater plain\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:4;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B4%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:4;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=c160b6770613f42bf2d8867e2ff7428400d23cf7&id=103&table=&pointer=1\";}s:32:\"7c1d35d2dc02e9696b76601513c926d0\";a:5:{i:0;s:16:\"xR4mpqFpI9rryiOX\";i:1;a:5:{s:4:\"edit\";a:1:{s:37:\"tx_wavecart_domain_model_discountcode\";a:1:{i:5;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:60:\"&edit%5Btx_wavecart_domain_model_discountcode%5D%5B5%5D=edit\";i:3;a:5:{s:5:\"table\";s:37:\"tx_wavecart_domain_model_discountcode\";s:3:\"uid\";i:5;s:3:\"pid\";i:106;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=c160b6770613f42bf2d8867e2ff7428400d23cf7&id=106&table=&pointer=1\";}s:32:\"261f6985913e26ca45070c95ec789dc7\";a:5:{i:0;s:16:\"rO8p6mShaqqYrlJq\";i:1;a:5:{s:4:\"edit\";a:1:{s:37:\"tx_wavecart_domain_model_discountcode\";a:1:{i:4;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:60:\"&edit%5Btx_wavecart_domain_model_discountcode%5D%5B4%5D=edit\";i:3;a:5:{s:5:\"table\";s:37:\"tx_wavecart_domain_model_discountcode\";s:3:\"uid\";i:4;s:3:\"pid\";i:106;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=c160b6770613f42bf2d8867e2ff7428400d23cf7&id=106&table=&pointer=1\";}s:32:\"964127fa43db06c4ec47a00b5db548ff\";a:5:{i:0;s:0:\"\";i:1;a:5:{s:4:\"edit\";a:1:{s:37:\"tx_wavecart_domain_model_discountcode\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:60:\"&edit%5Btx_wavecart_domain_model_discountcode%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:37:\"tx_wavecart_domain_model_discountcode\";s:3:\"uid\";i:1;s:3:\"pid\";i:106;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=c160b6770613f42bf2d8867e2ff7428400d23cf7&id=106&table=&pointer=1\";}s:32:\"931a28d5ddc13f3378fe7e1cc56d3722\";a:5:{i:0;s:16:\"pN0oNYnKVzPVZyh9\";i:1;a:5:{s:4:\"edit\";a:1:{s:37:\"tx_wavecart_domain_model_discountcode\";a:1:{i:2;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:60:\"&edit%5Btx_wavecart_domain_model_discountcode%5D%5B2%5D=edit\";i:3;a:5:{s:5:\"table\";s:37:\"tx_wavecart_domain_model_discountcode\";s:3:\"uid\";i:2;s:3:\"pid\";i:106;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=c160b6770613f42bf2d8867e2ff7428400d23cf7&id=106&table=&pointer=1\";}}s:16:\"browse_links.php\";a:1:{s:12:\"expandFolder\";s:13:\"1:/fcbigfoot/\";}s:10:\"system_log\";a:1:{s:10:\"constraint\";s:334:\"O:39:\"TYPO3\\CMS\\Belog\\Domain\\Model\\Constraint\":11:{s:14:\"\0*\0userOrGroup\";s:1:\"0\";s:9:\"\0*\0number\";i:20;s:15:\"\0*\0workspaceUid\";i:-99;s:10:\"\0*\0channel\";s:0:\"\";s:8:\"\0*\0level\";s:5:\"debug\";s:17:\"\0*\0startTimestamp\";i:0;s:15:\"\0*\0endTimestamp\";i:0;s:18:\"\0*\0manualDateStart\";N;s:17:\"\0*\0manualDateStop\";N;s:9:\"\0*\0pageId\";i:0;s:8:\"\0*\0depth\";i:0;}\";}s:18:\"list/displayFields\";a:2:{s:30:\"tx_wavecart_domain_model_order\";a:3:{i:0;s:17:\"customer_lastname\";i:1;s:8:\"assignee\";i:2;s:6:\"status\";}s:37:\"tx_wavecart_domain_model_discountcode\";a:5:{i:0;s:4:\"code\";i:1;s:21:\"current_redeem_amount\";i:2;s:4:\"type\";i:3;s:8:\"discount\";i:4;s:18:\"has_redeem_maximum\";}}s:13:\"system_config\";a:1:{s:4:\"tree\";s:20:\"httpMiddlewareStacks\";}}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";s:15:\"moduleSessionID\";a:8:{s:28:\"dashboard/current_dashboard/\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:10:\"FormEngine\";s:40:\"c6be9a7842c3ff2a116083f457642777b80db20f\";s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";s:40:\"c6be9a7842c3ff2a116083f457642777b80db20f\";s:16:\"opendocs::recent\";s:40:\"c6be9a7842c3ff2a116083f457642777b80db20f\";s:16:\"browse_links.php\";s:40:\"799e42a6ef5c8e5d94cd74d51901e59df191a93d\";s:10:\"system_log\";s:40:\"3a83775f16ef9590805f5198995b29e3d7439dd1\";s:18:\"list/displayFields\";s:40:\"c6be9a7842c3ff2a116083f457642777b80db20f\";s:13:\"system_config\";s:40:\"c6be9a7842c3ff2a116083f457642777b80db20f\";}s:10:\"modulemenu\";s:2:\"{}\";s:17:\"BackendComponents\";a:1:{s:6:\"States\";a:1:{s:17:\"typo3-module-menu\";a:1:{s:9:\"collapsed\";s:5:\"false\";}}}s:10:\"inlineView\";s:670:\"{\"tx_wavecart_domain_model_product\":{\"NEW6818a12982f36374999951\":{\"tx_wavecart_domain_model_product_variant\":[1]},\"1\":{\"tx_wavecart_domain_model_product_variant\":[2,\"1\"],\"sys_file_reference\":[190]},\"2\":{\"tx_wavecart_domain_model_product_variant\":{\"3\":\"\"},\"sys_file_reference\":[189]},\"NEW6818a25a7cef0911992860\":{\"tx_wavecart_domain_model_product_variant\":[6]},\"4\":{\"tx_wavecart_domain_model_product_variant\":[\"6\"],\"sys_file_reference\":[],\"tx_wavecart_domain_model_productvariant\":[\"6\"]},\"3\":{\"sys_file_reference\":[],\"tx_wavecart_domain_model_productvariant\":[7]}},\"tx_wavecart_domain_model_order\":{\"NEW6818a75edd1ef584971724\":{\"tx_wavecart_domain_model_orderitem\":[1]}}}\";}',0,NULL,'','admin','$argon2id$v=19$m=65536,t=16,p=1$UW05T093U1JQS2liR1lLRA$z0I5XCRD58aCJ/ftNFV/FTe7FppNaYrYuuLpJhfoz5Q','',0,NULL,'','info@typo3.com','',1,3,NULL,1,NULL,'',NULL,1746701300,NULL),
 (2,0,1744014582,1744014582,0,0,0,0,NULL,'default','a:4:{s:10:\"moduleData\";a:0:{}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";}',0,NULL,'','_cli_','$argon2id$v=19$m=65536,t=16,p=1$Qk41RG10QTUxUGQzclc3dA$9bxBcygWFXt9U5WuxRJLFP3866mFPYZjpkdwMrS98sg','',0,NULL,'','','',1,3,NULL,1,NULL,'',NULL,0,NULL);
 /*!40000 ALTER TABLE `be_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2067,8 +2146,11 @@ INSERT INTO `index_fulltext` VALUES
 ('230f8464c03ab1dc4fbd4bc332b6b776','Page A Page A\n             \n            \n         \n    \n         \n             \n                Page B  '),
 ('3d798c3f120fdabe32985de46a5fc2fd','FC Bigfoot Events\n                                 \n                            \n                     \n                \n                     \n                        \n                                 \n                                 \n                                    \n                                    News\n                                 \n                            \n                     \n                \n                     \n                        \n                                 \n                                 \n                                    \n                                    Club\n                                 \n                                 \n                                    \n                                        \n                                                 \n                                                    History\n                                                 \n                                            \n                                    \n                                        \n                                                 \n                                                    Membership\n                                                 \n                                            \n                                    \n                                        \n                                                 \n                                                    Contact\n                                                 \n                                            \n                                    \n                                 \n                            \n                     \n                \n                     \n                        \n                                 \n                                 \n                                    \n                                    Team\n                                 \n                            \n                     \n                \n                     \n                        \n                                 \n                                 \n                                    \n                                    Sponsors\n                                 \n                            \n                     \n                \n             \n\n            \n                 \n            \n            \n                 \n                     Contact Us \n                 \n            \n         \n     \n \n\n\n\n\n \n    \n    \n    \n\n \n     \n         \n              \n             \n                 FC Bigfoot Fuerteventura \n                 23 years of passion and dedication \n                 \n                    Join today\n                 \n             \n         \n     \n     \n \n\n\n\n\n\n    \n     \n         \n            \n\n\n \n    \n        \n\n\n\n    \n    \n            \n                \n                     \n                        \n\n  \n     \n      \r\n\r\n  \r\n       \r\n        Our latest Game Results\r\n       \r\n    \r\n\r\n\n      \r\n\r\n\r\n\n     \n  \n\n\n\n                     \n                \n            \n        \n    \n \n\n\n\n\n\n        \n     \n         \n             \n                \n                     \n                         \n                             \n                             \n                                \n                                        3 : 0\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Super Feet Stadium\n                         \n                         \n                            29.02.2024\n                         \n                     \n                \n                     \n                         \n                             \n                             \n                                \n                                        0 : 0\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Super Feet Stadium\n                         \n                         \n                            05.03.2024\n                         \n                     \n                \n                     \n                         \n                             \n                             \n                                \n                                        2 : 1\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Luton Bowl\n                         \n                         \n                            09.03.2024\n                         \n                     \n                \n                     \n                         \n                             \n                             \n                                \n                                        13 : 1\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Super Feet Stadium\n                         \n                         \n                            18.03.2024\n                         \n                     \n                \n                     \n                         \n                             \n                             \n                                \n                                        2 : 1\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Super Feet Stadium\n                         \n                         \n                            21.03.2024\n                         \n                     \n                \n                     \n                         \n                             \n                             \n                                \n                                        2 : 2\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Woodland Arena\n                         \n                         \n                            02.04.2024\n                         \n                     \n                \n                     \n                         \n                             \n                             \n                                \n                                        TBA\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Burns\' Power Plant\n                         \n                         \n                            09.04.2024\n                         \n                     \n                \n                     \n                         \n                             \n                             \n                                \n                                        TBA\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Wolverine Palace\n                         \n                         \n                            16.04.2024\n                         \n                     \n                \n                     \n                         \n                             \n                             \n                                \n                                        TBA\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Super Feet Stadium\n                         \n                         \n                            29.04.2024\n                         \n                     \n                \n                     \n                         \n                             \n                             \n                                \n                                        TBA\n                                    \n                             \n                             \n                         \n                         \n                            SurfCamp League @ Never Ever Arena\n                         \n                         \n                            13.05.2024\n                         \n                     \n                \n             \n         \n     \n\n    \n\n\n\n\n\n\n\n         \n     \n\n    \n     \n        \n\n\n\n  \n     \n      \r\n\r\n  \r\n       \r\n        News\r\n       \r\n    \r\n\r\n\n      \r\n\r\n\r\n\n     \n  \n\n\n\n \n     \n         \n             \n             24 Feb 2024 \n             15th charity tournament  \n             The big soccer spectacle will take place for the 15th time. We have once again invited soccer teams from the region and many have already confirmed their participation.  Our charity tournament is also always a meeting point for all soccer fans in the region to get together, chat or even have a beer together. \n             Learn more    \n         \n     \n     \n         \n             \n             10 Jun 2024 \n             Get ready for another exciting match! \n             On Thursday, 18.04.2023 at 16.30 the time has come, then the current 3rd of the regional league, our FC Bigfoot, meets the rival SurfCamp League. Here is some information about the game: Access to the stadium is possible from 14.30. Catering will be provided. \n             Learn more    \n         \n     \n     \n         \n             \n             13 April 2024 \n             Our new supporter: Luna Media \n             A Powerful Partnership: We\'re thrilled to welcome Luna Media as our newest sponsor! Their support promises to elevate our club to even greater heights, both on and off the field. \n             Learn more    \n         \n     \n \n\n\n\n\n\n \n    \n        \n\n     \n        \n        \n             \n                \n                    \n                         \n                            \n\n        \n \n    \n            \n\n \n\n\n        \n    \n \n\n\n    \n\n\n                         \n                    \n                \n             \n        \n        \n \n\n\n\n    \n    \n             \n                \n                    \n\n  \n     \n      \r\n\r\n  \r\n       \r\n        Your City. Your Club.\r\n       \r\n    \r\n\r\n\n      \r\n\r\n\r\n\n     \n  \n\n\n\n                \n                 With 21 teams, we are once again one of the largest clubs in Fuerteventura this season! We have three senior teams in each age group and at least two youth teams in each age group. In total, we have almost 900 members. We would like to thank everyone who has supported us so actively this season. \n             \n        \n    \n \n\n\n\n\n\n\n  \n     \n      \r\n\r\n  \r\n       \r\n        Our events \r\n       \r\n    \r\n\r\n\n      \r\n\r\n\r\n\n     \n  \n\n\n\n\n\n     \n         \n            \n                 \n                    \n                         \n                    \n                     \n                         \n                            Game Day\n                         \n                        \n                             \n                                Learn more\n                                  \n                             \n                        \n                     \n                 \n            \n                 \n                    \n                         \n                    \n                     \n                         \n                            Charity Event\n                         \n                        \n                             \n                                Learn more\n                                  \n                             \n                        \n                     \n                 \n            \n                 \n                    \n                         \n                    \n                     \n                         \n                            Junior Training\n                         \n                        \n                             \n                                Learn more\n                                  \n                             \n                        \n                     \n                 \n            \n                 \n                    \n                         \n                    \n                     \n                         \n                            Training\n                         \n                        \n                             \n                                Learn more\n                                  \n                             \n                        \n                     \n                 \n            \n         \n     \n\n\n\n\n\n\n \n    \n        \n\n\n\n    \n    \n             \n                \n                    \n\n  \n     \n      \r\n\r\n  \r\n       \r\n        Our Core Values\r\n       \r\n    \r\n\r\n\n      \r\n\r\n\r\n\n     \n  \n\n\n\n                \n                 At FC Bigfoot, our values guide everything we do, both on and off the field. We are dedicated to fostering a community that embodies the spirit of football through trust, respect, openness, sharing, friendship, and fun. \n  Trust and Respect  We trust and respect every individual within our club—players, coaches, staff, and supporters. Everyone\'s contributions are valued, creating a strong, cohesive team. \n  Openness  Our inclusive and welcoming community embraces diversity. We ensure that everyone feels valued and included, fostering a sense of belonging through transparent and honest communication. \n  Sharing  Collaboration is key at FC Bigfoot. Sharing knowledge, skills, and experiences makes us stronger, inspiring the next generation of players and fans. \n  Friendship and Fun  Football is about building friendships and creating memories. We prioritize camaraderie and enjoyment, believing that a positive and fun atmosphere leads to better performance and a more fulfilling experience. \n FC Bigfoot is more than a club—we are a community built on shared values. Trust, respect, openness, sharing, friendship, and fun define us. Join us at FC Bigfoot, where values matter and every member is celebrated. \n             \n        \n    \n \n\n\n\n\n \n    \n\n  \n     \n      \r\n\r\n  \r\n       \r\n        Our biggest supporters\r\n       \r\n    \r\n\r\n\n      \r\n\r\n\r\n\n     \n  \n\n\n\n     \n         \n            \n                 \n                    \n                         \n                    \n                 \n            \n                 \n                    \n                         \n                    \n                 \n            \n                 \n                    \n                         \n                    \n                 \n            \n                 \n                    \n                         \n                    \n                 \n            \n                 \n                    \n                         \n                    \n                 \n            \n                 \n                    \n                         \n                    \n                 \n            \n         \n     \n \n\n\n\n     \n\n    \n    \n\n \n     \n         \n             Game on \n             Let\'s keep in touch \n         \n        \n            \n                 \n                    Suscribe\n                 \n            \n                 \n                    Contact us\n                 \n            \n        \n     \n \n\n\n\n\n \n\n\n     \n     \n         \n            \n                 \n            \n             \n                \n \n    \n         \n             \n                Events\n             \n         \n    \n         \n             \n                News\n             \n         \n    \n         \n             \n                Club\n             \n         \n    \n         \n             \n                Team\n             \n         \n    \n         \n             \n                Sponsors\n             \n         \n    \n \n\n\n                \n                     \n                         Privacy Policy \n                     \n                \n             \n         \n         \n            \n                © 2025 The TYPO3 Community\n            \n             \n                \n                    \n                \n                    \n                \n                    \n                         \n                              \n                             Instagram  '),
 ('4512611c26346c41692fc2d2c861ba25','Features A single TYPO3 CMS installation can easily power hundreds of websites in many dozens of languages. Need more functionality? No problem! More than 1,500 open source extensions are available via Packagist and TYPO3 Extension Repository (TER). \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n\n\n\n    \n\n    \n\n\n    \n    \n    \n\n     \n        \n             \n                \n\n\n\n\n        \n \n    \n            \n                    \n \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n    \n    \n    \n    \n            \n        \n    \n    \n     \n \n\n\n                \n        \n    \n \n\n\n    \n\n\n             \n        \n     \n\n\n\n\n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n\n\n\n    \n\n    \n        \n        \n         \n            \n\n                 \n                     \n                        \n                         \n                             \n                                Multisite\n                             \n                            \n                            \n                                 A single TYPO3 CMS installation can power multiple sites, efficiently sharing configuration, templates, branding, and content where needed. Point multiple domains to different entry points of your TYPO3 multisite installation. \n                            \n                         \n                        \n                     \n                 \n            \n\n                 \n                     \n                        \n                         \n                             \n                                Multilingual\n                             \n                            \n                            \n                                 Deploy your content (or localised copies of your website in a multisite installation) in 56 languages. TYPO3 CMS websites and multisite installations support a variety of translation and localisation models and workflows. \n                            \n                         \n                        \n                     \n                 \n            \n\n                 \n                     \n                        \n                         \n                             \n                                Any data, any source\n                             \n                            \n                            \n                                 The TYPO3 CMS file system abstraction layer can use and combine any number of file storage systems and locations while remaining completely transparent to editors. Existing file service integrations include Akamai, Alfresco, SixOMC, Cumulus, QBank DAM, Dropbox, Magento, Bynder, and Amazon S3. \n                            \n                         \n                        \n                     \n                 \n            \n\n                 \n                     \n                        \n                         \n                             \n                                Mobile apps, responsive sites\n                             \n                            \n                            \n                                 Use TYPO3 CMS as the content management, business logic, and content provider for native mobile applications and front-end frameworks, as well as fully-responsive websites for website visitors and admins. \n                            \n                         \n                        \n                     \n                 \n            \n\n                 \n                     \n                        \n                         \n                             \n                                Content history and auditing\n                             \n                            \n                            \n                                 TYPO3 CMS keeps a full, unlimited, auditable history of content publication and revision. Browse all changes in a visual data comparison via “diff” and selectively undo, or even undelete! \n                            \n                         \n                        \n                     \n                 \n            \n\n                 \n                     \n                        \n                         \n                             \n                                On-page Search Engine Optimization (SEO)\n                             \n                            \n                            \n                                 A major part of getting on-page SEO right is consistency. With TYPO3 you can optimize for search engines on the go as you create individual pages with features like URL structure, page titles, and headers. It also allows you to quickly add your own meta description and meta tags. \n                            \n                         \n                        \n                     \n                 \n            \n         \n    \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n\n    \n         \n            \n\n    \n             \n                 Full Responsive Backend \n             \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n    \n\n     The administration interface, called TYPO3 Backend, can be managed from any modern web browser, including tablets and smart phones the same way. Publishing a small change on-the-go or working with tablet devices to add content has never been easier. \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n\n\n\n    \n\n    \n\n\n    \n    \n    \n\n     \n        \n             \n                \n\n\n\n\n        \n \n    \n            \n                     \n                         \n                            \n                                    Show larger version\n                                \n                         \n                        \n \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n    \n    \n    \n    \n            \n        \n    \n    \n     \n \n\n\n                     \n                \n        \n    \n \n\n\n    \n\n\n             \n        \n     \n\n\n\n\n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n\n    \n         \n            \n\n    \n             \n                 Runs everywhere \n             \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n    \n\n     You can install TYPO3 by downloading  with or without composer . Putting it on a web server or on a cloud service like Microsoft Azure or Amazon AWS is simple - due to proper separation of content, configuration and other assets like caches and temporary files. Use any database you like MySQL/MariaDB, postgreSQL, SQL Server or SQLite - due to the underlying database abstraction. \n  Read TYPO3 Install Guide  \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n     \n\n    \n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n\n    \n         \n            \n\n    \n            \n                \n\n    \n             \n                 Reliable Upgrade Paths \n             \n        \n\n\n\n            \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n    \n\n     From its inception TYPO3 has emphasized the importance of stable APIs and full backwards-compatibility.  The TYPO3 core team follows a regular release schedule and take great care to ensure easy, non-breaking updates. \n  TYPO3 CMS Roadmap  '),
+('4d4ccaa3fef37d18c9f2eb9a894108ff','Warenkorb Name:\n                             \n                         \n                         \n                            Menge:\n                             \n                         \n                         \n                            Größe:\n                             \n                         \n                         \n                            Preis:\n                             \n                            €\n                         \n                         \n                            Bild:\n                             \n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            Name:\n                             \n                         \n                         \n                            Menge:\n                             \n                         \n                         \n                            Größe:\n                             \n                         \n                         \n                            Preis:\n                             \n                            €\n                         \n                         \n                            Bild:\n                             \n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            Name:\n                             \n                         \n                         \n                            Menge:\n                             \n                         \n                         \n                            Größe:\n                             \n                         \n                         \n                            Preis:\n                             \n                            €\n                         \n                         \n                            Bild:  '),
+('4e4ee213ab648eaf5c6900a7ca8140ed','Shop Products \n     \n         Choose type: \n         \n         \n         Choose size: \n         \n         \n         Choose Sort: \n         \n             Default \n             Price: Low to High \n             Price: High to Low \n         \n     \n     \n        \n            \n            \n             \n                 \n                     \n                         \n                     \n                     \n                        Teddy\n                     \n                     \n                        20€\n                     \n                 \n             \n        \n            \n            \n             \n                 \n                     \n                         \n                     \n                     \n                        T-shirt with Logo\n                     \n                     \n                        50€\n                     \n                 \n             \n        \n            \n            \n             \n                 \n                     \n                         \n                     \n                     \n                        Cap Blue\n                     \n                     \n                        10€\n                     \n                 \n             \n        \n            \n            \n             \n                 \n                     \n                         \n                     \n                     \n                        Sweater plain\n                     \n                     \n                        60€  '),
 ('55a01547a20d7d965193fcd3e277624c','Page B Page A\n             \n            \n         \n    \n         \n             \n                Page B  '),
 ('68d237c4097d4cfacaa1850865ef957e','Base Home\n             \n            \n         \n    \n         \n             \n                Page A\n             \n            \n         \n    \n         \n             \n                Page B\n             \n            \n         \n    \n \n\n\n    \n    \n    \n\n             \n                \n                \n                    \n\n\n\n                \n                \n                    \n\n    \n\n\n\n                \n                \n\n      Bootstrap Package  -  FC Bigfoot  '),
+('9bd8393860e6e9cf4c907a0919ca687d','Events Our Game Results\r\n       \r\n    \r\n\r\n\n      \r\n\r\n\r\n\n     \n  \n\n\n\n                \n                 Stay updated with the latest scores and outcomes of FC Bigfoot\'s matches. Here, you will find a comprehensive list of our recent game results. Keep checking back for the most current information on our achievements. \n             \n        \n    \n \n\n\n\n\n\n        \n     \n         \n             \n            \n                 \n                     \n                         \n                            29.02.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        3 : 0\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Super Feet Stadium\n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            05.03.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        0 : 0\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Super Feet Stadium\n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            09.03.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        2 : 1\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Luton Bowl\n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            18.03.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        13 : 1\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Super Feet Stadium\n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            21.03.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        2 : 1\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Super Feet Stadium\n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            02.04.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        2 : 2\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Woodland Arena\n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            09.04.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        TBA\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Burns\' Power Plant\n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            16.04.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        TBA\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Wolverine Palace\n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            29.04.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        TBA\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Super Feet Stadium\n                         \n                     \n                 \n            \n                 \n                     \n                         \n                            13.05.2024\n                         \n                     \n                     \n                         \n                             \n                             \n                                \n                                        TBA\n                                    \n                             \n                             \n                         \n                     \n                     \n                         \n                            SurfCamp League\n                         \n                         \n                            Never Ever Arena  '),
 ('a6c5259923c1fbda006d875ebb439c1b','Bootstrap Package Possibilities \n             \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n             With a rich core feature set out-of-the-box, TYPO3 is an ideal choice for building ambitious digital experiences. \n  Features   Customizing  \n         \n     \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n                 \n                 \n                    \n\n\n\n\n    \n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n    \n\n     \n        \n            \n             \n\n                \n                \n                \n                 \n                       \n                 \n\n             \n            \n        \n         \n            \n\n    \n         \n            \n\n    \n             \n                 Examples \n             \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n             Don\'t hesitate and discover the large selection of our pre-configured page layouts and content elements. \n  Pages   Content  \n         \n     \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n                 \n                 \n                    \n\n\n\n\n    \n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n    \n\n     \n        \n            \n             \n\n                \n                \n                \n                 \n                         \n                 \n\n             \n            \n        \n         \n            \n\n    \n         \n            \n\n    \n             \n                 Playground \n             \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n             Build any web application you can imagine. Explore the Backend and experience the enormous flexibility. \n  Log into TYPO3  \n         \n     \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n                 \n             \n         \n     \n     \n        \n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n    \n\n    \n    \n     \n         \n            \n\n\n    \n    \n    \n\n     \n        \n             \n                \n\n\n\n\n        \n \n    \n            \n                    \n \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n    \n    \n    \n    \n            \n        \n    \n    \n     \n \n\n\n                \n        \n    \n \n\n\n    \n\n\n             \n        \n     \n\n\n\n\n         \n         \n            \n\n    \n         \n            \n\n    \n             \n                 Deliver business value \n             \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n             Start small and scale as you grow with TYPO3 CMS. Your initial, simple TYPO3 website will keep pace with you as your needs grow. It offers powerful multilingual and multisite features to help you reach a global audience and create new websites with ease. TYPO3 provides proven return on investment with stable long-term installations and clean upgrade paths, while remaining flexible enough to support innovation.  ,This website is a default website setup for TYPO3. You can use it to demonstrate the basic features of the TYPO3 Content Management System, but you are also welcome to use it as a basis for your own website projects. Please have a look at how it works and how it is structured. In building this package, we have tried to combine a lot of best practices. Feel free to use these structures and use elements of it for your own way of working.'),
 ('ab566ef524f8cda9b66737a0a146a674','2 Columns 25/75 Content Before colPos = 8  \n             \n         \n\n     \n         \n             \n                 \n                     \n             \n                 Main colPos = 0  \n             \n         \n                 \n                 \n                     \n             \n                 Left colPos = 1  \n             \n         \n                 \n             \n         \n     \n\n     \n             \n                 Content After colPos = 9  '),
 ('cc75043b782e7d5b8b77c31c085dc87b','Customize Whether you need a blog, feedback forms, an online shop, integrations with external web services, calendars, and much more ... extensions give you a wide range of flexibility to go beyond core functionality, growing your site hand-in-hand as your business and site grow. They are the ideal building block for creating complex online solutions. \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n    \n\n    \n    \n     \n         \n            \n\n\n    \n    \n    \n\n     \n        \n             \n                \n\n\n\n\n        \n \n    \n            \n                    \n \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n    \n    \n    \n    \n            \n        \n    \n    \n     \n \n\n\n                \n        \n    \n \n\n\n    \n\n\n             \n        \n     \n\n\n\n\n         \n         \n            \n\n    \n         \n            \n\n    \n             \n                 Add functionality to the core system \n             \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n             There are more than 1,500 extensions available in the TYPO3 Extension Repository (TER) on TYPO3.org for you to browse and assess according to your needs. Download and install them directly with the TYPO3 backend Extension Manager. And TYPO3 is open source! You and your developers (or  your TYPO3 service provider ) can also create new, custom extensions to meet your specialised needs.    Packagist    TYPO3 Extension Repository   \n         \n     \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n    \n\n    \n    \n     \n         \n            \n\n\n    \n    \n    \n\n     \n        \n             \n                \n\n\n\n\n        \n \n    \n            \n                    \n \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n        \n        \n        \n        \n            \n            \n            \n                \n                \n                    \n                    \n                    \n                    \n                            \n                        \n                    \n                \n            \n             \n        \n    \n    \n    \n    \n    \n            \n        \n    \n    \n     \n \n\n\n                \n        \n    \n \n\n\n    \n\n\n             \n        \n     \n\n\n\n\n         \n         \n            \n\n    \n         \n            \n\n    \n             \n                 Fluid: Next Generation Templating \n             \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n             Fluid - TYPO3\'s next generation templating engine - is used for creating custom extension templates. \n Fluid\'s approach to creating templates emphasizes simplicity, flexibility, extensibility, and easy of use. The syntax is XML-based and can be used in any Web IDE. With its ViewHelpers, Fluid can be extended by powerful functionality that fits custom web project needs. \n         \n     \n\n\n    \n\n\n\n    \n\n\n\n\n                         \n                     \n                 \n             \n         \n\n    \n\n\n\n     \n\n    \n\n\n\n\n\n\n\n\n         \n             \n                 \n                    \n\n\n\n                     \n                         \n                            \n    \n    \n\n\n\n    \n\n    \n         \n            \n\n    \n             \n                 Extensive Configuration Options \n             \n        \n\n\n\n            \n\n\n\n            \n\n\n\n         \n    \n\n\n\n    \n\n     Every aspect of the TYPO3 backend is configurable and customizable. Backend interfaces can be configured using TSConfig. Rendered HTML content can be configured using TypoScript or Fluid, a standalone template engine. Checkout our documentation linked below.   	  Fluid   	  TypoScript   	  TSConfig   	  TCA   	  Core API  ');
@@ -2089,7 +2171,10 @@ INSERT INTO `index_grlist` VALUES
 (12,'4512611c26346c41692fc2d2c861ba25','4512611c26346c41692fc2d2c861ba25','cdc0a8f9fe7f5e206d167723a90af880','0,-1'),
 (13,'230f8464c03ab1dc4fbd4bc332b6b776','230f8464c03ab1dc4fbd4bc332b6b776','cdc0a8f9fe7f5e206d167723a90af880','0,-1'),
 (14,'55a01547a20d7d965193fcd3e277624c','55a01547a20d7d965193fcd3e277624c','cdc0a8f9fe7f5e206d167723a90af880','0,-1'),
-(15,'68d237c4097d4cfacaa1850865ef957e','68d237c4097d4cfacaa1850865ef957e','cdc0a8f9fe7f5e206d167723a90af880','0,-1');
+(15,'68d237c4097d4cfacaa1850865ef957e','68d237c4097d4cfacaa1850865ef957e','cdc0a8f9fe7f5e206d167723a90af880','0,-1'),
+(16,'9bd8393860e6e9cf4c907a0919ca687d','9bd8393860e6e9cf4c907a0919ca687d','cdc0a8f9fe7f5e206d167723a90af880','0,-1'),
+(17,'4e4ee213ab648eaf5c6900a7ca8140ed','4e4ee213ab648eaf5c6900a7ca8140ed','cdc0a8f9fe7f5e206d167723a90af880','0,-1'),
+(18,'4d4ccaa3fef37d18c9f2eb9a894108ff','4d4ccaa3fef37d18c9f2eb9a894108ff','cdc0a8f9fe7f5e206d167723a90af880','0,-1');
 /*!40000 ALTER TABLE `index_grlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2101,10 +2186,13 @@ LOCK TABLES `index_phash` WRITE;
 /*!40000 ALTER TABLE `index_phash` DISABLE KEYS */;
 INSERT INTO `index_phash` VALUES
 ('230f8464c03ab1dc4fbd4bc332b6b776','ad5c9ca91e077da8aa1ce2dff42a55f1','[]','',99,0,'','0,-1','0','Page A','Page A Page B',1744022126,1746351089,1599,'ecc6dd1a44b97d6794d65dc91f851d7a',1744022132,8,0,1744022114,0,0,0,0),
-('3d798c3f120fdabe32985de46a5fc2fd','dc91fa3918f3fab9a43a16f82bb27086','[]','',1,0,'','0,-1','0','FC Bigfoot','Events News Club History Membership Contact Team Sponsors Contact Us FC Bigfoot Fuerteventura 23 years of passion and dedication Join today Our latest Game Results 3 : 0 SurfCamp League @ Super Feet S',1744014936,1746439688,30339,'cef657c85f8d56d9f23fab9b6aaf2f30',1744021289,45,0,1744014582,0,0,0,0),
+('3d798c3f120fdabe32985de46a5fc2fd','dc91fa3918f3fab9a43a16f82bb27086','[]','',1,0,'','0,-1','0','FC Bigfoot','Events News Club History Membership Contact Team Sponsors Contact Us FC Bigfoot Fuerteventura 23 years of passion and dedication Join today Our latest Game Results 3 : 0 SurfCamp League @ Super Feet S',1744014936,1746715604,30339,'cef657c85f8d56d9f23fab9b6aaf2f30',1744021289,45,0,1744014582,0,0,0,0),
 ('4512611c26346c41692fc2d2c861ba25','927f5bd190a4c729d55536dd6a64fc5a','[]','',95,0,'','0,-1','0','Features','A single TYPO3 CMS installation can easily power hundreds of websites in many dozens of languages. Need more functionality? No problem! More than 1,500 open source extensions are available via Packagi',1744015096,1744021608,103420,'5df7163565766c5b56f715dfddea577a',1744021608,109,0,1744015096,0,0,0,0),
+('4d4ccaa3fef37d18c9f2eb9a894108ff','d47bf64a5379df78c307ecb9caffe5f3','[]','',105,0,'','0,-1','0','Warenkorb','Name: Menge: Größe: Preis: € Bild: Name: Menge: Größe: Preis: € Bild: Name: Menge: Größe: Preis: € Bild:',1746697126,1746711477,14331,'ae2eeb494696162c2ff53645cbe2d68f',1746711477,7,0,1746697109,0,0,0,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','9ad382b42c1fbd5259430203ca30bf2c','[]','',104,0,'','0,-1','0','Shop','Products Choose type: Choose size: Choose Sort: Default Price: Low to High Price: High to Low Teddy 20€ T-shirt with Logo 50€ Cap Blue 10€ Sweater plain 60€',1746697308,1746711321,13762,'eca12681e0d7168b5ead0105dda65ea9',1746711321,9,0,1746697047,0,0,0,0),
 ('55a01547a20d7d965193fcd3e277624c','49bd411e140968a8cdc3180e2441bfe7','[]','',100,0,'','0,-1','0','Page B','Page A Page B',1744022124,1746351091,1599,'3e413a5660735903caa5cd997bfbcf2f',1744022133,8,0,1744022118,0,0,0,0),
-('68d237c4097d4cfacaa1850865ef957e','7274c0580dea745ce5f7f1790b2f97bd','[]','',98,0,'','0,-1','0','Base','Home Page A Page B Bootstrap Package - FC Bigfoot',1744021558,1746443838,2327,'93eedc75a07e6724f5094d5965104d17',1744268177,11,0,1744016344,0,0,0,0),
+('68d237c4097d4cfacaa1850865ef957e','7274c0580dea745ce5f7f1790b2f97bd','[]','',98,0,'','0,-1','0','Base','Home Page A Page B Bootstrap Package - FC Bigfoot',1744021558,1746717158,2327,'93eedc75a07e6724f5094d5965104d17',1744268177,11,0,1744016344,0,0,0,0),
+('9bd8393860e6e9cf4c907a0919ca687d','f5bad68bc9b081e512151ece334fae4f','[]','',12,0,'','0,-1','0','Events','Our Game Results Stay updated with the latest scores and outcomes of FC Bigfoot\'s matches. Here, you will find a comprehensive list of our recent game results. Keep checking back for the most current ',1744014582,1746711314,22253,'d4ee89affc87c8081e823b172dcfc30c',1746711314,22,0,1744014582,0,0,0,0),
 ('a6c5259923c1fbda006d875ebb439c1b','e4b6e82cb94e1cb4a3071d6edb7ce3da','[]','',15,0,'','0,-1','0','Bootstrap Package','Possibilities With a rich core feature set out-of-the-box, TYPO3 is an ideal choice for building ambitious digital experiences. Features Customizing Examples Don\'t hesitate and discover the large sele',1744015237,1746351047,97512,'30fea055663fadbc0825c8625ed6b6ca',1744016598,14,0,1744015096,0,0,0,0),
 ('ab566ef524f8cda9b66737a0a146a674','1cca31a174e81d35de9a86c5e3717299','[]','',91,0,'','0,-1','0','2 Columns 25/75','Content Before colPos = 8 Main colPos = 0 Left colPos = 1 Content After colPos = 9',1744015096,1744016607,78727,'2d04ecd280a80e9d9c915272e9985684',1744016607,6,0,1744015096,0,0,0,0),
 ('cc75043b782e7d5b8b77c31c085dc87b','4a5b01cc5821edac6dcb46dd6a6ae51b','[]','',94,0,'','0,-1','0','Customize','Whether you need a blog, feedback forms, an online shop, integrations with external web services, calendars, and much more ... extensions give you a wide range of flexibility to go beyond core functio',1744015096,1744016573,98945,'84d19c3c0586e90cc30822c8958461db',1744016573,63,0,1744015096,0,0,0,0);
@@ -2647,6 +2735,36 @@ INSERT INTO `index_rel` VALUES
 ('4512611c26346c41692fc2d2c861ba25','fa6b84b13ce63b1f620cbf5a776fa76f',1,51,765,0),
 ('4512611c26346c41692fc2d2c861ba25','fc0cb42fe6c1069381a66da04097ffc2',1,322,765,0),
 ('4512611c26346c41692fc2d2c861ba25','fed36e93a0509e20f2dc96cbbd85b678',1,50,765,0),
+('4d4ccaa3fef37d18c9f2eb9a894108ff','00314f95af514364c9da4077d016a76f',1,0,20000,128),
+('4d4ccaa3fef37d18c9f2eb9a894108ff','21679c44e56bf3b0262c59304bfd4cb9',1,14,20000,0),
+('4d4ccaa3fef37d18c9f2eb9a894108ff','b068931cc450442b63f5b3d276ea4297',3,0,32000,0),
+('4d4ccaa3fef37d18c9f2eb9a894108ff','b6a9921a18f214cd49c11b47502162fe',3,3,32000,0),
+('4d4ccaa3fef37d18c9f2eb9a894108ff','bb21a2f11b3957f442f721fd6a9bcbd7',2,4,32000,0),
+('4d4ccaa3fef37d18c9f2eb9a894108ff','fdbb3a56280acfa9031707622c599ccb',3,2,32000,0),
+('4d4ccaa3fef37d18c9f2eb9a894108ff','fdfd3ad0900e37ec8ef61aeb5c054e0d',3,1,32000,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','01b6e20344b68835c5ed1ddedf20d531',2,10,22068,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','072b030ba126b2f4b2374f342be9ed44',1,27,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','23a58bf9274bedb19375e527a0744fa9',1,19,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','3d791e43c8d5561e36bd09bacc097517',1,22,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','48d6215903dff56238e52e8891380c8f',1,23,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','53cced8d281a1a0ace3cb6594daaa4f7',2,9,22068,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','599dcce2998a6b40b1e38e8c6006cb0a',1,2,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','78a5eb43deef9a7b5b9ce157b9d52ac4',2,8,22068,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','7cc481e3eab24b4ef9ccc945c00f7784',1,18,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','86024cad1e83101d97359d7351051156',1,0,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','8d966b2253a917086c8604959e152243',2,11,22068,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','946c28f72272e09d162a79cd6f496ab4',1,25,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','962b2d2b8e72dc6771bca613d49b46fb',1,16,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','96d6f2e7e1f705ab5e59c84a6dc009b2',1,20,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','98f13708210194c475687be6106a3b84',1,17,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','ac7938d40cfc2307e2bf325d28e7884e',1,26,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','c0c7c76d30bd3dcaefc96f40275bdc0a',1,21,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','c21f969b5f03d33d43e04f8f136e7682',1,7,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','cadc8c8db42409733582cb3e2298ef87',1,6,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','d3d9446802a44259755d38e6d163e820',1,24,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','ebd73ade48cb3e102d1dbbfbc0377c5f',3,1,32000,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','f7bd60b75b29d79b660a2859395c1a24',1,4,11034,0),
+('4e4ee213ab648eaf5c6900a7ca8140ed','fb54f3c5992b96d001bb16e8e92d968d',1,0,11034,128),
 ('55a01547a20d7d965193fcd3e277624c','0cc175b9c0f1b6a831c399e269772661',1,1,32000,0),
 ('55a01547a20d7d965193fcd3e277624c','71860c77c6745379b0d44304d66b6a13',3,0,32000,128),
 ('55a01547a20d7d965193fcd3e277624c','92eb5ffee6ae2fec3ad71c777531578f',2,0,32000,128),
@@ -2659,6 +2777,71 @@ INSERT INTO `index_rel` VALUES
 ('68d237c4097d4cfacaa1850865ef957e','e05fe30750d3ea262a610d17ebc07019',1,7,32000,0),
 ('68d237c4097d4cfacaa1850865ef957e','ecc3c7b4754f8509cfe9de944671b36f',1,8,32000,0),
 ('68d237c4097d4cfacaa1850865ef957e','efe90a8e604a7c840e88d03a67f6b7d8',1,6,32000,0),
+('9bd8393860e6e9cf4c907a0919ca687d','0cc175b9c0f1b6a831c399e269772661',1,19,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','0cfff68896ae6825dfa9caee7afcea9f',1,84,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','0eee59a475855895f87e4900c084a4a9',1,77,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','0f81d52e06caaa4860887488d18271c7',1,4,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','10ae9fc7d453b0dd525d0edf2ede7961',1,21,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','10b73ec3370562dbd65f130ea54a8a35',10,41,28571,0),
+('9bd8393860e6e9cf4c907a0919ca687d','1424ca49c88f72347af1f2fe7a569169',5,45,14285,0),
+('9bd8393860e6e9cf4c907a0919ca687d','162e31afc5ade88a04d3f428e97e8f46',3,0,8571,0),
+('9bd8393860e6e9cf4c907a0919ca687d','16908b0605f2645dfcb4c3a8d248cef3',1,0,2857,128),
+('9bd8393860e6e9cf4c907a0919ca687d','18218139eec55d83cf82679934e5cd75',1,17,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','18ccf61d533b600bbf5a963359223fe4',1,27,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','1b3231655cebb7a1f783eddf27d254ca',5,43,14285,0),
+('9bd8393860e6e9cf4c907a0919ca687d','1fecb4dca32e01d3a83ebab5314ebbab',1,97,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','23a58bf9274bedb19375e527a0744fa9',1,5,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','308319a5ba52f2b73fd79195accdd23a',1,20,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','3681df8d04470ecc65053b790e19a065',1,95,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','43b5c9175984c071f30b873fdce0a000',1,33,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','469bba0a564235dfceede42db14f17b0',1,29,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','46defce884d1be32019f20864172323d',1,88,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','517b08dafd8aa7559790bf0715de47c6',10,42,28571,0),
+('9bd8393860e6e9cf4c907a0919ca687d','53a9c3686afdbb0db7c626e56a243a41',1,38,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','53e61336bb49ec978968786b07dea50b',2,2,5714,0),
+('9bd8393860e6e9cf4c907a0919ca687d','5fbab8c991be6b35d52e2d4868b6854f',1,54,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','62cd275989e78ee56a81f0265a87562e',1,89,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','639bae9ac6b3e1a84cebb7b403297b79',1,16,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','667940ea3df6617168cef1233b76dc29',1,96,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','6c3fa34115345a2636a23876089152b7',1,13,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','6c92285fa6d3e827b198d120ea3ac674',1,15,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','6e373659f3c93670f67f66279ce312f1',1,37,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','71ccb7a35a452ea8153b6d920f9f190e',1,7,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','77a072fba34a72588b4a8170238f2cf0',1,91,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','8154f2ab366901a6744c15cef7c62eba',1,24,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','8bf8854bebe108183caeb845c7676ae4',2,11,5714,0),
+('9bd8393860e6e9cf4c907a0919ca687d','8fc42c6ddf9966db3b09e84365034357',2,6,5714,0),
+('9bd8393860e6e9cf4c907a0919ca687d','99be1ee67a0137092d3d112c0620c552',1,3,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','9c28d32df234037773be184dbdafc274',1,14,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','9c44fc81ae1c3b4b362d5576bf6cda53',1,60,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','9ea0a36b3a20901fafe834eb519a595c',1,90,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','a86fcebe37c3e9c82e43c25d54ad2146',1,46,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','ada150cea270ef5267b5ef2ff2366846',1,10,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','b8488851cdb11c1ff0ba352fb3308451',4,85,11428,0),
+('9bd8393860e6e9cf4c907a0919ca687d','bb3ccd5881d651448ded1dac904054ac',1,34,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','be5d5d37542d75f93a87094459f76678',1,9,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','c458d397f9d289f2e4aaa14db438c03d',1,59,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','c4ca4238a0b923820dcc509a6f75849b',3,56,8571,0),
+('9bd8393860e6e9cf4c907a0919ca687d','c51ce410c124a10e0db5e4b97fc2af39',1,62,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','c7561db7a418dd39b2201dfe110ab4a4',1,108,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','c81e728d9d4c2f636f067f89cc14862c',4,55,11428,0),
+('9bd8393860e6e9cf4c907a0919ca687d','c8d11180c956e5b5afc3d1970ce2193e',1,109,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','c8d46d341bea4fd5bff866a65ff8aea9',2,1,5714,0),
+('9bd8393860e6e9cf4c907a0919ca687d','cb50fd5e8c18cffaaad1ab74baf6eb3c',1,69,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','ce5fb8df125a4721d1df328bc6f2ddea',1,28,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','cfcd208495d565ef66e7dff9f98764da',3,40,8571,0),
+('9bd8393860e6e9cf4c907a0919ca687d','d55669822f1a8cf72ec1911e462a54eb',1,30,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','d92d09fea730e2ba3908f2bff7c2b56b',1,104,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','e03f9063484fb1967d1675c86a6094d7',5,44,14285,0),
+('9bd8393860e6e9cf4c907a0919ca687d','e05fe30750d3ea262a610d17ebc07019',1,12,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','e97e07d7e0c203250f2e9891a4bec03c',1,8,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','ea170e2cafb1337755c8b3d5ae4437f4',1,18,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','eccbc87e4b5ce2fe28308fd9f2a7baf3',1,39,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','ed2b5c0139cec8ad2873829dc1117d50',1,35,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','f212d489ec65fe36e32d99f6ac0861c9',1,61,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','f2f645b7cf0962908fdb5bb485bd0cad',2,83,5714,0),
+('9bd8393860e6e9cf4c907a0919ca687d','f6216ab8b669f451dd4270a9cb96ec69',1,82,2857,0),
+('9bd8393860e6e9cf4c907a0919ca687d','f7c0a09108cdf26287c1bc5af2ed1f93',1,32,2857,0),
 ('a6c5259923c1fbda006d875ebb439c1b','0162cefc4952304026cb1f5dab2419d2',1,12,1767,0),
 ('a6c5259923c1fbda006d875ebb439c1b','01b6e20344b68835c5ed1ddedf20d531',3,0,5303,0),
 ('a6c5259923c1fbda006d875ebb439c1b','038703c7230ae012e3c783ace1d09d64',1,0,1767,0),
@@ -2964,7 +3147,10 @@ INSERT INTO `index_section` VALUES
 (12,'4512611c26346c41692fc2d2c861ba25','4512611c26346c41692fc2d2c861ba25',15,95,0,95),
 (13,'230f8464c03ab1dc4fbd4bc332b6b776','230f8464c03ab1dc4fbd4bc332b6b776',98,99,0,99),
 (14,'55a01547a20d7d965193fcd3e277624c','55a01547a20d7d965193fcd3e277624c',98,100,0,100),
-(15,'68d237c4097d4cfacaa1850865ef957e','68d237c4097d4cfacaa1850865ef957e',98,0,0,98);
+(15,'68d237c4097d4cfacaa1850865ef957e','68d237c4097d4cfacaa1850865ef957e',98,0,0,98),
+(16,'9bd8393860e6e9cf4c907a0919ca687d','9bd8393860e6e9cf4c907a0919ca687d',1,12,0,12),
+(17,'4e4ee213ab648eaf5c6900a7ca8140ed','4e4ee213ab648eaf5c6900a7ca8140ed',1,104,0,104),
+(18,'4d4ccaa3fef37d18c9f2eb9a894108ff','4d4ccaa3fef37d18c9f2eb9a894108ff',1,105,0,105);
 /*!40000 ALTER TABLE `index_section` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2985,6 +3171,7 @@ LOCK TABLES `index_words` WRITE;
 /*!40000 ALTER TABLE `index_words` DISABLE KEYS */;
 INSERT INTO `index_words` VALUES
 ('0015f3d4c690f832b204e6314057120c','packages/base/resources/private/pageview/pages/default.html',0),
+('00314f95af514364c9da4077d016a76f','warenkorb',0),
 ('00bcb59c2dfc8710e05aeb0659531a26','auditable',0),
 ('0162cefc4952304026cb1f5dab2419d2','choice',0),
 ('01b6e20344b68835c5ed1ddedf20d531','to',0),
@@ -2997,6 +3184,7 @@ INSERT INTO `index_words` VALUES
 ('06dd61f5dfbb11f5f1f20a8c0ba23a07','putting',0),
 ('06e3d36fa30cea095545139854ad1fb9','field',0),
 ('06f287d4d2555285b15d0e30a7738037','dedicated',0),
+('072b030ba126b2f4b2374f342be9ed44','60',0),
 ('073b3a3fc73c8af008ed159058492ad7','working.',0),
 ('07414f4e15ca943e6cde032dec85d92f','structure',0),
 ('074b62fb6c21b84e6b5846e6bb001f67','passion',0),
@@ -3072,6 +3260,7 @@ INSERT INTO `index_words` VALUES
 ('209f2308333b9973de9b4ea31d526b89','lot',0),
 ('20abaf9d15742fcaca2a79b389919b8c','seo',0),
 ('21582c6c30be1217322cdb9aebaf4a59','that',0),
+('21679c44e56bf3b0262c59304bfd4cb9','bild:',0),
 ('21cec257feb15bcc84e0acd5b0773883','privacy',0),
 ('228c7296b70611d5e33bb4cb7c574572','auditing',0),
 ('22af645d1859cb5ca6da0c484f1f37ea','new',0),
@@ -3136,6 +3325,7 @@ INSERT INTO `index_words` VALUES
 ('3c59dc048e8850243be8079a5c74d079','21',0),
 ('3c6e0b8a9c15224a8228b9a98ca1531d','key',0),
 ('3cd15f8f2940aff879df34df4e5c2cd1','history',0),
+('3d791e43c8d5561e36bd09bacc097517','cap',0),
 ('3d9fb56d74e048e4b871027949764052','embraces',0),
 ('3e1867f5aee83045775fbe355e6a3ce1','beer',0),
 ('3e80ebd582f73299f249afba8ebe7e6b','responsive',0),
@@ -3162,6 +3352,7 @@ INSERT INTO `index_words` VALUES
 ('46f86faa6bbf9ac94a7e459509a20ed0','project',0),
 ('4716d882643fb4c1b9edb461df19e2f1','caches',0),
 ('48bb6e862e54f2a795ffc4e541caed4d','easy',0),
+('48d6215903dff56238e52e8891380c8f','blue',0),
 ('48e54afcf03ca45bfe38f6b7ff58764a','configured',0),
 ('49889d3f78e208b1538f15a0c7bc16d0','regional',0),
 ('4aad0cb41995869ff230bed3b8a7be7d','hand-in-hand',0),
@@ -3184,6 +3375,7 @@ INSERT INTO `index_words` VALUES
 ('532c28d5412dd75bf975fb951c740a30','mobile',0),
 ('536801a526cbca7d986e6b9bc55363b8','openness',0),
 ('53a9c3686afdbb0db7c626e56a243a41','29.02.2024',0),
+('53cced8d281a1a0ace3cb6594daaa4f7','low',0),
 ('53d670af9bb16ea82e7ef41ee23ec6df','who',0),
 ('53e61336bb49ec978968786b07dea50b','results',0),
 ('54604e5dfe9940161fbbc0d00ca34746','sixomc',0),
@@ -3205,6 +3397,7 @@ INSERT INTO `index_words` VALUES
 ('589b397ed82131bf51acdf63521c2df5','built',0),
 ('593616de15330c0fb2d55e55410bf994','base',0),
 ('5970929a425637241abb7a44591e32b3','don\'t',0),
+('599dcce2998a6b40b1e38e8c6006cb0a','type',0),
 ('5a9d18bb87ff12835dc844883c5c3ebe','changes',0),
 ('5ba1c4ecf208b1757df653813416a886','pace',0),
 ('5cfea13ba1397f696bea7b2ff62c0188','fluid',0),
@@ -3262,6 +3455,7 @@ INSERT INTO `index_words` VALUES
 ('77bcab78ad7aaa51962565f9aea51291','possibilities',0),
 ('78459e745634e095a00a55c1f1a80910','keeps',0),
 ('786d348e95448121dc5b7387e22e4fff','sqlite',0),
+('78a5eb43deef9a7b5b9ce157b9d52ac4','price',0),
 ('78cdeac478e1ba62b564cfc57b945f87','using',0),
 ('78ee54aa8f813885fe2fe20d232518b9','point',0),
 ('795f3202b17cb6bc3d4b771d8c6c9eaf','other',0),
@@ -3273,6 +3467,7 @@ INSERT INTO `index_words` VALUES
 ('7bae5c0a2a2f1bbf68b7d887cc1fa3a2','typo3\'s',0),
 ('7c4f29407893c334a6cb7a87bf045c0d','right',0),
 ('7cc260957727a2a3e99ce612807f4f3c','ease',0),
+('7cc481e3eab24b4ef9ccc945c00f7784','t-shirt',0),
 ('7cef8a734855777c2a9d0caf42666e69','open',0),
 ('7d0db380a5b95a8ba1da0bca241abda1','at',0),
 ('7d3303a4e8dcb9ed1e08f935a1f0a529','alfresco',0),
@@ -3294,6 +3489,7 @@ INSERT INTO `index_words` VALUES
 ('8451fc653eaa269664a6d9b46a238424','least',0),
 ('8518008e8835d42ddb7c83810b5cede0','better',0),
 ('85964989611934e09fd33690cd7aa279','beyond',0),
+('86024cad1e83101d97359d7351051156','products',0),
 ('8681eb97bb0bfac22cbc0b9ca08048ed','practices',0),
 ('8692fc447f13b2256b0b4e381de7f382','solutions',0),
 ('878983117a2370e5b702db49786da067','runs',0),
@@ -3312,6 +3508,7 @@ INSERT INTO `index_words` VALUES
 ('8c7dd922ad47494fc02c388e12c00eac','file',0),
 ('8cd283d8b7bacc277f2bae5e26ce6d1e','many',0),
 ('8d777f385d3dfec8815d20f7496026dc','data',0),
+('8d966b2253a917086c8604959e152243','high',0),
 ('8dbdda48fb8748d6746f1965824e966a','simple',0),
 ('8df358eebbbb64bf19235a902db73505','tournament',0),
 ('8e15b32e960ad327e4c48061410f8bd4','14.30',0),
@@ -3330,17 +3527,21 @@ INSERT INTO `index_words` VALUES
 ('93349189c5d0219ba8b20ca7cbf068a1','friendship',0),
 ('933dd8674c563081260867dfa95b5e74','each',0),
 ('93da65a9fd0004d9477aeac024e08e15','options',0),
+('946c28f72272e09d162a79cd6f496ab4','sweater',0),
 ('958f470d0b1c8fb2b9e62b48e8903299','unlimited',0),
 ('95cc6b4ac5abdeadc74b73a8ba7200d9','club',0),
 ('960db2ed82202a9706b97775a4269378','region',0),
+('962b2d2b8e72dc6771bca613d49b46fb','teddy',0),
 ('968bea82dad1eeb1c72457e82b35e069','tca',0),
 ('96c70b1dc0455bd80da8756721c6f6a7','playground',0),
+('96d6f2e7e1f705ab5e59c84a6dc009b2','logo',0),
 ('97081c1611358b350e8088cb3d2b8b5b','diversity',0),
 ('972c97bdc47dfc8def0e74c55da0bbfd','explore',0),
 ('976d7f4df64d24f20d17e6628210c895','abstraction',0),
 ('979b93285de87c4731fc824bd9e4ba75','communication',0),
 ('9827f490863603674bc635c4a4bea06c','clubs',0),
 ('98defd6ee70dfb1dea416cecdf391f58','site',0),
+('98f13708210194c475687be6106a3b84','20',0),
 ('99be1ee67a0137092d3d112c0620c552','stay',0),
 ('99f78c54130e752954404fff0707dcbd','included',0),
 ('9a0364b9e99bb480dd25e1f0284c8555','content',0),
@@ -3391,6 +3592,7 @@ INSERT INTO `index_words` VALUES
 ('ac5c74b64b4b8352ef2f181affb5ac2a','sql',0),
 ('ac68b62abfd6a9fe26e8ac4236c8ce0c','forms',0),
 ('ac68bbf921d953d1cfab916cb6120864','aws',0),
+('ac7938d40cfc2307e2bf325d28e7884e','plain',0),
 ('acaa16770db76c1ffb9cee51c3cabfcf','great',0),
 ('acf4b89d3d503d8252c9c4ba75ddbf6d','900',0),
 ('ad1943a9fd6d3d7ee1e6af41a5b0d3e7','engine',0),
@@ -3405,6 +3607,7 @@ INSERT INTO `index_words` VALUES
 ('af71e0a18f8a746aaeedb1bbe63b66aa','believing',0),
 ('afacdb0a401ccdf6b48551bbc00e8a74','large',0),
 ('b03e3fd2b3d22ff6df2796c412b09311','junior',0),
+('b068931cc450442b63f5b3d276ea4297','name',0),
 ('b0da275520918e23dd615e2a747528f1','build',0),
 ('b1bc248a7ff2b2e95569f56de68615df','number',0),
 ('b2bf18e206cf9b5eb2d632030acb16cc','offers',0),
@@ -3426,6 +3629,7 @@ INSERT INTO `index_words` VALUES
 ('b5eda0a74558a342cf659187f06f746f','get',0),
 ('b5f927bae9a11c2967a368e3e9bd9e75','revision',0),
 ('b5fba9ff24d0045d1377a05a46b32f68','applications',0),
+('b6a9921a18f214cd49c11b47502162fe','preis',0),
 ('b71e59a3962a4af02e9a7dc3b88ed3ea','wide',0),
 ('b7b655045b89200c7a4dedb1303ca2f1','3rd',0),
 ('b807023f87e63b8ada92f79f546ff9cc','so',0),
@@ -3438,6 +3642,7 @@ INSERT INTO `index_words` VALUES
 ('b9b4136389b37e3520cac8ddc3596c43','cohesive',0),
 ('ba8a48b0e34226a2992d871c65600a7c','luna',0),
 ('bb110a454fadd9b811fcb54b061619c9','imagine',0),
+('bb21a2f11b3957f442f721fd6a9bcbd7','bild',0),
 ('bb3ccd5881d651448ded1dac904054ac','information',0),
 ('bbb8cbb9e5a1feb2654d026b941dce19','extensive',0),
 ('bd0b3e6e8d0a4cf50d9e38ed509f257c','copies',0),
@@ -3450,6 +3655,7 @@ INSERT INTO `index_words` VALUES
 ('c045b4679cc35c247b5a24833b414f76','flexibility',0),
 ('c05f6c233521207f6fe311afef550c3c','performance',0),
 ('c0828e0381730befd1f7a025057c74fb','s3',0),
+('c0c7c76d30bd3dcaefc96f40275bdc0a','50',0),
 ('c0ca5324e06afa567f7d5ad10a592576','needed',0),
 ('c14f7a753888287112058264fa40b72d','optimize',0),
 ('c185ddac8b5a8f5aa23c5b80bc12d214','training',0),
@@ -3479,6 +3685,7 @@ INSERT INTO `index_words` VALUES
 ('ca23ba209cc33678530392b7197fda4d','through',0),
 ('ca4c50b905dc21ea17a10549a6f5944f','bootstrap',0),
 ('ca738cb7fc8194c164eff3e06969387b','typoscript',0),
+('cadc8c8db42409733582cb3e2298ef87','sort',0),
 ('cb50fd5e8c18cffaaad1ab74baf6eb3c','21.03.2024',0),
 ('cb78ff4b16683451570f56c1bab8f70a','hundreds',0),
 ('cbd63d84b143ca4d977c56413f0636f8','customize',0),
@@ -3580,6 +3787,7 @@ INSERT INTO `index_words` VALUES
 ('eaa2b1e80b48378dad55ec5930cf33ed','separation',0),
 ('eb399bcaca686f8609137153307eecf1','change',0),
 ('eb5c1399a871211c7e7ed732d15e3a8b','small',0),
+('ebd73ade48cb3e102d1dbbfbc0377c5f','choose',0),
 ('ebed715e82a0a0f3e950ef6565cdc4a8','place',0),
 ('ecae13117d6f0584c25a9da6c8f8415e','read',0),
 ('ecc3c7b4754f8509cfe9de944671b36f','bigfoot',0),
@@ -3623,6 +3831,7 @@ INSERT INTO `index_words` VALUES
 ('f5d7e2532cc9ad16bc2a41222d76f269','business',0),
 ('f6216ab8b669f451dd4270a9cb96ec69','woodland',0),
 ('f6cb3e816496528d4187db53bc66567f','both',0),
+('f7bd60b75b29d79b660a2859395c1a24','size',0),
 ('f7c0a09108cdf26287c1bc5af2ed1f93','most',0),
 ('f800163891e6238204c318961246a670','allows',0),
 ('f894427cc1c571f79da49605ef8b112f','team',0),
@@ -3640,6 +3849,8 @@ INSERT INTO `index_words` VALUES
 ('fc0cb42fe6c1069381a66da04097ffc2','without',0),
 ('fc35fdc70d5fc69d269883a822c7a53e','html',0),
 ('fd456406745d816a45cae554c788e754','download',0),
+('fdbb3a56280acfa9031707622c599ccb','größe',0),
+('fdfd3ad0900e37ec8ef61aeb5c054e0d','menge',0),
 ('fed36e93a0509e20f2dc96cbbd85b678','templates',0),
 ('ff1ccf57e98c817df1efcd9fe44a8aeb','we',0),
 ('ffe8560492ef96f860b965341d0c9698','instagram',0);
@@ -3756,8 +3967,9 @@ INSERT INTO `pages` VALUES
 (101,98,1744022161,1744022138,0,0,0,0,'',32,NULL,0,0,0,0,NULL,'{\"doktype\":\"\",\"title\":\"\",\"slug\":\"\",\"nav_title\":\"\",\"subtitle\":\"\",\"nav_icon_set\":\"\",\"nav_icon\":\"\",\"shortcut_mode\":\"\",\"shortcut\":\"\",\"abstract\":\"\",\"author\":\"\",\"author_email\":\"\",\"lastUpdated\":\"\",\"layout\":\"\",\"newUntil\":\"\",\"backend_layout\":\"\",\"backend_layout_next_level\":\"\",\"thumbnail\":\"\",\"target\":\"\",\"is_siteroot\":\"\",\"no_search\":\"\",\"php_tree_stop\":\"\",\"media\":\"\",\"tsconfig_includes\":\"\",\"TSconfig\":\"\",\"l18n_cfg\":\"\",\"hidden\":\"\",\"nav_hide\":\"\",\"starttime\":\"\",\"endtime\":\"\",\"extendToSubpages\":\"\",\"fe_group\":\"\",\"editlock\":\"\",\"categories\":\"\",\"rowDescription\":\"\"}',0,0,0,0,1,0,31,27,0,0,98,0,0,0.5,'','',0,0,4,'Home','/home',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
 (102,1,1746436313,1746436310,0,0,0,0,'0',512,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,0,0,0,0,0.5,'','',0,0,254,'Orders','/orders',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
 (103,1,1746444579,1746443877,0,0,0,0,'0',768,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,0,0,0,0,0.5,'','',0,0,254,'Products','/products',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
-(104,1,1746697050,1746697047,0,0,0,0,'0',384,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,0,0,0,0,0.5,'','',0,0,1,'Shop','/shop',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
-(105,1,1746697112,1746697109,0,0,0,0,'0',448,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,0,0,0,0,0.5,'','',0,0,1,'Warenkorb','/warenkorb',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0);
+(104,1,1746697050,1746697047,0,0,0,0,'0',384,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,1746697308,0,0,0,0.5,'','',0,0,1,'Shop','/shop',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
+(105,1,1746697112,1746697109,0,0,0,0,'0',448,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,1746697126,0,0,0,0.5,'','',0,0,1,'Warenkorb','/warenkorb',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0),
+(106,1,1746711145,1746711143,0,0,0,0,'0',480,NULL,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,1,0,31,27,0,0,0,0,0,0.5,'','',0,0,254,'Discount Codes','/discount-codes',NULL,0,0,0,0,'',0,'','','',0,0,0,'',0,0,NULL,NULL,NULL,'','',0,0,0,'',0,'','',NULL,'',0,0,'','','',NULL,0,'',NULL,0,'',0);
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4266,10 +4478,10 @@ INSERT INTO `sys_file_reference` VALUES
 (184,34,1744015096,1744015096,0,0,2,159,NULL,'{\"sys_language_uid\":\"\",\"l10n_parent\":\"\"}',0,0,0,0,31,NULL,NULL,13,'pages','thumbnail',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"large\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"medium\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"small\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null},\"extrasmall\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null}}',0),
 (185,34,1744015096,1744015096,0,0,1,159,NULL,'{\"sys_language_uid\":\"\",\"l10n_parent\":\"\"}',0,0,0,0,31,NULL,NULL,14,'pages','thumbnail',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"large\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"medium\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"small\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null},\"extrasmall\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null}}',0),
 (186,34,1744015096,1744015096,0,0,1,184,NULL,'{\"sys_language_uid\":\"\",\"l10n_parent\":\"\"}',0,0,0,0,31,NULL,NULL,14,'pages','thumbnail',2,'',NULL,'{\"default\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"large\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"medium\":{\"cropArea\":{\"x\":5.555555555562345e-5,\"y\":0,\"width\":0.8888888888888888,\"height\":1},\"selectedRatio\":\"4:3\",\"focusArea\":null},\"small\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null},\"extrasmall\":{\"cropArea\":{\"x\":0.0006940973957465957,\"y\":0.15592203898050974,\"width\":0.9986118052085068,\"height\":0.8425787106446776},\"selectedRatio\":\"16:9\",\"focusArea\":null}}',0),
-(187,103,1746445095,1746445095,0,0,0,0,NULL,'',0,0,0,0,113,NULL,NULL,3,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
-(188,103,1746445135,1746445135,0,0,0,0,NULL,'',0,0,0,0,113,NULL,NULL,4,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
-(189,103,1746445156,1746445156,0,0,0,0,NULL,'',0,0,0,0,113,NULL,NULL,2,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
-(190,103,1746445162,1746445162,0,0,0,0,NULL,'',0,0,0,0,113,NULL,NULL,1,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0);
+(187,103,1746724807,1746445095,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,113,NULL,NULL,3,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
+(188,103,1746724815,1746445135,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,113,NULL,NULL,4,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
+(189,103,1746724821,1746445156,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,113,NULL,NULL,2,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0),
+(190,103,1746724831,1746445162,0,0,0,0,NULL,'{\"hidden\":\"\"}',0,0,0,0,113,NULL,NULL,1,'tx_wavecart_domain_model_product','image',1,'',NULL,'{\"default\":{\"cropArea\":{\"x\":0,\"y\":0,\"width\":1,\"height\":1},\"selectedRatio\":\"NaN\",\"focusArea\":null}}',0);
 /*!40000 ALTER TABLE `sys_file_reference` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5449,7 +5661,39 @@ INSERT INTO `sys_history` VALUES
 (1146,1746697112,2,'BE',1,0,105,'pages','{\"oldRecord\":{\"hidden\":1,\"l10n_diffsource\":\"\"},\"newRecord\":{\"hidden\":\"0\",\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$cba0a63d50603507d51f97bbad7532e1:7aeded22f59f348247c4f5ab8a85606e'),
 (1147,1746697126,1,'BE',1,0,256,'tt_content','{\"CType\":\"wavecart_order\",\"categories\":\"0\",\"layout\":\"0\",\"frame_class\":\"default\",\"space_before_class\":\"\",\"space_after_class\":\"\",\"colPos\":\"0\",\"date\":0,\"header_layout\":\"2\",\"header_position\":\"\",\"imagewidth\":0,\"imageheight\":0,\"imageorient\":\"0\",\"imagecols\":\"2\",\"recursive\":\"0\",\"list_type\":\"\",\"sectionIndex\":\"1\",\"hidden\":\"0\",\"starttime\":0,\"endtime\":0,\"sys_language_uid\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"bullets_type\":\"0\",\"cols\":\"0\",\"table_class\":\"\",\"table_delimiter\":\"124\",\"table_enclosure\":\"0\",\"table_header_position\":\"0\",\"table_tfoot\":0,\"target\":\"\",\"uploads_description\":0,\"uploads_type\":\"0\",\"icon_type\":\"default\",\"icon_color\":\"#FFFFFF\",\"icon_background\":\"#333333\",\"items_per_page\":10,\"subitems_header_layout\":\"2\",\"fcbigfoot_game_results_mode\":\"slider\",\"pid\":105,\"sorting\":256,\"header\":\"\",\"header_class\":\"\",\"subheader\":\"\",\"subheader_class\":\"\",\"frame_layout\":\"default\",\"frame_options\":\"\",\"background_color_class\":\"none\",\"background_image_options\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\" standalone=\\\"yes\\\" ?>\\n<T3FlexForms>\\n    <data>\\n        <sheet index=\\\"sDEF\\\">\\n            <language index=\\\"lDEF\\\">\\n                <field index=\\\"behaviour\\\">\\n                    <value index=\\\"vDEF\\\">cover<\\/value>\\n                <\\/field>\\n                <field index=\\\"parallax\\\">\\n                    <value index=\\\"vDEF\\\">0<\\/value>\\n                <\\/field>\\n                <field index=\\\"fade\\\">\\n                    <value index=\\\"vDEF\\\">0<\\/value>\\n                <\\/field>\\n                <field index=\\\"filter\\\">\\n                    <value index=\\\"vDEF\\\"><\\/value>\\n                <\\/field>\\n            <\\/language>\\n        <\\/sheet>\\n    <\\/data>\\n<\\/T3FlexForms>\",\"linkToTop\":\"0\",\"fe_group\":\"\",\"editlock\":\"0\",\"rowDescription\":\"\",\"crdate\":1746697126,\"t3ver_stage\":0,\"tstamp\":1746697126,\"uid\":256}',0,'0400$ffc5780743656e7eb4a3b4af41019ae7:82c6209a2ea5b2def3dd8d04a1331288'),
 (1148,1746697308,1,'BE',1,0,257,'tt_content','{\"CType\":\"wavecart_product\",\"categories\":\"0\",\"layout\":\"0\",\"frame_class\":\"default\",\"space_before_class\":\"\",\"space_after_class\":\"\",\"colPos\":\"0\",\"date\":0,\"header_layout\":\"2\",\"header_position\":\"\",\"imagewidth\":0,\"imageheight\":0,\"imageorient\":\"0\",\"imagecols\":\"2\",\"recursive\":\"0\",\"list_type\":\"\",\"sectionIndex\":\"1\",\"hidden\":\"0\",\"starttime\":0,\"endtime\":0,\"sys_language_uid\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"bullets_type\":\"0\",\"cols\":\"0\",\"table_class\":\"\",\"table_delimiter\":\"124\",\"table_enclosure\":\"0\",\"table_header_position\":\"0\",\"table_tfoot\":0,\"target\":\"\",\"uploads_description\":0,\"uploads_type\":\"0\",\"icon_type\":\"default\",\"icon_color\":\"#FFFFFF\",\"icon_background\":\"#333333\",\"items_per_page\":10,\"subitems_header_layout\":\"2\",\"fcbigfoot_game_results_mode\":\"slider\",\"pid\":104,\"sorting\":256,\"header\":\"\",\"header_class\":\"\",\"subheader\":\"\",\"subheader_class\":\"\",\"frame_layout\":\"default\",\"frame_options\":\"\",\"background_color_class\":\"none\",\"background_image_options\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\" standalone=\\\"yes\\\" ?>\\n<T3FlexForms>\\n    <data>\\n        <sheet index=\\\"sDEF\\\">\\n            <language index=\\\"lDEF\\\">\\n                <field index=\\\"behaviour\\\">\\n                    <value index=\\\"vDEF\\\">cover<\\/value>\\n                <\\/field>\\n                <field index=\\\"parallax\\\">\\n                    <value index=\\\"vDEF\\\">0<\\/value>\\n                <\\/field>\\n                <field index=\\\"fade\\\">\\n                    <value index=\\\"vDEF\\\">0<\\/value>\\n                <\\/field>\\n                <field index=\\\"filter\\\">\\n                    <value index=\\\"vDEF\\\"><\\/value>\\n                <\\/field>\\n            <\\/language>\\n        <\\/sheet>\\n    <\\/data>\\n<\\/T3FlexForms>\",\"linkToTop\":\"0\",\"fe_group\":\"\",\"editlock\":\"0\",\"rowDescription\":\"\",\"crdate\":1746697308,\"t3ver_stage\":0,\"tstamp\":1746697308,\"uid\":257}',0,'0400$6a7ba0807bc9ac3f76235541ad25100d:ede48707f9f8c66ce7c416f2bc5b62bc'),
-(1149,1746697463,4,'BE',1,0,255,'tt_content',NULL,0,'0400$dbe8bb39ede993b341ab78da65427e23:ba1c1b1a622a1185053df998e83a36cd');
+(1149,1746697463,4,'BE',1,0,255,'tt_content',NULL,0,'0400$dbe8bb39ede993b341ab78da65427e23:ba1c1b1a622a1185053df998e83a36cd'),
+(1150,1746701326,2,'BE',1,0,187,'sys_file_reference','{\"oldRecord\":{\"l10n_diffsource\":\"\"},\"newRecord\":{\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$5e49a8ea94320719f6627a996f1a1d47:93f7c3e741b017fd6fd90691b6a180a3'),
+(1151,1746701326,1,'BE',1,0,7,'tx_wavecart_domain_model_productvariant','{\"hidden\":0,\"starttime\":0,\"endtime\":0,\"l18n_parent\":0,\"l18n_diffsource\":\"\",\"pid\":103,\"name\":\"Cap\",\"size\":\"unisize\",\"amount\":20,\"sys_language_uid\":0,\"crdate\":1746701326,\"tstamp\":1746701326,\"uid\":7}',0,'0400$5e49a8ea94320719f6627a996f1a1d47:706a39a0d951be31f48118f08ecd8cad'),
+(1152,1746711143,1,'BE',1,0,106,'pages','{\"doktype\":\"254\",\"slug\":\"\\/discount-codes\",\"categories\":\"0\",\"layout\":\"0\",\"lastUpdated\":0,\"newUntil\":0,\"cache_timeout\":\"0\",\"shortcut\":0,\"shortcut_mode\":\"0\",\"content_from_pid\":0,\"mount_pid\":0,\"module\":\"\",\"hidden\":1,\"starttime\":0,\"endtime\":0,\"l10n_parent\":0,\"l10n_diffsource\":\"\",\"sitemap_priority\":\"0.5\",\"twitter_card\":\"\",\"pid\":1,\"sorting\":480,\"perms_userid\":1,\"perms_groupid\":0,\"perms_user\":31,\"perms_group\":27,\"perms_everybody\":0,\"title\":\"Discount Codes\",\"sys_language_uid\":0,\"crdate\":1746711143,\"t3ver_stage\":0,\"tstamp\":1746711143,\"uid\":106}',0,'0400$032f3d0ecb19c280d3d96312166fb93f:3b701a08bfa2add936c2e143d38b2cc1'),
+(1153,1746711145,2,'BE',1,0,106,'pages','{\"oldRecord\":{\"hidden\":1,\"l10n_diffsource\":\"\"},\"newRecord\":{\"hidden\":\"0\",\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$a19441b3c7e74fe4879f6d4597dc6b1e:3b701a08bfa2add936c2e143d38b2cc1'),
+(1154,1746711174,1,'BE',1,0,1,'tx_wavecart_domain_model_discountcode','{\"pid\":106,\"code\":\"\",\"type\":\"0\",\"discount\":\"0.00\",\"has_redeem_maximum\":\"1\",\"crdate\":1746711174,\"tstamp\":1746711174,\"uid\":1}',0,'0400$38587aa2020abbe269ab4b09111b5ea4:d02f7a3b2446652f8a1a8e84d7ce5f48'),
+(1155,1746713345,2,'BE',1,0,1,'tx_wavecart_domain_model_discountcode','{\"oldRecord\":{\"code\":\"\"},\"newRecord\":{\"code\":\"iK23WoolR40pkAh0\"}}',0,'0400$3f555addfc73ddf4171eede420b2abad:d02f7a3b2446652f8a1a8e84d7ce5f48'),
+(1156,1746713366,2,'BE',1,0,1,'tx_wavecart_domain_model_discountcode','{\"oldRecord\":{\"code\":\"iK23WoolR40pkAh0\"},\"newRecord\":{\"code\":\"hM4har8H1PQdZZEz\"}}',0,'0400$444e506c004442f504653ba9bc301da4:d02f7a3b2446652f8a1a8e84d7ce5f48'),
+(1157,1746713419,2,'BE',1,0,1,'tx_wavecart_domain_model_discountcode','{\"oldRecord\":{\"code\":\"hM4har8H1PQdZZEz\"},\"newRecord\":{\"code\":\"nI8zAYAIQNTUCuac\"}}',0,'0400$a778cd072ac56058e4ad916793df1a0a:d02f7a3b2446652f8a1a8e84d7ce5f48'),
+(1158,1746713704,2,'BE',1,0,1,'tx_wavecart_domain_model_discountcode','{\"oldRecord\":{\"code\":\"nI8zAYAIQNTUCuac\",\"type\":0,\"discount\":\"0.00\",\"current_redeem_amount\":0},\"newRecord\":{\"code\":\"RABATT10\",\"type\":\"1\",\"discount\":\"10.00\",\"current_redeem_amount\":10}}',0,'0400$09bbefd32369fe12fcc210d828840485:d02f7a3b2446652f8a1a8e84d7ce5f48'),
+(1159,1746715197,1,'BE',1,0,2,'tx_wavecart_domain_model_discountcode','{\"starttime\":0,\"endtime\":0,\"pid\":106,\"code\":\"pN0oNYnKVzPVZyh9\",\"type\":\"0\",\"discount\":\"12.00\",\"has_redeem_maximum\":\"0\",\"crdate\":1746715197,\"tstamp\":1746715197,\"uid\":2}',0,'0400$b0c67ee3a39566316c766f9f5b468f15:d68c5886dcf90d82ae23f8c36d8dbb0b'),
+(1160,1746720580,1,'BE',1,0,3,'tx_wavecart_domain_model_discountcode','{\"starttime\":0,\"endtime\":0,\"pid\":106,\"code\":\"RABATT100\",\"type\":\"1\",\"discount\":\"10.00\",\"has_redeem_maximum\":\"0\",\"crdate\":1746720580,\"tstamp\":1746720580,\"uid\":3}',0,'0400$df5d9a2789d3fb2d79a0edf990975a1f:e90e6ed77ad71beca43ab12be580b5ef'),
+(1161,1746720703,4,'BE',1,0,3,'tx_wavecart_domain_model_discountcode',NULL,0,'0400$1f0e4d23ae323acc29d141613a90d09f:e90e6ed77ad71beca43ab12be580b5ef'),
+(1162,1746721197,2,'BE',1,0,1,'tx_wavecart_domain_model_discountcode','{\"oldRecord\":{\"endtime\":0},\"newRecord\":{\"endtime\":1746572400}}',0,'0400$6037aa09336a296ec877511d0fd822f9:d02f7a3b2446652f8a1a8e84d7ce5f48'),
+(1163,1746721219,2,'BE',1,0,1,'tx_wavecart_domain_model_discountcode','{\"oldRecord\":{\"endtime\":1746572400},\"newRecord\":{\"endtime\":0}}',0,'0400$ca0dcc09f5ffb3f02b1f627ad2355775:d02f7a3b2446652f8a1a8e84d7ce5f48'),
+(1164,1746722286,2,'BE',1,0,1,'tx_wavecart_domain_model_discountcode','{\"oldRecord\":{\"discount\":\"10.00\"},\"newRecord\":{\"discount\":\"10.50\"}}',0,'0400$8ebc46e231eb1eeba0848ffb6c3268a2:d02f7a3b2446652f8a1a8e84d7ce5f48'),
+(1165,1746723729,2,'BE',1,0,1,'tx_wavecart_domain_model_discountcode','{\"oldRecord\":{\"current_redeem_amount\":10},\"newRecord\":{\"current_redeem_amount\":-1}}',0,'0400$94add7701ebfa301623b7fe163487933:d02f7a3b2446652f8a1a8e84d7ce5f48'),
+(1166,1746723953,1,'BE',1,0,4,'tx_wavecart_domain_model_discountcode','{\"starttime\":0,\"endtime\":0,\"pid\":106,\"code\":\"rO8p6mShaqqYrlJq\",\"type\":\"0\",\"discount\":\"10.00\",\"current_redeem_amount\":null,\"crdate\":1746723953,\"tstamp\":1746723953,\"uid\":4}',0,'0400$3e9e7e33e290aafcbad4baa5a5f0e625:5a799c5df9baed1c444916a67b1e4cc3'),
+(1167,1746724023,1,'BE',1,0,5,'tx_wavecart_domain_model_discountcode','{\"starttime\":0,\"endtime\":0,\"pid\":106,\"code\":\"xR4mpqFpI9rryiOX\",\"type\":\"0\",\"discount\":\"1.00\",\"current_redeem_amount\":0,\"crdate\":1746724023,\"tstamp\":1746724023,\"uid\":5}',0,'0400$8ce73925712d3ed9b9a20e0f7ea7b075:9b9f2b23e296f3701cf2dbba4bf42a9d'),
+(1168,1746724028,2,'BE',1,0,5,'tx_wavecart_domain_model_discountcode','{\"oldRecord\":{\"current_redeem_amount\":0},\"newRecord\":{\"current_redeem_amount\":null}}',0,'0400$68cd133d851461ebbac3f9e800525a89:9b9f2b23e296f3701cf2dbba4bf42a9d'),
+(1169,1746724772,2,'BE',1,0,1,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"tax_rate\":17},\"newRecord\":{\"tax_rate\":\"19\"}}',0,'0400$000adac08bcec65d48f75e281e1f6779:bf96bbf60e3f2200ddc6b10ce5c4d461'),
+(1170,1746724772,2,'BE',1,0,190,'sys_file_reference','{\"oldRecord\":{\"l10n_diffsource\":\"\"},\"newRecord\":{\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$000adac08bcec65d48f75e281e1f6779:a0c651908a4108935b792b5a938787ac'),
+(1171,1746724772,2,'BE',1,0,2,'tx_wavecart_domain_model_productvariant','{\"oldRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$000adac08bcec65d48f75e281e1f6779:f6a0c4312bb7fceef0a35aa39bbb3c76'),
+(1172,1746724807,2,'BE',1,0,3,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"tax_rate\":17},\"newRecord\":{\"tax_rate\":\"19\"}}',0,'0400$9a83ca33e82b3fc45d5922d4d1b9c7d5:8c4158a5bc515d299fb7b2051447f4e1'),
+(1173,1746724807,2,'BE',1,0,7,'tx_wavecart_domain_model_productvariant','{\"oldRecord\":{\"l18n_diffsource\":\"\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$9a83ca33e82b3fc45d5922d4d1b9c7d5:706a39a0d951be31f48118f08ecd8cad'),
+(1174,1746724815,2,'BE',1,0,4,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"tax_rate\":17},\"newRecord\":{\"tax_rate\":\"19\"}}',0,'0400$f6e24ec59c3d43eb5c2bcb8c5ba7ad1f:f5d1a2cc336741d8fa894fa1d2de6fe3'),
+(1175,1746724815,2,'BE',1,0,188,'sys_file_reference','{\"oldRecord\":{\"l10n_diffsource\":\"\"},\"newRecord\":{\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$f6e24ec59c3d43eb5c2bcb8c5ba7ad1f:88d5b21560abed88cdedccf6be944087'),
+(1176,1746724815,2,'BE',1,0,6,'tx_wavecart_domain_model_productvariant','{\"oldRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$f6e24ec59c3d43eb5c2bcb8c5ba7ad1f:553eb4e0dcc2bc8aebc05af72e7111a0'),
+(1177,1746724821,2,'BE',1,0,2,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"tax_rate\":17},\"newRecord\":{\"tax_rate\":\"19\"}}',0,'0400$d2077e85e0ec3d61b129c608e897a16e:30a22092b0d54e730249ce65abccd31d'),
+(1178,1746724821,2,'BE',1,0,189,'sys_file_reference','{\"oldRecord\":{\"l10n_diffsource\":\"\"},\"newRecord\":{\"l10n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$d2077e85e0ec3d61b129c608e897a16e:83503eafb54e8c2b15ecb4fc3d7bbf9e'),
+(1179,1746724821,2,'BE',1,0,3,'tx_wavecart_domain_model_productvariant','{\"oldRecord\":{\"l18n_diffsource\":\"{\\\"name\\\":\\\"\\\",\\\"size\\\":\\\"\\\",\\\"amount\\\":\\\"\\\",\\\"hidden\\\":\\\"\\\"}\"},\"newRecord\":{\"l18n_diffsource\":\"{\\\"hidden\\\":\\\"\\\"}\"}}',0,'0400$d2077e85e0ec3d61b129c608e897a16e:0accbd7045e6ff312a691512bbae08e0'),
+(1180,1746724831,2,'BE',1,0,1,'tx_wavecart_domain_model_product','{\"oldRecord\":{\"variants\":2},\"newRecord\":{\"variants\":1}}',0,'0400$fa9f2997c1189fbd3e9414a722bae721:bf96bbf60e3f2200ddc6b10ce5c4d461'),
+(1181,1746724831,4,'BE',1,0,2,'tx_wavecart_domain_model_productvariant',NULL,0,'0400$fa9f2997c1189fbd3e9414a722bae721:f6a0c4312bb7fceef0a35aa39bbb3c76');
 /*!40000 ALTER TABLE `sys_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5657,7 +5901,70 @@ INSERT INTO `sys_log` VALUES
 (169,1746697112,1,2,105,'pages',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.24.0.6','{\"table\":\"pages\",\"uid\":105,\"history\":\"1146\"}',1,0,'',0,'','info',NULL,NULL),
 (170,1746697126,1,1,256,'tt_content',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.24.0.6','{\"table\":\"tt_content\",\"uid\":256,\"pid\":105}',105,0,'',0,'','info',NULL,NULL),
 (171,1746697308,1,1,257,'tt_content',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.24.0.6','{\"table\":\"tt_content\",\"uid\":257,\"pid\":104}',104,0,'',0,'','info',NULL,NULL),
-(172,1746697463,1,3,255,'tt_content',0,0,'Record {table}:{uid} was deleted from pages:{pid}',1,'content',0,'172.24.0.6','{\"table\":\"tt_content\",\"uid\":255,\"pid\":103}',103,0,'',0,'','info',NULL,NULL);
+(172,1746697463,1,3,255,'tt_content',0,0,'Record {table}:{uid} was deleted from pages:{pid}',1,'content',0,'172.24.0.6','{\"table\":\"tt_content\",\"uid\":255,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(173,1746701300,1,1,0,'',0,0,'User %s logged in from ###IP###',255,'user',0,'172.19.0.6','[\"admin\"]',-1,-99,'',0,'','info',NULL,NULL),
+(174,1746701326,1,2,187,'sys_file_reference',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"sys_file_reference\",\"uid\":187,\"history\":\"1150\"}',103,0,'',0,'','info',NULL,NULL),
+(175,1746701326,1,1,7,'tx_wavecart_domain_model_productvariant',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_productvariant\",\"uid\":7,\"pid\":103}',103,0,'',0,'','info',NULL,NULL),
+(176,1746701326,1,2,3,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":3,\"history\":0}',103,0,'',0,'','info',NULL,NULL),
+(177,1746711143,1,1,106,'pages',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.19.0.6','{\"table\":\"pages\",\"uid\":106,\"pid\":1}',1,0,'',0,'','info',NULL,NULL),
+(178,1746711145,1,2,106,'pages',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"pages\",\"uid\":106,\"history\":\"1153\"}',1,0,'',0,'','info',NULL,NULL),
+(179,1746711154,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1146: An exception occurred while executing a query: Table \'db.tx_wavecart_domain_model_discountcode\' doesn\'t exist | Doctrine\\DBAL\\Exception\\TableNotFoundException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 40. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=106&',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(180,1746711174,1,1,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"pid\":106}',106,0,'',0,'','info',NULL,NULL),
+(181,1746711530,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1313855175: The action \"paymentMethod\" (controller \"TYPO3Incubator\\WaveCart\\Controller\\OrderController\") is not allowed by this plugin / module. Please check TYPO3\\CMS\\Extbase\\Utility\\ExtensionUtility::configurePlugin() in your ext_localconf.php / TYPO3\\CMS\\Extbase\\Utility\\ExtensionUtility::configureModule() in your ext_tables.php. | TYPO3\\CMS\\Extbase\\Mvc\\Exception\\InvalidActionNameException thrown in file /var/www/html/vendor/typo3/cms-extbase/Classes/Mvc/Web/RequestBuilder.php in line 224. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb?tx_wavecart_order%%5Baction%%5D=paymentMethod&tx_wavecart_order%%5Bcontroller%%5D=Order&cHash=4ef7b6e2202ddc7785da1a0eb7758777',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(182,1746713345,1,2,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"history\":\"1155\"}',106,0,'',0,'','info',NULL,NULL),
+(183,1746713366,1,2,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"history\":\"1156\"}',106,0,'',0,'','info',NULL,NULL),
+(184,1746713419,1,2,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"history\":\"1157\"}',106,0,'',0,'','info',NULL,NULL),
+(185,1746713704,1,2,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"history\":\"1158\"}',106,0,'',0,'','info',NULL,NULL),
+(186,1746713900,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1054: An exception occurred while executing a query: Unknown column \'starttime\' in \'SELECT\' | Doctrine\\DBAL\\Exception\\InvalidFieldNameException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 52. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=106&',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(187,1746715197,1,1,2,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":2,\"pid\":106}',106,0,'',0,'','info',NULL,NULL),
+(188,1746715853,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: Too few arguments to function TYPO3Incubator\\WaveCart\\Controller\\OrderController::__construct(), 1 passed in /var/www/html/vendor/typo3/cms-core/Classes/Utility/GeneralUtility.php on line 2878 and exactly 3 expected | ArgumentCountError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 25. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(189,1746716566,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, null given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(190,1746716588,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(191,1746716599,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(192,1746716617,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(193,1746716648,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(194,1746716651,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(195,1746716690,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(196,1746716707,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(197,1746716718,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(198,1746716742,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(199,1746716756,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: explode(): Argument #2 ($string) must be of type string, array given | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 39. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(200,1746716770,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1470230766: An exception occurred while executing a query: Unknown column \'variant_id\' in \'INSERT INTO\' | TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Exception\\SqlErrorException thrown in file /var/www/html/vendor/typo3/cms-extbase/Classes/Persistence/Generic/Storage/Typo3DbBackend.php in line 89. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(201,1746716837,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: TYPO3Incubator\\WaveCart\\Controller\\OrderController::createOrder(): Argument #1 ($variantIds) must be of type array, null given, called in /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php on line 38 | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php in line 129. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(202,1746717159,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1476107295: PHP Warning: Undefined array key \"cartCookie\" in /var/www/html/packages/wave-cart/Classes/Controller/OrderController.php line 37 | TYPO3\\CMS\\Core\\Error\\Exception thrown in file /var/www/html/vendor/typo3/cms-core/Classes/Error/ErrorHandler.php in line 141. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/warenkorb',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(203,1746720580,1,5,0,'tx_wavecart_domain_model_discountcode',0,4,'The value of the field \"{field}\" has been changed from \"{originalValue}\" to \"{newValue}\" as it is required to be unique',1,'content',0,'172.19.0.6','{\"field\":\"code\",\"originalValue\":\"RABATT10\",\"newValue\":\"RABATT100\"}',0,0,'',0,'','info',NULL,NULL),
+(204,1746720580,1,1,3,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":3,\"pid\":106}',106,0,'',0,'','info',NULL,NULL),
+(205,1746720703,1,3,3,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was deleted from pages:{pid}',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":3,\"pid\":106}',106,0,'',0,'','info',NULL,NULL),
+(206,1746720990,0,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: Too few arguments to function TYPO3Incubator\\WaveCart\\Middleware\\DiscountMiddleware::__construct(), 1 passed in /var/www/html/vendor/typo3/cms-core/Classes/Utility/GeneralUtility.php on line 2878 and exactly 2 expected | ArgumentCountError thrown in file /var/www/html/packages/wave-cart/Classes/Middleware/DiscountMiddleware.php in line 15. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/api/discount?code=1',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(207,1746721060,0,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: TYPO3Incubator\\WaveCart\\Domain\\Repository\\DiscountCodeRepository::findByCode(): Return value must be of type ?array, false returned | TypeError thrown in file /var/www/html/packages/wave-cart/Classes/Domain/Repository/DiscountCodeRepository.php in line 40. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/api/discount?code=1',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(208,1746721197,1,2,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"history\":\"1162\"}',106,0,'',0,'','info',NULL,NULL),
+(209,1746721198,0,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: syntax error, unexpected token \")\" | ParseError thrown in file /var/www/html/packages/wave-cart/Classes/Middleware/DiscountMiddleware.php in line 48. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/api/discount?code=RABATT10',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(210,1746721219,1,2,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"history\":\"1163\"}',106,0,'',0,'','info',NULL,NULL),
+(211,1746721493,0,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1476107295: PHP Warning: Undefined array key \"\" in /var/www/html/packages/wave-cart/Classes/Middleware/DiscountMiddleware.php line 48 | TYPO3\\CMS\\Core\\Error\\Exception thrown in file /var/www/html/vendor/typo3/cms-core/Classes/Error/ErrorHandler.php in line 141. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/api/discount?code=RABATT10',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(212,1746722127,0,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1054: An exception occurred while executing a query: Unknown column \'code, type\' in \'SELECT\' | Doctrine\\DBAL\\Exception\\InvalidFieldNameException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 52. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/api/discount?code=RABATT10',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(213,1746722268,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1146: An exception occurred while executing a query: Table \'db.tx_wavecart_domain_model_cart\' doesn\'t exist | Doctrine\\DBAL\\Exception\\TableNotFoundException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 40. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=104&',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(214,1746722286,1,2,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"history\":\"1164\"}',106,0,'',0,'','info',NULL,NULL),
+(215,1746723062,1,1,0,'site',0,0,'Site settings changed for \'%s\': %s',6,'site',0,'172.19.0.6','[\"fcbigfoot\",\"{\\\"settingsTree\\\":{\\\"indexedsearch\\\":{\\\"targetPid\\\":3},\\\"fcbigfoot\\\":{\\\"pages\\\":{\\\"privacy\\\":2,\\\"contact\\\":4},\\\"socialmedia\\\":{\\\"channels\\\":{\\\"instagram\\\":{\\\"link\\\":\\\"https:\\\\\\/\\\\\\/www.instagram.com\\\\\\/typo3_official\\\\\\/\\\"}}}},\\\"waveCart\\\":{\\\"cartPageId\\\":105}},\\\"changes\\\":[\\\"waveCart.cartPageId\\\"],\\\"deletions\\\":[]}\"]',-1,0,'',0,'','info',NULL,NULL),
+(216,1746723729,1,2,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"history\":\"1165\"}',106,0,'',0,'','info',NULL,NULL),
+(217,1746723953,1,1,4,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":4,\"pid\":106}',106,0,'',0,'','info',NULL,NULL),
+(218,1746724023,1,1,5,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":5,\"pid\":106}',106,0,'',0,'','info',NULL,NULL),
+(219,1746724028,1,2,5,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":5,\"history\":\"1168\"}',106,0,'',0,'','info',NULL,NULL),
+(220,1746724585,0,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1740817000: YAML file \"/var/www/html/config/sites/fcbigfoot/settings.yaml\" has syntax errors: Duplicate key \"waveCart\" detected at line 13. | TYPO3\\CMS\\Core\\Configuration\\Loader\\Exception\\YamlParseException thrown in file /var/www/html/vendor/typo3/cms-core/Classes/Configuration/Loader/YamlFileLoader.php in line 81. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/shop?tx_wavecart_product%%5Baction%%5D=list&tx_wavecart_product%%5Bcontroller%%5D=Product&cHash=be4926436cde76c78cebf97bde1c7966',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(221,1746724603,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1740817000: YAML file \"/var/www/html/config/sites/fcbigfoot/settings.yaml\" has syntax errors: Duplicate key \"waveCart\" detected at line 13. | TYPO3\\CMS\\Core\\Configuration\\Loader\\Exception\\YamlParseException thrown in file /var/www/html/vendor/typo3/cms-core/Classes/Configuration/Loader/YamlFileLoader.php in line 81. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/typo3/ajax/system-information/render?token=--AnonymizedToken--&skipSessionUpdate=1',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(222,1746724664,1,0,0,'',0,2,'Core: Exception handler (WEB): Uncaught TYPO3 Exception: #1054: An exception occurred while executing a query: Unknown column \'has_redeem_maximum\' in \'SELECT\' | Doctrine\\DBAL\\Exception\\InvalidFieldNameException thrown in file /var/www/html/vendor/doctrine/dbal/src/Driver/API/MySQL/ExceptionConverter.php in line 52. Requested URL: https://surfcamp-base-2025-fcbigfoot.ddev.site/typo3/module/web/list?token=--AnonymizedToken--&id=106&',5,'php',0,'172.19.0.6','',-1,0,'',0,'','error',NULL,NULL),
+(223,1746724772,1,2,1,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":1,\"history\":\"1169\"}',103,0,'',0,'','info',NULL,NULL),
+(224,1746724772,1,2,190,'sys_file_reference',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"sys_file_reference\",\"uid\":190,\"history\":\"1170\"}',103,0,'',0,'','info',NULL,NULL),
+(225,1746724772,1,2,2,'tx_wavecart_domain_model_productvariant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_productvariant\",\"uid\":2,\"history\":\"1171\"}',103,0,'',0,'','info',NULL,NULL),
+(226,1746724807,1,2,3,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":3,\"history\":\"1172\"}',103,0,'',0,'','info',NULL,NULL),
+(227,1746724807,1,2,7,'tx_wavecart_domain_model_productvariant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_productvariant\",\"uid\":7,\"history\":\"1173\"}',103,0,'',0,'','info',NULL,NULL),
+(228,1746724815,1,2,4,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":4,\"history\":\"1174\"}',103,0,'',0,'','info',NULL,NULL),
+(229,1746724815,1,2,188,'sys_file_reference',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"sys_file_reference\",\"uid\":188,\"history\":\"1175\"}',103,0,'',0,'','info',NULL,NULL),
+(230,1746724815,1,2,6,'tx_wavecart_domain_model_productvariant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_productvariant\",\"uid\":6,\"history\":\"1176\"}',103,0,'',0,'','info',NULL,NULL),
+(231,1746724821,1,2,2,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":2,\"history\":\"1177\"}',103,0,'',0,'','info',NULL,NULL),
+(232,1746724821,1,2,189,'sys_file_reference',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"sys_file_reference\",\"uid\":189,\"history\":\"1178\"}',103,0,'',0,'','info',NULL,NULL),
+(233,1746724821,1,2,3,'tx_wavecart_domain_model_productvariant',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_productvariant\",\"uid\":3,\"history\":\"1179\"}',103,0,'',0,'','info',NULL,NULL),
+(234,1746724831,1,2,1,'tx_wavecart_domain_model_product',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_product\",\"uid\":1,\"history\":\"1180\"}',103,0,'',0,'','info',NULL,NULL),
+(235,1746724831,1,3,2,'tx_wavecart_domain_model_productvariant',0,0,'Record {table}:{uid} was deleted from pages:{pid}',1,'content',0,'172.19.0.6','{\"table\":\"tx_wavecart_domain_model_productvariant\",\"uid\":2,\"pid\":103}',103,0,'',0,'','info',NULL,NULL);
 /*!40000 ALTER TABLE `sys_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5691,6 +5998,7 @@ INSERT INTO `sys_refindex` VALUES
 ('0157c3fc784638c036e41226d1f21682','sys_file',29,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
 ('016cde0d2370a4016a722749e12fafe3','sys_file_reference',161,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',32,'',0,0,2147483647,0,0,''),
 ('01b6e4eaef82067839ced4f5a4b15e72','sys_file_reference',18,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',3,'',0,0,2147483647,0,0,''),
+('0202b285551469530ba2fc5a7bd08a3a','tx_wavecart_domain_model_product',2,'variants',0,0,2147483647,0,'','','',1,0,'tx_wavecart_domain_model_productvariant',4,'',0,0,2147483647,0,0,''),
 ('0215d67870e93296a8d46d09578fecfd','sys_file_reference',55,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',74,'',0,0,2147483647,0,0,''),
 ('02ab2cbcf3d03acdf5f0b762c1b4bad1','sys_file_metadata',20,'file',0,0,2147483647,0,'','','',0,0,'sys_file',20,'',0,0,2147483647,0,0,''),
 ('02acfab889007d90b9ae1f996a0a6629','tx_fcbigfoot_domain_model_person',4,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',4,'',0,0,2147483647,0,0,''),
@@ -5782,8 +6090,10 @@ INSERT INTO `sys_refindex` VALUES
 ('1acab902777b6d1a04bb2fac0b0bdad9','tt_content',131,'image',0,0,2147483647,0,'','','',5,0,'sys_file_reference',76,'',0,0,2147483647,0,0,''),
 ('1ae0df294a89c9c90861f5ae67d0e986','sys_file_reference',91,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',57,'',0,0,2147483647,0,0,''),
 ('1ae36ca8135a4f5dfbaef418fef04f1d','sys_file_reference',155,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',39,'',0,0,2147483647,0,0,''),
+('1b248d422ec5d45703726aa55dc096ea','tx_wavecart_domain_model_product',4,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_productvariant',6,'',0,0,2147483647,0,0,''),
 ('1b27157d289c3424cd65fd96739e62e4','tt_content',19,'fcbigfoot_sponsors',0,0,2147483647,0,'','','',1,0,'tx_fcbigfoot_domain_model_sponsor',5,'',0,0,2147483647,0,0,''),
 ('1bb9bd75e71485a722550e4e2d81a863','sys_file_reference',186,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',31,'',0,0,2147483647,0,0,''),
+('1bf49473402618a780a1f9558fa13ca0','tx_wavecart_domain_model_product',2,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_productvariant',3,'',0,0,2147483647,0,0,''),
 ('1bf52e8b28c61adb1bc44a6bc30189ab','sys_file_reference',3,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',19,'',0,0,2147483647,0,0,''),
 ('1c548a72bba2aacb047f315bc014a044','tt_content',250,'tx_bootstrappackage_carousel_item',0,0,2147483647,0,'','','',0,0,'tx_bootstrappackage_carousel_item',9,'',0,0,2147483647,0,0,''),
 ('1c846affb6afc7351d6a5b9e86871ca7','pages',35,'thumbnail',0,0,2147483647,0,'','','',0,0,'sys_file_reference',157,'',0,0,2147483647,0,0,''),
@@ -5832,6 +6142,7 @@ INSERT INTO `sys_refindex` VALUES
 ('298a2422a1167f0989956082e6d7fc3f','tt_content',105,'image',0,0,2147483647,0,'','','',1,0,'sys_file_reference',80,'',0,0,2147483647,0,0,''),
 ('29a5193b76b83132efb2a9bd09f02792','tt_content',240,'tx_bootstrappackage_carousel_item',0,0,2147483647,0,'','','',0,0,'tx_bootstrappackage_carousel_item',8,'',0,0,2147483647,0,0,''),
 ('29a54abf3b56e5b706a8865282a462f9','tt_content',172,'pi_flexform',0,0,2147483647,0,'sDEF/lDEF/settings.persistenceIdentifier/vDEF/','formPersistenceIdentifier','6b41b46834bfc408eceaa16bde1494ae',0,0,'_STRING',0,'',0,0,2147483647,0,0,'EXT:introduction/Resources/Private/Forms/introduction-contact-form.form.yaml'),
+('29e212b8c6051e0a6612aa7872ef6f95','tx_wavecart_domain_model_product',1,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_productvariant',1,'',0,0,2147483647,0,0,''),
 ('29fba59d42afcb5cc2042ae0e50c52a2','tt_content',128,'tx_bootstrappackage_icon_group_item',0,0,2147483647,0,'','','',2,0,'tx_bootstrappackage_icon_group_item',5,'',0,0,2147483647,0,0,''),
 ('2a5c772073ccadb684251a7e2462e1f2','tt_content',148,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',97,'',0,0,2147483647,0,0,''),
 ('2b64798c7397ff4bb73c9c3209796947','sys_file_metadata',103,'file',0,0,2147483647,0,'','','',0,0,'sys_file',103,'',0,0,2147483647,0,0,''),
@@ -6004,6 +6315,7 @@ INSERT INTO `sys_refindex` VALUES
 ('591b4b8c572e112f4c153277a34d2762','sys_file_reference',160,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',31,'',0,0,2147483647,0,0,''),
 ('59c7319c41b3f5fd154aab420e38af03','sys_file',15,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
 ('5a222c8984c139b7ff16abab7a586b54','tt_content',105,'image',0,0,2147483647,0,'','','',5,0,'sys_file_reference',76,'',0,0,2147483647,0,0,''),
+('5a458c146d0547199960e13d9ed8ae7c','tx_wavecart_domain_model_product',2,'variants',0,0,2147483647,0,'','','',2,0,'tx_wavecart_domain_model_productvariant',5,'',0,0,2147483647,0,0,''),
 ('5a5bf575ec24610472fa185ebc929033','pages',13,'l10n_parent',0,0,2147483647,0,'','','',0,0,'pages',22,'',0,0,2147483647,0,0,''),
 ('5a979877c5543fc4c1ffddf6396c9d36','tt_content',67,'header_link',0,0,2147483647,0,'','typolink','215d1a6322e8ef6e884ea04ac19b3a31:0',0,0,'pages',78,'',0,0,2147483647,0,0,''),
 ('5aa3babe8889374674fb2dd22e4d71e2','sys_file_reference',157,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',37,'',0,0,2147483647,0,0,''),
@@ -6135,9 +6447,7 @@ INSERT INTO `sys_refindex` VALUES
 ('7e22bac9bc415f306153ad483d116340','sys_file_reference',190,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',113,'',0,0,2147483647,0,0,''),
 ('7e4ad67655fa759c50f1d33be2628f17','tt_content',13,'fcbigfoot_persons',0,0,2147483647,0,'','','',2,0,'tx_fcbigfoot_domain_model_person',6,'',0,0,2147483647,0,0,''),
 ('7eb162e320ea40ec5ecc94fc4ee7f0f7','sys_file_reference',140,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',42,'',0,0,2147483647,0,0,''),
-('7f5396f84150d78e6ab9d449fc208109','tx_wavecart_domain_model_product',2,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_product_variant',3,'',0,0,2147483647,0,0,''),
 ('7fe2d02f85d5f3b35ca2b8977ecfbde0','pages',44,'media',0,0,2147483647,0,'','','',0,0,'sys_file_reference',146,'',0,0,2147483647,0,0,''),
-('7fe32d2fe33b614303f26864269404c9','tx_wavecart_domain_model_product',4,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_product_variant',6,'',0,0,2147483647,0,0,''),
 ('803e974a1d41fb76cc33418f47d100fb','tt_content',19,'fcbigfoot_sponsors',0,0,2147483647,0,'','','',2,0,'tx_fcbigfoot_domain_model_sponsor',4,'',0,0,2147483647,0,0,''),
 ('80418b63276979c81ecece47ca574fe0','tx_bootstrappackage_card_group_item',13,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',60,'',0,0,2147483647,0,0,''),
 ('80a09f8113914cfc9ffbc8eebcdf63b0','tx_fcbigfoot_domain_model_sponsor',5,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',13,'',0,0,2147483647,0,0,''),
@@ -6329,7 +6639,6 @@ INSERT INTO `sys_refindex` VALUES
 ('b44310b3bf103b3092413fb234c79318','sys_file_reference',62,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',72,'',0,0,2147483647,0,0,''),
 ('b516994d48da76fa72415019aff7d9cc','tx_bootstrappackage_icon_group_item',4,'tt_content',0,0,2147483647,0,'','','',0,0,'tt_content',129,'',0,0,2147483647,0,0,''),
 ('b51df6af7d3fceb4b30a2164e56c3097','sys_file_reference',102,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',31,'',0,0,2147483647,0,0,''),
-('b5648bcc66e17075f4a54126ce212646','tx_wavecart_domain_model_product',1,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_product_variant',2,'',0,0,2147483647,0,0,''),
 ('b6137f844f81dc1098f47a852effaa6b','sys_file_reference',187,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',113,'',0,0,2147483647,0,0,''),
 ('b6160201ffbb403f29bac63721ebb1b2','sys_file_metadata',62,'file',0,0,2147483647,0,'','','',0,0,'sys_file',62,'',0,0,2147483647,0,0,''),
 ('b64f4a68429df9f5755dd4857466e461','sys_file_metadata',98,'file',0,0,2147483647,0,'','','',0,0,'sys_file',98,'',0,0,2147483647,0,0,''),
@@ -6340,7 +6649,6 @@ INSERT INTO `sys_refindex` VALUES
 ('b795fd9ddcf8a947e25547fd255a95be','tx_bootstrappackage_card_group_item',8,'tt_content',0,0,2147483647,0,'','','',0,0,'tt_content',121,'',0,0,2147483647,0,0,''),
 ('b7ecc2431bfc23133abe0b149b1d913c','sys_file_reference',28,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',101,'',0,0,2147483647,0,0,''),
 ('b81a7cbf8b4ce2d7596a87ddcb59637e','sys_file_reference',5,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',17,'',0,0,2147483647,0,0,''),
-('b83f37d5a958440afe9ec22456cd85b1','tx_wavecart_domain_model_product',2,'variants',0,0,2147483647,0,'','','',2,0,'tx_wavecart_domain_model_product_variant',5,'',0,0,2147483647,0,0,''),
 ('b8560e33ef13adf179f620ff35ae78fd','sys_file_metadata',102,'file',0,0,2147483647,0,'','','',0,0,'sys_file',102,'',0,0,2147483647,0,0,''),
 ('b865c43093849ec38a81b9906c3d8b85','tt_content',102,'records',0,0,2147483647,0,'','','',0,0,'tt_content',244,'',0,0,2147483647,0,0,''),
 ('b86fe2e3dc0bf333837e9279ef64800f','pages',87,'thumbnail',0,0,2147483647,0,'','','',0,0,'sys_file_reference',36,'',0,0,2147483647,0,0,''),
@@ -6377,7 +6685,6 @@ INSERT INTO `sys_refindex` VALUES
 ('c10c4eb6a9db677ebefe67dd391d46df','sys_file_reference',132,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',50,'',0,0,2147483647,0,0,''),
 ('c111f8c488eef0a5fe62d3828f26c3d0','tx_bootstrappackage_carousel_item',7,'background_image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',123,'',0,0,2147483647,0,0,''),
 ('c127eca62b98b5db3e002696a9713b64','sys_file_metadata',97,'file',0,0,2147483647,0,'','','',0,0,'sys_file',97,'',0,0,2147483647,0,0,''),
-('c1476dabe5d75d6a802ccc724f695554','tx_wavecart_domain_model_product',2,'variants',0,0,2147483647,0,'','','',1,0,'tx_wavecart_domain_model_product_variant',4,'',0,0,2147483647,0,0,''),
 ('c1bfde54d2c62a17bc1e067b14b8ad74','sys_file_reference',186,'l10n_parent',0,0,2147483647,0,'','','',0,0,'sys_file_reference',184,'',0,0,2147483647,0,0,''),
 ('c1f587832efc66c554989898a3eeeff7','tt_content',153,'assets',0,0,2147483647,0,'','','',2,0,'sys_file_reference',109,'',0,0,2147483647,0,0,''),
 ('c24d7621b0578bd27b5777961f2b19b9','tt_content',133,'image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',84,'',0,0,2147483647,0,0,''),
@@ -6433,6 +6740,7 @@ INSERT INTO `sys_refindex` VALUES
 ('d3d9465676843e37ef11b1d39a39073b','sys_file_metadata',82,'file',0,0,2147483647,0,'','','',0,0,'sys_file',82,'',0,0,2147483647,0,0,''),
 ('d498f8989a90a9479a43deb45643fbaf','tt_content',165,'tx_bootstrappackage_tab_item',0,0,2147483647,0,'','','',2,0,'tx_bootstrappackage_tab_item',3,'',0,0,2147483647,0,0,''),
 ('d6d3988227e098f3dce3e6575866c638','sys_file_metadata',37,'file',0,0,2147483647,0,'','','',0,0,'sys_file',37,'',0,0,2147483647,0,0,''),
+('d7328eaeaed5dff3de031afd625f22ae','tx_wavecart_domain_model_product',3,'variants',0,0,2147483647,0,'','','',0,0,'tx_wavecart_domain_model_productvariant',7,'',0,0,2147483647,0,0,''),
 ('d762da2cbea3fc2bcaf1db96ded74dd7','sys_file',3,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
 ('d77a40bb15bd897b4237c1127078c08f','tx_bootstrappackage_carousel_item',3,'background_image',0,0,2147483647,0,'','','',0,0,'sys_file_reference',27,'',0,0,2147483647,0,0,''),
 ('d92c07f02e3edf63852f04f694a4dcdb','pages',37,'nav_icon',0,0,2147483647,0,'','','',0,0,'sys_file_reference',155,'',0,0,2147483647,0,0,''),
@@ -6442,7 +6750,6 @@ INSERT INTO `sys_refindex` VALUES
 ('da3d88bce1f8d47ee5763aadfab6558a','sys_file_metadata',8,'file',0,0,2147483647,0,'','','',0,0,'sys_file',8,'',0,0,2147483647,0,0,''),
 ('dc18843bbab4383edfb9587086582a11','sys_file_reference',88,'uid_local',0,0,2147483647,0,'','','',0,0,'sys_file',60,'',0,0,2147483647,0,0,''),
 ('dc55cca02c447704220ab80b9b8b65cb','sys_file_metadata',10,'file',0,0,2147483647,0,'','','',0,0,'sys_file',10,'',0,0,2147483647,0,0,''),
-('dc9c70f2ffc28d1c602bc2c201bab99e','tx_wavecart_domain_model_product',1,'variants',0,0,2147483647,0,'','','',1,0,'tx_wavecart_domain_model_product_variant',1,'',0,0,2147483647,0,0,''),
 ('dd7efc4e2fa8e58c01df7cd5326727f5','tt_content',13,'fcbigfoot_persons',0,0,2147483647,0,'','','',5,0,'tx_fcbigfoot_domain_model_person',3,'',0,0,2147483647,0,0,''),
 ('dd8694b3ac45e12bd0a62e5a92595772','pages',101,'shortcut',0,0,2147483647,0,'','','',0,0,'pages',98,'',0,0,2147483647,0,0,''),
 ('ddb0486620e0393165318a07cbbc4b8e','sys_file',21,'storage',0,0,2147483647,0,'','','',0,0,'sys_file_storage',1,'',0,0,2147483647,0,0,''),
@@ -6569,7 +6876,7 @@ INSERT INTO `sys_registry` VALUES
 (10,'installUpdate','TYPO3\\CMS\\Install\\Updates\\SysTemplateNoWorkspaceMigration','i:1;'),
 (11,'installUpdate','TYPO3\\CMS\\Extensionmanager\\Updates\\FeLoginModeExtractionUpdate','i:1;'),
 (12,'installUpdateRows','rowUpdatersDone','a:1:{i:0;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\SysRedirectRootPageMoveMigration\";}'),
-(13,'core','formProtectionSessionToken:1','s:64:\"cedee97263e01f26efb96b294a8a2129166b3892df0b2f6ee5c21877a527a5cd\";'),
+(13,'core','formProtectionSessionToken:1','s:64:\"f26f73f76b192170bdf515f8f363cedfa7aeb7c03858a69d4e0d3a3f3b322211\";'),
 (14,'extensionDataImport','typo3/cms-core/ext_tables_static+adt.sql','s:0:\"\";'),
 (15,'extensionDataImport','typo3/cms-scheduler/ext_tables_static+adt.sql','s:0:\"\";'),
 (16,'extensionDataImport','typo3/cms-extbase/ext_tables_static+adt.sql','s:0:\"\";'),
@@ -7103,13 +7410,60 @@ LOCK TABLES `tx_scheduler_task_group` WRITE;
 UNLOCK TABLES;
 
 --
+-- Dumping data for table `tx_wavecart_domain_model_cart`
+--
+
+LOCK TABLES `tx_wavecart_domain_model_cart` WRITE;
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_cart` DISABLE KEYS */;
+INSERT INTO `tx_wavecart_domain_model_cart` VALUES
+(1,0,1746724730,1746724730,0,'','','','','','',0,0.00,1),
+(2,0,1746724737,1746724737,0,'','','','','','',0,0.00,1);
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `tx_wavecart_domain_model_cartitem`
+--
+
+LOCK TABLES `tx_wavecart_domain_model_cartitem` WRITE;
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_cartitem` DISABLE KEYS */;
+INSERT INTO `tx_wavecart_domain_model_cartitem` VALUES
+(1,0,1746724730,1746724730,0,1,'Teddy',3,20.00,0,'unisize',1,0,2),
+(2,0,1746724737,1746724737,0,2,'Teddy',3,20.00,0,'unisize',1,0,2);
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_cartitem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `tx_wavecart_domain_model_discountcode`
+--
+
+LOCK TABLES `tx_wavecart_domain_model_discountcode` WRITE;
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_discountcode` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_wavecart_domain_model_discountcode` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping data for table `tx_wavecart_domain_model_order`
 --
 
 LOCK TABLES `tx_wavecart_domain_model_order` WRITE;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_order` DISABLE KEYS */;
 INSERT INTO `tx_wavecart_domain_model_order` VALUES
-(1,102,1746446273,1746446273,0,'Test','Test','Teststr. 1','01279','Dresden','test@test.de',0,0,0,12.00,1);
+(1,102,1746446273,1746446273,0,'Test','Test','Teststr. 1','01279','Dresden','test@test.de',0,0,0,12.00,1),
+(2,0,1746715904,1746715904,0,'','','','','','',0,0,0,0.00,0),
+(3,0,1746715937,1746715937,0,'','','','','','',0,0,0,0.00,0),
+(4,0,1746715960,1746715960,0,'','','','','','',0,0,0,0.00,0),
+(5,0,1746716061,1746716061,0,'','','','','','',0,0,0,0.00,0),
+(6,0,1746716479,1746716479,0,'','','','','','',0,0,0,0.00,0),
+(7,0,1746716770,1746716770,0,'','','','','','',0,0,0,0.00,0),
+(8,0,1746716800,1746716800,0,'','','','','','',0,0,0,0.00,3),
+(9,0,1746716902,1746716902,0,'','','','','','',0,0,0,0.00,3),
+(10,0,1746717006,1746717006,0,'','','','','','',0,0,0,0.00,0),
+(11,0,1746717175,1746717175,0,'','','','','','',0,0,0,0.00,1),
+(12,0,1746717187,1746717187,0,'','','','','','',0,0,0,0.00,2),
+(13,0,1746717278,1746717278,0,'','','','','','',0,0,0,0.00,0),
+(14,0,1746717403,1746717403,0,'','','','','','',0,0,0,0.00,0),
+(15,0,1746717945,1746717945,0,'','','','','','',0,0,0,0.00,4);
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7120,7 +7474,20 @@ UNLOCK TABLES;
 LOCK TABLES `tx_wavecart_domain_model_orderitem` WRITE;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_orderitem` DISABLE KEYS */;
 INSERT INTO `tx_wavecart_domain_model_orderitem` VALUES
-(1,102,1746446273,1746446273,0,'Test',0,12.00,0,'S',1,1);
+(1,102,1746446273,1746446273,0,'Test',0,12.00,0,'S',1,1,0),
+(2,0,1746716800,1746716800,0,'Teddy',3,20.00,0,'unisize',1,8,2),
+(3,0,1746716800,1746716800,0,'Cap Blue',1,10.00,0,'unisize',1,8,7),
+(4,0,1746716800,1746716800,0,'Sweater plain',2,60.00,0,'S',1,8,6),
+(5,0,1746716902,1746716902,0,'Teddy',3,20.00,0,'unisize',1,9,2),
+(6,0,1746716902,1746716902,0,'Cap Blue',1,10.00,0,'unisize',1,9,7),
+(7,0,1746716902,1746716902,0,'Sweater plain',2,60.00,0,'S',1,9,6),
+(8,0,1746717175,1746717175,0,'Teddy',3,20.00,0,'unisize',1,11,1),
+(9,0,1746717187,1746717187,0,'Teddy',3,20.00,0,'unisize',1,12,1),
+(10,0,1746717187,1746717187,0,'Cap Blue',1,10.00,0,'unisize',1,12,7),
+(11,0,1746717945,1746717945,0,'Teddy',3,20.00,0,'unisize',1,15,1),
+(12,0,1746717945,1746717945,0,'Teddy',3,20.00,0,'unisize',1,15,2),
+(13,0,1746717945,1746717945,0,'T-shirt with Logo',0,50.00,0,'M',1,15,3),
+(14,0,1746717945,1746717945,0,'T-shirt with Logo',0,50.00,0,'S',1,15,4);
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_orderitem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7131,10 +7498,10 @@ UNLOCK TABLES;
 LOCK TABLES `tx_wavecart_domain_model_product` WRITE;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_product` DISABLE KEYS */;
 INSERT INTO `tx_wavecart_domain_model_product` VALUES
-(1,103,1746445162,1746444664,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','Teddy','Qui velit fugiat voluptate commodo in exercitation officia aliquip irure et cillum esse consequat. Esse occaecat do reprehenderit pariatur anim cupidatat. Nisi cupidatat laboris est in magna cupidatat sint. Id dolor mollit cupidatat in excepteur ex ut id aute laboris velit est excepteur duis. Enim enim officia aliqua deserunt tempor pariatur occaecat veniam sint esse eiusmod. Aliquip voluptate adipisicing officia mollit irure occaecat laborum sint in non. Est aliqua proident proident eiusmod et sunt sunt pariatur commodo amet deserunt fugiat.',1,3,'20',17,2),
-(2,103,1746445156,1746444714,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','T-shirt with Logo','Qui velit fugiat voluptate commodo in exercitation officia aliquip irure et cillum esse consequat. Esse occaecat do reprehenderit pariatur anim cupidatat. Nisi cupidatat laboris est in magna cupidatat sint. Id dolor mollit cupidatat in excepteur ex ut id aute laboris velit est excepteur duis. Enim enim officia aliqua deserunt tempor pariatur occaecat veniam sint esse eiusmod. Aliquip voluptate adipisicing officia mollit irure occaecat laborum sint in non. Est aliqua proident proident eiusmod et sunt sunt pariatur commodo amet deserunt fugiat.',1,0,'50',17,3),
-(3,103,1746445095,1746444887,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','Cap Blue','Ullamco Lorem nulla culpa incididunt do non ut excepteur consequat duis enim. Ex ullamco sit est dolor irure Lorem mollit sit commodo irure proident aliqua elit. Duis id nostrud cupidatat aliqua sunt incididunt non ea nostrud quis. Aute elit in do velit consectetur magna excepteur ad deserunt. Do in ex est occaecat tempor ea consequat velit voluptate culpa Lorem veniam laborum excepteur. Exercitation dolor et tempor deserunt consequat ea.',1,1,'10',17,0),
-(4,103,1746445135,1746444935,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','Sweater plain','Ullamco Lorem nulla culpa incididunt do non ut excepteur consequat duis enim. Ex ullamco sit est dolor irure Lorem mollit sit commodo irure proident aliqua elit. Duis id nostrud cupidatat aliqua sunt incididunt non ea nostrud quis. Aute elit in do velit consectetur magna excepteur ad deserunt. Do in ex est occaecat tempor ea consequat velit voluptate culpa Lorem veniam laborum excepteur. Exercitation dolor et tempor deserunt consequat ea.',1,2,'60',17,1);
+(1,103,1746724831,1746444664,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','Teddy','Qui velit fugiat voluptate commodo in exercitation officia aliquip irure et cillum esse consequat. Esse occaecat do reprehenderit pariatur anim cupidatat. Nisi cupidatat laboris est in magna cupidatat sint. Id dolor mollit cupidatat in excepteur ex ut id aute laboris velit est excepteur duis. Enim enim officia aliqua deserunt tempor pariatur occaecat veniam sint esse eiusmod. Aliquip voluptate adipisicing officia mollit irure occaecat laborum sint in non. Est aliqua proident proident eiusmod et sunt sunt pariatur commodo amet deserunt fugiat.',1,3,'20',19,1),
+(2,103,1746724821,1746444714,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','T-shirt with Logo','Qui velit fugiat voluptate commodo in exercitation officia aliquip irure et cillum esse consequat. Esse occaecat do reprehenderit pariatur anim cupidatat. Nisi cupidatat laboris est in magna cupidatat sint. Id dolor mollit cupidatat in excepteur ex ut id aute laboris velit est excepteur duis. Enim enim officia aliqua deserunt tempor pariatur occaecat veniam sint esse eiusmod. Aliquip voluptate adipisicing officia mollit irure occaecat laborum sint in non. Est aliqua proident proident eiusmod et sunt sunt pariatur commodo amet deserunt fugiat.',1,0,'50',19,3),
+(3,103,1746724807,1746444887,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','Cap Blue','Ullamco Lorem nulla culpa incididunt do non ut excepteur consequat duis enim. Ex ullamco sit est dolor irure Lorem mollit sit commodo irure proident aliqua elit. Duis id nostrud cupidatat aliqua sunt incididunt non ea nostrud quis. Aute elit in do velit consectetur magna excepteur ad deserunt. Do in ex est occaecat tempor ea consequat velit voluptate culpa Lorem veniam laborum excepteur. Exercitation dolor et tempor deserunt consequat ea.',1,1,'10',19,1),
+(4,103,1746724815,1746444935,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"description\":\"\",\"image\":\"\",\"type\":\"\",\"price\":\"\",\"tax_rate\":\"\",\"variants\":\"\"}','Sweater plain','Ullamco Lorem nulla culpa incididunt do non ut excepteur consequat duis enim. Ex ullamco sit est dolor irure Lorem mollit sit commodo irure proident aliqua elit. Duis id nostrud cupidatat aliqua sunt incididunt non ea nostrud quis. Aute elit in do velit consectetur magna excepteur ad deserunt. Do in ex est occaecat tempor ea consequat velit voluptate culpa Lorem veniam laborum excepteur. Exercitation dolor et tempor deserunt consequat ea.',1,2,'60',19,1);
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7145,12 +7512,13 @@ UNLOCK TABLES;
 LOCK TABLES `tx_wavecart_domain_model_productvariant` WRITE;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_productvariant` DISABLE KEYS */;
 INSERT INTO `tx_wavecart_domain_model_productvariant` VALUES
-(1,103,1746445162,1746444664,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',1,'Red Teddy','unisize',10),
-(2,103,1746445162,1746444674,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"size\":\"\",\"amount\":\"\",\"hidden\":\"\"}',1,'Brown Teddy','unisize',5),
-(3,103,1746445156,1746444793,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"size\":\"\",\"amount\":\"\",\"hidden\":\"\"}',2,'T-shirt with Logo M','M',7),
-(4,103,1746445156,1746444793,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',2,'T-shirt with Logo S','S',2),
-(5,103,1746445156,1746444793,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',2,'T-shirt with Logo XL','XL',0),
-(6,103,1746445135,1746444935,0,0,0,0,'0',0,0,0,NULL,'{\"name\":\"\",\"size\":\"\",\"amount\":\"\",\"hidden\":\"\"}',4,'Sweater plain S','S',1);
+(1,103,1746724831,1746444664,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',1,'unisize',10),
+(2,103,1746724831,1746444674,1,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',1,'unisize',5),
+(3,103,1746724821,1746444793,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',2,'M',7),
+(4,103,1746724821,1746444793,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',2,'S',2),
+(5,103,1746724821,1746444793,0,0,0,0,'0',0,0,0,NULL,'{\"hidden\":\"\"}',2,'XL',0),
+(6,103,1746724815,1746444935,0,0,0,0,'0',0,0,0,NULL,'{\"size\":\"\",\"amount\":\"\",\"hidden\":\"\"}',4,'S',1),
+(7,103,1746724807,1746701326,0,0,0,0,'0',0,0,0,NULL,'{\"size\":\"\",\"amount\":\"\",\"hidden\":\"\"}',3,'unisize',20);
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_productvariant` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -7162,4 +7530,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-08 11:44:39
+-- Dump completed on 2025-05-08 18:21:10
