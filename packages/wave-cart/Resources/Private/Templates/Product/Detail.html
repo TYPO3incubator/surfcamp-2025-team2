@@ -23,12 +23,11 @@
         </div>
         <br>
         <p class="variant-label">Price:</p>
-        {product.price}€ <br>
-
+        {product.price -> f:format.number(decimals: 2)} € <br>
 
         <button id="addToCart" class="btn btn-primary" disabled>Add to shopping cart</button> <br>
         <br>
         <p class="variant-label">Description:</p>
-        {product.description}
+        {product.description -> f:format.raw()}
     </div>
 </div>
