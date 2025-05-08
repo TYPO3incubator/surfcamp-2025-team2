@@ -245,11 +245,11 @@ document.querySelectorAll('.cart-discount-control').forEach(control => {
                     redeemStatus.classList.add('redeem-status-success')
                     hiddenDiscountCouponInput.value = discountCouponInput.value
                     discountCouponInput.value = ''
+
                     redeemStatus.innerText = 'Discount coupon added!'
                 }
             })
         } catch (error) {
-            console.log("hallo")
             redeemStatus.innerText = error.message
         }
     })
@@ -308,6 +308,11 @@ function calculateCartTotal(discount = 0) {
 
     if (discount !== 0 && discount < 0) {
         total += discount
+    }
+
+    const discountTotalElement = document.getElementById('discountTotal');
+    if (discountTotalElement) {
+        discountTotalElement.textContent = `Discount: ${discount.toFixed(2)}€`;
     }
 
     // Update the total display
