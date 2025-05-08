@@ -8,7 +8,10 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\MailerInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3Incubator\WaveCart\Domain\Model\Cart;
 use TYPO3Incubator\WaveCart\Domain\Model\CartItem;
@@ -55,6 +58,18 @@ class OrderController extends ActionController
 
     public function summaryAndPaymentMethodAction(?Cart $cart = null): ResponseInterface
     {
+        if (!$this->isValidEmail($cart->getCustomerEmail())) {
+            $this->view->assign('cart', $cart);
+
+            return (new ForwardResponse('addCustomerData'))
+                ->withControllerName('Order')
+                ->withExtensionName('waveCart')
+                ->withArguments([
+                    'cart' => $cart,
+                    'errormessage' => 'The provided email address is invalid. Please provide a valid email.'
+                ]);
+        }
+
         $totalPrice = $cart->calculateTotalPrice();
         $cart->setTotalPrice($totalPrice);
         $this->cartRepository->update($cart);
@@ -73,10 +88,16 @@ class OrderController extends ActionController
         $this->persistenceManager->persistAll();
 
         $this->updateStock($order);
+
         $this->sendSenderOrderMails($order);
         $this->sendReceiverOrderMails($order);
 
         return $this->htmlResponse();
+    }
+
+    private function isValidEmail(string $email): bool
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
     private function persistOrder(Cart $cart): Order
