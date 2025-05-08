@@ -23,6 +23,11 @@
         <f:form.textfield property="customerEmail" name="customerEmail" type="email"
                           value="{cart.email}" id="tx-wavecart-customerEmail" placeholder="E-Mail" style="width: 100%;" />
     </div>
+    <f:if condition="{errorMessage}">
+        <div class="alert alert-danger" role="alert">
+            {errorMessage}
+        </div>
+    </f:if>
     <div class="singleWidthh">
         <f:form.textfield property="customerAddress" name="customerAddress"
                           value="{cart.customerAddress}" id="tx-wavecart-customerAddress" placeholder="Street and number" style="width: 100%;" />

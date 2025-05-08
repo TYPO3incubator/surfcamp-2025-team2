@@ -43,6 +43,7 @@ return [
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim',
+                'enableRichtext' => true,
             ],
         ],
         'image' => [
