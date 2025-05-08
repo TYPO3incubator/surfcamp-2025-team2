@@ -3,7 +3,6 @@
 <h1>Summary</h1>
 <div class="spacer"></div>
 <div class="cart-header">
-    <div class="cart-header-image"></div>
     <div class="cart-header-details">Product</div>
     <div class="cart-header-amount">Quantity</div>
     <div class="cart-header-price">Price</div>
@@ -26,6 +25,7 @@
         </li>
     </f:for>
 </ul>
+<div class="line"></div>
 <div id="cartSummary">
     <span>Discount: {cart.discountValue}€</span><br />
     <span>Total (incl. tax): {cart.totalPrice -> f:format.number(decimals: 2)}€</span>
@@ -47,7 +47,7 @@
         object="{cart}"
         method="post"
         class="formContainer"
-style="width: 100%;">
+        style="width: 100%;">
     <div class="payment-radio">
         <f:form.radio property="paymentMethod" id="paymentMethod" value="0"/>
         <label for="paymentMethod"><wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\PaymentMethodEnum" value="0" /></label>
