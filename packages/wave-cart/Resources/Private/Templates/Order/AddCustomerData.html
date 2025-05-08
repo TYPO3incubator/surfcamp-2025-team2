@@ -4,37 +4,37 @@
 <div class="spacer"></div>
 <f:form action="summaryAndPaymentMethod"
         controller="Order"
-        objectName="order"
-        object="{order}"
+        objectName="cart"
+        object="{cart}"
         method="post"
         class="formContainer">
     <div class="formRow">
         <div class="singleWidth">
             <f:form.textfield property="customerLastname" name="customerLastname"
-                              value="{order.customerLastname}" id="tx-wavecart-lastname" placeholder="Lastname" style="width: 100%;" />
+                              value="{cart.customerLastname}" id="tx-wavecart-lastname" placeholder="Lastname" style="width: 100%;" />
         </div>
         <div class="singleWidth">
             <f:form.textfield property="customerFirstname" name="customerFirstname"
-                              value="{order.customerFirstname}" id="tx-wavecart-firstname" placeholder="Firstname" style="width: 100%;" />
+                              value="{cart.customerFirstname}" id="tx-wavecart-firstname" placeholder="Firstname" style="width: 100%;" />
         </div>
     </div>
 
     <div class="doubleWidth">
         <f:form.textfield property="customerEmail" name="customerEmail" type="email"
-                          value="{order.email}" id="tx-wavecart-customerEmail" placeholder="E-Mail" style="width: 100%;" />
+                          value="{cart.email}" id="tx-wavecart-customerEmail" placeholder="E-Mail" style="width: 100%;" />
     </div>
     <div class="doubleWidth">
         <f:form.textfield property="customerAddress" name="customerAddress"
-                          value="{order.customerAddress}" id="tx-wavecart-customerAddress" placeholder="Street and number" style="width: 100%;" />
+                          value="{cart.customerAddress}" id="tx-wavecart-customerAddress" placeholder="Street and number" style="width: 100%;" />
     </div>
     <div class="formRow">
         <div class="singleWidth">
             <f:form.textfield property="customerZip" name="customerZip"
-                              value="{order.customerZip}" id="tx-wavecart-customerZip" placeholder="Zip" style="width: 100%;" />
+                              value="{cart.customerZip}" id="tx-wavecart-customerZip" placeholder="Zip" style="width: 100%;" />
         </div>
         <div>
             <f:form.textfield property="customerCity" name="customerCity"
-                              value="{order.customerCity}" id="tx-wavecart-customerCity" placeholder="City" style="width: 100%;" />
+                              value="{cart.customerCity}" id="tx-wavecart-customerCity" placeholder="City" style="width: 100%;" />
         </div>
     </div>
 
