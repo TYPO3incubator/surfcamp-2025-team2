@@ -1,3 +1,4 @@
+{namespace wave=TYPO3Incubator\WaveCart\ViewHelpers}
 <div class="spacer"></div>
 <h1>Summary</h1>
 <div class="spacer"></div>
@@ -49,7 +50,7 @@
 style="width: 100%;">
     <div class="payment-radio">
         <f:form.radio property="paymentMethod" id="paymentMethod" value="0"/>
-        <label for="paymentMethod">Payment in advance</label>
+        <label for="paymentMethod"><wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\PaymentMethodEnum" value="0" /></label>
     </div>
     <div class="spacer"></div>
     <div>

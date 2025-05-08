@@ -149,8 +149,16 @@ return [
             'exclude' => 0,
             'label' => $ll . 'tx_wavecart_domain_model_order.invoice',
             'config' => [
-                'type' => 'input',
-                'eval' => 'trim'
+                'type' => 'file',
+                'appearance' => [
+                    'collapseAll' => true,
+                    'useSortable' => false,
+                    'enabledControls' => [
+                        'hide' => false,
+                    ],
+                ],
+                'allowed' => 'common-image-types',
+                'maxitems' => 1,
             ],
         ],
     ],
