@@ -35,7 +35,7 @@
                         <button type="button" class="increase-btn">+</button>
                     </div>
                     <span class="item-price" data-price="{cartItem.price}">
-                    {cartItem.price}€
+                    {cartItem.price -> f:format.number(decimals: 2)}€
                 </span>
                 </li>
             </f:for>

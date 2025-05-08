@@ -21,14 +21,14 @@
             </div>
 
             <span class="item-price" data-price="{cartItem.price}">
-                    {cartItem.price}€
+                    {cartItem.price -> f:format.number(decimals: 2)}€
                 </span>
         </li>
     </f:for>
 </ul>
 <div id="cartSummary">
     <span>Discount: {cart.discountValue}€</span><br />
-    <span>Total (incl. tax): {cart.totalPrice}€</span>
+    <span>Total (incl. tax): {cart.totalPrice -> f:format.number(decimals: 2)}€</span>
 </div>
 
 <div class="spacer"></div>

@@ -13,6 +13,9 @@
   padding-top: 20px;
   color: black;
 }
+.tile-container--image {
+  margin-bottom: 16px;
+}
 .tile-container .tile {
   flex: 0 1 calc(33.333% - 16px);
   box-sizing: border-box;
