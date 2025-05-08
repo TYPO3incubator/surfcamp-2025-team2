@@ -154,22 +154,47 @@ const addToCartButton = document.getElementById('addToCart');
 if(addToCartButton) {
     addToCartButton.addEventListener('click', () => {
         addId(document.querySelector('.variant-option.active').dataset.id)
+        getCookie('cartCookie')
         document.getElementById('cartModal').style.display = 'flex';
     })
 }
 
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+        return decodeURIComponent(parts.pop().split(';').shift());
+    }
+    return null;
+}
+
+function setCookie(name, value, days = 7) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+}
+
 function addId(id) {
-    const ids = JSON.parse(localStorage.getItem('myIds')) || [];
+    const cookieData = getCookie('cartCookie');
+    console.log('cookieData', cookieData);
+
+    // FIX: Make sure it's always an array
+    const ids = cookieData ? JSON.parse(cookieData) : [];
+    console.log('ids (parsed)', ids);
+
     if (!ids.includes(id)) {
         ids.push(id);
-        localStorage.setItem('myIds', JSON.stringify(ids));
+        setCookie('cartCookie', JSON.stringify(ids));
+        console.log('Updated cookie:', ids);
     }
 }
 
 function removeId(id) {
-    const ids = JSON.parse(localStorage.getItem('myIds')) || [];
+    const cookieData = getCookie('cartCookie');
+    const ids = cookieData ? JSON.parse(cookieData) : [];
+
     const updatedIds = ids.filter(item => item !== id);
-    localStorage.setItem('myIds', JSON.stringify(updatedIds));
+    setCookie('cartCookie', JSON.stringify(updatedIds));
+    console.log('Removed ID, updated cookie:', updatedIds);
 }
 
 
