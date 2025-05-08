@@ -102,3 +102,22 @@
   margin-left: 93%;
   margin-top: 30px;
 }
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formRow {
+  display: flex;
+  gap: 16px;
+}
+
+.singleWidth {
+  width: 30%;
+}
+
+.doubleWidth {
+  width: 61%;
+}
