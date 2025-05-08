@@ -6,10 +6,21 @@ use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class DiscountCodeRepository extends Repository
 {
+    public function initializeObject(): void
+    {
+        if ($this->defaultQuerySettings === null) {
+            $this->defaultQuerySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
+        }
+        $this->defaultQuerySettings
+            ->setRespectStoragePage(false);
+    }
+
     const string TABLE_NAME = 'tx_wavecart_domain_model_discountcode';
 
     public function __construct(
