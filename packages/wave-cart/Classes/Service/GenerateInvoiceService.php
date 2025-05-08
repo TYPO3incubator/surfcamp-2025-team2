@@ -14,7 +14,7 @@ class GenerateInvoiceService
         private ViewFactoryInterface $viewFactory,
     ) {}
 
-    public function generateInvoicePdf(Order $order, Request $request): string
+    public function generateInvoicePdf(Order $order, Request $request): Order
     {
         $settings = $request->getAttribute('site')->getSettings();
         $company = $settings->get('waveCart.invoice.company');
@@ -45,9 +45,9 @@ class GenerateInvoiceService
         $mpdf->WriteHTML($view->render('Invoice.html'));
         $mpdf->OutputFile($path . 'invoice-' . $order->getUid() . '.pdf');
 
-        //todo Feld anlegen für rechnung Identifier und order aktualisieren
-        //tax berechnen, summe ohne tax berechnen
-        return $path . 'invoice-' . $order->getUid() . '.pdf';
+        $order->setInvoice($path . 'invoice-' . $order->getUid() . '.pdf');
+
+        return $order;
     }
 
     protected function calculateTax(Order $order): array

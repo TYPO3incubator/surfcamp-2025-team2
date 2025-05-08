@@ -71,7 +71,10 @@ class OrderController extends ActionController
     public function submitAction(?Cart $cart = null): ResponseInterface
     {
         $order = $this->persistOrder($cart);
-        $invoice = $this->generateInvoiceService->generateInvoicePdf($order, $this->request);
+        $order = $this->generateInvoiceService->generateInvoicePdf($order, $this->request);
+
+        $this->orderRepository->update($order);
+        $this->persistenceManager->persistAll();
 
         $this->updateStock($order);
         $this->sendOrderMails($order);
@@ -134,7 +137,8 @@ class OrderController extends ActionController
             ->assignMultiple([
                 'order' => $order,
             ])
-            ->setTemplate('Sender');
+            ->setTemplate('Sender')
+            ->attachFromPath($order->getInvoice());
 
         GeneralUtility::makeInstance(MailerInterface::class)->send($emailToSender);
 
