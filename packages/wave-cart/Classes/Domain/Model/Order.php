@@ -6,18 +6,23 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Order extends AbstractEntity
 {
-    protected string $customerLastname;
-    protected string $customerFirstname;
-    protected string $customerAddress;
-    protected string $customerZip;
-    protected string $customerCity;
-    protected string $customerEmail;
-    protected int $status;
-    protected int $paymentMethod;
-    protected int $assignee;
-    protected float $totalPrice;
+    protected string $customerLastname = '';
+    protected string $customerFirstname = '';
+    protected string $customerAddress = '';
+    protected string $customerZip = '';
+    protected string $customerCity = '';
+    protected string $customerEmail = '';
+    protected int $status = 0;
+    protected int $paymentMethod = 0;
+    protected int $assignee = 0;
+    protected float $totalPrice = 0;
 
     protected ?ObjectStorage $orderItems = null;
+
+    public function __construct()
+    {
+        $this->orderItems = new ObjectStorage();
+    }
 
     public function getCustomerLastname(): string
     {
@@ -148,5 +153,17 @@ class Order extends AbstractEntity
     public function setOrderItems(ObjectStorage $orderItems): void
     {
         $this->orderItems = $orderItems;
+    }
+
+    public function calculateTotalPrice(): float
+    {
+        $totalPrice = 0;
+        foreach ($this->orderItems as $orderItem) {
+            $totalPrice += $orderItem->getPrice() * $orderItem->getAmount();
+        }
+
+        $this->totalPrice = $totalPrice;
+
+        return $totalPrice;
     }
 }
