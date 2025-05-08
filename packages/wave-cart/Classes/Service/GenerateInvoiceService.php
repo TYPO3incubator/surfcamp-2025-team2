@@ -51,6 +51,7 @@ class GenerateInvoiceService
 
         $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
         $storage = $storageRepository->getDefaultStorage();
+        $this->createFolder('invoice', $storage);
         /** @var File $newFile */
         $newFile = $storage->addFile(
             '/tmp/' . $fileIdentifier,
@@ -74,6 +75,15 @@ class GenerateInvoiceService
         $order->setInvoice($extbaseFileReference);
 
         return $order;
+    }
+
+    protected function createFolder(string $folderName, $storage): void
+    {
+        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+        $folderObject = $resourceFactory->createFolderObject($storage, '', 'invoice');
+        if (!$folderObject->hasFolder('invoice')) {
+            $folderObject->createFolder('invoice');
+        }
     }
 
     protected function calculateTax(Order $order): array
