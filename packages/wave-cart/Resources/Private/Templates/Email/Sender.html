@@ -1,0 +1,35 @@
+<h1>Thank you for your order!</h1>
+<p>Dear {order.customerFirstname} {order.customerLastname},</p>
+<p>We have received your order and are currently processing it:</p>
+
+<h2>Order Summary:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <f:for each="{order.orderItems}" as="item">
+            <tr>
+                <td>{item.name}</td>
+                <td>{item.amount}</td>
+                <td>{item.price} €</td>
+            </tr>
+        </f:for>
+    </tbody>
+</table>
+
+<p>Total Price: {order.totalPrice} €</p>
+
+<f:if condition="{order.paymentMethod} == 0">
+    <p>Please transfer the total amount to the following bank account:</p>
+    <p>
+        IBAN: DE12 3456 7890 1234 5678 90<br>
+        BIC: ABCDDEFFXXX<br>
+        Bank Name: Example Bank<br>
+    </p>
+</f:if>
+<p>Thank you for shopping with us!</p>

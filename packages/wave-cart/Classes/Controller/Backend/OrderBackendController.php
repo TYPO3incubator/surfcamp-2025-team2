@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TYPO3Incubator\WaveCart\Controller;
+namespace TYPO3Incubator\WaveCart\Controller\Backend;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Incubator\WaveCart\Provider\StoragePageProvider;
 
-class ListOrderController extends RecordListController
+class OrderBackendController extends RecordListController
 {
     public function __construct(
         IconFactory $iconFactory,
