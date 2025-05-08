@@ -34,8 +34,8 @@ class OrderController extends ActionController
 
     public function cartAction(): ResponseInterface
     {
-        $cartIds = ['1', '2', '3', '4'];
-        $order = $this->createOrder($cartIds);
+        $variantIds = json_decode(urldecode($_COOKIE['cartCookie'] ?? '[]'));
+        $order = $this->createOrder(is_array($variantIds) ? $variantIds : []);
         $this->orderRepository->add($order);
         $this->persistenceManager->persistAll();
         $this->view->assign('order', $order);
@@ -132,6 +132,10 @@ class OrderController extends ActionController
         $cartItems = [];
 
         foreach ($variantIds as $variantUid) {
+            if (!is_int($variantUid)) {
+                continue;
+            }
+
             $variant = $this->productVariantRepository->findByUid($variantUid);
             if (!$variant) {
                 continue;
