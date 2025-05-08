@@ -237,7 +237,7 @@ document.querySelectorAll('.amount-control').forEach(control => {
     });
 
     function updateDecreaseButton(button, amount) {
-        button.textContent = amount === 1 ? '🗑' : '\u00A0\u00A0-';
+        button.textContent = amount === 1 ? '🗑' : '\u00A0\u00A0\u00A0-';
     }
 });
 
@@ -258,7 +258,7 @@ function calculateCartTotal() {
 
     // Update the total display
     const totalElement = document.getElementById('cartTotal');
-    totalElement.textContent = `Total: ${total.toFixed(2)}€`;
+    totalElement.textContent = `Total (incl. tax): ${total.toFixed(2)}€`;
 }
 calculateCartTotal();
 
