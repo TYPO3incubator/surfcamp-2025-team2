@@ -42,7 +42,8 @@ return [
                         ],
                     ],
                 ],
-                'required' => true
+                'required' => true,
+                'eval' => 'unique'
             ],
         ],
         'type' => [
