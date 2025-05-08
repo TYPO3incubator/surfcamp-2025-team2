@@ -209,3 +209,56 @@ function removeId(id) {
 }
 
 
+document.querySelectorAll('.amount-control').forEach(control => {
+    const index = control.dataset.index;
+    const decreaseBtn = control.querySelector('.decrease-btn');
+    const increaseBtn = control.querySelector('.increase-btn');
+    const amountSpan = control.querySelector('.amount-number');
+
+    decreaseBtn.addEventListener('click', () => {
+        let amount = parseInt(amountSpan.textContent, 10);
+        if (amount === 1) {
+            // Optionally remove item or trigger delete
+            control.closest('.cart-item').remove();
+        } else {
+            amount--;
+            amountSpan.textContent = amount;
+            updateDecreaseButton(decreaseBtn, amount);
+        }
+        calculateCartTotal();
+    });
+
+    increaseBtn.addEventListener('click', () => {
+        let amount = parseInt(amountSpan.textContent, 10);
+        amount++;
+        amountSpan.textContent = amount;
+        updateDecreaseButton(decreaseBtn, amount);
+        calculateCartTotal();
+    });
+
+    function updateDecreaseButton(button, amount) {
+        button.textContent = amount === 1 ? '🗑' : '\u00A0\u00A0-';
+    }
+});
+
+function calculateCartTotal() {
+    let total = 0;
+
+    const cartItems = document.querySelectorAll('.cart-item');
+
+    cartItems.forEach(item => {
+        const priceElement = item.querySelector('.item-price');
+        const amountElement = item.querySelector('.amount-number');
+
+        const price = parseFloat(priceElement.dataset.price);
+        const amount = parseInt(amountElement.textContent);
+
+        total += price * amount;
+    });
+
+    // Update the total display
+    const totalElement = document.getElementById('cartTotal');
+    totalElement.textContent = `Total: ${total.toFixed(2)}€`;
+}
+calculateCartTotal();
+

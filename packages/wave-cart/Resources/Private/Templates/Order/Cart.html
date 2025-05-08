@@ -1,29 +1,46 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
-
+<div class="spacer"></div>
+<h1 class="headline">Cart</h1>
+<div class="spacer"></div>
+    <div class="cart-header">
+        <div class="cart-header-image"></div>
+        <div class="cart-header-details">Product</div>
+        <div class="cart-header-amount">Quantity</div>
+        <div class="cart-header-price">Price</div>
+    </div>
     <f:form action="addCustomerData"
             controller="Order"
             objectName="order"
             object="{order}"
             method="post">
 
-        <ul>
+        <ul id="cartList">
             <f:for each="{order.orderItems}" as="cartItem" iteration="iterator">
-                <li>
-                    {cartItem.image} <br>
-                    {cartItem.name} <br>
-                    {cartItem.size} <br>
+                <li class="cart-item">
+                    <f:image class="cart-item-image" image="{cartItem.image}" />
+                    <div class="item-details">
+                        <span class="item-name">{cartItem.name}</span>
+                        <span class="item-size">Size: {cartItem.size}</span>
+                    </div>
 
-                    <f:form.textfield
-                        property="orderItems.{iterator.index}.amount"
-                        value="{cartItem.amount}"/>
+                    <div class="amount-control" data-index="{iterator.index}">
+                        <button type="button" class="decrease-btn">
+                            🗑
+                        </button>
+                        <span class="amount-number">{cartItem.amount}</span>
+                        <button type="button" class="increase-btn">+</button>
+                    </div>
 
-                    {cartItem.price}€
+                    <span class="item-price" data-price="{cartItem.price}">
+                        {cartItem.price}€
+                    </span>
                 </li>
             </f:for>
         </ul>
-
-        <f:form.submit value="Weiter"/>
+        <div id="cartSummary">
+            <span id="cartTotal">0€</span>
+        </div>
+        <f:form.submit value="Next" class="submitButton btn-primary"/>
     </f:form>
-
 </html>
