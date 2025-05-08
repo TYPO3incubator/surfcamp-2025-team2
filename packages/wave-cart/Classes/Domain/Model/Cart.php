@@ -15,6 +15,10 @@ class Cart extends AbstractEntity
     protected int $paymentMethod = 0;
     protected float $totalPrice = 0;
 
+    protected string $discountCode = '';
+
+    protected float $discountValue = 0;
+
     protected ?ObjectStorage $cartItems = null;
 
     public function __construct()
@@ -128,11 +132,35 @@ class Cart extends AbstractEntity
         $this->cartItems = $cartItems;
     }
 
-    public function calculateTotalPrice(): float
+    public function getDiscountCode(): string
+    {
+        return $this->discountCode;
+    }
+
+    public function setDiscountCode(string $discountCode): void
+    {
+        $this->discountCode = $discountCode;
+    }
+
+    public function getDiscountValue(): float
+    {
+        return $this->discountValue;
+    }
+
+    public function setDiscountValue(float $discountValue): void
+    {
+        $this->discountValue = $discountValue;
+    }
+
+    public function calculateTotalPrice(float $discount = 0): float
     {
         $totalPrice = 0;
         foreach ($this->cartItems as $cartItem) {
             $totalPrice += $cartItem->getPrice() * $cartItem->getAmount();
+        }
+
+        if ($discount < 0) {
+            $totalPrice += $discount;
         }
 
         $this->totalPrice = $totalPrice;

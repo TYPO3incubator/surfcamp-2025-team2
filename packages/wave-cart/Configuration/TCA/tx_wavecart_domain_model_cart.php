@@ -84,6 +84,22 @@ return [
                 'items' => PaymentMethodEnum::getTcaOptions(),
             ],
         ],
+        'discount_code' => [
+            'exclude' => 0,
+            'label' => $ll . 'tx_wavecart_domain_model_cart.discount_code',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim'
+            ],
+        ],
+        'discount_value' => [
+            'exclude' => 0,
+            'label' => $ll . 'tx_wavecart_domain_model_cart.discount_value',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim'
+            ],
+        ],
         'total_price' => [
             'exclude' => 0,
             'label' => $ll . 'tx_wavecart_domain_model_cart.total_price',

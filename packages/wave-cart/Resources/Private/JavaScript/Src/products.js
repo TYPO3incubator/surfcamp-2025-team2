@@ -208,6 +208,52 @@ function removeId(id) {
     console.log('Removed ID, updated cookie:', updatedIds);
 }
 
+document.querySelectorAll('.cart-discount-control').forEach(control => {
+    const redeemBtn = control.querySelector('.check-discount');
+    const discountCouponInput = control.querySelector('.discount-code');
+    const hiddenDiscountCouponInput = control.querySelector('.hidden-discount-code');
+    const hiddenDiscountValueInput = control.querySelector('.hidden-discount-value');
+    const redeemStatus = control.querySelector('.redeem-status');
+
+    redeemBtn.addEventListener('click', () => {
+        try {
+            const response = fetch(`/api/discount?code=${discountCouponInput.value}`);
+            response.then(async (response) => {
+                const responseString = await response.text()
+                const responseObject = await JSON.parse(responseString)
+
+                if (response.status !== 200) {
+                    redeemStatus.innerText = await responseObject.error
+                    redeemStatus.classList.remove('redeem-status-success')
+                    redeemStatus.classList.add('redeem-status-error')
+                } else {
+                    const discountType = await responseObject.type
+                    const discount = await responseObject.discount
+
+
+                    if (discountType === 'relative') {
+                        const calculatedDiscount = - (calculateCartTotal() * (discount/100))
+                        hiddenDiscountValueInput.value = calculatedDiscount
+                        calculateCartTotal(calculatedDiscount)
+                    } else {
+                        const calculatedDiscount = - (discount)
+                        hiddenDiscountValueInput.value = calculatedDiscount
+                        calculateCartTotal(calculatedDiscount)
+                    }
+
+                    redeemStatus.classList.remove('redeem-status-error')
+                    redeemStatus.classList.add('redeem-status-success')
+                    hiddenDiscountCouponInput.value = discountCouponInput.value
+                    discountCouponInput.value = ''
+                    redeemStatus.innerText = 'Discount coupon added!'
+                }
+            })
+        } catch (error) {
+            console.log("hallo")
+            redeemStatus.innerText = error.message
+        }
+    })
+})
 
 document.querySelectorAll('.amount-control').forEach(control => {
     const index = control.dataset.index;
@@ -245,8 +291,7 @@ document.querySelectorAll('.amount-control').forEach(control => {
     }
 });
 
-
-function calculateCartTotal() {
+function calculateCartTotal(discount = 0) {
     let total = 0;
 
     const cartItems = document.querySelectorAll('.cart-item');
@@ -261,11 +306,18 @@ function calculateCartTotal() {
         total += price * amount;
     });
 
+    if (discount !== 0 && discount < 0) {
+        total += discount
+    }
+
     // Update the total display
     const totalElement = document.getElementById('cartTotal');
     if(totalElement) {
         totalElement.textContent = `Total (incl. tax): ${total.toFixed(2)}€`;
     }
+    totalElement.textContent = `Total (incl. tax): ${total.toFixed(2)}€`;
+
+    return total
 }
 calculateCartTotal();
 

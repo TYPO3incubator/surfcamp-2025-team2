@@ -249,6 +249,10 @@ a:hover {
   flex: 1;
 }
 
+.cart-discount-control {
+  float: right;
+}
+
 .cart-header-amount,
 .cart-item-amount,
 .cart-header-price,

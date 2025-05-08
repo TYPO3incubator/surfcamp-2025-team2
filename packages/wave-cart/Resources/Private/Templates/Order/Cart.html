@@ -34,14 +34,21 @@
                             value="{cartItem.amount}" class="amount-number"/>
                         <button type="button" class="increase-btn">+</button>
                     </div>
-
                     <span class="item-price" data-price="{cartItem.price}">
                     {cartItem.price}€
                 </span>
                 </li>
             </f:for>
         </ul>
+        <div class="cart-discount-control">
+            <span class="redeem-status"></span>
+            <f:form.hidden class="hidden-discount-code" property="discountCode" value="{cart.discountCode}" />
+            <f:form.hidden class="hidden-discount-value" property="discountValue" value="{cart.discountValue}" />
+            <f:form.textfield class="discount-code" />
+            <button type="button" class="check-discount">Redeem</button>
+        </div>
         <div id="cartSummary">
+            <span id="discountTotal"></span>
             <span id="cartTotal">0€</span>
         </div>
         <f:form.submit value="Next" class="submitButton btn-primary"/>
