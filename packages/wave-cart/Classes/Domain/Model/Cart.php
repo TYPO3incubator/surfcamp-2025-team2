@@ -1,11 +1,10 @@
 <?php
-
 namespace TYPO3Incubator\WaveCart\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-class Order extends AbstractEntity
+class Cart extends AbstractEntity
 {
     protected string $customerLastname = '';
     protected string $customerFirstname = '';
@@ -13,16 +12,14 @@ class Order extends AbstractEntity
     protected string $customerZip = '';
     protected string $customerCity = '';
     protected string $customerEmail = '';
-    protected int $status = 0;
     protected int $paymentMethod = 0;
-    protected int $assignee = 0;
     protected float $totalPrice = 0;
 
-    protected ?ObjectStorage $orderItems = null;
+    protected ?ObjectStorage $cartItems = null;
 
     public function __construct()
     {
-        $this->orderItems = new ObjectStorage();
+        $this->cartItems = new ObjectStorage();
     }
 
     public function getCustomerLastname(): string
@@ -85,16 +82,6 @@ class Order extends AbstractEntity
         $this->customerEmail = $customerEmail;
     }
 
-    public function getStatus(): int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): void
-    {
-        $this->status = $status;
-    }
-
     public function getPaymentMethod(): int
     {
         return $this->paymentMethod;
@@ -103,16 +90,6 @@ class Order extends AbstractEntity
     public function setPaymentMethod(int $paymentMethod): void
     {
         $this->paymentMethod = $paymentMethod;
-    }
-
-    public function getAssignee(): int
-    {
-        return $this->assignee;
-    }
-
-    public function setAssignee(int $assignee): void
-    {
-        $this->assignee = $assignee;
     }
 
     public function getTotalPrice(): float
@@ -125,42 +102,37 @@ class Order extends AbstractEntity
         $this->totalPrice = $totalPrice;
     }
 
-    public function addOrderItem(OrderItem $orderItem): void
+    public function addCartItem(CartItem $cartItem): void
     {
-        $this->orderItems?->attach($orderItem);
+        $this->cartItems?->attach($cartItem);
+    }
+
+    public function removeCartItem(CartItem $cartItemToRemove): void
+    {
+        $this->cartItems?->detach($cartItemToRemove);
     }
 
     /**
-     * Remove a post from this blog
+     * @return ObjectStorage<CartItem>
      */
-    public function removeOrderItem(OrderItem $orderItemToRemove): void
+    public function getCartItems(): ObjectStorage
     {
-        $this->orderItems?->detach($orderItemToRemove);
+        return $this->cartItems;
     }
 
     /**
-     * Returns all posts in this blog
-     *
-     * @return ObjectStorage<OrderItem>
+     * @param ObjectStorage<CartItem> $cartItems
      */
-    public function getOrderItems(): ObjectStorage
+    public function setCartItems(ObjectStorage $cartItems): void
     {
-        return $this->orderItems;
-    }
-
-    /**
-     * @param ObjectStorage<OrderItem> $orderItems
-     */
-    public function setOrderItems(ObjectStorage $orderItems): void
-    {
-        $this->orderItems = $orderItems;
+        $this->cartItems = $cartItems;
     }
 
     public function calculateTotalPrice(): float
     {
         $totalPrice = 0;
-        foreach ($this->orderItems as $orderItem) {
-            $totalPrice += $orderItem->getPrice() * $orderItem->getAmount();
+        foreach ($this->cartItems as $cartItem) {
+            $totalPrice += $cartItem->getPrice() * $cartItem->getAmount();
         }
 
         $this->totalPrice = $totalPrice;
