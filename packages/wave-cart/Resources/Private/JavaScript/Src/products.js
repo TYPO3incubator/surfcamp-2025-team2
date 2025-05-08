@@ -256,7 +256,7 @@ function calculateCartTotal() {
         const amountElement = item.querySelector('.amount-number');
 
         const price = parseFloat(priceElement.dataset.price);
-        const amount = parseInt(amountElement.value ? amountElement.value : amountElement.innerHTML, 10) || 0;
+        const amount = parseInt(amountElement.value, 10) || 0;
 
         total += price * amount;
     });
