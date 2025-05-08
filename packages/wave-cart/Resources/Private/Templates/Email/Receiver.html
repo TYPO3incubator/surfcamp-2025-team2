@@ -23,11 +23,11 @@
             <tr>
                 <td>{item.name}</td>
                 <td>{item.amount}</td>
-                <td>{item.price} €</td>
+                <td>{item.price -> f:format.number(decimals: 2)} €</td>
             </tr>
         </f:for>
     </tbody>
 </table>
-<p>Total discount: {order.discountValue} €</p>
-<p>Total Price: {order.totalPrice} €</p>
+<p>Total discount: {order.discountValue -> f:format.number(decimals: 2)} €</p>
+<p>Total Price: {order.totalPrice -> f:format.number(decimals: 2)} €</p>
 <p>Please process this order as soon as possible.</p>

@@ -9,12 +9,6 @@ categories:
     parent: 'WaveCart'
 
 settings:
-  waveCart.invoice.company:
-    label: 'Company'
-    category: WaveCart.invoice
-    description: 'Name of the Company for invoice generation'
-    type: string
-    default: 'Wave Cart'
   waveCart.cartPageId:
     label: 'Cart Page Id'
     category: WaveCart
@@ -69,3 +63,51 @@ settings:
     description: 'The E-Mail subject for the receiver E-mail.'
     type: string
     default: 'New order at WaveCart'
+  waveCart.invoiceCompanyName:
+    label: 'Company Name'
+    category: WaveCart.invoice
+    description: 'Name of the Company for invoice generation.'
+    type: string
+    default: 'Company Name'
+  waveCart.invoiceCompanyStreet:
+    label: 'Company Street'
+    category: WaveCart.invoice
+    description: 'Name of the Company Street of the company for invoice generation.'
+    type: string
+    default: 'Wave Street 123'
+  waveCart.invoiceCompanyCity:
+    label: 'Company City'
+    category: WaveCart.invoice
+    description: 'Name of the Company City for invoice generation'
+    type: string
+    default: 'ExampleCity'
+  waveCart.invoiceCompanyPhone:
+    label: 'Company Phone'
+    category: WaveCart.invoice
+    description: 'Name of the Company Phone for invoice generation'
+    type: string
+    default: '+49 1234 5678'
+  waveCart.invoiceIban:
+    label: 'IBAN'
+    category: WaveCart.invoice
+    description: 'IBAN for the invoice.'
+    type: string
+    default: 'DE12 3456 7890 1234 5678 90'
+  waveCart.invoiceBic:
+    label: 'BIC'
+    category: WaveCart.invoice
+    description: 'BIC for the invoice.'
+    type: string
+    default: 'ABCDDEFFXXX'
+  waveCart.invoiceBankName:
+    label: 'Bank name'
+    category: WaveCart.invoice
+    description: 'Name of the bank for the invoice.'
+    type: string
+    default: 'Bank name'
+  waveCart.invoiceAccountHolder:
+    label: 'Account Holder'
+    category: WaveCart.invoice
+    description: 'Name of the Account holder for the invoice.'
+    type: string
+    default: 'Account holder'
