@@ -2,32 +2,32 @@ Address data <br>
 
 <f:form action="summaryAndPaymentMethod"
         controller="Order"
-        objectName="order"
-        object="{order}"
+        objectName="cart"
+        object="{cart}"
         method="post">
     <div>
         <f:form.textfield property="customerLastname" name="customerLastname"
-                          value="{order.customerLastname}" id="tx-wavecart-lastname" placeholder="Lastname" />
+                          value="{cart.customerLastname}" id="tx-wavecart-lastname" placeholder="Lastname" />
     </div>
     <div>
         <f:form.textfield property="customerFirstname" name="customerFirstname"
-                          value="{order.customerFirstname}" id="tx-wavecart-firstname" placeholder="Firstname" />
+                          value="{cart.customerFirstname}" id="tx-wavecart-firstname" placeholder="Firstname" />
     </div>
     <div>
         <f:form.textfield property="customerEmail" name="customerEmail" type="email"
-                          value="{order.email}" id="tx-wavecart-customerEmail" placeholder="E-Mail" />
+                          value="{cart.email}" id="tx-wavecart-customerEmail" placeholder="E-Mail" />
     </div>
     <div>
         <f:form.textfield property="customerAddress" name="customerAddress"
-                          value="{order.customerAddress}" id="tx-wavecart-customerAddress" placeholder="Street and number" />
+                          value="{cart.customerAddress}" id="tx-wavecart-customerAddress" placeholder="Street and number" />
     </div>
     <div>
         <f:form.textfield property="customerZip" name="customerZip"
-                          value="{order.customerZip}" id="tx-wavecart-customerZip" placeholder="Zip" />
+                          value="{cart.customerZip}" id="tx-wavecart-customerZip" placeholder="Zip" />
     </div>
     <div>
         <f:form.textfield property="customerCity" name="customerCity"
-                          value="{order.customerCity}" id="tx-wavecart-customerCity" placeholder="City" />
+                          value="{cart.customerCity}" id="tx-wavecart-customerCity" placeholder="City" />
     </div>
     <div>
         <f:link.action action="cart">Back</f:link.action>

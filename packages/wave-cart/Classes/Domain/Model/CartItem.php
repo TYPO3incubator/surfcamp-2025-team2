@@ -5,7 +5,7 @@ namespace TYPO3Incubator\WaveCart\Domain\Model;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-class OrderItem extends AbstractEntity
+class CartItem extends AbstractEntity
 {
     protected string $name;
     protected int $type;
