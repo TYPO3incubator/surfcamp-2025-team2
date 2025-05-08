@@ -109,6 +109,26 @@
 			<trans-unit id="tx_wavecart_domain_model_product_variant.product">
 				<source>Product</source>
 			</trans-unit>
+
+			<!-- Discount code -->
+			<trans-unit id="tx_wavecart_domain_model_discountcode">
+                <source>Discount code</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.code">
+                <source>Discount code</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.type">
+                <source>Discount type</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.discount">
+                <source>Discount value</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.has_redeem_maximum">
+                <source>Has the discount code a maximum amount of redeems?</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.current_redeem_amount">
+                <source>Current amount of leftover redeems</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
