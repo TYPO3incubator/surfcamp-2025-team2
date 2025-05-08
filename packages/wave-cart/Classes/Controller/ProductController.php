@@ -25,8 +25,10 @@ class ProductController extends ActionController
 
     public function detailAction(Product $product): ResponseInterface
     {
+        $cartPageId = $this->request->getAttribute('site')->getSettings()->get('waveCart.cartPageId');
         $type = ProductTypeEnum::from($product->getType())->getLabel();
 
+        $this->view->assign('cartPageId', $cartPageId);
         $this->view->assign('product', $product);
         $this->view->assign('type', $type);
         return $this->htmlResponse();
