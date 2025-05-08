@@ -14,7 +14,7 @@ class GenerateInvoiceService
         private ViewFactoryInterface $viewFactory,
     ) {}
 
-    public function generateInvoicePdf(Order $order, Request $request): Order
+    public function generateInvoicePdfAndAddToOrder(Order $order, Request $request): Order
     {
         $settings = $request->getAttribute('site')->getSettings();
         $company = $settings->get('waveCart.invoice.company');

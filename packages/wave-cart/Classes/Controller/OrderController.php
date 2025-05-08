@@ -71,7 +71,7 @@ class OrderController extends ActionController
     public function submitAction(?Cart $cart = null): ResponseInterface
     {
         $order = $this->persistOrder($cart);
-        $order = $this->generateInvoiceService->generateInvoicePdf($order, $this->request);
+        $order = $this->generateInvoiceService->generateInvoicePdfAndAddToOrder($order, $this->request);
 
         $this->orderRepository->update($order);
         $this->persistenceManager->persistAll();
