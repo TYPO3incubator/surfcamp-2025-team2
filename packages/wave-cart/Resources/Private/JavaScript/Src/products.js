@@ -153,10 +153,21 @@ document.addEventListener('DOMContentLoaded', function () {
 const addToCartButton = document.getElementById('addToCart');
 if(addToCartButton) {
     addToCartButton.addEventListener('click', () => {
-        addId(document.querySelector('.variant-option.active').dataset.id)
+        addId(parseInt(document.querySelector('.variant-option.active').dataset.id))
         getCookie('cartCookie')
         document.getElementById('cartModal').style.display = 'flex';
     })
+}
+
+const closeModalButton = document.getElementById('closeModal');
+console.log(closeModalButton)
+if(closeModalButton) {
+    closeModalButton.addEventListener('click', () => {
+        closeModal();
+    })
+}
+function closeModal() {
+    document.getElementById('cartModal').style.display = 'none';
 }
 
 function getCookie(name) {
