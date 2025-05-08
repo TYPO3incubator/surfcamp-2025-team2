@@ -3,19 +3,19 @@
 
     <f:form action="addCustomerData"
             controller="Order"
-            objectName="order"
-            object="{order}"
+            objectName="cart"
+            object="{cart}"
             method="post">
 
         <ul>
-            <f:for each="{order.orderItems}" as="cartItem" iteration="iterator">
+            <f:for each="{cart.cartItems}" as="cartItem" iteration="iterator">
                 <li>
                     {cartItem.image} <br>
                     {cartItem.name} <br>
                     {cartItem.size} <br>
 
                     <f:form.textfield
-                        property="orderItems.{iterator.index}.amount"
+                        property="cartItems.{iterator.index}.amount"
                         value="{cartItem.amount}"/>
 
                     {cartItem.price}€

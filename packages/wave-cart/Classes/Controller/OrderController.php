@@ -11,23 +11,34 @@ use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3Incubator\WaveCart\Domain\Model\Cart;
+use TYPO3Incubator\WaveCart\Domain\Model\CartItem;
 use TYPO3Incubator\WaveCart\Domain\Model\Order;
 use TYPO3Incubator\WaveCart\Domain\Model\OrderItem;
+use TYPO3Incubator\WaveCart\Domain\Repository\CartItemRepository;
+use TYPO3Incubator\WaveCart\Domain\Repository\CartRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\OrderRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductVariantRepository;
+use TYPO3Incubator\WaveCart\Enum\OrderStatusEnum;
 
 class OrderController extends ActionController
 {
     private ProductVariantRepository $productVariantRepository;
+    private CartRepository $cartRepository;
+    private CartItemRepository $cartItemRepository;
     private OrderRepository $orderRepository;
     private PersistenceManager $persistenceManager;
 
     public function __construct(
         ProductVariantRepository $productVariantRepository,
+        CartRepository $cartRepository,
+        CartItemRepository $cartItemRepository,
         OrderRepository $orderRepository,
         PersistenceManager $persistenceManager
     ) {
         $this->productVariantRepository = $productVariantRepository;
+        $this->cartRepository = $cartRepository;
+        $this->cartItemRepository = $cartItemRepository;
         $this->orderRepository = $orderRepository;
         $this->persistenceManager = $persistenceManager;
     }
@@ -35,53 +46,88 @@ class OrderController extends ActionController
     public function cartAction(): ResponseInterface
     {
         $cartIds = ['1', '2', '3', '4'];
-        $order = $this->createOrder($cartIds);
-        $this->orderRepository->add($order);
+        $cart = $this->createCart($cartIds);
+        $this->cartRepository->add($cart);
         $this->persistenceManager->persistAll();
-        $this->view->assign('order', $order);
+        $this->view->assign('cart', $cart);
 
         return $this->htmlResponse();
     }
 
-    public function addCustomerDataAction(?Order $order = null): ResponseInterface
+    public function addCustomerDataAction(?Cart $cart = null): ResponseInterface
     {
-        $this->orderRepository->update($order);
+        $this->cartRepository->update($cart);
         $this->persistenceManager->persistAll();
-        $this->view->assign('order', $order);
+        $this->view->assign('cart', $cart);
 
         return $this->htmlResponse();
     }
 
-    public function summaryAndPaymentMethodAction(?Order $order = null): ResponseInterface
+    public function summaryAndPaymentMethodAction(?Cart $cart = null): ResponseInterface
     {
-        $totalPrice = $order->calculateTotalPrice();
-        $order->setTotalPrice($totalPrice);
-        $this->orderRepository->update($order);
+        $totalPrice = $cart->calculateTotalPrice();
+        $cart->setTotalPrice($totalPrice);
+        $this->cartRepository->update($cart);
         $this->persistenceManager->persistAll();
-        $this->view->assign('order', $order);
+        $this->view->assign('cart', $cart);
 
         return $this->htmlResponse();
     }
 
-    public function submitAction(?Order $order = null): ResponseInterface
+    public function submitAction(?Cart $cart = null): ResponseInterface
     {
+        $order = $this->persistOrder($cart);
         $this->updateStock($order);
         $this->sendOrderMails($order);
 
-        $this->view->assign('order', $order);
         return $this->htmlResponse();
+    }
+
+    private function persistOrder(Cart $cart): Order
+    {
+        $order = new Order();
+        $order->setCustomerFirstname($cart->getCustomerFirstname());
+        $order->setCustomerLastname($cart->getCustomerLastname());
+        $order->setCustomerEmail($cart->getCustomerEmail());
+        $order->setCustomerAddress($cart->getCustomerAddress());
+        $order->setCustomerZip($cart->getCustomerZip());
+        $order->setCustomerEmail($cart->getCustomerEmail());
+        $order->setCustomerCity($cart->getCustomerCity());
+        $order->setPaymentMethod($cart->getPaymentMethod());
+        $order->setTotalPrice($cart->calculateTotalPrice());
+        $order->setStatus(OrderStatusEnum::new->value);
+
+        foreach ($cart->getCartItems() as $cartItem) {
+            $orderItem = new OrderItem();
+            $orderItem->setName($cartItem->getName());
+            $orderItem->setType($cartItem->getType());
+            $orderItem->setTaxRate($cartItem->getTaxRate());
+            $orderItem->setAmount($cartItem->getAmount());
+            $orderItem->setSize($cartItem->getSize());
+            $orderItem->setImage($cartItem->getImage());
+            $orderItem->setPrice($cartItem->getPrice());
+            $orderItem->setVariantId($cartItem->getVariantId());
+
+            $order->addOrderItem($orderItem);
+            $this->cartItemRepository->remove($cartItem);
+        }
+
+        $this->orderRepository->add($order);
+        $this->cartRepository->remove($cart);
+        $this->persistenceManager->persistAll();
+
+        return $order;
     }
 
     private function sendOrderMails(Order $order): void
     {
         $mailer = new FluidEmail();
 
-        /** @var Site $site */
-        $site = $this->request->getAttribute('site');
-        $fromAddress = $site->getSettings()->get('waveCart.mailFromAddress');
-        $fromSubject = $site->getSettings()->get('waveCart.mailFromSubject');
-        $receiverAddress = $site->getSettings()->get('waveCart.mailReceiverAddress');
-        $receiverSubject = $site->getSettings()->get('waveCart.mailReceiverSubject');
+        $settings = $this->request->getAttribute('site')->getSettings();
+        $fromAddress = $settings->get('waveCart.mailFromAddress');
+        $fromSubject = $settings->get('waveCart.mailFromSubject');
+        $receiverAddress = $settings->get('waveCart.mailReceiverAddress');
+        $receiverSubject = $settings->get('waveCart.mailReceiverSubject');
         $senderEmail = $order->getCustomerEmail();
 
         $emailToSender = $mailer
@@ -126,9 +172,9 @@ class OrderController extends ActionController
         $this->persistenceManager->persistAll();
     }
 
-    private function createOrder(array $variantIds): Order
+    private function createCart(array $variantIds): Cart
     {
-        $order = new Order();
+        $cart = new Cart();
         $cartItems = [];
 
         foreach ($variantIds as $variantUid) {
@@ -142,18 +188,18 @@ class OrderController extends ActionController
                 continue;
             }
 
-            $newOrderItem = new OrderItem();
-            $newOrderItem->setName($product->getName());
-            $newOrderItem->setType($product->getType());
-            $newOrderItem->setAmount(1);
-            $newOrderItem->setSize($variant->getSize());
-            $newOrderItem->setImage($product->getImage());
-            $newOrderItem->setPrice($product->getPrice());
-            $newOrderItem->setVariantId($variant->getUid());
+            $newCartItem = new CartItem();
+            $newCartItem->setName($product->getName());
+            $newCartItem->setType($product->getType());
+            $newCartItem->setAmount(1);
+            $newCartItem->setSize($variant->getSize());
+            $newCartItem->setImage($product->getImage());
+            $newCartItem->setPrice($product->getPrice());
+            $newCartItem->setVariantId($variant->getUid());
 
-            $order->addOrderItem($newOrderItem);
+            $cart->addCartItem($newCartItem);
         }
 
-        return $order;
+        return $cart;
     }
 }
