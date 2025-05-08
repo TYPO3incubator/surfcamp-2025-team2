@@ -379,20 +379,19 @@ input {
   justify-content: center;
 }
 
-.cart .formContainer {
+.adress-data .formContainer {
   max-width: 750px;
-  margin: 0 auto;
   font-family: sans-serif;
 }
-.cart .formContainer label {
+.adress-data .formContainer label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #333;
 }
-.cart .formContainer input[type=text],
-.cart .formContainer input[type=email],
-.cart .formContainer input[type=number] {
+.adress-data .formContainer input[type=text],
+.adress-data .formContainer input[type=email],
+.adress-data .formContainer input[type=number] {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #ccc;
@@ -401,9 +400,9 @@ input {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
 }
-.cart .formContainer input[type=text]:focus,
-.cart .formContainer input[type=email]:focus,
-.cart .formContainer input[type=number]:focus {
+.adress-data .formContainer input[type=text]:focus,
+.adress-data .formContainer input[type=email]:focus,
+.adress-data .formContainer input[type=number]:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
   outline: none;
