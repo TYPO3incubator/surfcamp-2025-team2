@@ -1,3 +1,5 @@
+{namespace wave=TYPO3Incubator\WaveCart\ViewHelpers}
+
 Address data <br>
 
 <ul>
@@ -30,7 +32,7 @@ Address data <br>
         method="post">
     <div>
         <f:form.radio property="paymentMethod" id="paymentMethod" value="0"/>
-        <label for="paymentMethod">Payment Method</label>
+        <label for="paymentMethod"><wave:enum.label enumClassName="\TYPO3Incubator\WaveCart\Enum\PaymentMethodEnum" value="0" /></label>
     </div>
     <div>
         <f:link.action action="addCustomerData" arguments="{cart:cart}">Back</f:link.action>
