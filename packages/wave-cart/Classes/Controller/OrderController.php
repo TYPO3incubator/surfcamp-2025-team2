@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace TYPO3Incubator\WaveCart\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\MailerInterface;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3Incubator\WaveCart\Domain\Model\Cart;
@@ -20,27 +22,19 @@ use TYPO3Incubator\WaveCart\Domain\Repository\CartRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\OrderRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductVariantRepository;
 use TYPO3Incubator\WaveCart\Enum\OrderStatusEnum;
+use TYPO3Incubator\WaveCart\Service\GenerateInvoiceService;
 
 class OrderController extends ActionController
 {
-    private ProductVariantRepository $productVariantRepository;
-    private CartRepository $cartRepository;
-    private CartItemRepository $cartItemRepository;
-    private OrderRepository $orderRepository;
-    private PersistenceManager $persistenceManager;
-
     public function __construct(
-        ProductVariantRepository $productVariantRepository,
-        CartRepository $cartRepository,
-        CartItemRepository $cartItemRepository,
-        OrderRepository $orderRepository,
-        PersistenceManager $persistenceManager
-    ) {
-        $this->productVariantRepository = $productVariantRepository;
-        $this->cartRepository = $cartRepository;
-        $this->cartItemRepository = $cartItemRepository;
-        $this->orderRepository = $orderRepository;
-        $this->persistenceManager = $persistenceManager;
+        protected ProductVariantRepository $productVariantRepository,
+        protected CartRepository $cartRepository,
+        protected CartItemRepository $cartItemRepository,
+        protected OrderRepository $orderRepository,
+        protected PersistenceManager $persistenceManager,
+        protected GenerateInvoiceService $generateInvoiceService
+    )
+    {
     }
 
     public function cartAction(): ResponseInterface
@@ -77,6 +71,8 @@ class OrderController extends ActionController
     public function submitAction(?Cart $cart = null): ResponseInterface
     {
         $order = $this->persistOrder($cart);
+        $invoice = $this->generateInvoiceService->generateInvoicePdf($order, $this->request);
+
         $this->updateStock($order);
         $this->sendOrderMails($order);
 
