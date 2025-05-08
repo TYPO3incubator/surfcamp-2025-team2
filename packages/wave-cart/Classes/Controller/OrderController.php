@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace TYPO3Incubator\WaveCart\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\MailerInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -147,12 +148,14 @@ class OrderController extends ActionController
         $fromSubject = $settings->get('waveCart.mailFromSubject');
         $senderAddress = $order->getCustomerEmail();
 
+        $fileIdentifier = $order->getInvoice()->getOriginalResource()->getOriginalFile()->getIdentifier();
+        $path = Environment::getPublicPath() . '/fileadmin' . $fileIdentifier;
         $emailToSender = $mailer
             ->to($senderAddress)
             ->from($fromAddress)
             ->subject($fromSubject)
             ->format('html')
-            ->attachFromPath($order->getInvoice())
+            ->attachFromPath($path)
             ->assignMultiple([
                 'order' => $order,
             ])

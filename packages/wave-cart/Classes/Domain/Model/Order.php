@@ -2,6 +2,8 @@
 
 namespace TYPO3Incubator\WaveCart\Domain\Model;
 
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -17,8 +19,7 @@ class Order extends AbstractEntity
     protected int $paymentMethod = 0;
     protected int $assignee = 0;
     protected float $totalPrice = 0;
-    protected string $invoice = '';
-
+    protected ?FileReference $invoice = null;
     protected ?ObjectStorage $orderItems = null;
 
     public function __construct()
@@ -157,12 +158,12 @@ class Order extends AbstractEntity
         $this->orderItems = $orderItems;
     }
 
-    public function getInvoice(): string
+    public function getInvoice(): FileReference
     {
         return $this->invoice;
     }
 
-    public function setInvoice(string $invoice): void
+    public function setInvoice(FileReference $invoice): void
     {
         $this->invoice = $invoice;
     }

@@ -12,27 +12,33 @@ Address data <br>
         method="post">
     <div>
         <f:form.textfield property="customerLastname" name="customerLastname"
-                          value="{cart.customerLastname}" id="tx-wavecart-lastname" placeholder="Lastname" />
+                          value="{cart.customerLastname}" id="tx-wavecart-lastname" placeholder="Lastname"
+                          required="required" />
     </div>
     <div>
         <f:form.textfield property="customerFirstname" name="customerFirstname"
-                          value="{cart.customerFirstname}" id="tx-wavecart-firstname" placeholder="Firstname" />
+                          value="{cart.customerFirstname}" id="tx-wavecart-firstname" placeholder="Firstname"
+                          required="required" />
     </div>
     <div>
         <f:form.textfield property="customerEmail" name="customerEmail" type="email"
-                          value="{cart.email}" id="tx-wavecart-customerEmail" placeholder="E-Mail" />
+                          value="{cart.email}" id="tx-wavecart-customerEmail" placeholder="E-Mail"
+                          required="required" />
     </div>
     <div>
         <f:form.textfield property="customerAddress" name="customerAddress"
-                          value="{cart.customerAddress}" id="tx-wavecart-customerAddress" placeholder="Street and number" />
+                          value="{cart.customerAddress}" id="tx-wavecart-customerAddress" placeholder="Street and number"
+                          required="required" />
     </div>
     <div>
         <f:form.textfield property="customerZip" name="customerZip"
-                          value="{cart.customerZip}" id="tx-wavecart-customerZip" placeholder="Zip" />
+                          value="{cart.customerZip}" id="tx-wavecart-customerZip" placeholder="Zip"
+                          required="required" />
     </div>
     <div>
         <f:form.textfield property="customerCity" name="customerCity"
-                          value="{cart.customerCity}" id="tx-wavecart-customerCity" placeholder="City" />
+                          value="{cart.customerCity}" id="tx-wavecart-customerCity" placeholder="City"
+                          required="required" />
     </div>
     <div>
         <f:link.action action="cart">Back</f:link.action>
