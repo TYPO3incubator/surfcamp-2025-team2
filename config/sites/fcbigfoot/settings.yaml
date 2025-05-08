@@ -10,8 +10,7 @@ fcbigfoot:
         link: 'https://www.instagram.com/typo3_official/'
 waveCart:
   cartPid: 102
-  cartItemsPid: 102
   orderPid: 102
-  orderItemsPid: 102
+  orderItemPid: 102
   cartPageId: 102
   cartItemPid: 102
