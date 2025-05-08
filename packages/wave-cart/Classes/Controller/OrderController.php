@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace TYPO3Incubator\WaveCart\Controller;
 
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\MailerInterface;
-use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3Incubator\WaveCart\Domain\Model\Cart;
@@ -33,8 +30,7 @@ class OrderController extends ActionController
         protected OrderRepository $orderRepository,
         protected PersistenceManager $persistenceManager,
         protected GenerateInvoiceService $generateInvoiceService
-    )
-    {
+    ) {
     }
 
     public function cartAction(): ResponseInterface
@@ -71,7 +67,6 @@ class OrderController extends ActionController
     public function submitAction(?Cart $cart = null): ResponseInterface
     {
         $order = $this->persistOrder($cart);
-        $invoice = $this->generateInvoiceService->generateInvoicePdf($order, $this->request);
 
         $this->updateStock($order);
         $this->sendOrderMails($order);
@@ -81,7 +76,12 @@ class OrderController extends ActionController
 
     private function persistOrder(Cart $cart): Order
     {
+        $settings = $this->request->getAttribute('site')->getSettings();
+        $orderPid = $settings->get('waveCart.orderPid');
+        $orderItemPid = $settings->get('waveCart.orderItemPid');
+
         $order = new Order();
+        $order->setPid($orderPid);
         $order->setCustomerFirstname($cart->getCustomerFirstname());
         $order->setCustomerLastname($cart->getCustomerLastname());
         $order->setCustomerEmail($cart->getCustomerEmail());
@@ -95,6 +95,7 @@ class OrderController extends ActionController
 
         foreach ($cart->getCartItems() as $cartItem) {
             $orderItem = new OrderItem();
+            $orderItem->setPid($orderItemPid);
             $orderItem->setName($cartItem->getName());
             $orderItem->setType($cartItem->getType());
             $orderItem->setTaxRate($cartItem->getTaxRate());
@@ -170,7 +171,12 @@ class OrderController extends ActionController
 
     private function createCart(array $variantIds): Cart
     {
+        $settings = $this->request->getAttribute('site')->getSettings();
+        $cartPid = $settings->get('waveCart.cartPid');
+        $cartItemPid = $settings->get('waveCart.cartItemPid');
+
         $cart = new Cart();
+        $cart->setPid($cartPid);
         $cartItems = [];
 
         foreach ($variantIds as $variantUid) {
@@ -185,6 +191,7 @@ class OrderController extends ActionController
             }
 
             $newCartItem = new CartItem();
+            $newCartItem->setPid($cartItemPid);
             $newCartItem->setName($product->getName());
             $newCartItem->setType($product->getType());
             $newCartItem->setAmount(1);
