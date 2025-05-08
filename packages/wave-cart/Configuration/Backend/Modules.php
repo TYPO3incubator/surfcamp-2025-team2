@@ -1,6 +1,6 @@
 <?php
 
-use TYPO3Incubator\WaveCart\Controller\ListOrderController;
+use TYPO3Incubator\WaveCart\Controller\Backend\OrderBackendController;
 
 return [
     'wavecart' => [
@@ -17,7 +17,7 @@ return [
         'path' => '/module/wavecart/orders',
         'routes' => [
             '_default' => [
-                'target' => ListOrderController::class . '::indexAction',
+                'target' => OrderBackendController::class . '::indexAction',
             ],
         ],
     ],
