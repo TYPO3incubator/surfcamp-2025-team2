@@ -19,7 +19,7 @@ return [
         'iconfile' => 'EXT:wave_cart/Resources/Public/Icons/order.svg',
     ],
     'types' => [
-        '1' => ['showitem' => 'customer_lastname, customer_firstname, customer_address, customer_zip, customer_city, customer_email, status, payment_method, assignee, total_price, cart_items'],
+        '1' => ['showitem' => 'customer_lastname, customer_firstname, customer_address, customer_zip, customer_city, customer_email, status, payment_method, assignee, total_price, discount_code, discount_value, cart_items'],
     ],
     'palettes' => [
         '1' => ['showitem' => ''],

@@ -16,6 +16,7 @@
             object="{cart}"
             method="post">
         <f:if condition="{cart.cartItems}">
+            <f:then>
             <ul id="cartList">
                 <f:for each="{cart.cartItems}" as="cartItem" iteration="iterator">
                     <li class="cart-item" data-id="{cartItem.variantId}">
@@ -40,6 +41,7 @@
                     </li>
                 </f:for>
             </ul>
+            </f:then>
             <f:else>
                 <p>Your shopping cart is empty.</p>
             </f:else>
