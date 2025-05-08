@@ -19,7 +19,7 @@ class Product extends AbstractEntity
     protected string $name = '';
     protected string $description = '';
     protected ?FileReference $image = null;
-    protected string $type = '';
+    protected int $type = 0;
     protected float $price = 0.0;
     protected float $taxRate = 0.0;
 
@@ -63,12 +63,12 @@ class Product extends AbstractEntity
         $this->image = $image;
     }
 
-    public function getType(): string
+    public function getType(): int
     {
         return $this->type;
     }
 
-    public function setType(string $type): void
+    public function setType(int $type): void
     {
         $this->type = $type;
     }

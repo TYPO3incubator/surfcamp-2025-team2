@@ -11,7 +11,6 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class ProductVariant extends AbstractEntity
 {
-    protected string $name = '';
     protected string $size = '';
     protected int $amount = 0;
     protected Product $product;

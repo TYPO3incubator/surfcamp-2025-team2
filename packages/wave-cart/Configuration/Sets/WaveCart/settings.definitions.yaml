@@ -1,0 +1,38 @@
+categories:
+  WaveCart:
+    label: 'Wave Cart'
+  WaveCart.mail:
+    label: 'Mail'
+    parent: 'WaveCart'
+
+settings:
+  waveCart.cartPageId:
+    label: 'Cart Page Id'
+    category: WaveCart
+    description: 'Pages id on which the shopping cart is located'
+    type: int
+    default: 1
+  waveCart.mailFromAddress:
+    label: 'From E-Mail address'
+    category: WaveCart.mail
+    description: 'The E-Mail address that sends the mail. Usually a noreply'
+    type: string
+    default: 'noreply@wavecart.com'
+  waveCart.mailFromSubject:
+    label: 'Sender E-Mail subject'
+    category: WaveCart.mail
+    description: 'The E-Mail subject for the from E-mail.'
+    type: string
+    default: 'Your order at WaveCart'
+  waveCart.mailReceiverAddress:
+    label: 'Receiver E-Mail address'
+    category: WaveCart.mail
+    description: 'The E-Mail address for the receiver mail.'
+    type: string
+    default: 'shop@wavecart.com'
+  waveCart.mailReceiverSubject:
+    label: 'Receiver E-Mail subject'
+    category: WaveCart.mail
+    description: 'The E-Mail subject for the receiver E-mail.'
+    type: string
+    default: 'New order at WaveCart'
