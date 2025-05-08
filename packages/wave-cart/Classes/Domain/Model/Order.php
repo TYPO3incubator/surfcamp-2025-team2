@@ -17,6 +17,7 @@ class Order extends AbstractEntity
     protected int $paymentMethod = 0;
     protected int $assignee = 0;
     protected float $totalPrice = 0;
+    protected string $invoice = '';
 
     protected ?ObjectStorage $orderItems = null;
 
@@ -154,6 +155,16 @@ class Order extends AbstractEntity
     public function setOrderItems(ObjectStorage $orderItems): void
     {
         $this->orderItems = $orderItems;
+    }
+
+    public function getInvoice(): string
+    {
+        return $this->invoice;
+    }
+
+    public function setInvoice(string $invoice): void
+    {
+        $this->invoice = $invoice;
     }
 
     public function calculateTotalPrice(): float

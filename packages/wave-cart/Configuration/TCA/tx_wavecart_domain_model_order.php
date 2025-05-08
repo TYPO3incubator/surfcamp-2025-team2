@@ -19,7 +19,7 @@ return [
         'iconfile' => 'EXT:wave_cart/Resources/Public/Icons/order.svg',
     ],
     'types' => [
-        '1' => ['showitem' => 'customer_lastname, customer_firstname, customer_address, customer_zip, customer_city, customer_email, status, payment_method, assignee, total_price, order_items'],
+        '1' => ['showitem' => 'customer_lastname, customer_firstname, customer_address, customer_zip, customer_city, customer_email, status, payment_method, assignee, total_price, order_items, invoice'],
     ],
     'palettes' => [
         '1' => ['showitem' => ''],
@@ -128,6 +128,14 @@ return [
                 'foreign_table' => 'tx_wavecart_domain_model_orderitem',
                 'foreign_field' => 'order',
             ],
-        ]
+        ],
+        'invoice' => [
+            'exclude' => 0,
+            'label' => $ll . 'tx_wavecart_domain_model_order.invoice',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim'
+            ],
+        ],
     ],
 ];
