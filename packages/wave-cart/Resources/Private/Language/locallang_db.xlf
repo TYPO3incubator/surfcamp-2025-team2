@@ -43,6 +43,12 @@
 			<trans-unit id="tx_wavecart_domain_model_order.invoice">
 				<source>Invoice</source>
 			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.discount_code">
+				<source>Discount code</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.discount_value">
+				<source>Discount value</source>
+			</trans-unit>
 
 			<!-- Order item-->
 			<trans-unit id="tx_wavecart_domain_model_orderitem">
@@ -103,6 +109,12 @@
 			</trans-unit>
 			<trans-unit id="tx_wavecart_domain_model_cart.cart_items">
 				<source>Cart items</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.discount_code">
+				<source>Discount code</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.discount_value">
+				<source>Discount value</source>
 			</trans-unit>
 
 			<!-- Cart item-->

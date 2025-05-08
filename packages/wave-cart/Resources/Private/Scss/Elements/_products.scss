@@ -21,6 +21,10 @@ $primary-text-color: black;
     color: $primary-text-color;
   }
 
+  &--image {
+    margin-bottom: 16px;
+  }
+
   .tile {
     flex: 0 1 calc(33.333% - #{$tile-gap});
     box-sizing: border-box;
