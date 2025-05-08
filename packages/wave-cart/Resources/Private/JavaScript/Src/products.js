@@ -100,8 +100,11 @@ if (sizeSelect) {
         const selectedSize = this.value;
         const tiles = document.querySelectorAll('.tile');
 
+        const selectedType = typeSelect ? typeSelect.value : '';
+
         tiles.forEach(tile => {
-            tile.style.display = '';
+            const tileType = tile.dataset.type || '';
+            tile.style.display = selectedType === '' || tileType === selectedType ? '' : 'none';
         });
 
         tiles.forEach(tile => {
