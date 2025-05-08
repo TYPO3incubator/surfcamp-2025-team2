@@ -20,8 +20,8 @@ class Product extends AbstractEntity
     protected string $description = '';
     protected ?FileReference $image = null;
     protected int $type = 0;
-    protected float $price = 0.0;
-    protected float $taxRate = 0.0;
+    protected float $price = 0.00;
+    protected int $taxRate = 0;
 
     /**
      * @var ObjectStorage<ProductVariant>
@@ -83,12 +83,12 @@ class Product extends AbstractEntity
         $this->price = $price;
     }
 
-    public function getTaxRate(): float
+    public function getTaxRate(): int
     {
         return $this->taxRate;
     }
 
-    public function setTaxRate(float $taxRate): void
+    public function setTaxRate(int $taxRate): void
     {
         $this->taxRate = $taxRate;
     }
