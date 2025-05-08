@@ -11,12 +11,12 @@
     </div>
     <f:form action="addCustomerData"
             controller="Order"
-            objectName="order"
-            object="{order}"
+            objectName="cart"
+            object="{cart}"
             method="post">
 
         <ul id="cartList">
-            <f:for each="{order.orderItems}" as="cartItem" iteration="iterator">
+            <f:for each="{cart.cartItems}" as="cartItem" iteration="iterator">
                 <li class="cart-item">
                     <f:image class="cart-item-image" image="{cartItem.image}" />
                     <div class="item-details">

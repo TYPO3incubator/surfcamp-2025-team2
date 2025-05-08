@@ -3,6 +3,7 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2025-02-05T10:18:12Z" product-name="wave_cart">
 		<header/>
 		<body>
+		    <!-- OrderStatusEnum -->
 			<trans-unit id="orderStatusEnum.new">
 				<source>New</source>
 			</trans-unit>
@@ -18,10 +19,13 @@
 			<trans-unit id="orderStatusEnum.returned">
 				<source>Returned</source>
 			</trans-unit>
+
+			<!-- PaymentMethodEnum -->
 			<trans-unit id="paymentMethodEnum.prepayment">
 				<source>Prepayment</source>
 			</trans-unit>
 
+            <!-- ProductTypeEnum -->
 			<trans-unit id="productTypeEnum.tShirt">
 				<source>T-Shirt</source>
 			</trans-unit>
@@ -35,6 +39,7 @@
 				<source>Stuffed Animal</source>
 			</trans-unit>
 
+            <!-- SizeEnum -->
 			<trans-unit id="sizeEnum.tShirt">
 				<source>T-Shirt</source>
 			</trans-unit>
@@ -75,6 +80,7 @@
 				<source>XL</source>
 			</trans-unit>
 
+            <!-- TaxRateEnum -->
 			<trans-unit id="taxRateEnum.germany_zero">
 				<source>0%</source>
 			</trans-unit>
@@ -83,6 +89,14 @@
 			</trans-unit>
 			<trans-unit id="taxRateEnum.germany_full">
 				<source>19%</source>
+			</trans-unit>
+
+			<!-- DiscountTypeEnum -->
+			<trans-unit id="discountTypeEnum.relative">
+				<source>Relative</source>
+			</trans-unit>
+			<trans-unit id="discountTypeEnum.absolute">
+				<source>Absolute</source>
 			</trans-unit>
 		</body>
 	</file>

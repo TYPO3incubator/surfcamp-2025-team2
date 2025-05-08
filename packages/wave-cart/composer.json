@@ -7,7 +7,8 @@
     "keywords": ["TYPO3 CMS"],
     "require": {
         "typo3/cms-core": "^13.4",
-        "brosua/enums": "^1.0"
+        "brosua/enums": "^1.0",
+        "mpdf/mpdf": "^8.2.1"
     },
     "autoload": {
         "psr-4": {
