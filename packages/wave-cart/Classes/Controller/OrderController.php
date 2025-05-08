@@ -69,7 +69,8 @@ class OrderController extends ActionController
         $order = $this->persistOrder($cart);
 
         $this->updateStock($order);
-        $this->sendOrderMails($order);
+        $this->sendSenderOrderMails($order);
+        $this->sendReceiverOrderMails($order);
 
         return $this->htmlResponse();
     }
@@ -116,19 +117,17 @@ class OrderController extends ActionController
         return $order;
     }
 
-    private function sendOrderMails(Order $order): void
+    private function sendSenderOrderMails(Order $order): void
     {
         $mailer = new FluidEmail();
 
         $settings = $this->request->getAttribute('site')->getSettings();
         $fromAddress = $settings->get('waveCart.mailFromAddress');
         $fromSubject = $settings->get('waveCart.mailFromSubject');
-        $receiverAddress = $settings->get('waveCart.mailReceiverAddress');
-        $receiverSubject = $settings->get('waveCart.mailReceiverSubject');
-        $senderEmail = $order->getCustomerEmail();
+        $senderAddress = $order->getCustomerEmail();
 
         $emailToSender = $mailer
-            ->to($senderEmail)
+            ->to($senderAddress)
             ->from($fromAddress)
             ->subject($fromSubject)
             ->format('html')
@@ -138,6 +137,16 @@ class OrderController extends ActionController
             ->setTemplate('Sender');
 
         GeneralUtility::makeInstance(MailerInterface::class)->send($emailToSender);
+    }
+
+    private function sendReceiverOrderMails(Order $order): void
+    {
+        $mailer = new FluidEmail();
+
+        $settings = $this->request->getAttribute('site')->getSettings();
+        $fromAddress = $settings->get('waveCart.mailFromAddress');
+        $receiverAddress = $settings->get('waveCart.mailReceiverAddress');
+        $receiverSubject = $settings->get('waveCart.mailReceiverSubject');
 
         $receiverEmail = $mailer
             ->to($receiverAddress)
@@ -151,6 +160,7 @@ class OrderController extends ActionController
 
         GeneralUtility::makeInstance(MailerInterface::class)->send($receiverEmail);
     }
+
 
     private function updateStock(Order $order): void
     {
