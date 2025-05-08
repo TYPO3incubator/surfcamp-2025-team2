@@ -215,33 +215,34 @@ document.querySelectorAll('.amount-control').forEach(control => {
     const increaseBtn = control.querySelector('.increase-btn');
     const amountInput = control.querySelector('.amount-number');
 
-    decreaseBtn.addEventListener('click', () => {
-        let amount = parseInt(amountInput.value, 10) || 0;
-        if (amount === 1) {
-            // Optionally remove item or trigger delete
-            control.closest('.cart-item').remove();
-        } else if (amount > 1) {
-            amount--;
+    if(decreaseBtn) {
+        decreaseBtn.addEventListener('click', () => {
+            let amount = parseInt(amountInput.value, 10) || 0;
+            if (amount === 1) {
+                // Optionally remove item or trigger delete
+                control.closest('.cart-item').remove();
+            } else if (amount > 1) {
+                amount--;
+                amountInput.value = amount;
+                updateDecreaseButton(decreaseBtn, amount);
+            }
+            calculateCartTotal();
+        });
+        updateDecreaseButton(decreaseBtn, parseInt(amountInput.value, 10) || 0);
+    }
+    if(increaseBtn) {
+        increaseBtn.addEventListener('click', () => {
+            let amount = parseInt(amountInput.value, 10) || 0;
+            amount++;
             amountInput.value = amount;
             updateDecreaseButton(decreaseBtn, amount);
-        }
-        calculateCartTotal();
-    });
-
-    increaseBtn.addEventListener('click', () => {
-        let amount = parseInt(amountInput.value, 10) || 0;
-        amount++;
-        amountInput.value = amount;
-        updateDecreaseButton(decreaseBtn, amount);
-        calculateCartTotal();
-    });
+            calculateCartTotal();
+        });
+    }
 
     function updateDecreaseButton(button, amount) {
         button.textContent = amount === 1 ? '🗑' : '\u00A0\u00A0\u00A0-';
     }
-
-    // Initial setup
-    updateDecreaseButton(decreaseBtn, parseInt(amountInput.value, 10) || 0);
 });
 
 
@@ -255,7 +256,7 @@ function calculateCartTotal() {
         const amountElement = item.querySelector('.amount-number');
 
         const price = parseFloat(priceElement.dataset.price);
-        const amount = parseInt(amountElement.textContent);
+        const amount = parseInt(amountElement.value ? amountElement.value : amountElement.innerHTML, 10) || 0;
 
         total += price * amount;
     });

@@ -328,6 +328,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 70%;
+  position: relative;
 }
 
 .formRow {
@@ -336,9 +338,27 @@ a:hover {
 }
 
 .singleWidth {
-  width: 30%;
+  width: 100%;
 }
 
 .doubleWidth {
-  width: 61%;
+  width: 50%;
+}
+
+.nextBtn {
+  right: 0;
+  position: absolute;
+}
+
+input {
+  border-radius: 4px;
+  height: 40px;
+  padding: 4px;
+}
+
+.payment-radio {
+  align-items: center;
+  gap: 15px;
+  display: flex;
+  margin-left: 20px;
 }
