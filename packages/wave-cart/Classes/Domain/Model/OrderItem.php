@@ -1,4 +1,5 @@
 <?php
+
 namespace TYPO3Incubator\WaveCart\Domain\Model;
 
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
@@ -15,6 +16,7 @@ class OrderItem extends AbstractEntity
     protected int $amount;
     protected ?FileReference $image = null;
     protected bool $hidden = true;
+    protected int $variantId;
 
     public function getName(): string
     {
@@ -94,5 +96,15 @@ class OrderItem extends AbstractEntity
     public function setHidden(bool $hidden): void
     {
         $this->hidden = $hidden;
+    }
+
+    public function getVariantId(): int
+    {
+        return $this->variantId;
+    }
+
+    public function setVariantId(int $variantId): void
+    {
+        $this->variantId = $variantId;
     }
 }

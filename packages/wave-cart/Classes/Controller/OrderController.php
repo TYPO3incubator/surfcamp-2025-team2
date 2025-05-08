@@ -13,7 +13,6 @@ use TYPO3Incubator\WaveCart\Domain\Repository\OrderRepository;
 use TYPO3Incubator\WaveCart\Domain\Repository\ProductVariantRepository;
 use TYPO3Incubator\WaveCart\Dto\OrderDto;
 use Psr\Http\Message\ResponseInterface;
-use TYPO3Incubator\WaveCart\Dto\OrderItemDto;
 
 class OrderController extends ActionController
 {
@@ -33,7 +32,7 @@ class OrderController extends ActionController
 
     public function cartAction(): ResponseInterface
     {
-        $cartIds = ['1', '4', '2'];
+        $cartIds = ['1', '2', '3', '4'];
         $order = $this->createOrder($cartIds);
         $this->orderRepository->add($order);
         $this->persistenceManager->persistAll();
@@ -42,8 +41,7 @@ class OrderController extends ActionController
         return $this->htmlResponse();
     }
 
-
-    public function addCustomerDataAction(?Order $order=null): ResponseInterface
+    public function addCustomerDataAction(?Order $order = null): ResponseInterface
     {
         $this->orderRepository->update($order);
         $this->persistenceManager->persistAll();
@@ -52,7 +50,7 @@ class OrderController extends ActionController
         return $this->htmlResponse();
     }
 
-    public function summaryAndPaymentMethodAction(?Order $order=null): ResponseInterface
+    public function summaryAndPaymentMethodAction(?Order $order = null): ResponseInterface
     {
         $totalPrice = $order->calculateTotalPrice();
         $order->setTotalPrice($totalPrice);
@@ -63,10 +61,31 @@ class OrderController extends ActionController
         return $this->htmlResponse();
     }
 
-    public function submitAction(?Order $order=null): ResponseInterface
+    public function submitAction(?Order $order = null): ResponseInterface
     {
+        $this->updateStock($order);
+
+        $this->view->assign('order', $order);
         return $this->htmlResponse();
     }
+
+    private function updateStock(Order $order): void
+    {
+        foreach ($order->getOrderItems() as $orderItem) {
+            $variantUid = $orderItem->getVariantId();
+            $variant = $this->productVariantRepository->findByUid($variantUid);
+
+            if ($variant) {
+                $newAmount = $variant->getAmount() - $orderItem->getAmount();
+                $variant->setAmount(max($newAmount, 0));
+
+                $this->productVariantRepository->update($variant);
+            }
+        }
+
+        $this->persistenceManager->persistAll();
+    }
+
 
     private function createOrder(array $variantIds): Order
     {
@@ -91,6 +110,7 @@ class OrderController extends ActionController
             $newOrderItem->setSize($variant->getSize());
             $newOrderItem->setImage($product->getImage());
             $newOrderItem->setPrice($product->getPrice());
+            $newOrderItem->setVariantId($variant->getUid());
 
             $order->addOrderItem($newOrderItem);
         }

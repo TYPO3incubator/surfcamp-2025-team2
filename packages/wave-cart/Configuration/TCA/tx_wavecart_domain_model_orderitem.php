@@ -20,7 +20,7 @@ return [
         'iconfile' => 'EXT:wave_cart/Resources/Public/Icons/order.svg',
     ],
     'types' => [
-        '1' => ['showitem' => 'name, type, price, tax_rate, size, amount'],
+        '1' => ['showitem' => 'name, type, price, tax_rate, size, amount, variant_id'],
     ],
     'palettes' => [
         '1' => ['showitem' => ''],
@@ -87,11 +87,21 @@ return [
         ],
         'order' => [
             'exclude' => 0,
-            'label' => $ll . 'tx_wavecart_domain_model_orderitem.amoorderunt',
+            'label' => $ll . 'tx_wavecart_domain_model_orderitem.order',
             'config' => [
                 'type' => 'number',
                 'eval' => 'trim'
             ],
         ],
+        'variant_id' => [
+            'exclude' => 0,
+            'label' => $ll . 'tx_wavecart_domain_model_orderitem.variant_id',
+            'config' => [
+                'type' => 'input',
+                'size' => 10,
+                'eval' => 'int',
+            ],
+        ],
+
     ],
 ];

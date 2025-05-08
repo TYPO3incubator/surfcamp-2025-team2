@@ -8,12 +8,12 @@ $ll = 'LLL:EXT:wave_cart/Resources/Private/Language/locallang_db.xlf:';
 return [
     'ctrl' => [
         'title' => $ll . 'tx_wavecart_domain_model_product_variant',
-        'label' => 'name',
+        'label' => 'size',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'delete' => 'deleted',
-        'default_sortby' => 'name',
-        'searchFields' => 'name, description',
+        'default_sortby' => 'size',
+        'searchFields' => 'size',
         'enablecolumns' => [
             'fe_group' => 'fe_group',
             'disabled' => 'hidden',
@@ -27,15 +27,6 @@ return [
         'iconfile' => 'EXT:wave_cart/Resources/Public/Icons/product.svg',
     ],
     'columns' => [
-        'name' => [
-            'label' => $ll . 'tx_wavecart_domain_model_product_variant.name',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'trim',
-                'required' => true,
-            ],
-        ],
         'size' => [
             'label' => $ll . 'tx_wavecart_domain_model_product_variant.size',
             'config' => [
