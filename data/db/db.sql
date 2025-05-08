@@ -220,7 +220,7 @@ CREATE TABLE `cache_pages` (
   `content` longblob DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(180),`expires`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,7 +237,7 @@ CREATE TABLE `cache_pages_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(191)),
   KEY `cache_tag` (`tag`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +254,7 @@ CREATE TABLE `cache_rootline` (
   `content` longblob DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(180),`expires`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +271,7 @@ CREATE TABLE `cache_rootline_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`(191)),
   KEY `cache_tag` (`tag`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -903,7 +903,7 @@ CREATE TABLE `sys_file_processedfile` (
   PRIMARY KEY (`uid`),
   KEY `combined_1` (`original`,`task_type`(100),`configurationsha1`),
   KEY `identifier` (`storage`,`identifier`(180))
-) ENGINE=InnoDB AUTO_INCREMENT=249 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=255 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1115,7 +1115,7 @@ CREATE TABLE `sys_log` (
   KEY `errorcount` (`tstamp`,`error`),
   KEY `index_channel` (`channel`),
   KEY `index_level` (`level`)
-) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1855,9 +1855,11 @@ CREATE TABLE `tx_wavecart_domain_model_cart` (
   `payment_method` int(10) unsigned NOT NULL DEFAULT 0,
   `total_price` decimal(10,2) NOT NULL DEFAULT 0.00,
   `cart_items` int(10) unsigned NOT NULL DEFAULT 0,
+  `discount_code` varchar(255) NOT NULL DEFAULT '',
+  `discount_value` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1884,7 +1886,7 @@ CREATE TABLE `tx_wavecart_domain_model_cartitem` (
   `variant_id` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1936,7 +1938,9 @@ CREATE TABLE `tx_wavecart_domain_model_order` (
   `assignee` int(10) unsigned NOT NULL DEFAULT 0,
   `total_price` decimal(10,2) NOT NULL DEFAULT 0.00,
   `order_items` int(10) unsigned NOT NULL DEFAULT 0,
-  `invoice` varchar(255) NOT NULL DEFAULT '',
+  `discount_code` varchar(255) NOT NULL DEFAULT '',
+  `discount_value` varchar(255) NOT NULL DEFAULT '',
+  `invoice` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
@@ -2043,7 +2047,7 @@ CREATE TABLE `tx_wavecart_domain_model_productvariant` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-08 22:09:08
+-- Dump completed on 2025-05-08 23:20:40
 /*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19  Distrib 10.11.11-MariaDB, for debian-linux-gnu (aarch64)
 --
@@ -2101,7 +2105,7 @@ UNLOCK TABLES;
 LOCK TABLES `be_users` WRITE;
 /*!40000 ALTER TABLE `be_users` DISABLE KEYS */;
 INSERT INTO `be_users` VALUES
-(1,0,1744013612,1744013612,0,0,0,0,NULL,'default','a:8:{s:10:\"moduleData\";a:6:{s:28:\"dashboard/current_dashboard/\";s:40:\"faacf8dc927e44b8c4a076ea597850984919bb89\";s:10:\"FormEngine\";a:2:{i:0;a:1:{s:32:\"8f0ad448a13c8e788b5c2e469566048b\";a:5:{i:0;s:9:\"Warenkorb\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:105;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:30:\"&edit%5Bpages%5D%5B105%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:105;s:3:\"pid\";i:1;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=08a1397182b853a68d70b8489081db54823bab22&id=105\";}}i:1;s:32:\"931a28d5ddc13f3378fe7e1cc56d3722\";}s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";a:0:{}s:16:\"opendocs::recent\";a:8:{s:32:\"931a28d5ddc13f3378fe7e1cc56d3722\";a:5:{i:0;s:16:\"qX6XSxS8KpjcapgP\";i:1;a:5:{s:4:\"edit\";a:1:{s:37:\"tx_wavecart_domain_model_discountcode\";a:1:{i:2;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:60:\"&edit%5Btx_wavecart_domain_model_discountcode%5D%5B2%5D=edit\";i:3;a:5:{s:5:\"table\";s:37:\"tx_wavecart_domain_model_discountcode\";s:3:\"uid\";i:2;s:3:\"pid\";i:106;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=281e6b7e36493571c0eadf363c98cc7e1f69224e&id=106&table=&pointer=1\";}s:32:\"964127fa43db06c4ec47a00b5db548ff\";a:5:{i:0;s:6:\"CODE10\";i:1;a:5:{s:4:\"edit\";a:1:{s:37:\"tx_wavecart_domain_model_discountcode\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:60:\"&edit%5Btx_wavecart_domain_model_discountcode%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:37:\"tx_wavecart_domain_model_discountcode\";s:3:\"uid\";i:1;s:3:\"pid\";i:106;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=281e6b7e36493571c0eadf363c98cc7e1f69224e&id=106&table=&pointer=1\";}s:32:\"d239561aea4da8ff9f1d6d726446377a\";a:5:{i:0;s:4:\"Test\";i:1;a:5:{s:4:\"edit\";a:1:{s:30:\"tx_wavecart_domain_model_order\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:53:\"&edit%5Btx_wavecart_domain_model_order%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:30:\"tx_wavecart_domain_model_order\";s:3:\"uid\";i:1;s:3:\"pid\";i:102;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=281e6b7e36493571c0eadf363c98cc7e1f69224e&id=102&table=&pointer=1\";}s:32:\"a6019b1fdd1ff227c66b39f8d057784d\";a:5:{i:0;s:8:\"Cap Blue\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:3;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B3%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:3;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}s:32:\"a9d2368de6d8c481501ccf3fa498d7af\";a:5:{i:0;s:17:\"T-shirt with Logo\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:2;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B2%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:2;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}s:32:\"d2b96f02eb0191e8b16247eda6f03010\";a:5:{i:0;s:13:\"Sweater plain\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:4;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B4%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:4;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}s:32:\"804ac867bdf1f5d3ad69dcb359be5538\";a:5:{i:0;s:5:\"Teddy\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:1;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}s:32:\"27c854727ae746812dd241d18a7720da\";a:5:{i:0;s:7:\"Unisize\";i:1;a:5:{s:4:\"edit\";a:1:{s:39:\"tx_wavecart_domain_model_productvariant\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:62:\"&edit%5Btx_wavecart_domain_model_productvariant%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:39:\"tx_wavecart_domain_model_productvariant\";s:3:\"uid\";i:1;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}}s:16:\"browse_links.php\";a:1:{s:12:\"expandFolder\";s:30:\"1:/fcbigfoot/FC_Bigfoot_Merch/\";}s:10:\"system_log\";a:1:{s:10:\"constraint\";s:334:\"O:39:\"TYPO3\\CMS\\Belog\\Domain\\Model\\Constraint\":11:{s:14:\"\0*\0userOrGroup\";s:1:\"0\";s:9:\"\0*\0number\";i:20;s:15:\"\0*\0workspaceUid\";i:-99;s:10:\"\0*\0channel\";s:0:\"\";s:8:\"\0*\0level\";s:5:\"debug\";s:17:\"\0*\0startTimestamp\";i:0;s:15:\"\0*\0endTimestamp\";i:0;s:18:\"\0*\0manualDateStart\";N;s:17:\"\0*\0manualDateStop\";N;s:9:\"\0*\0pageId\";i:0;s:8:\"\0*\0depth\";i:0;}\";}}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";s:15:\"moduleSessionID\";a:6:{s:28:\"dashboard/current_dashboard/\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:10:\"FormEngine\";s:40:\"a24c01cac539bb455bd92bd4a45dcb9919d06371\";s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";s:40:\"a24c01cac539bb455bd92bd4a45dcb9919d06371\";s:16:\"opendocs::recent\";s:40:\"a24c01cac539bb455bd92bd4a45dcb9919d06371\";s:16:\"browse_links.php\";s:40:\"d0e9f6d969c81165382a06a69bd2cc1b2cf95577\";s:10:\"system_log\";s:40:\"3a83775f16ef9590805f5198995b29e3d7439dd1\";}s:10:\"modulemenu\";s:2:\"{}\";s:17:\"BackendComponents\";a:1:{s:6:\"States\";a:1:{s:17:\"typo3-module-menu\";a:1:{s:9:\"collapsed\";s:5:\"false\";}}}s:10:\"inlineView\";s:795:\"{\"tx_wavecart_domain_model_product\":{\"NEW6818a12982f36374999951\":{\"tx_wavecart_domain_model_product_variant\":[1]},\"1\":{\"tx_wavecart_domain_model_product_variant\":[2,\"1\"],\"sys_file_reference\":[190],\"tx_wavecart_domain_model_productvariant\":[\"1\"]},\"2\":{\"tx_wavecart_domain_model_product_variant\":{\"3\":\"\"},\"sys_file_reference\":[189,191],\"tx_wavecart_domain_model_productvariant\":{\"1\":\"\"}},\"NEW6818a25a7cef0911992860\":{\"tx_wavecart_domain_model_product_variant\":[6]},\"4\":{\"tx_wavecart_domain_model_product_variant\":[\"6\"],\"sys_file_reference\":[192],\"tx_wavecart_domain_model_productvariant\":{\"2\":\"13\",\"4\":\"11\"}},\"3\":{\"sys_file_reference\":[],\"tx_wavecart_domain_model_productvariant\":{\"1\":\"\"}}},\"tx_wavecart_domain_model_order\":{\"NEW6818a75edd1ef584971724\":{\"tx_wavecart_domain_model_orderitem\":[1]}}}\";}',0,NULL,'','admin','$argon2id$v=19$m=65536,t=16,p=1$UW05T093U1JQS2liR1lLRA$z0I5XCRD58aCJ/ftNFV/FTe7FppNaYrYuuLpJhfoz5Q','',0,NULL,'','info@typo3.com','',1,3,NULL,1,NULL,'',NULL,1746738080,NULL),
+(1,0,1744013612,1744013612,0,0,0,0,NULL,'default','a:8:{s:10:\"moduleData\";a:6:{s:28:\"dashboard/current_dashboard/\";s:40:\"faacf8dc927e44b8c4a076ea597850984919bb89\";s:10:\"FormEngine\";a:2:{i:0;a:1:{s:32:\"8f0ad448a13c8e788b5c2e469566048b\";a:5:{i:0;s:9:\"Warenkorb\";i:1;a:5:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:105;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:30:\"&edit%5Bpages%5D%5B105%5D=edit\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";i:105;s:3:\"pid\";i:1;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:78:\"/typo3/module/web/layout?token=08a1397182b853a68d70b8489081db54823bab22&id=105\";}}i:1;s:32:\"931a28d5ddc13f3378fe7e1cc56d3722\";}s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";a:0:{}s:16:\"opendocs::recent\";a:8:{s:32:\"931a28d5ddc13f3378fe7e1cc56d3722\";a:5:{i:0;s:16:\"qX6XSxS8KpjcapgP\";i:1;a:5:{s:4:\"edit\";a:1:{s:37:\"tx_wavecart_domain_model_discountcode\";a:1:{i:2;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:60:\"&edit%5Btx_wavecart_domain_model_discountcode%5D%5B2%5D=edit\";i:3;a:5:{s:5:\"table\";s:37:\"tx_wavecart_domain_model_discountcode\";s:3:\"uid\";i:2;s:3:\"pid\";i:106;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=281e6b7e36493571c0eadf363c98cc7e1f69224e&id=106&table=&pointer=1\";}s:32:\"964127fa43db06c4ec47a00b5db548ff\";a:5:{i:0;s:6:\"CODE10\";i:1;a:5:{s:4:\"edit\";a:1:{s:37:\"tx_wavecart_domain_model_discountcode\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:60:\"&edit%5Btx_wavecart_domain_model_discountcode%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:37:\"tx_wavecart_domain_model_discountcode\";s:3:\"uid\";i:1;s:3:\"pid\";i:106;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=281e6b7e36493571c0eadf363c98cc7e1f69224e&id=106&table=&pointer=1\";}s:32:\"d239561aea4da8ff9f1d6d726446377a\";a:5:{i:0;s:4:\"Test\";i:1;a:5:{s:4:\"edit\";a:1:{s:30:\"tx_wavecart_domain_model_order\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:53:\"&edit%5Btx_wavecart_domain_model_order%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:30:\"tx_wavecart_domain_model_order\";s:3:\"uid\";i:1;s:3:\"pid\";i:102;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=281e6b7e36493571c0eadf363c98cc7e1f69224e&id=102&table=&pointer=1\";}s:32:\"a6019b1fdd1ff227c66b39f8d057784d\";a:5:{i:0;s:8:\"Cap Blue\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:3;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B3%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:3;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}s:32:\"a9d2368de6d8c481501ccf3fa498d7af\";a:5:{i:0;s:17:\"T-shirt with Logo\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:2;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B2%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:2;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}s:32:\"d2b96f02eb0191e8b16247eda6f03010\";a:5:{i:0;s:13:\"Sweater plain\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:4;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B4%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:4;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}s:32:\"804ac867bdf1f5d3ad69dcb359be5538\";a:5:{i:0;s:5:\"Teddy\";i:1;a:5:{s:4:\"edit\";a:1:{s:32:\"tx_wavecart_domain_model_product\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:55:\"&edit%5Btx_wavecart_domain_model_product%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:32:\"tx_wavecart_domain_model_product\";s:3:\"uid\";i:1;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}s:32:\"27c854727ae746812dd241d18a7720da\";a:5:{i:0;s:7:\"Unisize\";i:1;a:5:{s:4:\"edit\";a:1:{s:39:\"tx_wavecart_domain_model_productvariant\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:6:\"noView\";N;}i:2;s:62:\"&edit%5Btx_wavecart_domain_model_productvariant%5D%5B1%5D=edit\";i:3;a:5:{s:5:\"table\";s:39:\"tx_wavecart_domain_model_productvariant\";s:3:\"uid\";i:1;s:3:\"pid\";i:103;s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";b:1;}i:4;s:93:\"/typo3/module/web/list?token=383e58130d9806e8ab56df4a239e5a51aa14a228&id=103&table=&pointer=1\";}}s:16:\"browse_links.php\";a:1:{s:12:\"expandFolder\";s:30:\"1:/fcbigfoot/FC_Bigfoot_Merch/\";}s:10:\"system_log\";a:1:{s:10:\"constraint\";s:334:\"O:39:\"TYPO3\\CMS\\Belog\\Domain\\Model\\Constraint\":11:{s:14:\"\0*\0userOrGroup\";s:1:\"0\";s:9:\"\0*\0number\";i:20;s:15:\"\0*\0workspaceUid\";i:-99;s:10:\"\0*\0channel\";s:0:\"\";s:8:\"\0*\0level\";s:5:\"debug\";s:17:\"\0*\0startTimestamp\";i:0;s:15:\"\0*\0endTimestamp\";i:0;s:18:\"\0*\0manualDateStart\";N;s:17:\"\0*\0manualDateStop\";N;s:9:\"\0*\0pageId\";i:0;s:8:\"\0*\0depth\";i:0;}\";}}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";s:15:\"moduleSessionID\";a:6:{s:28:\"dashboard/current_dashboard/\";s:40:\"e8ee6d5cc4b82bec1c405eb23bf4aafdd8c48ce8\";s:10:\"FormEngine\";s:40:\"a24c01cac539bb455bd92bd4a45dcb9919d06371\";s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";s:40:\"a24c01cac539bb455bd92bd4a45dcb9919d06371\";s:16:\"opendocs::recent\";s:40:\"a24c01cac539bb455bd92bd4a45dcb9919d06371\";s:16:\"browse_links.php\";s:40:\"d0e9f6d969c81165382a06a69bd2cc1b2cf95577\";s:10:\"system_log\";s:40:\"3a83775f16ef9590805f5198995b29e3d7439dd1\";}s:10:\"modulemenu\";s:2:\"{}\";s:17:\"BackendComponents\";a:1:{s:6:\"States\";a:1:{s:17:\"typo3-module-menu\";a:1:{s:9:\"collapsed\";s:5:\"false\";}}}s:10:\"inlineView\";s:795:\"{\"tx_wavecart_domain_model_product\":{\"NEW6818a12982f36374999951\":{\"tx_wavecart_domain_model_product_variant\":[1]},\"1\":{\"tx_wavecart_domain_model_product_variant\":[2,\"1\"],\"sys_file_reference\":[190],\"tx_wavecart_domain_model_productvariant\":[\"1\"]},\"2\":{\"tx_wavecart_domain_model_product_variant\":{\"3\":\"\"},\"sys_file_reference\":[189,191],\"tx_wavecart_domain_model_productvariant\":{\"1\":\"\"}},\"NEW6818a25a7cef0911992860\":{\"tx_wavecart_domain_model_product_variant\":[6]},\"4\":{\"tx_wavecart_domain_model_product_variant\":[\"6\"],\"sys_file_reference\":[192],\"tx_wavecart_domain_model_productvariant\":{\"2\":\"13\",\"4\":\"11\"}},\"3\":{\"sys_file_reference\":[],\"tx_wavecart_domain_model_productvariant\":{\"1\":\"\"}}},\"tx_wavecart_domain_model_order\":{\"NEW6818a75edd1ef584971724\":{\"tx_wavecart_domain_model_orderitem\":[1]}}}\";}',0,NULL,'','admin','$argon2id$v=19$m=65536,t=16,p=1$UW05T093U1JQS2liR1lLRA$z0I5XCRD58aCJ/ftNFV/FTe7FppNaYrYuuLpJhfoz5Q','',0,NULL,'','info@typo3.com','',1,3,NULL,1,NULL,'',NULL,1746742794,NULL),
 (2,0,1744014582,1744014582,0,0,0,0,NULL,'default','a:4:{s:10:\"moduleData\";a:0:{}s:14:\"emailMeAtLogin\";i:0;s:8:\"titleLen\";i:50;s:20:\"edit_docModuleUpload\";s:1:\"1\";}',0,NULL,'','_cli_','$argon2id$v=19$m=65536,t=16,p=1$Qk41RG10QTUxUGQzclc3dA$9bxBcygWFXt9U5WuxRJLFP3866mFPYZjpkdwMrS98sg','',0,NULL,'','','',1,3,NULL,1,NULL,'',NULL,0,NULL);
 /*!40000 ALTER TABLE `be_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -6335,7 +6339,8 @@ INSERT INTO `sys_log` VALUES
 (246,1746738481,1,1,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"pid\":106}',106,0,'',0,'','info',NULL,NULL),
 (247,1746738485,1,2,1,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":1,\"history\":\"1212\"}',106,0,'',0,'','info',NULL,NULL),
 (248,1746738504,1,1,2,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was inserted on page {pid}',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":2,\"pid\":106}',106,0,'',0,'','info',NULL,NULL),
-(249,1746738508,1,2,2,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":2,\"history\":\"1214\"}',106,0,'',0,'','info',NULL,NULL);
+(249,1746738508,1,2,2,'tx_wavecart_domain_model_discountcode',0,0,'Record {table}:{uid} was updated',1,'content',0,'172.18.0.6','{\"table\":\"tx_wavecart_domain_model_discountcode\",\"uid\":2,\"history\":\"1214\"}',106,0,'',0,'','info',NULL,NULL),
+(250,1746742794,1,1,0,'',0,0,'User %s logged in from ###IP###',255,'user',0,'172.19.0.6','[\"admin\"]',-1,-99,'',0,'','info',NULL,NULL);
 /*!40000 ALTER TABLE `sys_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7258,7 +7263,7 @@ INSERT INTO `sys_registry` VALUES
 (10,'installUpdate','TYPO3\\CMS\\Install\\Updates\\SysTemplateNoWorkspaceMigration','i:1;'),
 (11,'installUpdate','TYPO3\\CMS\\Extensionmanager\\Updates\\FeLoginModeExtractionUpdate','i:1;'),
 (12,'installUpdateRows','rowUpdatersDone','a:1:{i:0;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\SysRedirectRootPageMoveMigration\";}'),
-(13,'core','formProtectionSessionToken:1','s:64:\"7d8848a45c0b9035dcfe13367e596c7ee79df01ebe79caf5811e99a957092f24\";'),
+(13,'core','formProtectionSessionToken:1','s:64:\"c8bc6d0bba175643ece9a9badf4162e8259a10bef7f96cfccefd6a5b3eebcee1\";'),
 (14,'extensionDataImport','typo3/cms-core/ext_tables_static+adt.sql','s:0:\"\";'),
 (15,'extensionDataImport','typo3/cms-scheduler/ext_tables_static+adt.sql','s:0:\"\";'),
 (16,'extensionDataImport','typo3/cms-extbase/ext_tables_static+adt.sql','s:0:\"\";'),
@@ -7798,7 +7803,9 @@ UNLOCK TABLES;
 LOCK TABLES `tx_wavecart_domain_model_cart` WRITE;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_cart` DISABLE KEYS */;
 INSERT INTO `tx_wavecart_domain_model_cart` VALUES
-(1,102,1746738530,1746738530,0,'','','','','','',0,0.00,3);
+(1,102,1746738530,1746738530,0,'','','','','','',0,0.00,3,'',''),
+(2,102,1746742821,1746742821,0,'','','','','','',0,0.00,1,'','0'),
+(3,102,1746742827,1746742827,0,'','','','','','',0,0.00,2,'','0');
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7811,7 +7818,10 @@ LOCK TABLES `tx_wavecart_domain_model_cartitem` WRITE;
 INSERT INTO `tx_wavecart_domain_model_cartitem` VALUES
 (1,102,1746738530,1746738530,0,1,'FC Bigfoot Teddy',3,20.00,0,'unisize',1,0,1),
 (2,102,1746738530,1746738530,0,1,'FC Bigfoot Club T-Shirt',0,24.90,0,'M',1,0,3),
-(3,102,1746738530,1746738530,0,1,'FC Bigfoot Club T-Shirt',0,24.90,0,'S',1,0,4);
+(3,102,1746738530,1746738530,0,1,'FC Bigfoot Club T-Shirt',0,24.90,0,'S',1,0,4),
+(4,102,1746742821,1746742821,0,2,'FC Bigfoot Teddy',3,20.00,0,'unisize',1,0,1),
+(5,102,1746742827,1746742827,0,3,'FC Bigfoot Teddy',3,20.00,0,'unisize',1,0,1),
+(6,102,1746742827,1746742827,0,3,'FC Bigfoot Club T-Shirt',0,24.90,0,'S',1,0,4);
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_cartitem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7834,7 +7844,7 @@ UNLOCK TABLES;
 LOCK TABLES `tx_wavecart_domain_model_order` WRITE;
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_order` DISABLE KEYS */;
 INSERT INTO `tx_wavecart_domain_model_order` VALUES
-(1,102,1746446273,1746446273,0,'Test','Test','Teststr. 1','01279','Dresden','test@test.de',0,0,0,12.00,1,'');
+(1,102,1746446273,1746446273,0,'Test','Test','Teststr. 1','01279','Dresden','test@test.de',0,0,0,12.00,1,'','',0);
 /*!40000 ALTER TABLE `tx_wavecart_domain_model_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7894,4 +7904,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-08 22:09:08
+-- Dump completed on 2025-05-08 23:20:40
