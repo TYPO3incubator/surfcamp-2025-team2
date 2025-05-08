@@ -1,4 +1,8 @@
-
+<f:if condition="{errorMessage}">
+    <div class="alert alert-danger" role="alert">
+        {errorMessage}
+    </div>
+</f:if>
 <div class="spacer"></div>
 <h1>Address data</h1>
 <div class="spacer"></div>
@@ -12,19 +16,19 @@
     <div class="formRow">
         <div class="doubleWidth">
             <label for="tx-wavecart-firstname">Firstname</label>
-            <f:form.textfield property="customerFirstname" name="customerFirstname"
+            <f:form.textfield property="customerFirstname" name="customerFirstname" required="required"
                               value="{cart.customerFirstname}" id="tx-wavecart-firstname" style="width: 100%;" />
         </div>
         <div class="doubleWidth">
             <label for="tx-wavecart-lastname">Lastname</label>
-            <f:form.textfield property="customerLastname" name="customerLastname"
+            <f:form.textfield property="customerLastname" name="customerLastname" required="required"
                               value="{cart.customerLastname}" id="tx-wavecart-lastname" style="width: 100%;" />
         </div>
     </div>
 
     <div class="singleWidth">
         <label for="tx-wavecart-customerEmail">E-Mail</label>
-        <f:form.textfield property="customerEmail" name="customerEmail" type="email"
+        <f:form.textfield property="customerEmail" name="customerEmail" type="email" required="required"
                           value="{cart.email}" id="tx-wavecart-customerEmail" style="width: 100%;" />
     </div>
 
@@ -36,19 +40,19 @@
 
     <div class="singleWidth">
         <label for="tx-wavecart-customerAddress">Street and number</label>
-        <f:form.textfield property="customerAddress" name="customerAddress"
+        <f:form.textfield property="customerAddress" name="customerAddress" required="required"
                           value="{cart.customerAddress}" id="tx-wavecart-customerAddress" style="width: 100%;" />
     </div>
 
     <div class="formRow">
         <div class="doubleWidth">
             <label for="tx-wavecart-customerZip">Zip</label>
-            <f:form.textfield property="customerZip" name="customerZip"
+            <f:form.textfield property="customerZip" name="customerZip" required="required"
                               value="{cart.customerZip}" id="tx-wavecart-customerZip" style="width: 100%;" />
         </div>
         <div class="doubleWidth">
             <label for="tx-wavecart-customerCity">City</label>
-            <f:form.textfield property="customerCity" name="customerCity"
+            <f:form.textfield property="customerCity" name="customerCity" required="required"
                               value="{cart.customerCity}" id="tx-wavecart-customerCity" style="width: 100%;" />
         </div>
     </div>

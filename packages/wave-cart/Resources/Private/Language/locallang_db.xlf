@@ -40,6 +40,9 @@
 			<trans-unit id="tx_wavecart_domain_model_order.order_items">
 				<source>Order items</source>
 			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.invoice">
+				<source>Invoice</source>
+			</trans-unit>
 
 			<!-- Order item-->
 			<trans-unit id="tx_wavecart_domain_model_orderitem">

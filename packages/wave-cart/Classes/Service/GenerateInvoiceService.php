@@ -2,7 +2,11 @@
 
 namespace TYPO3Incubator\WaveCart\Service;
 
-use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Resource\StorageRepository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Core\View\ViewFactoryData;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Extbase\Mvc\Request;
@@ -18,7 +22,7 @@ class GenerateInvoiceService
     {
         $settings = $request->getAttribute('site')->getSettings();
         $company = $settings->get('waveCart.invoice.company');
-        $path = Environment::getPublicPath() . '/fileadmin/invoice/';
+        $fileIdentifier = 'invoice-' . $order->getUid() . '.pdf';
         $tax = $this->calculateTax($order);
 
         $mpdf = new \Mpdf\Mpdf([
@@ -43,9 +47,31 @@ class GenerateInvoiceService
         $view->assign('order', $order);
         $view->assign('tax', $tax);
         $mpdf->WriteHTML($view->render('Invoice.html'));
-        $mpdf->OutputFile($path . 'invoice-' . $order->getUid() . '.pdf');
+        $mpdf->OutputFile('/tmp/' . $fileIdentifier);
 
-        $order->setInvoice($path . 'invoice-' . $order->getUid() . '.pdf');
+        $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
+        $storage = $storageRepository->getDefaultStorage();
+        /** @var File $newFile */
+        $newFile = $storage->addFile(
+            '/tmp/' . $fileIdentifier,
+            $storage->getFolder('invoice'),
+            $fileIdentifier,
+        );
+
+        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+        $fileReference = $resourceFactory->createFileReferenceObject(
+            [
+                'uid_local' => $newFile->getUid(),
+                'uid_foreign' => StringUtility::getUniqueId('NEW_'),
+                'uid' => $order,
+                'crop' => null,
+            ]
+        );
+
+        $extbaseFileReference = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $extbaseFileReference->setOriginalResource($fileReference);
+
+        $order->setInvoice($extbaseFileReference);
 
         return $order;
     }
