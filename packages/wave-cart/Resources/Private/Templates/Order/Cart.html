@@ -1,8 +1,9 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
-<div class="spacer"></div>
-<h1 class="headline">Cart</h1>
-<div class="spacer"></div>
+<div>
+    <div class="spacer"></div>
+    <h1 class="headline">Cart</h1>
+    <div class="spacer"></div>
     <div class="cart-header">
         <div class="cart-header-image"></div>
         <div class="cart-header-details">Product</div>
@@ -35,8 +36,8 @@
                     </div>
 
                     <span class="item-price" data-price="{cartItem.price}">
-                        {cartItem.price}€
-                    </span>
+                    {cartItem.price}€
+                </span>
                 </li>
             </f:for>
         </ul>
@@ -45,4 +46,5 @@
         </div>
         <f:form.submit value="Next" class="submitButton btn-primary"/>
     </f:form>
+</div>
 </html>

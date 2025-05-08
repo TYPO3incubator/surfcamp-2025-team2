@@ -263,7 +263,9 @@ function calculateCartTotal() {
 
     // Update the total display
     const totalElement = document.getElementById('cartTotal');
-    totalElement.textContent = `Total (incl. tax): ${total.toFixed(2)}€`;
+    if(totalElement) {
+        totalElement.textContent = `Total (incl. tax): ${total.toFixed(2)}€`;
+    }
 }
 calculateCartTotal();
 

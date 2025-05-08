@@ -8,43 +8,56 @@
         object="{cart}"
         method="post"
         class="formContainer">
+
     <div class="formRow">
         <div class="doubleWidth">
+            <label for="tx-wavecart-firstname">Firstname</label>
             <f:form.textfield property="customerFirstname" name="customerFirstname"
-                              value="{cart.customerFirstname}" id="tx-wavecart-firstname" placeholder="Firstname" style="width: 100%;" />
+                              value="{cart.customerFirstname}" id="tx-wavecart-firstname" style="width: 100%;" />
         </div>
         <div class="doubleWidth">
+            <label for="tx-wavecart-lastname">Lastname</label>
             <f:form.textfield property="customerLastname" name="customerLastname"
-                              value="{cart.customerLastname}" id="tx-wavecart-lastname" placeholder="Lastname" style="width: 100%;" />
+                              value="{cart.customerLastname}" id="tx-wavecart-lastname" style="width: 100%;" />
         </div>
     </div>
 
     <div class="singleWidth">
+        <label for="tx-wavecart-customerEmail">E-Mail</label>
         <f:form.textfield property="customerEmail" name="customerEmail" type="email"
-                          value="{cart.email}" id="tx-wavecart-customerEmail" placeholder="E-Mail" style="width: 100%;" />
+                          value="{cart.email}" id="tx-wavecart-customerEmail" style="width: 100%;" />
     </div>
+
     <f:if condition="{errorMessage}">
         <div class="alert alert-danger" role="alert">
             {errorMessage}
         </div>
     </f:if>
-    <div class="singleWidthh">
+
+    <div class="singleWidth">
+        <label for="tx-wavecart-customerAddress">Street and number</label>
         <f:form.textfield property="customerAddress" name="customerAddress"
-                          value="{cart.customerAddress}" id="tx-wavecart-customerAddress" placeholder="Street and number" style="width: 100%;" />
+                          value="{cart.customerAddress}" id="tx-wavecart-customerAddress" style="width: 100%;" />
     </div>
+
     <div class="formRow">
         <div class="doubleWidth">
+            <label for="tx-wavecart-customerZip">Zip</label>
             <f:form.textfield property="customerZip" name="customerZip"
-                              value="{cart.customerZip}" id="tx-wavecart-customerZip" placeholder="Zip" style="width: 100%;" />
+                              value="{cart.customerZip}" id="tx-wavecart-customerZip" style="width: 100%;" />
         </div>
         <div class="doubleWidth">
+            <label for="tx-wavecart-customerCity">City</label>
             <f:form.textfield property="customerCity" name="customerCity"
-                              value="{cart.customerCity}" id="tx-wavecart-customerCity" placeholder="City" style="width: 100%;" />
+                              value="{cart.customerCity}" id="tx-wavecart-customerCity" style="width: 100%;" />
         </div>
     </div>
+
     <div class="spacer"></div>
+
     <div>
         <f:link.action class="backLink" action="cart">&larr; Back</f:link.action>
         <f:form.submit class="nextBtn btn-primary" value="Next" />
     </div>
+
 </f:form>

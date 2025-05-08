@@ -149,3 +149,38 @@ input {
   text-align: center;
   justify-content: center;
 }
+
+.cart {
+  .formContainer {
+    max-width: 750px;
+    margin: 0 auto;
+    font-family: sans-serif;
+  }
+
+  .formContainer label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .formContainer input[type="text"],
+  .formContainer input[type="email"],
+  .formContainer input[type="number"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  .formContainer input[type="text"]:focus,
+  .formContainer input[type="email"]:focus,
+  .formContainer input[type="number"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    outline: none;
+  }
+}
