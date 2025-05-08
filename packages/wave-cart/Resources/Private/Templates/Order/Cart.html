@@ -1,29 +1,63 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
-
+<div>
+    <div class="spacer"></div>
+    <h1 class="headline">Cart</h1>
+    <div class="spacer"></div>
+    <div class="cart-header">
+        <div class="cart-header-details">Product</div>
+        <div class="cart-header-amount">Quantity</div>
+        <div class="cart-header-price">Price</div>
+    </div>
     <f:form action="addCustomerData"
             controller="Order"
-            objectName="order"
-            object="{order}"
+            objectName="cart"
+            object="{cart}"
             method="post">
+        <f:if condition="{cart.cartItems}">
+            <f:then>
+            <ul id="cartList">
+                <f:for each="{cart.cartItems}" as="cartItem" iteration="iterator">
+                    <li class="cart-item" data-id="{cartItem.variantId}">
+                        <f:image class="cart-item-image" image="{cartItem.image}" />
+                        <div class="item-details">
+                            <span class="item-name">{cartItem.name}</span>
+                            <span class="item-size">Size: {cartItem.size}</span>
+                        </div>
 
-        <ul>
-            <f:for each="{order.orderItems}" as="cartItem" iteration="iterator">
-                <li>
-                    {cartItem.image} <br>
-                    {cartItem.name} <br>
-                    {cartItem.size} <br>
-
-                    <f:form.textfield
-                        property="orderItems.{iterator.index}.amount"
-                        value="{cartItem.amount}"/>
-
-                    {cartItem.price}€
-                </li>
-            </f:for>
-        </ul>
-
-        <f:form.submit value="Weiter"/>
+                        <div class="amount-control" data-index="{iterator.index}">
+                            <button type="button" class="decrease-btn">
+                                🗑
+                            </button>
+                            <f:form.textfield
+                                property="cartItems.{iterator.index}.amount"
+                                value="{cartItem.amount}" class="amount-number"/>
+                            <button type="button" class="increase-btn">+</button>
+                        </div>
+                        <span class="item-price" data-price="{cartItem.price}">
+                    {cartItem.price -> f:format.number(decimals: 2)}€
+                </span>
+                    </li>
+                </f:for>
+            </ul>
+            </f:then>
+            <f:else>
+                <p>Your shopping cart is empty.</p>
+            </f:else>
+        </f:if>
+        <div class="line"></div>
+        <div class="cart-discount-control">
+            <span class="redeem-status"></span>
+            <f:form.hidden class="hidden-discount-code" property="discountCode" value="{cart.discountCode}" />
+            <f:form.hidden class="hidden-discount-value" property="discountValue" value="{cart.discountValue}" />
+            <f:form.textfield class="discount-code" />
+            <button type="button" class="check-discount">Redeem</button>
+        </div>
+        <div id="cartSummary">
+            <span id="discountTotal"></span><br />
+            <span id="cartTotal">0€</span>
+        </div>
+        <f:form.submit value="Next" class="submitButton btn-primary"/>
     </f:form>
-
+</div>
 </html>

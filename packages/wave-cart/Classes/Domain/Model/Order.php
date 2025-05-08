@@ -1,6 +1,9 @@
 <?php
+
 namespace TYPO3Incubator\WaveCart\Domain\Model;
 
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -16,8 +19,10 @@ class Order extends AbstractEntity
     protected int $paymentMethod = 0;
     protected int $assignee = 0;
     protected float $totalPrice = 0;
-
+    protected ?FileReference $invoice = null;
     protected ?ObjectStorage $orderItems = null;
+    protected string $discountCode = '';
+    protected float $discountValue = 0;
 
     public function __construct()
     {
@@ -155,15 +160,33 @@ class Order extends AbstractEntity
         $this->orderItems = $orderItems;
     }
 
-    public function calculateTotalPrice(): float
+    public function getInvoice(): FileReference
     {
-        $totalPrice = 0;
-        foreach ($this->orderItems as $orderItem) {
-            $totalPrice += $orderItem->getPrice() * $orderItem->getAmount();
-        }
+        return $this->invoice;
+    }
 
-        $this->totalPrice = $totalPrice;
+    public function setInvoice(FileReference $invoice): void
+    {
+        $this->invoice = $invoice;
+    }
 
-        return $totalPrice;
+    public function getDiscountCode(): string
+    {
+        return $this->discountCode;
+    }
+
+    public function setDiscountCode(string $discountCode): void
+    {
+        $this->discountCode = $discountCode;
+    }
+
+    public function getDiscountValue(): float
+    {
+        return $this->discountValue;
+    }
+
+    public function setDiscountValue(float $discountValue): void
+    {
+        $this->discountValue = $discountValue;
     }
 }

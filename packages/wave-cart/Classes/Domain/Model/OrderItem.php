@@ -4,7 +4,6 @@ namespace TYPO3Incubator\WaveCart\Domain\Model;
 
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class OrderItem extends AbstractEntity
 {

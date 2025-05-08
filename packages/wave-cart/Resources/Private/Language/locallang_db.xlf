@@ -40,6 +40,15 @@
 			<trans-unit id="tx_wavecart_domain_model_order.order_items">
 				<source>Order items</source>
 			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.invoice">
+				<source>Invoice</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.discount_code">
+				<source>Discount code</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_order.discount_value">
+				<source>Discount value</source>
+			</trans-unit>
 
 			<!-- Order item-->
 			<trans-unit id="tx_wavecart_domain_model_orderitem">
@@ -67,6 +76,73 @@
 				<source>Order</source>
 			</trans-unit>
 			<trans-unit id="tx_wavecart_domain_model_orderitem.variant_id">
+				<source>Variant ID</source>
+			</trans-unit>
+
+			<!-- Cart -->
+			<trans-unit id="tx_wavecart_domain_model_cart">
+				<source>Cart</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_lastname">
+				<source>Customer lastname</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_firstname">
+				<source>Customer firstname</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_address">
+				<source>Customer address</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_zip">
+				<source>Customer zip</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_city">
+				<source>Customer city</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.customer_email">
+				<source>Customer Email</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.payment_method">
+				<source>Payment method</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.total_price">
+				<source>Total price</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.cart_items">
+				<source>Cart items</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.discount_code">
+				<source>Discount code</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cart.discount_value">
+				<source>Discount value</source>
+			</trans-unit>
+
+			<!-- Cart item-->
+			<trans-unit id="tx_wavecart_domain_model_cartitem">
+				<source>Cart Item</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.name">
+				<source>Product name</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.type">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.price">
+				<source>Prize</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.tax_rate">
+				<source>Tax rate</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.size">
+				<source>Size</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.amount">
+				<source>Amount</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.cart">
+				<source>Cart</source>
+			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_cartitem.variant_id">
 				<source>Variant ID</source>
 			</trans-unit>
 
@@ -112,6 +188,26 @@
 			<trans-unit id="tx_wavecart_domain_model_product_variant.product">
 				<source>Product</source>
 			</trans-unit>
+
+			<!-- Discount code -->
+			<trans-unit id="tx_wavecart_domain_model_discountcode">
+                <source>Discount code</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.code">
+                <source>Discount code</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.type">
+                <source>Discount type</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.discount">
+                <source>Discount value</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.has_redeem_maximum">
+                <source>Has the discount code a maximum amount of redeems?</source>
+            </trans-unit>
+            <trans-unit id="tx_wavecart_domain_model_discountcode.current_redeem_amount">
+                <source>Current amount of leftover redeems</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

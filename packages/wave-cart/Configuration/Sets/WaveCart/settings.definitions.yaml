@@ -4,12 +4,45 @@ categories:
   WaveCart.mail:
     label: 'Mail'
     parent: 'WaveCart'
+  WaveCart.invoice:
+    label: 'Invoice'
+    parent: 'WaveCart'
 
 settings:
+  waveCart.invoice.company:
+    label: 'Company'
+    category: WaveCart.invoice
+    description: 'Name of the Company for invoice generation'
+    type: string
+    default: 'Wave Cart'
   waveCart.cartPageId:
     label: 'Cart Page Id'
     category: WaveCart
-    description: 'Pages id on which the shopping cart is located'
+    description: 'Pages id on which the shopping cart is located.'
+    type: int
+    default: 1
+  waveCart.cartPid:
+    label: 'Cart PID'
+    category: WaveCart
+    description: 'PID where the Cart Objects should be stored.'
+    type: int
+    default: 1
+  waveCart.cartItemPid:
+    label: 'Cart Items PID'
+    category: WaveCart
+    description: 'PID where the Cart Item Objects should be stored.'
+    type: int
+    default: 1
+  waveCart.orderPid:
+    label: 'Order PID'
+    category: WaveCart
+    description: 'PID where the Order Objects should be stored.'
+    type: int
+    default: 1
+  waveCart.orderItemPid:
+    label: 'Order Items PID'
+    category: WaveCart
+    description: 'PID where the Order Item Objects should be stored.'
     type: int
     default: 1
   waveCart.mailFromAddress:
