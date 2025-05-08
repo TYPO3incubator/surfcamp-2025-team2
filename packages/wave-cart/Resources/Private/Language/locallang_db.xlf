@@ -66,6 +66,9 @@
 			<trans-unit id="tx_wavecart_domain_model_orderitem.order">
 				<source>Order</source>
 			</trans-unit>
+			<trans-unit id="tx_wavecart_domain_model_orderitem.variant_id">
+				<source>Variant ID</source>
+			</trans-unit>
 
 			<!-- Product -->
 			<trans-unit id="tx_wavecart_domain_model_product">

@@ -8,5 +8,5 @@ services:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
 
-  TYPO3Incubator\WaveCart\Controller\ListOrderController:
+  TYPO3Incubator\WaveCart\Controller\Backend\OrderBackendController:
     public: true
