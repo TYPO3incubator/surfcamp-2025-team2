@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+
+<f:debug>{}</f:debug>
+<div class="tabs">
+    <table>
+        <tr>
+
+           <f:for each="{thead}" as="th" iteration="iterator">
+               <th>{th}</th>
+           </f:for>
+        </tr>
+        <tr>
+            <f:for each="{tbody}" as="td" iteration="iterator">
+                <th>{th}</th>
+            </f:for>
+        </tr>
+    </table>
+</div>

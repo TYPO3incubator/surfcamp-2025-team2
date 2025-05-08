@@ -13,7 +13,7 @@ use TYPO3Incubator\WaveCart\Tab\Tab;
 #[Autoconfigure(public: true, shared: false)]
 final class TabFactory
 {
-    public function create(string $title, string $content, bool $active, int $position): Tab
+    public function create(string $title, array $content, bool $active, int $position): Tab
     {
         return new Tab(
             $title,

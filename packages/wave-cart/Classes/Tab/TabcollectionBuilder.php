@@ -14,7 +14,7 @@ class TabcollectionBuilder
         private TabFactory $tabFactory,
         private Tabcollection $tabcollection,
         private string $title = '',
-        private string $content = '',
+        private array $content = [],
         private bool $active = false,
         private int $position = 10,
     ) {

@@ -7,7 +7,7 @@ final class Tab
 
     public function __construct(
         private string $title = '',
-        private string $content = '',
+        private array $content = [],
         private bool $active = false,
         private int $position = 0
     ) {
@@ -23,12 +23,12 @@ final class Tab
         $this->title = $title;
     }
 
-    public function getContent(): string
+    public function getContent(): array
     {
         return $this->content;
     }
 
-    public function setContent(string $content): void
+    public function setContent(array $content): void
     {
         $this->content = $content;
     }

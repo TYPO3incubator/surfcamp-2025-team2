@@ -22,7 +22,7 @@ readonly class StoragePageProvider
         $result = $this->orderRepository->getAllOrders();
 
         try {
-            return $result->fetchAssociative();
+            return $result->fetchAllAssociative();
         } catch (\Doctrine\DBAL\Exception $e) {
             $this->logger->error('could not fetch storage pages', ['exception' => $e]);
             return null;

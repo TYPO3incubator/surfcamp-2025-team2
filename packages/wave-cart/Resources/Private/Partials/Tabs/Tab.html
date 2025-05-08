@@ -3,12 +3,45 @@
       data-namespace-typo3-fluid="true">
 
 
-
 <div class="tabs" id="tab-header">
     <div class="tab active" data-tab="tab{tab.position}">
         <p>{tab.title}</p>
     </div>
 </div>
 <div class="tab-content active" id="tab{tab.position}">
-<p>{tab.content}</p>
+
+
+    <div class="tabs">
+        <table>
+
+            <thead>
+            <f:for each="{tab.content.orders}" as="order">
+                <tr>
+                    <th>Customer Lastname</th>
+                    <th>Customer Firstname</th>
+                    <th>Status</th>
+                    <th>Assignee</th>
+                </tr>
+            </f:for>
+            </thead>
+            <tbody>
+            <f:for each="{tab.content.orders}" as="order">
+                <tr>
+                    <td>{order.customer_lastname}</td>
+                    <td>{order.customer_firstname}</td>
+                    <f:if condition="{status == 0}">
+                        <f:then>
+                          <td></td>
+                        </f:then>
+                        <f:else>
+                            This is being displayed in case the condition evaluates to false.
+                        </f:else>
+                    </f:if>
+                    <td>{status}</td>
+                    <td>{assignee}</td>
+                </tr>
+            </f:for>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -11,7 +11,9 @@ use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Incubator\WaveCart\Domain\Repository\OrderRepository;
 use TYPO3Incubator\WaveCart\Factory\TabFactory;
+use TYPO3Incubator\WaveCart\Provider\StoragePageProvider;
 use TYPO3Incubator\WaveCart\Tab\TabcollectionBuilder;
 
 #[AsController]
@@ -23,6 +25,7 @@ final  class OrderBackendController
         private ModuleTemplateFactory $moduleTemplateFactory,
         private TabcollectionBuilder $tabcollectionBuilder,
         private PageRenderer $pageRenderer,
+        private StoragePageProvider $storagePageProvider,
     ) {
     }
 
@@ -30,12 +33,18 @@ final  class OrderBackendController
     {
         $this->moduleTemplate = $this->moduleTemplateFactory->create($request);
 
+
+        $orders = $this->storagePageProvider->getStoragePage();
+
         $tabData = [
             [
                 'title' => 'Order',
-                'content' => 'Order content',
-                'active' => true,
-                'position' => 10,
+                   'content' => [
+                       'orders' =>  $orders,
+                   ],
+                    'active' => true,
+                    'position' => 10,
+
             ],
         ];
 
@@ -48,7 +57,6 @@ final  class OrderBackendController
 //        $pageRenderer->addJsFile('EXT:wave_cart/Resources/Public/JavaScript/Tabs.js');
 
         return $this->moduleTemplate->renderResponse('OrderModule/index');
-
     }
 
     private function renderTabs(ModuleTemplate $template): ModuleTemplate
