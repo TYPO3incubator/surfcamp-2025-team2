@@ -4,203 +4,79 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\WaveCart\Controller;
 
-use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Backend\Clipboard\Clipboard;
-use TYPO3\CMS\Backend\Controller\RecordListController;
-use TYPO3\CMS\Backend\Module\ModuleData;
-use TYPO3\CMS\Backend\Routing\UriBuilder;
-use TYPO3\CMS\Backend\Template\Components\ButtonBar;
-use TYPO3\CMS\Backend\Template\Components\Buttons\DropDown\DropDownItemInterface;
-use TYPO3\CMS\Backend\Template\Components\Buttons\DropDown\DropDownToggle;
+use TYPO3\CMS\Backend\Attribute\AsController;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
-use TYPO3\CMS\Core\Imaging\IconFactory;
-use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Incubator\WaveCart\Provider\StoragePageProvider;
 
-class ListOrderController extends RecordListController
+#[AsController]
+final readonly class ListOrderController
 {
     public function __construct(
-        IconFactory $iconFactory,
-        PageRenderer $pageRenderer,
-        EventDispatcherInterface $eventDispatcher,
-        UriBuilder $uriBuilder,
-        ModuleTemplateFactory $moduleTemplateFactory,
-        private readonly StoragePageProvider $storagePageProvider,
+        private ModuleTemplateFactory $moduleTemplateFactory,
+        private PageRenderer $pageRenderer,
+
     ) {
-        parent::__construct($iconFactory, $pageRenderer, $eventDispatcher, $uriBuilder, $moduleTemplateFactory);
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @return ResponseInterface
-     */
     public function indexAction(ServerRequestInterface $request): ResponseInterface
     {
-        /** @var ModuleData $moduleData */
-        $moduleData = $request->getAttribute('moduleData');
-        $moduleData->set('searchBox', 1);
-        $moduleData->set('clipBoard', 0);
+        $this->pageRenderer->addCssFile('EXT:wave_cart/Resources/Public/Css/module.css');;
+        $template = $this->moduleTemplateFactory->create($request);
 
-        $storagePage = $this->storagePageProvider->getStoragePage();
-
-        $queryParameters['id'] = $storagePage['pid'];
-        $queryParameters['table'] = 'tx_wavecart_domain_model_order';
-        $request = $request->withQueryParams($queryParameters)->withAttribute('moduleData', $moduleData);
-
-        return $this->mainAction($request);
+        $template = $this->renderTabs($template);
+        return $template->renderResponse('OrderModule/index');
     }
 
-    protected function getDocHeaderButtons(
-        ModuleTemplate $view,
-        Clipboard $clipboard,
-        ServerRequestInterface $request,
-        string $table,
-        string $listUrl,
-        array $moduleSettings
-    ): void {
-        $queryParams = $request->getQueryParams();
-        $buttonBar = $view->getDocHeaderComponent()->getButtonBar();
-        $lang = $this->getLanguageService();
-        // If edit permissions are set, see BackendUserAuthentication
-
-        // Paste
-        if (($this->pagePermissions->createPagePermissionIsGranted(
-                ) || $this->pagePermissions->editContentPermissionIsGranted()) && $this->editLockPermissions()) {
-            $elFromTable = $clipboard->elFromTable();
-            if (!empty($elFromTable)) {
-                $confirmMessage = $clipboard->confirmMsgText('pages', $this->pageInfo, 'into', $elFromTable);
-                $pasteButton = $buttonBar->makeLinkButton()
-                    ->setHref($clipboard->pasteUrl('', $this->id))
-                    ->setTitle(
-                        $lang->sL('LLL:EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf:clip_paste')
-                    )
-                    ->setClasses('t3js-modal-trigger')
-                    ->setDataAttributes(
-                        [
-                            'severity' => 'warning',
-                            'bs-content' => $confirmMessage,
-                            'title' => $lang->sL(
-                                'LLL:EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf:clip_paste'
-                            ),
-                        ]
-                    )
-                    ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', IconSize::SMALL))
-                    ->setShowLabelText(true);
-                $buttonBar->addButton($pasteButton, ButtonBar::BUTTON_POSITION_LEFT, 40);
-            }
-        }
-        // Cache
-        if ($this->id !== 0) {
-            $clearCacheButton = $buttonBar->makeLinkButton()
-                ->setHref('#')
-                ->setDataAttributes(['id' => $this->id])
-                ->setClasses('t3js-clear-page-cache')
-                ->setTitle($lang->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.clear_cache'))
-                ->setIcon($this->iconFactory->getIcon('actions-system-cache-clear', IconSize::SMALL));
-            $buttonBar->addButton($clearCacheButton, ButtonBar::BUTTON_POSITION_RIGHT);
-        }
-        if ($table
-            && !($this->modTSconfig['noExportRecordsLinks'] ?? false)
-            && $this->getBackendUserAuthentication()->isExportEnabled()
-        ) {
-            // Export
-            if (ExtensionManagementUtility::isLoaded('impexp')) {
-                $url = (string)$this->uriBuilder->buildUriFromRoute(
-                    'tx_impexp_export',
-                    ['tx_impexp' => ['list' => [$table . ':' . $this->id]]]
-                );
-                $exportButton = $buttonBar->makeLinkButton()
-                    ->setHref($url)
-                    ->setTitle($lang->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:rm.export'))
-                    ->setIcon($this->iconFactory->getIcon('actions-document-export-t3d', IconSize::SMALL))
-                    ->setShowLabelText(true);
-                $buttonBar->addButton($exportButton, ButtonBar::BUTTON_POSITION_LEFT, 50);
-            }
-        }
-        // Reload
-        $reloadButton = $buttonBar->makeLinkButton()
-            ->setHref($listUrl)
-            ->setTitle($lang->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload'))
-            ->setIcon($this->iconFactory->getIcon('actions-refresh', IconSize::SMALL));
-        $buttonBar->addButton($reloadButton, ButtonBar::BUTTON_POSITION_RIGHT);
-
-        // ViewMode
-        $viewModeItems = [];
-        if ($this->allowSearch) {
-            $viewModeItems[] = GeneralUtility::makeInstance(DropDownToggle::class)
-                ->setActive((bool)$this->moduleData->get('searchBox'))
-                ->setHref(
-                    $this->createModuleUri(
-                        $request,
-                        ['searchBox' => $this->moduleData->get('searchBox') ? 0 : 1, 'searchTerm' => '']
-                    )
-                )
-                ->setLabel(
-                    $lang->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.view.showSearch')
-                )
-                ->setIcon($this->iconFactory->getIcon('actions-search'));
-        }
-        if ($this->allowClipboard) {
-            $viewModeItems[] = GeneralUtility::makeInstance(DropDownToggle::class)
-                ->setActive((bool)$this->moduleData->get('clipBoard'))
-                ->setHref(
-                    $this->createModuleUri($request, ['clipBoard' => $this->moduleData->get('clipBoard') ? 0 : 1])
-                )
-                ->setLabel(
-                    $lang->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.view.showClipboard')
-                )
-                ->setIcon($this->iconFactory->getIcon('actions-clipboard'));
-        }
-        if (!empty($viewModeItems)) {
-            $viewModeButton = $buttonBar->makeDropDownButton()
-                ->setLabel($lang->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.view'))
-                ->setShowLabelText(true);
-            foreach ($viewModeItems as $viewModeItem) {
-                /** @var DropDownItemInterface $viewModeItem */
-                $viewModeButton->addItem($viewModeItem);
-            }
-            $buttonBar->addButton($viewModeButton, ButtonBar::BUTTON_POSITION_RIGHT, 3);
-        }
-
-        // Shortcut
-        $shortCutButton = $buttonBar->makeShortcutButton()->setRouteIdentifier('web_list');
-        $arguments = [
-            'id' => $this->id,
+    private function renderTabs(ModuleTemplate $template)
+    {
+        $tabs = [
+            [
+                'title' => '',
+                'action' => '',
+                'icon' => '<svg viewBox="0 0 24 24"><path d="M14,2A8,8 0 0,0 6,10A8,8 0 0,0 14,18A8,8 0 0,0 22,10H20C20,13.32 17.32,16 14,16A6,6 0 0,1 8,10A6,6 0 0,1 14,4C14.43,4 14.86,4.05 15.27,4.14L16.88,2.54C15.96,2.18 15,2 14,2Z"/></svg>'
+            ],
+            [
+                'title' => '',
+                'action' => '',
+                'icon' => '<svg viewBox="0 0 24 24"><path d="M2,10.96C1.5,10.68 1.35,10.07 1.63,9.59L3.13,7C3.24,6.8 3.41,6.66 3.6,6.58L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.66,6.72 20.82,6.88 20.91,7.08L22.36,9.6C22.64,10.08 22.47,10.69 22,10.96Z"/></svg>'
+            ],
+            [
+                'title' => '',
+                'action' => '',
+                'icon' => '<svg viewBox="0 0 24 24"><path d="M3,4A2,2 0 0,0 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8H17V4Z"/></svg>'
+            ],
         ];
-        $potentialArguments = [
-            'pointer',
-            'table',
-            'searchTerm',
-            'search_levels',
-            'sortField',
-            'sortRev',
-        ];
-        foreach ($potentialArguments as $argument) {
-            if (!empty($queryParams[$argument])) {
-                $arguments[$argument] = $queryParams[$argument];
-            }
-        }
-        foreach ($moduleSettings as $moduleSettingKey => $moduleSettingValue) {
-            $arguments['GET'][$moduleSettingKey] = $moduleSettingValue;
-        }
-        $shortCutButton->setArguments($arguments);
-        $shortCutButton->setDisplayName($this->getShortcutTitle($arguments));
-        $buttonBar->addButton($shortCutButton, ButtonBar::BUTTON_POSITION_RIGHT);
 
-        // Back
-        if ($this->returnUrl) {
-            $backButton = $buttonBar->makeLinkButton()
-                ->setHref($this->returnUrl)
-                ->setTitle($lang->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.goBack'))
-                ->setShowLabelText(true)
-                ->setIcon($this->iconFactory->getIcon('actions-view-go-back', IconSize::SMALL));
-            $buttonBar->addButton($backButton, ButtonBar::BUTTON_POSITION_LEFT);
+        $tabsHtml = '';
+        $listItemsHtml = '';
+        $sectionsHtml = '';
+
+        foreach ($tabs as $index => $tab) {
+            $checked = ($index === 0) ? 'checked' : ''; // Eerste tab standaard geselecteerd
+            $id = 'tab-' . htmlspecialchars($tab['action']); // Unieke ID gebaseerd op 'action'
+
+            // Input radio buttons
+            $tabsHtml .= '<input type="radio" id="' . $id . '" name="tab-control" ' . $checked . '>';
+
+            // Navigatie (LI met labels en icons)
+            $listItemsHtml .= '<li title="' . htmlspecialchars($tab['title']) . '">
+        <label for="' . $id . '" role="button">
+            ' . $tab['icon'] . '<br><span>' . htmlspecialchars($tab['title']) . '</span>
+        </label>
+    </li>';
+
+            // Content secties
+            $sectionsHtml .= '<section><h2>' . htmlspecialchars($tab['title']) . '</h2>
+        <p>Inhoud voor ' . htmlspecialchars($tab['title']) . '...</p>
+    </section>';
         }
+
+        $template->assign('tabs', $tabsHtml);
+        $template->assign('listItems', $listItemsHtml);
+        $template->assign('sections', $sectionsHtml);
+        return $template;
     }
 }
