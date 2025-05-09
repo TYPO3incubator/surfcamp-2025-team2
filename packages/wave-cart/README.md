@@ -11,13 +11,16 @@ The project is based on TYPO3 v13, using Composer.
 ```sh
 composer require typo3-incubator/wave-cart
 ```
+Add the wave-cart siteset to the site configuration.
 
 ---
 
 ## Configuration
 
 WaveCart introduces a set of configurable options that allow you to tailor the extension to your needs. These settings are divided into meaningful categories and defined in TYPO3's site configuration.
-Below is an overview of the available configurations and their purposes.
+Below is an overview of the available configurations and their purposes. <br>
+
+You can configure them in the backend under Site Management → Settings.
 
 ### General Settings for Cart and Order
 
