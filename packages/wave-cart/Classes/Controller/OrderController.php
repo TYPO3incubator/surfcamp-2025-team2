@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace TYPO3Incubator\WaveCart\Controller;
 
 use Doctrine\DBAL\Exception;
+use Mpdf\MpdfException;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Mail\FluidEmail;
@@ -39,8 +40,7 @@ class OrderController extends ActionController
         protected PersistenceManager $persistenceManager,
         protected GenerateInvoiceService $generateInvoiceService,
         protected DiscountCodeRepository $discountCodeRepository
-    )
-    {
+    ) {
     }
 
     public function cartAction(): ResponseInterface
@@ -94,9 +94,18 @@ class OrderController extends ActionController
 
     /**
      * @throws Exception
+     * @throws MpdfException
+     * @throws UnknownObjectException
+     * @throws IllegalObjectTypeException
      */
     public function submitAction(?Cart $cart = null): ResponseInterface
     {
+        if ($cart === null) {
+            return (new ForwardResponse('cart'))
+                ->withControllerName('Order')
+                ->withExtensionName('waveCart');
+        }
+
         $order = $this->persistOrder($cart);
         $order = $this->generateInvoiceService->generateInvoicePdfAndAddToOrder($order, $this->request);
         $this->orderRepository->update($order);
@@ -166,6 +175,9 @@ class OrderController extends ActionController
         $mailer = new FluidEmail();
 
         $settings = $this->request->getAttribute('site')->getSettings();
+        $iban = $settings->get('waveCart.invoiceIban');
+        $bic = $settings->get('waveCart.invoiceBic');
+        $bankName = $settings->get('waveCart.invoiceBankName');
         $fromAddress = $settings->get('waveCart.mailFromAddress');
         $fromSubject = $settings->get('waveCart.mailFromSubject');
         $senderAddress = $order->getCustomerEmail();
@@ -180,6 +192,9 @@ class OrderController extends ActionController
             ->attachFromPath($path)
             ->assignMultiple([
                 'order' => $order,
+                'iban' => $iban,
+                'bic' => $bic,
+                'bankName' => $bankName,
             ])
             ->setTemplate('Sender');
 
@@ -305,9 +320,9 @@ class OrderController extends ActionController
             }
 
             if ($discountCode->getType() === DiscountTypeEnum::relative->value) {
-                $calculatedDiscount = - $cart->calculateTotalPrice() * ($discountCode->getDiscount() / 100);
+                $calculatedDiscount = -$cart->calculateTotalPrice() * ($discountCode->getDiscount() / 100);
             } else {
-                $calculatedDiscount = - $discountCode->getDiscount();
+                $calculatedDiscount = -$discountCode->getDiscount();
             }
 
 

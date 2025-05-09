@@ -40,7 +40,7 @@
 <!--mpdf
 <htmlpageheader name="myheader">
 <table width="100%"><tr>
-<td width="50%" style="color:#0000BB; "><span style="font-weight: bold; font-size: 14pt;">Acme Trading Co.</span><br />123 Anystreet<br />Your City<br />GD12 4LP<br /><span style="font-family:dejavusanscondensed;">&#9742;</span> 01777 123 567</td>
+<td width="50%" style="color:#0000BB; "><span style="font-weight: bold; font-size: 14pt;">{companyName}</span><br />{companyStreet}<br />{companyCity}<br><span style="font-family:dejavusanscondensed;">&#9742;</span>{companyPhone}</td>
 <td width="50%" style="text-align: right;">Invoice No.<br /><span style="font-weight: bold; font-size: 12pt;">{order.uid}</span></td>
 </tr></table>
 </htmlpageheader>
@@ -55,7 +55,7 @@ Page {PAGENO} of {nb}
 <sethtmlpagefooter name="myfooter" value="on" />
 mpdf-->
 
-<div style="text-align: right">Date: 13th November 2008</div>
+<div style="text-align: right">Date: {creationDate}</div>
 
 <table width="100%" style="font-family: serif;" cellpadding="10"><tr>
     <td width="45%" style="border: 0.1mm solid #888888; "><span style="font-size: 7pt; color: #555555; font-family: sans;">SOLD TO:</span><br /><br />{order.customerFirstname} {order.customerLastname}<br />{order.customerAddress}<br />{order.customerZip} {order.customerCity}</td>
@@ -69,9 +69,8 @@ mpdf-->
     <thead>
     <tr>
         <td width="10%">Quantity</td>
-        <td width="60%">Description</td>
-        <td width="15%">Unit Price</td>
-        <td width="15%">Price</td>
+        <td width="50%">Description</td>
+        <td width="20%" colspan="2">Unit Price</td>
     </tr>
     </thead>
     <tbody>
@@ -80,8 +79,7 @@ mpdf-->
         <tr>
             <td align="center">{item.amount}</td>
             <td>{item.name} - {item.size}</td>
-            <td class="cost">{item.price}&euro;</td>
-            <td class="cost">&pound;25.60</td>
+            <td class="cost" colspan="2">{item.price -> f:format.number(decimals: 2)}&euro;</td>
         </tr>
     </f:for>
 
@@ -90,26 +88,41 @@ mpdf-->
     <tr>
         <td class="blanktotal" colspan="2" rowspan="6"></td>
         <td class="totals">Subtotal:</td>
-        <td class="totals cost">{tax.subtotal}&euro;</td>
+        <td class="totals cost">{tax.subtotal -> f:format.number(decimals: 2)}&euro;</td>
     </tr>
     <tr>
         <td class="totals">Tax:</td>
-        <td class="totals cost">{tax.tax}&euro;</td>
+        <td class="totals cost">{tax.tax -> f:format.number(decimals: 2)}&euro;</td>
     </tr>
     <tr>
         <td class="totals">Discounts:</td>
-        <td class="totals cost">{order.discountValue}&euro;</td>
+        <td class="totals cost">{order.discountValue -> f:format.number(decimals: 2)}&euro;</td>
     </tr>
     <tr>
         <td class="totals"><b>TOTAL:</b></td>
-        <td class="totals cost"><b>{order.totalPrice}&euro;</b></td>
+        <td class="totals cost"><b>{order.totalPrice -> f:format.number(decimals: 2)}&euro;</b></td>
     </tr>
     </tbody>
 </table>
 
 
 <div style="text-align: center; font-style: italic;">Payment terms: payment due in 30 days</div>
-
+    <br><br><br>
+    <h4 style="text-align: center;">Payment Details</h4>
+    <table width="100%" style="font-size: 10pt;">
+        <tr>
+            <td><b>Bank Name:</b></td>
+            <td>{bankName}</td>
+        </tr>
+        <tr>
+            <td><b>IBAN:</b></td>
+            <td>{iban}</td>
+        </tr>
+        <tr>
+            <td><b>BIC:</b></td>
+            <td>{bic}</td>
+        </tr>
+    </table>
 
 </body>
 </html>

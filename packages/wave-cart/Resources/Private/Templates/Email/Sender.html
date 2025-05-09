@@ -16,20 +16,20 @@
             <tr>
                 <td>{item.name}</td>
                 <td>{item.amount}</td>
-                <td>{item.price} €</td>
+                <td>{item.price -> f:format.number(decimals: 2)} €</td>
             </tr>
         </f:for>
     </tbody>
 </table>
 <p>Total discount: {order.discountValue} €</p>
-<p>Total Price: {order.totalPrice} €</p>
+<p>Total Price: {order.totalPrice -> f:format.number(decimals: 2)} €</p>
 
 <f:if condition="{order.paymentMethod} == 0">
     <p>Please transfer the total amount to the following bank account:</p>
     <p>
-        IBAN: DE12 3456 7890 1234 5678 90<br>
-        BIC: ABCDDEFFXXX<br>
-        Bank Name: Example Bank<br>
+        IBAN: {iban}<br>
+        BIC: {bic}<br>
+        Bank Name: {bankName}<br>
     </p>
 </f:if>
 <p>Thank you for shopping with us!</p>
